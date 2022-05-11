@@ -13,6 +13,10 @@ use App\Http\Controllers\UserController;
 |
 */
 
+Route::middleware(['guest:web','PreventBackHistory'])->group(function(){
+    Route::view('/','guestHome')->name('guestHome');
+});
+
 Route::prefix('user')->name('user.')->group(function(){
 
 
@@ -27,7 +31,7 @@ Route::prefix('user')->name('user.')->group(function(){
 
 
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
-        Route::view('/home','users.userHome')->name('home');
+        Route::view('/home','guestHome')->name('home');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
     });
 
