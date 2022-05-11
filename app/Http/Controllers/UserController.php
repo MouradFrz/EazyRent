@@ -32,7 +32,7 @@ class UserController extends Controller
     public function check(Request $request){
         $request->validate([
             'username'=>'required|exists:users,username',
-            'password'=>'required|min:8'
+            'password'=>'required|min:6'
         ]);
         $creds = $request->only('username','password');
 
