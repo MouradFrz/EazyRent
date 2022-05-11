@@ -10,6 +10,16 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function create(Request $request){
+
+        $request->validate([
+            'username'=>'required|unique:users,username|min:4|alpha_num|max:15',
+            'lastName'=>'required||alpha|max:25',
+            'firstName'=>'required||alpha|max:25',
+        ]);
+
+
+
+
         $user = new User();
         $user->username=$request->username;
         $user->password=Hash::make($request->password);
@@ -19,6 +29,7 @@ class UserController extends Controller
         $user->birthDate=$request->birthDate;
         $user->idCard=$request->idCard;
         $user->email=$request->email;
+        $user->phoneNumber=$request->phone;
 
         $save = $user->save();
 
