@@ -34,17 +34,17 @@
             <div class="d-flex align-items-center">
               <input
                 type="checkbox"
-                class="driverAgeCheck"
+                class=""
                 name=""
-                id=""
+                id="driverAgeCheck"
               />
               <p>Driver age is less than 25</p>
             </div>
-            <div class="d-flex align-items-center driverAge" >
-              <p>Driver's age :</p>
+            <div class="d-flex align-items-center " >
+              <label class="driverAge">Driver's age :</label>
               <input
                 type="number"
-                class="inputs "
+                class="inputs driverAge"
                 style="margin-left: 16px"
                 min="18"
                 max="25"
@@ -191,10 +191,11 @@
     $('.dropOffCheck').click(function(){
         $('.dropOffInput').toggle();
     });
-
+    
     $('.driverAge').hide();
-    $('.driverAgeCheck').click(function(){
+    $('#driverAgeCheck').click(function(){
         $('.driverAge').toggle();
     });
+   
 </script>
 @endsection
