@@ -24,8 +24,8 @@
                 @auth
                 <div class="auth d-flex align-items-center" >
                     <i class="bi bi-person-circle" id="user-icon"></i>
-                    <h6 class="m-0 username">
-                        {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} 
+                    <h6 class="m-0 username " style="color:rgb(79, 79, 79)">
+                        {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}  &#9660
                     </h6>
                     <div class="show-on-hover">
                       <ul>

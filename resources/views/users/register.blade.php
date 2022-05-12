@@ -7,40 +7,40 @@
     <title>Signup</title>
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <style>
+      .hide{
+        position: absolute;
+       visibility: hidden;
+       z-index: -10;
+      }
+    </style>
 </head>
 <body>
-
-    
-        
-    
-   
-    
-
-   
     <div>
-      
         <div
           class="container d-flex justify-content-center align-items-center "
           style="min-height: 100vh"
         >
-        
+        <div class=" signup-panel d-flex align-items-center justify-content-center flex-column" >
           <form
-            class="signup-panel d-flex align-items-center justify-content-center flex-column"
+            class=" d-flex align-items-center justify-content-center flex-column"
             action="{{ route('user.create') }}"
             method="POST"
+            style="width: 100%"
           >
+          <h1 class="title fw-bold">Sign up</h1>
           @if (Session::get('fail'))
-          <div class="alert alert-success w-75 text-center" role="alert">
+          <div class="alert alert-danger w-100" role="alert">
               {{ Session::get('fail') }}
             </div>
           @endif
           @if (Session::get('success'))
-          <div class="alert alert-success w-75 text-center " role="alert">
+          <div class="alert alert-success w-100 " role="alert">
             {{ Session::get('success') }}
           </div>
           @endif
           @csrf
-            <div class="form-login d-flex flex-column w-100" v-if="signUpStep == 1">
+            <div class="form-login d-flex flex-column w-100 signupStep">
               <label for="">First name</label>
               <input
                 type="text"
@@ -93,9 +93,13 @@
                     {{ $message }}
                 @enderror
                 </span>
+                <p class="my-2">
+                  Already have an account?
+                  <a href="{{ route('user.login') }}" class="text-decoration-underline">Log in</a>
+              </p>
               <p class="step-index">1/4</p>
             </div>
-            <div class="form-login d-flex flex-column" v-if="signUpStep == 2">
+            <div class="form-login d-flex flex-column signupStep hide"  >
               <label for="">Username</label>
               <input
                 class="inputs"
@@ -162,7 +166,7 @@
               </div>
               <p class="step-index">2/4</p>
             </div>
-            <div class="form-login d-flex flex-column" v-if="signUpStep == 3">
+            <div class="form-login d-flex flex-column signupStep hide">
               <label for=""> Identity card number</label>
               <input
                 class="inputs"
@@ -201,7 +205,7 @@
               </div>
               <p class="step-index">3/4</p>
             </div>
-            <div class="form-login d-flex flex-column" v-if="signUpStep == 4">
+            <div class="form-login d-flex flex-column signupStep hide">
               <label for=""
                 >Upload an image where your face is clearly visible</label
               >
@@ -211,9 +215,9 @@
                 accept="image/*"
                 name=""
               />
-              <div class="d-flex justify-content-between">
+              <div class="d-flex justify-content-end ">
                 <input
-                  style="margin-top: 15px; width: 150px; align-self: flex-end"
+                  style="margin-top: 15px !important; width: 150px;"
                   type="submit"
                   value="Sign up!"
                   class="custom-btn"
@@ -221,38 +225,71 @@
               </div>
               <p class="step-index">4/4</p>
             </div>
-            <div class="d-flex justify-content-between">
-                <button
-                  style="margin-top: 15px; width: 150px"
-                  @click="stepDec"
-                  class="custom-btn"
-                >
-                  Previous
-                </button>
-                <button
-                  style="margin-top: 15px; width: 150px; align-self: flex-end"
-                  @click="stepInc"
-                  class="custom-btn"
-                  v-if="signUpStep < 4"
-                >
-                  Next
-                </button>
-                <input
-                style="margin-top: 15px; width: 150px; align-self: flex-end"
-                type="submit"
-                value="Sign up!"
-                class="custom-btn"
-                v-if=" signUpStep == 4"
-              />
-              </div>
-            <p class="my-2">
-                Already have an account?
-                <a href="{{ route('user.login') }}" class="text-decoration-underline">Log in</a>
-            </p>
           </form>
+          <div class="d-flex justify-content-between w-100">
+            <button
+                    style="margin-top: 15px; width: 150px"
+                    class="custom-btn"
+                    id="prev"
+                  >
+                    Previous
+                  </button>
+                  <button
+                    style="margin-top: 15px; width: 150px; align-self: flex-end"
+                    class="custom-btn"
+                    id="next"
+                  >
+                    Next
+                </button>
+              </div>
+
+              
+        </div>
         </div>
       </div>
-      <script src="https://unpkg.com/vue@3"></script>
+      <script>
+        const pages = document.querySelectorAll('.signupStep')
+        const stepInc = document.querySelector('#next')
+        const stepDec = document.querySelector('#prev')
+        
+        let currentStep=0;
+        stepDec.disabled=true;
+        stepDec.style.backgroundColor ='gray'
+        stepInc.addEventListener('click',()=>{
+          currentStep++;
+          pages.forEach(element => {
+            element.classList.add('hide');
+          });
+            pages[currentStep].classList.remove("hide");
+          if(currentStep==3){
+            stepInc.style.backgroundColor ='gray'
+            stepInc.disabled=true;
+          }
+          if(currentStep!=3){
+            stepDec.style.backgroundColor ='rgb(187, 190, 105)'
+            stepDec.disabled=false;
+          }
+        });
+
+        stepDec.addEventListener('click',()=>{
+          currentStep--;
+          pages.forEach(element => {
+            element.classList.add('hide');
+          });
+            pages[currentStep].classList.remove("hide");
+          if(currentStep==0){
+            stepDec.style.backgroundColor ='gray'
+            stepDec.disabled=true;
+          }
+          if(currentStep!=3){
+            stepInc.style.backgroundColor ='rgb(187, 190, 105)'
+            stepInc.disabled=false;
+          }
+        });
+      
+
+      </script>
+      {{-- <script src="https://unpkg.com/vue@3"></script>
       <script>
         Vue.createApp({
             data() {
@@ -278,6 +315,6 @@
             },
         },
         }).mount('#app')
-    </script>
+    </script> --}}
 </body>
 </html>

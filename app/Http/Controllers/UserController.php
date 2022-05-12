@@ -51,6 +51,9 @@ class UserController extends Controller
         $request->validate([
             'username'=>'required|exists:users,username',
             'password'=>'required|min:6'
+        ],
+        [
+            'username.exists'=>'Your account doesnt exist. Create an account then login'
         ]);
         $creds = $request->only('username','password');
 

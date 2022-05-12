@@ -23,6 +23,16 @@
               <input class="inputs" name="username" type="text" value="{{ old('username') }}"/>
               <label for="">Password</label>
               <input class="inputs" name="password" type="password" />
+              @error('username')
+              <div class="alert alert-danger w-100" role="alert">
+                {{ $message }}
+              </div>
+              @enderror
+              @if (Session::get('fail'))
+              <div class="alert alert-danger w-100" role="alert">
+                {{ Session::get('fail') }}
+              </div>
+              @endif
               <a href="" class="text-decoration-underline">Forgot password?</a>
               <input
                 style="margin-top: 15px; width: 150px"
