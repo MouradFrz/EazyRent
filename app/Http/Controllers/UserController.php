@@ -13,8 +13,15 @@ class UserController extends Controller
 
         $request->validate([
             'username'=>'required|unique:users,username|min:4|alpha_num|max:15',
-            'lastName'=>'required||alpha|max:25',
-            'firstName'=>'required||alpha|max:25',
+            'lastName'=>'required|alpha|max:25',
+            'firstName'=>'required|alpha|max:25',
+            'birthDate'=>'required|date',
+            'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+            'email'=>'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
+            'phone'=>'numeric|digits_between:10,10|regex:/0[0-9]{9}/',
+            'password'=>'required|alpha_num|min:6',
+            'passwordConfirm'=>'required|same:password',
+            'idCard'=>'required|digits_between:18,18|numeric'
         ]);
 
 
@@ -34,9 +41,9 @@ class UserController extends Controller
         $save = $user->save();
 
         if($save){
-            return redirect()->back()->with('success','you are now registered successfully');
+            return redirect()->back()->with('success','You are now registered! Log in to your account.');
         }else{
-            return redirect()->back()->with('fail','registration failed');
+            return redirect()->back()->with('fail','Something went wrong, registration failed');
         }
     }
 
@@ -50,7 +57,7 @@ class UserController extends Controller
         if(Auth::guard('web')->attempt($creds)){
             return redirect()->route('user.home');
         }else{
-            return redirect()->route('user.login')->with('fail','incorrect creds');
+            return redirect()->route('user.login')->with('fail','The credentials you entered are wrong');
         }
     }
     public function logout(){

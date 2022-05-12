@@ -10,39 +10,35 @@
 </head>
 <body>
 
-    @if (Session::get('success'))
-        {{ Session::get('success') }}
-    @endif
-    @if (Session::get('fail'))
-        {{ Session::get('fail') }}
-    @endif
+    
+        
+    
+   
+    
 
-    {{ Auth::user() }}
-{{--
-    <form action="" method="POST">
-        @csrf
-        <input type="text" name="firstName" id="" placeholder="firstName">
-        <input type="text" name="lastName" id="" placeholder="lastName">
-        <input type="text" name="address" id="" placeholder="address">
-        <input type="date" name="birthDate" id="" placeholder="birthDate">
-        <input type="text" name="username" id="" placeholder="username">
-        <input type="text" name="email" id="" placeholder="email">
-        <input type="text" name="password" id="" placeholder="password">
-        <input type="text" name="idCard" id="" placeholder="idCard">
-        <input type="submit" value="SignUp">
-    </form> --}}
-
-    <div id="app">
+   
+    <div>
+      
         <div
           class="container d-flex justify-content-center align-items-center "
           style="min-height: 100vh"
-            >
+        >
+        
           <form
             class="signup-panel d-flex align-items-center justify-content-center flex-column"
             action="{{ route('user.create') }}"
             method="POST"
-            >
-          <h1 class="title">Sign Up</h1>
+          >
+          @if (Session::get('fail'))
+          <div class="alert alert-success w-75 text-center" role="alert">
+              {{ Session::get('fail') }}
+            </div>
+          @endif
+          @if (Session::get('success'))
+          <div class="alert alert-success w-75 text-center " role="alert">
+            {{ Session::get('success') }}
+          </div>
+          @endif
           @csrf
             <div class="form-login d-flex flex-column w-100" v-if="signUpStep == 1">
               <label for="">First name</label>
@@ -81,7 +77,7 @@
                 value="{{ old('birthDate') }}"
               />
               <span class="text-danger" style="font-size:0.8rem">
-                @error('date')
+                @error('birthDate')
                     {{ $message }}
                 @enderror
                  </span>
@@ -108,7 +104,7 @@
                 value="{{ old('username') }}"
               />
               <span class="text-danger" style="font-size:0.8rem">
-                @error('inputs')
+                @error('username')
                     {{ $message }}
                 @enderror
                </span>
