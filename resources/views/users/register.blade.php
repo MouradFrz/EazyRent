@@ -16,9 +16,9 @@
     @if (Session::get('fail'))
         {{ Session::get('fail') }}
     @endif
-    
+
     {{ Auth::user() }}
-{{-- 
+{{--
     <form action="" method="POST">
         @csrf
         <input type="text" name="firstName" id="" placeholder="firstName">
@@ -32,19 +32,19 @@
         <input type="submit" value="SignUp">
     </form> --}}
 
-    <div>
+    <div id="app">
         <div
           class="container d-flex justify-content-center align-items-center "
           style="min-height: 100vh"
-        >
+            >
           <form
             class="signup-panel d-flex align-items-center justify-content-center flex-column"
             action="{{ route('user.create') }}"
             method="POST"
-          >
+            >
+          <h1 class="title">Sign Up</h1>
           @csrf
             <div class="form-login d-flex flex-column w-100" v-if="signUpStep == 1">
-              <h1 class="title">Sign Up</h1>
               <label for="">First name</label>
               <input
                 type="text"
@@ -58,7 +58,7 @@
                         {{ $message }}
                     @enderror
               </span>
-        
+
               <label for="">Last name</label>
               <input
                 type="text"
@@ -71,7 +71,7 @@
                 @error('lastName')
                     {{ $message }}
                 @enderror
-          </span>
+                </span>
               <label for="">Birth Date</label>
               <input
               class="inputs"
@@ -84,7 +84,7 @@
                 @error('date')
                     {{ $message }}
                 @enderror
-          </span>
+                 </span>
               <label for="">Address</label>
               <input
               class="inputs"
@@ -96,16 +96,10 @@
                 @error('address')
                     {{ $message }}
                 @enderror
-          </span>
-              
-              <p class="my-2">
-                Already have an account?
-                <a href="{{ route('user.login') }}" class="text-decoration-underline">Log in</a>
-              </p>
+                </span>
               <p class="step-index">1/4</p>
             </div>
             <div class="form-login d-flex flex-column" v-if="signUpStep == 2">
-              <h1 class="title">Sign Up</h1>
               <label for="">Username</label>
               <input
                 class="inputs"
@@ -117,7 +111,7 @@
                 @error('inputs')
                     {{ $message }}
                 @enderror
-          </span>
+               </span>
               <label for="">E-mail</label>
               <input
                 class="inputs"
@@ -129,7 +123,7 @@
                 @error('email')
                     {{ $message }}
                 @enderror
-          </span>
+                </span>
               <label for=""
                 >Phone number
                 <span style="font-size: 10px; color: gray">optional</span></label
@@ -145,7 +139,7 @@
                 @error('phone')
                     {{ $message }}
                 @enderror
-          </span>
+                </span>
               <div class="d-flex flex-column">
                 <label for="">Password</label>
                 <input
@@ -170,13 +164,9 @@
                     @enderror
               </span>
               </div>
-              <div class="d-flex justify-content-between">
-                
-              </div>
               <p class="step-index">2/4</p>
             </div>
             <div class="form-login d-flex flex-column" v-if="signUpStep == 3">
-              <h1 class="title">Sign Up</h1>
               <label for=""> Identity card number</label>
               <input
                 class="inputs"
@@ -189,7 +179,7 @@
                 @error('idCard')
                     {{ $message }}
                 @enderror
-          </span>
+                </span>
 
               <label for="">Upload an image of your identity card</label>
               <input
@@ -201,7 +191,7 @@
                 id="file-field"
               />
               <div
- 
+
                 class="image-selector"
                 alt=""
               ></div>
@@ -211,15 +201,11 @@
                 alt=""
               />
               <div class="d-flex justify-content-between">
-              
+
               </div>
               <p class="step-index">3/4</p>
             </div>
-            <div
-              class="form-login d-flex flex-column"
-
-            >
-              <h1 class="title">Sign Up</h1>
+            <div class="form-login d-flex flex-column" v-if="signUpStep == 4">
               <label for=""
                 >Upload an image where your face is clearly visible</label
               >
@@ -230,12 +216,6 @@
                 name=""
               />
               <div class="d-flex justify-content-between">
-                <button
-                  style="margin-top: 15px; width: 150px"
-                  class="custom-btn"
-                >
-                  Previous
-                </button>
                 <input
                   style="margin-top: 15px; width: 150px; align-self: flex-end"
                   type="submit"
@@ -245,8 +225,63 @@
               </div>
               <p class="step-index">4/4</p>
             </div>
+            <div class="d-flex justify-content-between">
+                <button
+                  style="margin-top: 15px; width: 150px"
+                  @click="stepDec"
+                  class="custom-btn"
+                >
+                  Previous
+                </button>
+                <button
+                  style="margin-top: 15px; width: 150px; align-self: flex-end"
+                  @click="stepInc"
+                  class="custom-btn"
+                  v-if="signUpStep < 4"
+                >
+                  Next
+                </button>
+                <input
+                style="margin-top: 15px; width: 150px; align-self: flex-end"
+                type="submit"
+                value="Sign up!"
+                class="custom-btn"
+                v-if=" signUpStep == 4"
+              />
+              </div>
+            <p class="my-2">
+                Already have an account?
+                <a href="{{ route('user.login') }}" class="text-decoration-underline">Log in</a>
+            </p>
           </form>
         </div>
       </div>
+      <script src="https://unpkg.com/vue@3"></script>
+      <script>
+        Vue.createApp({
+            data() {
+                return {
+                    signUpStep: 1,
+                }
+            },
+            methods: {
+            openFilePicker(){
+                document.getElementById("file-field").click()
+            },
+            stepInc() {
+                (this.signUpStep < 4 ) ? this.signUpStep++ : this.signUpStep = 4;
+            },
+            stepDec() {
+                (this.signUpStep > 1 ) ? this.signUpStep-- : this.signUpStep = 1;
+            },
+            onlyNumber($event) {
+            let keyCode = $event.keyCode ? $event.keyCode : $event.which;
+            if (keyCode < 48 || keyCode > 57) {
+                $event.preventDefault();
+            }
+            },
+        },
+        }).mount('#app')
+    </script>
 </body>
 </html>
