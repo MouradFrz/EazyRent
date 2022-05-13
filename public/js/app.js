@@ -1020,9 +1020,10 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 /*!*********************************!*\
   !*** ./resources/sass/app.scss ***!
   \*********************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module 'is-arrayish'\nRequire stack:\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\parse-json\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\loaders.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\ExplorerBase.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\Explorer.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\utils.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\cjs.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\ProgressPlugin.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\webpack-cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\bootstrap.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\bin\\cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\bin\\webpack.js\n    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)\n    at Function.Module._load (node:internal/modules/cjs/loader:778:27)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at Object.<anonymous> (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js:4:18)\n    at Module._compile (node:internal/modules/cjs/loader:1103:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1155:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at processResult (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js:56:7)");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9hcHAuc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Fzcy9hcHAuc2Nzcz9hODBiIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/sass/app.scss\n");
 
 /***/ }),
 
@@ -1030,9 +1031,10 @@ throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugi
 /*!**************************************!*\
   !*** ./resources/sass/homepage.scss ***!
   \**************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module 'is-arrayish'\nRequire stack:\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\parse-json\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\loaders.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\ExplorerBase.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\Explorer.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\utils.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\cjs.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\ProgressPlugin.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\webpack-cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\bootstrap.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\bin\\cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\bin\\webpack.js\n    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)\n    at Function.Module._load (node:internal/modules/cjs/loader:778:27)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at Object.<anonymous> (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js:4:18)\n    at Module._compile (node:internal/modules/cjs/loader:1103:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1155:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at processResult (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js:56:7)");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9ob21lcGFnZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zYXNzL2hvbWVwYWdlLnNjc3M/MWY1ZSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/homepage.scss\n");
 
 /***/ }),
 
@@ -1040,9 +1042,10 @@ throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugi
 /*!***********************************!*\
   !*** ./resources/sass/login.scss ***!
   \***********************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module 'is-arrayish'\nRequire stack:\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\parse-json\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\loaders.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\ExplorerBase.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\Explorer.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\utils.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\cjs.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\ProgressPlugin.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\webpack-cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\bootstrap.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\bin\\cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\bin\\webpack.js\n    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)\n    at Function.Module._load (node:internal/modules/cjs/loader:778:27)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at Object.<anonymous> (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js:4:18)\n    at Module._compile (node:internal/modules/cjs/loader:1103:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1155:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at processResult (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js:56:7)");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9sb2dpbi5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zYXNzL2xvZ2luLnNjc3M/NzRjNSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/login.scss\n");
 
 /***/ }),
 
@@ -1050,9 +1053,10 @@ throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugi
 /*!**************************************!*\
   !*** ./resources/sass/register.scss ***!
   \**************************************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-throw new Error("Module build failed (from ./node_modules/mini-css-extract-plugin/dist/loader.js):\nModuleBuildError: Module build failed (from ./node_modules/postcss-loader/dist/cjs.js):\nError: Cannot find module 'is-arrayish'\nRequire stack:\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\parse-json\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\loaders.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\ExplorerBase.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\Explorer.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\cosmiconfig\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\utils.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\cjs.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\ProgressPlugin.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\index.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\webpack-cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\lib\\bootstrap.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack-cli\\bin\\cli.js\n- C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\bin\\webpack.js\n    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:933:15)\n    at Function.Module._load (node:internal/modules/cjs/loader:778:27)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at require (node:internal/modules/cjs/helpers:102:18)\n    at Object.<anonymous> (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\error-ex\\index.js:4:18)\n    at Module._compile (node:internal/modules/cjs/loader:1103:14)\n    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1155:10)\n    at Module.load (node:internal/modules/cjs/loader:981:32)\n    at Function.Module._load (node:internal/modules/cjs/loader:822:12)\n    at Module.require (node:internal/modules/cjs/loader:1005:19)\n    at processResult (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:758:19)\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\webpack\\lib\\NormalModule.js:860:5\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:400:11\n    at C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:252:18\n    at context.callback (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\loader-runner\\lib\\LoaderRunner.js:124:13)\n    at Object.loader (C:\\Users\\Administrator\\Desktop\\Work\\EazyRent\\node_modules\\postcss-loader\\dist\\index.js:56:7)");
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Fzcy9yZWdpc3Rlci5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zYXNzL3JlZ2lzdGVyLnNjc3M/ZGNkOSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/sass/register.scss\n");
 
 /***/ }),
 
@@ -1095,7 +1099,42 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 		return module.exports;
 /******/ 	}
 /******/ 	
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = __webpack_modules__;
+/******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/chunk loaded */
+/******/ 	(() => {
+/******/ 		var deferred = [];
+/******/ 		__webpack_require__.O = (result, chunkIds, fn, priority) => {
+/******/ 			if(chunkIds) {
+/******/ 				priority = priority || 0;
+/******/ 				for(var i = deferred.length; i > 0 && deferred[i - 1][2] > priority; i--) deferred[i] = deferred[i - 1];
+/******/ 				deferred[i] = [chunkIds, fn, priority];
+/******/ 				return;
+/******/ 			}
+/******/ 			var notFulfilled = Infinity;
+/******/ 			for (var i = 0; i < deferred.length; i++) {
+/******/ 				var [chunkIds, fn, priority] = deferred[i];
+/******/ 				var fulfilled = true;
+/******/ 				for (var j = 0; j < chunkIds.length; j++) {
+/******/ 					if ((priority & 1 === 0 || notFulfilled >= priority) && Object.keys(__webpack_require__.O).every((key) => (__webpack_require__.O[key](chunkIds[j])))) {
+/******/ 						chunkIds.splice(j--, 1);
+/******/ 					} else {
+/******/ 						fulfilled = false;
+/******/ 						if(priority < notFulfilled) notFulfilled = priority;
+/******/ 					}
+/******/ 				}
+/******/ 				if(fulfilled) {
+/******/ 					deferred.splice(i--, 1)
+/******/ 					var r = fn();
+/******/ 					if (r !== undefined) result = r;
+/******/ 				}
+/******/ 			}
+/******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
 /******/ 	/* webpack/runtime/compat get default export */
 /******/ 	(() => {
 /******/ 		// getDefaultExport function for compatibility with non-harmony modules
@@ -1157,16 +1196,74 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 		};
 /******/ 	})();
 /******/ 	
+/******/ 	/* webpack/runtime/jsonp chunk loading */
+/******/ 	(() => {
+/******/ 		// no baseURI
+/******/ 		
+/******/ 		// object to store loaded and loading chunks
+/******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
+/******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
+/******/ 		var installedChunks = {
+/******/ 			"/js/app": 0,
+/******/ 			"css/homepage": 0,
+/******/ 			"css/register": 0,
+/******/ 			"css/login": 0,
+/******/ 			"css/app": 0
+/******/ 		};
+/******/ 		
+/******/ 		// no chunk on demand loading
+/******/ 		
+/******/ 		// no prefetching
+/******/ 		
+/******/ 		// no preloaded
+/******/ 		
+/******/ 		// no HMR
+/******/ 		
+/******/ 		// no HMR manifest
+/******/ 		
+/******/ 		__webpack_require__.O.j = (chunkId) => (installedChunks[chunkId] === 0);
+/******/ 		
+/******/ 		// install a JSONP callback for chunk loading
+/******/ 		var webpackJsonpCallback = (parentChunkLoadingFunction, data) => {
+/******/ 			var [chunkIds, moreModules, runtime] = data;
+/******/ 			// add "moreModules" to the modules object,
+/******/ 			// then flag all "chunkIds" as loaded and fire callback
+/******/ 			var moduleId, chunkId, i = 0;
+/******/ 			if(chunkIds.some((id) => (installedChunks[id] !== 0))) {
+/******/ 				for(moduleId in moreModules) {
+/******/ 					if(__webpack_require__.o(moreModules, moduleId)) {
+/******/ 						__webpack_require__.m[moduleId] = moreModules[moduleId];
+/******/ 					}
+/******/ 				}
+/******/ 				if(runtime) var result = runtime(__webpack_require__);
+/******/ 			}
+/******/ 			if(parentChunkLoadingFunction) parentChunkLoadingFunction(data);
+/******/ 			for(;i < chunkIds.length; i++) {
+/******/ 				chunkId = chunkIds[i];
+/******/ 				if(__webpack_require__.o(installedChunks, chunkId) && installedChunks[chunkId]) {
+/******/ 					installedChunks[chunkId][0]();
+/******/ 				}
+/******/ 				installedChunks[chunkId] = 0;
+/******/ 			}
+/******/ 			return __webpack_require__.O(result);
+/******/ 		}
+/******/ 		
+/******/ 		var chunkLoadingGlobal = self["webpackChunk"] = self["webpackChunk"] || [];
+/******/ 		chunkLoadingGlobal.forEach(webpackJsonpCallback.bind(null, 0));
+/******/ 		chunkLoadingGlobal.push = webpackJsonpCallback.bind(null, chunkLoadingGlobal.push.bind(chunkLoadingGlobal));
+/******/ 	})();
+/******/ 	
 /************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval-source-map devtool is used.
-/******/ 	__webpack_require__("./resources/js/app.js");
-/******/ 	__webpack_require__("./resources/sass/app.scss");
-/******/ 	__webpack_require__("./resources/sass/homepage.scss");
-/******/ 	__webpack_require__("./resources/sass/login.scss");
-/******/ 	var __webpack_exports__ = __webpack_require__("./resources/sass/register.scss");
+/******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
+/******/ 	__webpack_require__.O(undefined, ["css/homepage","css/register","css/login","css/app"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/homepage","css/register","css/login","css/app"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/homepage","css/register","css/login","css/app"], () => (__webpack_require__("./resources/sass/homepage.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/homepage","css/register","css/login","css/app"], () => (__webpack_require__("./resources/sass/login.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/homepage","css/register","css/login","css/app"], () => (__webpack_require__("./resources/sass/register.scss")))
+/******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;

@@ -74,10 +74,8 @@
 }
 .show-on-hover{
 display: none;
-position: absolute; top: 50px;
-@media (max-width:992px){
- top: 60px;
-}
+position: absolute; top: 62px;
+
   ul{
     background-color: rgb(236, 236, 236);
     box-shadow:
@@ -120,7 +118,11 @@ position: absolute; top: 50px;
   }
 }
 #user-icon {
-  font-size: 1.5rem;
+ width: 48px;
+ height: 48px;
+ border-radius: 50%;
+ border: 1px solid rgb(187, 190, 105);
+ padding: 3px;
 }
 nav {
   .a-active {
@@ -140,7 +142,7 @@ nav {
       padding: 10px;
     }
     &.active {
-     top: 59px;
+     top: 62px;
     }
   }
   .container {

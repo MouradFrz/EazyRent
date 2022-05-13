@@ -27,6 +27,7 @@
             action="{{ route('user.create') }}"
             method="POST"
             style="width: 100%"
+            enctype="multipart/form-data"
           >
           <h1 class="title fw-bold">Sign up</h1>
           @if (Session::get('fail'))
@@ -134,6 +135,7 @@
                 maxlength="10"
                 name="phone"
                 value="{{ old('phone') }}"
+                onkeypress="return isNumber(event)"
               />
               <span class="text-danger" style="font-size:0.8rem">
                 @error('phone')
@@ -174,35 +176,43 @@
                 maxlength="18"
                 name="idCard"
                 value="{{ old('idCard') }}"
+                onkeypress="return isNumber(event)"
               />
+              
               <span class="text-danger" style="font-size:0.8rem">
                 @error('idCard')
-                    {{ $message }}
+                  {{ $message }}
                 @enderror
-                </span>
+              </span>
+                
 
               <label for="">Upload an image of your identity card</label>
               <input
                 class="inputs file-input"
                 type="file"
                 accept="image/*"
-                name=""
+                name="idCardImage"
                 style="display: none"
                 id="file-field"
+                value="{{ old('idCardImage') }}"
               />
+              <span class="text-danger" style="font-size:0.8rem">
+              @error('idCardImage')
+                {{ $message }}
+              @enderror
+            </span>
               <div
 
                 class="image-selector"
                 alt=""
+                onclick="openFilePicker()"
               ></div>
               <img
-
+              onclick="openFilePicker()"
                 class="image-preview"
                 alt=""
               />
-              <div class="d-flex justify-content-between">
 
-              </div>
               <p class="step-index">3/4</p>
             </div>
             <div class="form-login d-flex flex-column signupStep hide">
@@ -213,7 +223,27 @@
                 class="inputs file-input"
                 type="file"
                 accept="image/*"
-                name=""
+                name="faceIdImage"
+                style="display: none"
+                id="file-field-face"
+              />
+              <span class="text-danger" style="font-size:0.8rem">
+                @error('faceIdImage')
+                  {{ $message }}
+                @enderror
+              </span>
+              <div
+
+                class="image-selector"
+                id="image-selector-face"
+                alt=""
+                onclick="openFilePickerFace()"
+              ></div>
+              <img
+              onclick="openFilePickerFace()"
+                class="image-preview"
+                id="image-preview-face"
+                alt=""
               />
               <div class="d-flex justify-content-end ">
                 <input
@@ -254,7 +284,7 @@
         
         let currentStep=0;
         stepDec.disabled=true;
-        stepDec.style.backgroundColor ='gray'
+        // stepDec.style.backgroundColor ='gray'
         stepInc.addEventListener('click',()=>{
           currentStep++;
           pages.forEach(element => {
@@ -262,11 +292,11 @@
           });
             pages[currentStep].classList.remove("hide");
           if(currentStep==3){
-            stepInc.style.backgroundColor ='gray'
+            // stepInc.style.backgroundColor ='gray'
             stepInc.disabled=true;
           }
           if(currentStep!=3){
-            stepDec.style.backgroundColor ='rgb(187, 190, 105)'
+            // stepDec.style.backgroundColor ='rgb(187, 190, 105)'
             stepDec.disabled=false;
           }
         });
@@ -278,16 +308,63 @@
           });
             pages[currentStep].classList.remove("hide");
           if(currentStep==0){
-            stepDec.style.backgroundColor ='gray'
+            // stepDec.style.backgroundColor ='gray'
             stepDec.disabled=true;
           }
           if(currentStep!=3){
-            stepInc.style.backgroundColor ='rgb(187, 190, 105)'
+            // stepInc.style.backgroundColor ='rgb(187, 190, 105)'
             stepInc.disabled=false;
           }
         });
       
+        function isNumber(evt) {
+          evt = (evt) ? evt : window.event;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+              return false;
+            }
+    return true;
+}
 
+// function imageSelected(e){
+//       var reader,files = e.target.files
+//       if(files.length ===0){
+//         console.log('empty')
+//       }
+//       console.log("executed")
+//       reader = new FileReader()
+
+//       reader.onload = (e)=>{
+//         this.user.idCardImage=e.target.result
+//       }
+//       reader.readAsDataURL(files[0]);
+//     }
+    
+      
+      document.querySelector('#file-field').onchange = evt => {
+        console.log('rwgw')
+         const [file] = document.querySelector('#file-field').files
+          if (file) {
+            document.querySelector('.image-preview').src = URL.createObjectURL(file)
+            document.querySelector('.image-selector').style.display="none";
+         }
+}
+document.querySelector('#file-field-face').onchange = evt => {
+  console.log('changed face')
+         const [file] = document.querySelector('#file-field-face').files
+          if (file) {
+            document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
+            document.querySelector('#image-selector-face').style.display="none";
+         }
+}
+
+
+    function openFilePicker(){
+      document.getElementById("file-field").click()
+    }
+    function openFilePickerFace(){
+      document.getElementById("file-field-face").click()
+    }
       </script>
       {{-- <script src="https://unpkg.com/vue@3"></script>
       <script>

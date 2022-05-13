@@ -23,7 +23,7 @@
             <div class="container d-flex justify-content-between align-items-center">
                 @auth
                 <div class="auth d-flex align-items-center" >
-                    <i class="bi bi-person-circle" id="user-icon"></i>
+                  <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon" alt="">
                     <h6 class="m-0 username " style="color:rgb(79, 79, 79)">
                         {{ Auth::user()->firstName }} {{ Auth::user()->lastName }}  &#9660
                     </h6>
@@ -47,7 +47,7 @@
                
               <div class="brand d-flex align-items-center">
                 <img src="" alt="" />
-                <h1>RentalCar</h1>
+                <h1 class="fw-bold">EazyRent</h1>
               </div>
               <div class="link-list">
                 <ul class="d-flex justify-content-center">
@@ -88,6 +88,7 @@
         
     
         <footer>
+          @{{ message }}
             <div class="container-md d-flex">
               <a href="" class="nav-link">Terms and conditions</a>
               <a href="" class="nav-link">FAQ</a>
@@ -102,6 +103,7 @@
                 document.querySelector(".dropdown").classList.toggle('active')
             });
         </script>
+       
     </body>
     
 </html>

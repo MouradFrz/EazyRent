@@ -11315,6 +11315,10 @@ textarea.form-control-lg {
   background-color: rgb(232, 232, 232);
   color: rgb(187, 190, 105);
 }
+.custom-btn:disabled {
+  background-color: rgb(187, 187, 187);
+  color: rgb(68, 68, 68);
+}
 
 footer {
   background-color: rgb(201, 201, 201);
