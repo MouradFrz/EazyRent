@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Login</title>
+    <title>login</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
 </head>
 <body>
-
     <div>
         <div
           class="container d-flex justify-content-center align-items-center"
           style="min-height: 100vh"
         >
           <div class="login-panel d-flex justify-content-center align-items-center">
-            <form class="form-login d-flex flex-column" action="{{ route('user.check') }}" method="POST">
-                @csrf
+            <form class="form-login d-flex flex-column" action="{{ route('admin.check') }}" method="POST">
+              @csrf
               <h1 class="title">Log in</h1>
               <label for="">Username</label>
               <input class="inputs" name="username" type="text" value="{{ old('username') }}"/>
@@ -40,15 +39,10 @@
                 value="Log in"
                 class="custom-btn"
               />
-              <p>
-                Don't have an account?
-                <a href="{{ route('user.register') }}" class="text-decoration-underline"
-                  >Sign Up!</a
-                >
-              </p>
             </form>
           </div>
         </div>
       </div>
 </body>
 </html>
+

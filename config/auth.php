@@ -21,6 +21,10 @@ return [
         'driver' => 'eloquent',
         'model' => App\Models\Owner::class,
     ],
+    'admin' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -47,6 +51,10 @@ return [
         'owner' => [
             'driver' => 'session',
             'provider' => 'owners',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
         ],
     ],
 
@@ -75,6 +83,10 @@ return [
         'owners' => [
             'driver' => 'eloquent',
             'model' => App\Models\Owner::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
         ],
 
         // 'users' => [
@@ -110,6 +122,14 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
+        ],
+        'admins' => [
+            // 'provider' => 'admins',
+            // 'table' => 'password_resets',
+            // 'expire' => 60,
+            // 'throttle' => 60,
+            'driver' => 'eloquet',
+            'model' => 'App\Models\Admin::class'
         ],
     ],
 
