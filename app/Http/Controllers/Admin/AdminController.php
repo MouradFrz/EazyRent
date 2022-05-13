@@ -14,7 +14,7 @@ class AdminController extends Controller
             'username'=>'required|exists:users,username',
             'password'=>'required'
         ],[
-            'username.exists' => 'this username does not exists'
+            'username.exists' => 'This username does not exist.'
         ]
         );
         $creds = $request->only('username','password');

@@ -77,7 +77,7 @@ class UserController extends Controller
         ]);
         $creds = $request->only('username','password');
 
-        if(Auth::guard('web')->attempt($creds)){
+        if(Auth::guard('web')->attempt($creds,$request->remember)){
             return redirect()->route('user.home');
         }else{
             return redirect()->route('user.login')->with('fail','The credentials you entered are wrong');

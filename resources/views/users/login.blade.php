@@ -33,6 +33,8 @@
                 {{ Session::get('fail') }}
               </div>
               @endif
+              <div class="d-flex align-items-center  "><input type="checkbox" class="m-0" name="remember" id=""> <p class="m-0 ms-2">Remember me</p></div>
+              
               <a href="" class="text-decoration-underline">Forgot password?</a>
               <input
                 style="margin-top: 15px; width: 150px"
