@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function create(Request $request){
+
+        if($request->phone==''){
+            
+        }
         $request->validate([
             'username'=>'required|unique:users,username|min:4|alpha_num|max:15',
             'lastName'=>'required|alpha|max:25',
@@ -17,7 +21,7 @@ class UserController extends Controller
             'birthDate'=>'required|date',
             'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
             'email'=>'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',    
-            'phone'=>['digits:10','regex:/(05|06|07)[0-9]{8}/'],
+            ($request->phone=='') ?  :'phone'=>['digits:10','regex:/(05|06|07)[0-9]{8}/'],
             'password'=>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'passwordConfirm'=>'required|same:password',
             'idCard'=>'required|digits_between:18,18|numeric',
