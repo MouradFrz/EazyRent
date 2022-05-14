@@ -14,31 +14,37 @@
   <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> press here to log out</a>
   <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form> --}}
   <div class="row">
-    <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-3 align-self-start">
-      <a href="" class="navbar-brand">Eazy Rent</a>
-        <ul class=" nav flex-column align-items-center justify-content-center">
-          <li class="nav-item">
-            <a href="#" class="nav-link active">dashboard</a>
+    <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-3 col-lg-2 align-self-start">
+      <div class="navbar-brand">
+        <a href="">
+          Eazy Rent
+        </a>
+      </div>
+
+        <ul class="nav flex-column align-items-center justify-content-center">
+          <li class="nav-item active">
+            <a href="#" class="nav-link ">dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">joining requests</a>
+            <a href="#" class="nav-link ">joining requests</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">agencies list</a>
+            <a href="#" class="nav-link ">agencies list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">users list</a>
+            <a href="#" class="nav-link ">users list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link active">baned users</a>
+            <a href="#" class="nav-link ">baned users</a>
           </li>
         </ul>
       <div class="dropdown">
+        <hr style="color:white">
         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="" alt="" width="15" height="15">
           <span>{{Auth::guard('admin')->user()->username}}</span>
         </a>
-        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuLink">
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
           <li><a class="dropdown-item" href="#">profile</a></li>
           <li><a class="dropdown-item" href="#">history</a></li>
           <hr>
@@ -50,7 +56,7 @@
       </div>
 
     </aside>
-    <div class="main col-9">
+    <div class="main col-9 col-lg-10">
       <div class="container">
         here go the content
       </div>
