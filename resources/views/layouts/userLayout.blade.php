@@ -88,7 +88,6 @@
         
     
         <footer>
-          @{{ message }}
             <div class="container-md d-flex">
               <a href="" class="nav-link">Terms and conditions</a>
               <a href="" class="nav-link">FAQ</a>

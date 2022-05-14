@@ -81,7 +81,7 @@ class OwnerController extends Controller
     }
     public function logout(){
         Auth::guard('owner')->logout();
-        return redirect()->route('owner.login');
+        return redirect()->route('workerLogin');
     }
 }
 

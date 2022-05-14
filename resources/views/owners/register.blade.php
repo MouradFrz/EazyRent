@@ -96,7 +96,7 @@
                 </span>
                 <p class="my-2">
                   Already have an account?
-                  <a href="{{ route('owner.login') }}" class="text-decoration-underline">Log in</a>
+                  <a href="{{ route('workerLogin') }}" class="text-decoration-underline">Log in</a>
               </p>
               <p class="step-index">1/4</p>
             </div>

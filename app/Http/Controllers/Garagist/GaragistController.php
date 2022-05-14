@@ -27,6 +27,6 @@ class GaragistController extends Controller
     }
     public function logout(){
         Auth::guard('garagist')->logout();
-        return redirect()->route('garagist.login');
+        return redirect()->route('workerLogin');
     }
 }
