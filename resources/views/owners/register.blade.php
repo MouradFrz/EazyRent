@@ -262,11 +262,11 @@
             element.classList.add('hide');
           });
             pages[currentStep].classList.remove("hide");
-          if(currentStep==3){
+          if(currentStep==2){
             // stepInc.style.backgroundColor ='gray'
             stepInc.disabled=true;
           }
-          if(currentStep!=3){
+          if(currentStep!=2){
             // stepDec.style.backgroundColor ='rgb(187, 190, 105)'
             stepDec.disabled=false;
           }
@@ -282,7 +282,7 @@
             // stepDec.style.backgroundColor ='gray'
             stepDec.disabled=true;
           }
-          if(currentStep!=3){
+          if(currentStep!=2){
             // stepInc.style.backgroundColor ='rgb(187, 190, 105)'
             stepInc.disabled=false;
           }
