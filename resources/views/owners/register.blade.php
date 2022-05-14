@@ -96,9 +96,9 @@
                 </span>
                 <p class="my-2">
                   Already have an account?
-                  <a href="{{ route('owner.login') }}" class="text-decoration-underline">Log in</a>
+                  <a href="{{ route('workerLogin') }}" class="text-decoration-underline">Log in</a>
               </p>
-              <p class="step-index">1/4</p>
+              <p class="step-index">1/3</p>
             </div>
             <div class="form-login d-flex flex-column signupStep hide"  >
               <label for="">Username</label>
@@ -166,7 +166,7 @@
                     @enderror
               </span>
               </div>
-              <p class="step-index">2/4</p>
+              <p class="step-index">2/3</p>
             </div>
             <div class="form-login d-flex flex-column signupStep hide">
               <label for=""> Identity card number</label>
@@ -212,39 +212,6 @@
                 class="image-preview"
                 alt=""
               />
-
-              <p class="step-index">3/4</p>
-            </div>
-            <div class="form-login d-flex flex-column signupStep hide">
-              <label for=""
-                >Upload an image where your face is clearly visible</label
-              >
-              <input
-                class="inputs file-input"
-                type="file"
-                accept="image/*"
-                name="faceIdImage"
-                style="display: none"
-                id="file-field-face"
-              />
-              <span class="text-danger" style="font-size:0.8rem">
-                @error('faceIdImage')
-                  {{ $message }}
-                @enderror
-              </span>
-              <div
-
-                class="image-selector"
-                id="image-selector-face"
-                alt=""
-                onclick="openFilePickerFace()"
-              ></div>
-              <img
-              onclick="openFilePickerFace()"
-                class="image-preview"
-                id="image-preview-face"
-                alt=""
-              />
               <div class="d-flex justify-content-end ">
                 <input
                   style="margin-top: 15px !important; width: 150px;"
@@ -253,8 +220,12 @@
                   class="custom-btn"
                 />
               </div>
-              <p class="step-index">4/4</p>
+              <p class="step-index">3/3</p>
             </div>
+          
+              
+              
+            
           </form>
           <div class="d-flex justify-content-between w-100">
             <button
@@ -291,11 +262,11 @@
             element.classList.add('hide');
           });
             pages[currentStep].classList.remove("hide");
-          if(currentStep==3){
+          if(currentStep==2){
             // stepInc.style.backgroundColor ='gray'
             stepInc.disabled=true;
           }
-          if(currentStep!=3){
+          if(currentStep!=2){
             // stepDec.style.backgroundColor ='rgb(187, 190, 105)'
             stepDec.disabled=false;
           }
@@ -311,7 +282,7 @@
             // stepDec.style.backgroundColor ='gray'
             stepDec.disabled=true;
           }
-          if(currentStep!=3){
+          if(currentStep!=2){
             // stepInc.style.backgroundColor ='rgb(187, 190, 105)'
             stepInc.disabled=false;
           }

@@ -27,6 +27,6 @@ class SecretaryController extends Controller
     }
     public function logout(){
         Auth::guard('secretary')->logout();
-        return redirect()->route('secretary.login');
+        return redirect()->route('workerLogin');
     }
 }
