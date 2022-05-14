@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Owner\OwnerController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Secretary\SecretaryController;
+use App\Http\Controllers\Garagist\GaragistController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,21 +18,18 @@ use App\Http\Controllers\Admin\AdminController;
 |
 */
 
-Route::middleware(['guest:web','guest:owner','guest:admin','PreventBackHistory'])->group(function(){
+Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
     Route::view('/','guestHome')->name('guestHome');
 });
 
-
 // users
 Route::prefix('user')->name('user.')->group(function(){
-
-    Route::middleware(['guest:web','guest:owner','guest:admin','PreventBackHistory'])->group(function(){
+    Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
         Route::view('/login','users.login')->name('login'); 
         Route::view('/register','users.register')->name('register'); 
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/check',[UserController::class,'check'])->name('check');
         });
-
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
         Route::view('/home','guestHome')->name('home');
         Route::post('/logout',[UserController::class,'logout'])->name('logout');
@@ -38,8 +38,7 @@ Route::prefix('user')->name('user.')->group(function(){
 
 //owners
 Route::prefix('owner')->name('owner.')->group(function(){
-
-    Route::middleware(['guest:owner','guest:web','guest:admin','PreventBackHistory'])->group(function(){
+    Route::middleware(['guest:owner','guest:web','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
         Route::view('/login','owners.login')->name('login'); 
         Route::view('/register','owners.register')->name('register'); 
         Route::post('/create',[OwnerController::class,'create'])->name('create');
@@ -53,8 +52,7 @@ Route::prefix('owner')->name('owner.')->group(function(){
 
 //admins
 Route::prefix('admin')->name('admin.')->group(function(){
-
-    Route::middleware(['guest:web','guest:owner','guest:admin','PreventBackHistory'])->group(function(){
+    Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
         Route::view('/login','admin.login')->name('login');
         Route::post('/check',[AdminController::class,'check'])->name('check');
         });
@@ -63,6 +61,29 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     });
 });
+//secretaries
+Route::prefix('secretary')->name('secretary.')->group(function(){
+    Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::view('/login','secretaries.login')->name('login');
+        Route::post('/check',[SecretaryController::class,'check'])->name('check');
+        });
+    Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
+        Route::view('/home','secretaries.secretaryHome')->name('home');
+        Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
+    });
+});
+//garagists
+Route::prefix('garagist')->name('garagist.')->group(function(){
+    Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::view('/login','garagists.login')->name('login');
+        Route::post('/check',[GaragistController::class,'check'])->name('check');
+        });
+    Route::middleware(['auth:garagist','PreventBackHistory'])->group(function(){
+        Route::view('/home','garagists.garagistHome')->name('home');
+        Route::post('/logout',[GaragistController::class,'logout'])->name('logout');
+    });
+});
+
 
 
 

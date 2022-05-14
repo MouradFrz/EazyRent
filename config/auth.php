@@ -56,6 +56,14 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'secretary' => [
+            'driver' => 'session',
+            'provider' => 'secretaries',
+        ],
+        'garagist' => [
+            'driver' => 'session',
+            'provider' => 'garagists',
+        ],
     ],
 
     /*
@@ -87,6 +95,14 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
+        ],
+        'secretaries' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Secretary::class,
+        ],
+        'garagists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Garagist::class,
         ],
 
         // 'users' => [
@@ -124,12 +140,24 @@ return [
             'throttle' => 60,
         ],
         'admins' => [
-            // 'provider' => 'admins',
-            // 'table' => 'password_resets',
-            // 'expire' => 60,
-            // 'throttle' => 60,
-            'driver' => 'eloquet',
-            'model' => 'App\Models\Admin::class'
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+            // 'driver' => 'eloquet',
+            // 'model' => 'App\Models\Admin::class'
+        ],
+        'secretaries' => [
+            'provider' => 'secretaries',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'garagists' => [
+            'provider' => 'garagists',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
         ],
     ],
 

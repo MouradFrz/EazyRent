@@ -11,7 +11,7 @@ class AdminController extends Controller
     function check(Request $request) {
         //validation
         $request->validate([
-            'username'=>'required|exists:users,username',
+            'username'=>'required|exists:admins,username',
             'password'=>'required'
         ],[
             'username.exists' => 'This username does not exist.'

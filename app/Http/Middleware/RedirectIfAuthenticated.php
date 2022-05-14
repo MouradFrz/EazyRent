@@ -30,6 +30,12 @@ class RedirectIfAuthenticated
                 if ($guard === 'admin'){
                     return redirect()->route('admin.dashboard');
                 }
+                if ($guard === 'secretary'){
+                    return redirect()->route('secretary.home');
+                }
+                if ($guard === 'garagist'){
+                    return redirect()->route('garagist.home');
+                }
                 return redirect()->route('user.home');
             }
         }
