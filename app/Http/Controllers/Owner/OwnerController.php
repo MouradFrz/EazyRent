@@ -12,6 +12,39 @@ class OwnerController extends Controller
 {
  
     public function create(Request $request){
+        if($request->phone==''){
+            
+        }
+        $request->validate([
+            'username'=>'required|unique:users,username|min:4|alpha_num|max:15',
+            'lastName'=>'required|alpha|max:25',
+            'firstName'=>'required|alpha|max:25',
+            'birthDate'=>'required|date',
+            'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+            'email'=>'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',    
+            ($request->phone=='') ?  :'phone'=>['digits:10','regex:/(05|06|07)[0-9]{8}/'],
+            'password'=>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'passwordConfirm'=>'required|same:password',
+            'idCard'=>'required|digits_between:18,18|numeric',
+            'idCardImage'=>'required|mimes:jpg,jpeg,png|max:5048',
+            'faceIdImage'=>'required|mimes:jpg,jpeg,png|max:5048'
+        ],
+        [
+            'idCard.required'=>'The identity card number is required.',
+            'idCard.digits_between'=>'The identity card number has to be 18 number long.',
+            'address.regex'=>'The address can only contain letters, numbers and spaces.',
+            'password.regex'=>'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
+            'idCardImage.required'=>'The identity card image is required.',
+            'faceIdImage.required'=>'The face image is required for the face recognition when picking a car up.',
+            'phone.digits_between'=>'The number must be made of 10 digits',
+        ]);
+
+        $newImageName =$request->username.'.'.$request->idCardImage->extension();
+        $request->idCardImage->move(public_path('images/users/idCardImages'),$newImageName);
+
+        $faceIdImage = $request->username.'_faceId'.'.'.$request->faceIdImage->extension();
+        $request->faceIdImage->move(public_path('images/users/faceIdImages'),$faceIdImage);
+
         $owner = new Owner();
         $owner->username=$request->username;
         $owner->password=Hash::make($request->password);
@@ -22,6 +55,8 @@ class OwnerController extends Controller
         $owner->idCard=$request->idCard;
         $owner->email=$request->email;
         $owner->phoneNumber=$request->phoneNumber;
+        $owner->idCardPath=$newImageName;
+        $owner->faceIdPath=$faceIdImage;
         $save = $owner->save();
 
         if($save){
