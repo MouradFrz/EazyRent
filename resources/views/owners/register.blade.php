@@ -222,10 +222,6 @@
               </div>
               <p class="step-index">3/3</p>
             </div>
-          
-              
-              
-            
           </form>
           <div class="d-flex justify-content-between w-100">
             <button
