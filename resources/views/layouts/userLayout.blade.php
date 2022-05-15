@@ -7,7 +7,7 @@
         <title>EasyRent</title>
         <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/user/homepage.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/user/index.css') }}" rel="stylesheet">
     </head>
     <body>
 
