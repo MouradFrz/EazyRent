@@ -1,0 +1,17 @@
+.create-agency {
+  background-color: #BBB;
+  height: 100%;
+  .container {
+    height: 100%;
+  }
+  .alert {
+    padding: 2rem 2rem 1rem;
+    border-radius: .5rem;
+    background-color: #BBB;
+    border: 2px dashed #888;
+    text-align: center;
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}

@@ -20,4 +20,5 @@ mix.js('resources/js/app.js', 'public/js')
 
     .sass('resources/sass/user/index.scss', 'public/css/user')
     .sass('resources/sass/admin/index.scss', 'public/css/admin')
+    .sass('resources/sass/owner/index.scss', 'public/css/owner')
     .sourceMaps();

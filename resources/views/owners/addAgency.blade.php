@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,4 +14,8 @@
         <input type="submit" value="Submit" >
     </form>
 </body>
-</html>
+</html> --}}
+
+@extends('layouts.workerLayout')
+@section('headTags')
+<title>Owner - add agency</title>

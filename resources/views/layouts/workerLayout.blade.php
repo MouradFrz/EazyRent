@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
-  
+
   @yield('headTags')
 </head>
 <body>
@@ -131,14 +131,12 @@
             <form action="{{ route('garagist.logout') }}" id="logout-form" method="post">@csrf</form>
           </li>
           @endif
-         
+
       </div>
 
     </aside>
     <div class="main col-8 col-md-9">
-      <div class="container">
-        @yield('content')
-      </div>
+      @yield('content')
     </div>
   </div>
   {{-- scripts --}}
