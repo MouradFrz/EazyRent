@@ -29,6 +29,9 @@ Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','gu
 // users
 Route::prefix('user')->name('user.')->group(function(){
     Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::get('/',function(){
+            return redirect(route('user.login'));
+        });
         Route::view('/login','users.login')->name('login'); 
         Route::view('/register','users.register')->name('register'); 
         Route::post('/create',[UserController::class,'create'])->name('create');
@@ -43,6 +46,9 @@ Route::prefix('user')->name('user.')->group(function(){
 //owners
 Route::prefix('owner')->name('owner.')->group(function(){
     Route::middleware(['guest:owner','guest:web','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::get('/',function(){
+            return redirect(route('workerLogin'));
+        });
         Route::view('/register','owners.register')->name('register'); 
         Route::post('/create',[OwnerController::class,'create'])->name('create');
         Route::post('/check',[OwnerController::class,'check'])->name('check');
@@ -56,6 +62,9 @@ Route::prefix('owner')->name('owner.')->group(function(){
 //admins
 Route::prefix('admin')->name('admin.')->group(function(){
     Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::get('/',function(){
+            return redirect(route('admin.login'));
+        });
         Route::view('/login','admin.login')->name('login');
         Route::post('/check',[AdminController::class,'check'])->name('check');
         });
@@ -67,6 +76,9 @@ Route::prefix('admin')->name('admin.')->group(function(){
 //secretaries
 Route::prefix('secretary')->name('secretary.')->group(function(){
     Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::get('/',function(){
+            return redirect(route('workerLogin'));
+        });
         Route::post('/check',[SecretaryController::class,'check'])->name('check');
         });
     Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
@@ -77,6 +89,9 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
 //garagists
 Route::prefix('garagist')->name('garagist.')->group(function(){
         Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::get('/',function(){
+            return redirect(route('workerLogin'));
+        });
         Route::post('/check',[GaragistController::class,'check'])->name('check');
         });
     Route::middleware(['auth:garagist','PreventBackHistory'])->group(function(){
