@@ -27,7 +27,7 @@ class OwnerController extends Controller
             'passwordConfirm'=>'required|same:password',
             'idCard'=>'required|digits_between:18,18|numeric',
             'idCardImage'=>'required|mimes:jpg,jpeg,png|max:5048',
-            
+            'faceIdImage'=>'required|mimes:jpg,jpeg,png|max:5048'
         ],
         [
             'idCard.required'=>'The identity card number is required.',
@@ -35,13 +35,15 @@ class OwnerController extends Controller
             'address.regex'=>'The address can only contain letters, numbers and spaces.',
             'password.regex'=>'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
             'idCardImage.required'=>'The identity card image is required.',
+            'faceIdImage.required'=>'The face image is required for the face recognition when picking a car up.',
             'phone.digits_between'=>'The number must be made of 10 digits',
         ]);
 
         $newImageName =$request->username.'.'.$request->idCardImage->extension();
-        $request->idCardImage->move(public_path('images/owners/idCardImages'),$newImageName);
+        $request->idCardImage->move(public_path('images/users/idCardImages'),$newImageName);
 
-    
+        $faceIdImage = $request->username.'_faceId'.'.'.$request->faceIdImage->extension();
+        $request->faceIdImage->move(public_path('images/users/faceIdImages'),$faceIdImage);
 
         $owner = new Owner();
         $owner->username=$request->username;
@@ -54,7 +56,7 @@ class OwnerController extends Controller
         $owner->email=$request->email;
         $owner->phoneNumber=$request->phoneNumber;
         $owner->idCardPath=$newImageName;
-       
+        $owner->faceIdPath=$faceIdImage;
         $save = $owner->save();
 
         if($save){
@@ -79,7 +81,7 @@ class OwnerController extends Controller
     }
     public function logout(){
         Auth::guard('owner')->logout();
-        return redirect()->route('workerLogin');
+        return redirect()->route('owner.login');
     }
 }
 

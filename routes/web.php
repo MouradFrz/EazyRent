@@ -21,10 +21,6 @@ use App\Http\Controllers\Garagist\GaragistController;
 Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
     Route::view('/','guestHome')->name('guestHome');
 });
-Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
-    Route::view('/worker/login','workerLogin')->name('workerLogin');
-});
-
 
 // users
 Route::prefix('user')->name('user.')->group(function(){
@@ -43,6 +39,7 @@ Route::prefix('user')->name('user.')->group(function(){
 //owners
 Route::prefix('owner')->name('owner.')->group(function(){
     Route::middleware(['guest:owner','guest:web','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::view('/login','owners.login')->name('login'); 
         Route::view('/register','owners.register')->name('register'); 
         Route::post('/create',[OwnerController::class,'create'])->name('create');
         Route::post('/check',[OwnerController::class,'check'])->name('check');
@@ -67,6 +64,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
 //secretaries
 Route::prefix('secretary')->name('secretary.')->group(function(){
     Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::view('/login','secretaries.login')->name('login');
         Route::post('/check',[SecretaryController::class,'check'])->name('check');
         });
     Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
@@ -76,7 +74,8 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
 });
 //garagists
 Route::prefix('garagist')->name('garagist.')->group(function(){
-        Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+    Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
+        Route::view('/login','garagists.login')->name('login');
         Route::post('/check',[GaragistController::class,'check'])->name('check');
         });
     Route::middleware(['auth:garagist','PreventBackHistory'])->group(function(){

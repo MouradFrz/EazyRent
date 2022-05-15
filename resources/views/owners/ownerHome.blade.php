@@ -7,7 +7,6 @@
     <title>User Homepage</title>
 </head>
 <body>
-    <img src="{{ asset('images/owners/idCardImages/'. Auth::user()->idCardPath) }}" id="user-icon" alt="">
     {{ Auth::guard('owner')->user() }}
         <p>this is the users homepage</p>
 
