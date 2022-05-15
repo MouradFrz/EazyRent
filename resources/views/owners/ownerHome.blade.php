@@ -15,18 +15,36 @@
 
 
 @extends('layouts.workerLayout')
- @section('content')
+@section('headTags')
+<title>Owner - Homepage</title>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+@endsection
 
- <img src="{{ asset('images/owners/idCardImages/'. Auth::user()->idCardPath) }}" id="user-icon" alt="">
+
+
+ @section('content')
   
  @if (Auth::user()->agencyID)
      <p>This guy has an agency</p>
+     
  @elseif ($hasRequest==1)
- <p>You sent a request . Wait</p>
- @else
- <p>This guy DOesnt have an an agency yet! create an agency</p>
- <a href="{{ route('owner.createAgency') }}">Add agency</a>
+ <div class="alert alert-success text-center " role="alert">
+    Your request is being processed by our administrators. Please comeback later
+  </div>
+  <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
+ <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
+ @else 
+ <div class="d-flex flex-column">
+ <div class="alert alert-dark text-center " role="alert">
+    You don't have an agency yet! Click the button below to add your agency now!
+  </div>
+  <div class="d-flex justify-content-between w-100">
+ <a class="btn btn-success" style="width: 120px" href="{{ route('owner.createAgency') }}">Add agency</a>
+ 
+ <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
+ <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
+  </div>
+ </div>
  @endif
- <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Logout</a>
- <form action="{{ route('owner.logout') }}" id="logout-form" method="post">@csrf</form>
+ 
  @endsection

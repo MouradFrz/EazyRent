@@ -6,7 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
-  <title>Dashboard</title>
+  
+  @yield('headTags')
 </head>
 <body>
   {{-- <h1>hello {{Auth::guard('admin')->user()->name}} you are in dashboard</h1>
@@ -106,10 +107,31 @@
           <li><a class="dropdown-item" href="#">profile</a></li>
           <li><a class="dropdown-item" href="#">history</a></li>
           <hr>
+          @if(Auth::guard('admin')->check())
           <li>
             <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">log out</a>
             <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form>
           </li>
+          @endif
+          @if(Auth::guard('owner')->check())
+          <li>
+            <a class="dropdown-item" href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">log out</a>
+            <form action="{{ route('owner.logout') }}" id="logout-form" method="post">@csrf</form>
+          </li>
+          @endif
+          @if(Auth::guard('secretary')->check())
+          <li>
+            <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">log out</a>
+            <form action="{{ route('secretary.logout') }}" id="logout-form" method="post">@csrf</form>
+          </li>
+          @endif
+          @if(Auth::guard('garagist')->check())
+          <li>
+            <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">log out</a>
+            <form action="{{ route('garagist.logout') }}" id="logout-form" method="post">@csrf</form>
+          </li>
+          @endif
+         
       </div>
 
     </aside>
