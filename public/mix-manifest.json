@@ -1,8 +1,8 @@
 {
     "/js/app.js": "/js/app.js",
-    "/css/homepage.css": "/css/homepage.css",
-    "/css/admin/index.css": "/css/admin/index.css",
     "/css/register.css": "/css/register.css",
     "/css/login.css": "/css/login.css",
-    "/css/app.css": "/css/app.css"
+    "/css/app.css": "/css/app.css",
+    "/css/bootstrap.css": "/css/bootstrap.css",
+    "/css/admin/index.css": "/css/admin/index.css"
 }

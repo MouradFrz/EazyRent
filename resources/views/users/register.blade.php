@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Signup</title>
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <style>
@@ -178,13 +179,13 @@
                 value="{{ old('idCard') }}"
                 onkeypress="return isNumber(event)"
               />
-              
+
               <span class="text-danger" style="font-size:0.8rem">
                 @error('idCard')
                   {{ $message }}
                 @enderror
               </span>
-                
+
 
               <label for="">Upload an image of your identity card</label>
               <input
@@ -273,7 +274,7 @@
                 </button>
               </div>
 
-              
+
         </div>
         </div>
       </div>
@@ -281,7 +282,7 @@
         const pages = document.querySelectorAll('.signupStep')
         const stepInc = document.querySelector('#next')
         const stepDec = document.querySelector('#prev')
-        
+
         let currentStep=0;
         stepDec.disabled=true;
         // stepDec.style.backgroundColor ='gray'
@@ -316,7 +317,7 @@
             stepInc.disabled=false;
           }
         });
-      
+
         function isNumber(evt) {
           evt = (evt) ? evt : window.event;
           var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -339,8 +340,8 @@
 //       }
 //       reader.readAsDataURL(files[0]);
 //     }
-    
-      
+
+
       document.querySelector('#file-field').onchange = evt => {
         console.log('rwgw')
          const [file] = document.querySelector('#file-field').files

@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Owner Login</title>
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 </head>
 <body>
 
@@ -45,7 +46,7 @@
                 value="Log in"
                 class="custom-btn"
               />
-              
+
             </form>
             <form class="form-login-worker form-login d-flex flex-column" action="{{ route('garagist.check') }}" method="POST" >
               @csrf
@@ -71,7 +72,7 @@
               value="Log in"
               class="custom-btn"
             />
-            
+
           </form>
           <form class="form-login-worker form-login d-flex flex-column" action="{{ route('secretary.check') }}" method="POST" >
             @csrf
@@ -97,7 +98,7 @@
             value="Log in"
             class="custom-btn"
           />
-          
+
         </form>
             <p class="align-self-start">
               Want to add your agency?
@@ -109,7 +110,7 @@
         </div>
       </div>
       <script>
-        let buttons = document.querySelectorAll('.type-button') 
+        let buttons = document.querySelectorAll('.type-button')
         let forms = document.querySelectorAll('.form-login')
         console.log(forms)
         buttons.forEach((e,i)=>{

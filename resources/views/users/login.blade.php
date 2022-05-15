@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>User Login</title>
+    {{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link rel="stylesheet"href=" {{ asset('css/login.css') }}">
 </head>
 <body>
 
@@ -34,7 +35,7 @@
               </div>
               @endif
               <div class="d-flex align-items-center  "><input type="checkbox" class="m-0" name="remember" id=""> <p class="m-0 ms-2">Remember me</p></div>
-              
+
               <a href="" class="text-decoration-underline">Forgot password?</a>
               <input
                 style="margin-top: 15px; width: 150px"

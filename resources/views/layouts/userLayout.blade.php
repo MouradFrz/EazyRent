@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>EazyRent - Home</title>
-</head>
-<body>
-    <!DOCTYPE html>
-<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <title>EasyRent</title>
+        <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <link href="{{ asset('css/homepage.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/user/homepage.css') }}" rel="stylesheet">
     </head>
     <body>
 
@@ -35,7 +27,7 @@
                         <form action="{{ route('user.logout') }}" id="logout-form" method="post">@csrf</form>
                       </ul>
                     </div>
-                  </div> 
+                  </div>
                 @endauth
                 @guest
                 <div class="auth d-flex align-items-center" >
@@ -43,8 +35,8 @@
                     <a href="{{ route('user.login') }}" class="" id="log-in">LogIn</a>
                   </div>
                 @endguest
-              
-               
+
+
               <div class="brand d-flex align-items-center">
                 <img src="" alt="" />
                 <h1 class="fw-bold">EazyRent</h1>
@@ -81,12 +73,12 @@
             </div>
           </nav>
         <div>
-        
+
             @yield('content')
         </div>
-            
-        
-    
+
+
+
         <footer>
             <div class="container-md d-flex">
               <a href="" class="nav-link">Terms and conditions</a>
@@ -102,7 +94,7 @@
                 document.querySelector(".dropdown").classList.toggle('active')
             });
         </script>
-       
+
     </body>
-    
+
 </html>
