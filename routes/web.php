@@ -6,7 +6,7 @@ use App\Http\Controllers\Owner\OwnerController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Secretary\SecretaryController;
 use App\Http\Controllers\Garagist\GaragistController;
-
+use App\Http\Controllers\Agencies\AgencyController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -54,8 +54,10 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/check',[OwnerController::class,'check'])->name('check');
         });
     Route::middleware(['auth:owner','PreventBackHistory'])->group(function(){
-        Route::view('/home','owners.ownerHome')->name('home');
+        Route::get('/home',[OwnerController::class,'home'])->name('home');
         Route::post('/logout',[OwnerController::class,'logout'])->name('logout');
+        Route::view('/createAgency','owners.addAgency')->name('createAgency');
+        Route::post('/createAgency',[AgencyController::class,'create'])->name('createAgencyPost');
     });
 });
 

@@ -8,9 +8,15 @@
 </head>
 <body>
     <img src="{{ asset('images/owners/idCardImages/'. Auth::user()->idCardPath) }}" id="user-icon" alt="">
-    {{ Auth::guard('owner')->user() }}
-        <p>this is the users homepage</p>
-
+  
+        @if (Auth::user()->agencyID)
+            <p>This guy has an agency</p>
+        @elseif ($hasRequest==1)
+        <p>You sent a request . Wait</p>
+        @else
+        <p>This guy DOesnt have an an agency yet! create an agency</p>
+        <a href="{{ route('owner.createAgency') }}">Add agency</a>
+        @endif
         <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Logout</a>
         <form action="{{ route('owner.logout') }}" id="logout-form" method="post">@csrf</form>
 </body>

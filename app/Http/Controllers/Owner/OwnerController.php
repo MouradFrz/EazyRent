@@ -5,18 +5,21 @@ namespace App\Http\Controllers\Owner;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner;
+use App\Models\AgencyRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class OwnerController extends Controller
 {
- 
+    public function home(){
+        return view('owners.ownerHome',['hasRequest'=>count(AgencyRequest::where('ownerUsername',Auth::user()->username)->get())]);
+    }
     public function create(Request $request){
         if($request->phone==''){
             
         }
         $request->validate([
-            'username'=>'required|unique:users,username|min:4|alpha_num|max:15',
+            'username'=>'required|unique:owners,username|min:4|alpha_num|max:15',
             'lastName'=>'required|alpha|max:25',
             'firstName'=>'required|alpha|max:25',
             'birthDate'=>'required|date',
@@ -74,7 +77,7 @@ class OwnerController extends Controller
         if(Auth::guard('owner')->attempt($creds)){
             return redirect()->route('owner.home');
         }else{
-            return redirect()->route('owner.login')->with('fail','incorrect creds');
+            return redirect()->route('workerLogin')->with('fail','incorrect creds');
         }
     }
     public function logout(){
