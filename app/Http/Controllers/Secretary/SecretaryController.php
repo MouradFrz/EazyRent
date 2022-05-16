@@ -22,7 +22,7 @@ class SecretaryController extends Controller
         if(Auth::guard('secretary')->attempt($creds)){
             return redirect()->route('secretary.home');
         }else{
-            return redirect()->route('secretary.login')->with('fail','The credentials you entered are wrong');
+            return redirect()->route('workerLogin')->with('fail','The credentials you entered are wrong');
         }
     }
     public function logout(){

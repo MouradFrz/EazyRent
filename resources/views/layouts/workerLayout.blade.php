@@ -13,12 +13,18 @@
   <h1>your password is {{Auth::guard('admin')->user()->password}}</h1>
   <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> press here to log out</a>
   <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form> --}}
-  <div class="row">
-    <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-4 col-md-3 align-self-start">
-      <div class="navbar-brand">
-        <a href="">
-          Eazy Rent
-        </a>
+  <div class="row m-0">
+    <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-4 col-md-2 align-self-start">
+      <div class="navbar-brand d-flex flex-column align-items-center auth">
+        <img src="{{ asset('images/owners/idCardImages/ferza.jpg') }}" alt="">
+        <p class="user-fullname auth username">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
+        <div class="placeholder"></div>
+        <div class="show-on-hover">
+          <ul>
+            <li><a href="">Edit profil</a></li>
+            <li><a href="">Show transaction history</a></li>
+          </ul>
+        </div>
       </div>
       @if(Auth::guard('admin')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
@@ -96,7 +102,7 @@
           </li>
         </ul>
         @endif
-      <div class="dropdown">
+      {{-- <div class="dropdown">
         <hr style="color:white">
         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="" alt="" width="15" height="15">
@@ -131,10 +137,36 @@
           </li>
           @endif
 
-      </div>
+      </div> --}}
+      <hr>
+      @if(Auth::guard('admin')->check())
+        <a class="logout" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+        <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form>
+  
+      @endif
+      @if(Auth::guard('owner')->check())
 
+        <a class="logout" href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+        <form action="{{ route('owner.logout') }}" id="logout-form" method="post">@csrf</form>
+
+      @endif
+      @if(Auth::guard('secretary')->check())
+      <li>
+        <a class="logout" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+        <form action="{{ route('secretary.logout') }}" id="logout-form" method="post">@csrf</form>
+      </li>
+      @endif
+      @if(Auth::guard('garagist')->check())
+      <li>
+        <a class="logout" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
+        <form action="{{ route('garagist.logout') }}" id="logout-form" method="post">@csrf</form>
+      </li>
+      @endif
     </aside>
-    <div class="main col-8 col-md-9">
+    <div class="main col-8 col-md-10">
+      <div class="page-title">
+        <h1 class="fw-bold text-center">Eazy Rent</h1>
+      </div>
       @yield('content')
     </div>
   </div>

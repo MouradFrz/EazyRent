@@ -22,7 +22,7 @@ class GaragistController extends Controller
         if(Auth::guard('garagist')->attempt($creds)){
             return redirect()->route('garagist.home');
         }else{
-            return redirect()->route('garagist.login')->with('fail','The credentials you entered are wrong');
+            return redirect()->route('workerLogin')->with('fail','The credentials you entered are wrong');
         }
     }
     public function logout(){

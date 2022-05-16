@@ -51,3 +51,10 @@ footer {
     flex-direction: column !important;
   }
 }
+
+.form-control {
+  padding: 10px !important;
+}
+.form-control:focus {
+  box-shadow: none !important;
+}

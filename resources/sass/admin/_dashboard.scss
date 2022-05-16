@@ -1,38 +1,54 @@
+@use "../variables" as *;
 body {
   background-color: #eee;
 }
 .row {
   max-width: 100vw;
+  position: relative;
 }
 .sidebar {
   min-height: 100vh;
   background-color: #222;
   flex-wrap: nowrap;
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  left: 0;
   .navbar-brand {
-    margin-top: 2em;
+    margin: 2em 0 0 0 ;
     font-size: 2rem;
     a {
       color: white;
       transition: all 1s linear;
       text-decoration: none;
     }
+    img{
+      width: 80px;
+      border-radius: 50%;
+      border:2px solid white;
+      padding: 4px;
+    }
+    .user-fullname{
+      color: white;
+      font-size: 1.2rem;
+      text-align: center;
+    }
   }
   .nav {
     width: 100%;
     > li {
       width: 100%;
-      text-transform: capitalize;
-      text-align: center;
-      font-size: 1.25rem;
+      // text-align: center;
+      font-size: 1rem;
       padding-bottom: 0.5em;
       a {
         color: white;
         transition: all 300ms linear;
         .active {
-          color: rgb(255, 69, 0);
+          color: rgb(255, 68, 0);
         }
         &:hover {
-          color: rgb(255, 69, 0);
+          // color: rgb(255, 69, 0);
           background-color: rgba(255, 255, 255, 0.075);
         }
       }
@@ -67,4 +83,56 @@ body {
 }
 .main {
   padding: 0;
+}
+.page-title{
+  border-bottom: 1px solid gray;
+}
+.logout{
+  background-color: rgb(219, 219, 219);
+  padding: 4px 15px;
+  border-radius: 4px;
+  font-weight: 700;
+  color: black;
+}
+
+.show-on-hover {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 110%;
+  width: 250px;
+  ul {
+    background-color: rgb(236, 236, 236);
+    box-shadow: $box-shadow;
+    border-radius: 5px;
+    padding: 10px 20px !important;
+    font-size: 1rem;
+    list-style-type: none;
+    z-index: 100;
+    a {
+      color: black !important;
+      &:hover {
+        text-decoration: underline !important;
+        color: black !important;
+      }
+    }
+  }
+}
+.auth:hover > .show-on-hover {
+  display: block;
+}
+.auth{
+  position: relative;
+  .username:hover{
+    text-decoration: underline !important;
+  }
+}
+.placeholder{
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 90%;
+  cursor: default;
+  background-color: transparent;
 }

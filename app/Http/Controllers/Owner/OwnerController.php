@@ -85,6 +85,9 @@ class OwnerController extends Controller
     }
 
     public function addEmployeePage(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
         return view('owners.addEmployee',['branches'=>Branche::where('agencyID',Auth::user()->agencyID)->get()]);
     }
     public function addEmployee(Request $request){
