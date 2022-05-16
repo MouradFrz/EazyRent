@@ -52,3 +52,10 @@ footer {
     }
   }
 }
+.form-control{
+  padding: 10px !important;
+  &:focus{
+    box-shadow: none !important;
+   
+  }
+}
