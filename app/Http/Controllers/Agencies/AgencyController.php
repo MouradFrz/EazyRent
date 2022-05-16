@@ -12,17 +12,22 @@ class AgencyController extends Controller
   public function create(Request $request)
   {
     $request->validate([
-      'agencyName' => 'required|unique:agencyRequests,name|alpha_num|max:45',
-      'commercialRegisterNb' => 'required',
+      'agencyName' => 'required|unique:agencyrequests,name|max:45',
+      'commercialRegisterNb' => 'required|unique:agencyrequests,registeryNb',
       'registrationDate' => 'required',
       'agencyCreationYear' => 'required|digits:4|integer|max:' . (date('Y') + 1),
       'password' => 'required|current_password:owner'
     ], [
       'agencyName.required' => 'This field is required',
       'commercialRegisterNb.required' => 'This field is required',
+      'commercialRegisterNb.unique' => 'This register number is already been used',
       'registrationDate.required' => 'This field is required',
       'agencyCreationYear.required' => 'This field is required',
-      'password.required' => 'This field is required'
+      'agencyCreationYear.digits' => 'please enter a valide year value',
+      'agencyCreationYear.integer' => 'please enter a valide year value',
+      'agencyCreationYear.max' => 'please enter a valide year value',
+      'password.required' => 'This field is required',
+      'password.current_password' => 'password incorrect',
     ]);
 
     $requestSent = AgencyRequest::where('ownerUsername', Auth::user()->username)->get();
