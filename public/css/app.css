@@ -5,6 +5,16 @@
   box-sizing: border-box !important;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  text-transform: capitalize;
+}
+
 .inputs {
   padding: 12px 15px;
   outline: none;

@@ -33,7 +33,7 @@
   <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
  <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
  @else
-  <div class="create-agency">
+  <div class="no-agency">
     <div class="container d-flex align-items-center justify-content-center">
       <div class="alert" role="alert">
         <p>

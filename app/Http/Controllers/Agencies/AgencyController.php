@@ -9,30 +9,47 @@ use Illuminate\Support\Facades\Auth;
 
 class AgencyController extends Controller
 {
-    public function create(Request $request){
-        $requestSent = AgencyRequest::where('ownerUsername',Auth::user()->username)->get();
-        if(Auth::user()->agencyID){
-            return response()->json([
-                'error'=>'This owner already has an agency.',
-            ]);
-        }else if(count($requestSent)==1){
-            return response([
-                'error'=>'u already have a request . WAIT ',
-            ]);
-        }
-        else{
-            $agency = new AgencyRequest();
+  public function create(Request $request)
+  {
+    $request->validate([
+      'agencyName' => 'required|unique:agencyRequests,name|alpha_num|max:45',
+      'commercialRegisterNb' => 'required',
+      'registrationDate' => 'required',
+      'agencyCreationYear' => 'required|digits:4|integer|max:' . (date('Y') + 1),
+      'password' => 'required|current_password:owner'
+    ], [
+      'agencyName.required' => 'this field is requird',
+      'commercialRegisterNb.required' => 'this field is requird',
+      'registrationDate.required' => 'this field is requird',
+      'agencyCreationYear.required' => 'this field is requird',
+      'password.required' => 'this field is requird'
+    ]);
 
-            $agency->name=$request->name;
-            $agency->registeryNb=$request->registeryNb;
-            $agency->ownerUsername=Auth::user()->username;
+    $requestSent = AgencyRequest::where('ownerUsername', Auth::user()->username)->get();
 
-            $agency->save();
+    if (Auth::user()->agencyID) {
+      return response()->json([
+        'error' => 'This owner already has an agency.',
+      ]);
+    } else if (count($requestSent) == 1) {
+      return response([
+        'error' => 'u already have a request . WAIT ',
+      ]);
+    } else {
+      $agency = new AgencyRequest();
 
-            // Owner::where('username',Auth::user()->username)->update([
-            //     'agencyID'=>$agency->id,
-            // ]);
-            return redirect()->route('owner.home');
-        }
+      $agency->ownerUsername = Auth::user()->username;
+      $agency->name = $request->agencyName;
+      $agency->registeryNb = $request->commercialRegisterNb;
+      $agency->registrationDate = $request->registrationDate;
+      $agency->creationYear = $request->agencyCreationYear;
+
+      $agency->save();
+
+      // Owner::where('username',Auth::user()->username)->update([
+      //     'agencyID'=>$agency->id,
+      // ]);
+      return redirect()->route('owner.home');
     }
+  }
 }

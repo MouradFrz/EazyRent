@@ -15,22 +15,18 @@ class OwnerController extends Controller
         return view('owners.ownerHome',['hasRequest'=>count(AgencyRequest::where('ownerUsername',Auth::user()->username)->get())]);
     }
     public function create(Request $request){
-        if($request->phone==''){
-            
-        }
         $request->validate([
             'username'=>'required|unique:owners,username|min:4|alpha_num|max:15',
             'lastName'=>'required|alpha|max:25',
             'firstName'=>'required|alpha|max:25',
             'birthDate'=>'required|date',
             'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
-            'email'=>'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',    
+            'email'=>'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
             ($request->phone=='') ?  :'phone'=>['digits:10','regex:/(05|06|07)[0-9]{8}/'],
             'password'=>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'passwordConfirm'=>'required|same:password',
             'idCard'=>'required|digits_between:18,18|numeric',
             'idCardImage'=>'required|mimes:jpg,jpeg,png|max:5048',
-            
         ],
         [
             'idCard.required'=>'The identity card number is required.',
@@ -44,7 +40,7 @@ class OwnerController extends Controller
         $newImageName =$request->username.'.'.$request->idCardImage->extension();
         $request->idCardImage->move(public_path('images/owners/idCardImages'),$newImageName);
 
-    
+
 
         $owner = new Owner();
         $owner->username=$request->username;
@@ -57,7 +53,7 @@ class OwnerController extends Controller
         $owner->email=$request->email;
         $owner->phoneNumber=$request->phoneNumber;
         $owner->idCardPath=$newImageName;
-       
+
         $save = $owner->save();
 
         if($save){
@@ -86,6 +82,6 @@ class OwnerController extends Controller
     }
 }
 
-    
+
 
 

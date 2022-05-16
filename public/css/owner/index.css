@@ -1,17 +1,30 @@
-.create-agency {
+.no-agency {
   background-color: #BBB;
   height: 100%;
 }
-.create-agency .container {
+.no-agency .container {
   height: 100%;
 }
-.create-agency .alert {
+.no-agency .alert {
   padding: 2rem 2rem 1rem;
   border-radius: 0.5rem;
   background-color: #BBB;
   border: 2px dashed #888;
   text-align: center;
 }
-.create-agency .alert p {
+.no-agency .alert p {
   font-size: 1.5rem;
+}
+
+.create-agency .container {
+  margin-top: 2rem;
+}
+.create-agency .container hr {
+  margin-bottom: 2rem;
+}
+.create-agency .container form .row {
+  margin-bottom: 1rem;
+}
+.create-agency .container form label {
+  font-weight: 500;
 }

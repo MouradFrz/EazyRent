@@ -21,7 +21,7 @@
           class="container d-flex justify-content-center align-items-center "
           style="min-height: 100vh"
         >
-        <div class=" signup-panel d-flex align-items-center justify-content-center flex-column" >
+        <div class="signup-panel d-flex align-items-center justify-content-center flex-column" >
           <form
             class=" d-flex align-items-center justify-content-center flex-column"
             action="{{ route('owner.create') }}"
@@ -178,13 +178,13 @@
                 value="{{ old('idCard') }}"
                 onkeypress="return isNumber(event)"
               />
-              
+
               <span class="text-danger" style="font-size:0.8rem">
                 @error('idCard')
                   {{ $message }}
                 @enderror
               </span>
-                
+
 
               <label for="">Upload an image of your identity card</label>
               <input
@@ -240,7 +240,7 @@
                 </button>
               </div>
 
-              
+
         </div>
         </div>
       </div>
@@ -248,7 +248,7 @@
         const pages = document.querySelectorAll('.signupStep')
         const stepInc = document.querySelector('#next')
         const stepDec = document.querySelector('#prev')
-        
+
         let currentStep=0;
         stepDec.disabled=true;
         // stepDec.style.backgroundColor ='gray'
@@ -283,7 +283,7 @@
             stepInc.disabled=false;
           }
         });
-      
+
         function isNumber(evt) {
           evt = (evt) ? evt : window.event;
           var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -306,8 +306,8 @@
 //       }
 //       reader.readAsDataURL(files[0]);
 //     }
-    
-      
+
+
       document.querySelector('#file-field').onchange = evt => {
         console.log('rwgw')
          const [file] = document.querySelector('#file-field').files
