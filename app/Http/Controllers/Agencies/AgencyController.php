@@ -18,11 +18,11 @@ class AgencyController extends Controller
       'agencyCreationYear' => 'required|digits:4|integer|max:' . (date('Y') + 1),
       'password' => 'required|current_password:owner'
     ], [
-      'agencyName.required' => 'this field is requird',
-      'commercialRegisterNb.required' => 'this field is requird',
-      'registrationDate.required' => 'this field is requird',
-      'agencyCreationYear.required' => 'this field is requird',
-      'password.required' => 'this field is requird'
+      'agencyName.required' => 'This field is required',
+      'commercialRegisterNb.required' => 'This field is required',
+      'registrationDate.required' => 'This field is required',
+      'agencyCreationYear.required' => 'This field is required',
+      'password.required' => 'This field is required'
     ]);
 
     $requestSent = AgencyRequest::where('ownerUsername', Auth::user()->username)->get();

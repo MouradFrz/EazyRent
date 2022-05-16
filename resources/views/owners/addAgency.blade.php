@@ -24,7 +24,7 @@
 @section('content')
 
  @if (Auth::user()->agencyID)
-     <p>there's a probleme you should not be able to see this view</p>
+     <p> there's a probleme you should not be able to see this view</p>
  @else
   <div class="create-agency">
     <div class="container">

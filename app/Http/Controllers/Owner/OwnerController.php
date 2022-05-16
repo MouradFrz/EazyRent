@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\AgencyRequest;
+use App\Models\Branche;
+use App\Models\Garagist;
+use App\Models\Secretary;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -80,8 +83,59 @@ class OwnerController extends Controller
         Auth::guard('owner')->logout();
         return redirect()->route('workerLogin');
     }
-}
 
+    public function addEmployeePage(){
+        return view('owners.addEmployee',['branches'=>Branche::where('agencyID',Auth::user()->agencyID)->get()]);
+    }
+    public function addEmployee(Request $request){
+        //validation
+        $request->validate([
+            'username'=>'required|unique:secretaries,username|unique:garagemanagers,username|min:4|alpha_num|max:15',
+            'lastName'=>'required|alpha|max:25',
+            'firstName'=>'required|alpha|max:25',
+            'birthDate'=>'required|date',
+            'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+            'email'=>'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',    
+            'password'=>'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'passwordConfirm'=>'required|same:password',
+            'branche'=>'required',
+        ],
+        [
+            'address.regex'=>'The address can only contain letters, numbers and spaces.',
+            'password.regex'=>'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
+        ]);
+        //-validation
+
+        //creating the employe
+        if($request->empType=='G'){
+            $garagist = new Garagist();
+            $garagist->username=$request->username;
+            $garagist->password=Hash::make($request->password);
+            $garagist->firstName=$request->firstName;
+            $garagist->lastName=$request->lastName;
+            $garagist->email=$request->email;
+            $garagist->address=$request->address;
+            $garagist->birthDate=$request->birthDate;
+            $garagist->brancheID=$request->branche;
+            $garagist->save();
+            return redirect()->route('owner.addEmployee')->with('message','You successfully added a new garage manager!');
+        }
+        if($request->empType=='S'){
+            $secretary = new Secretary();
+            $secretary->username=$request->username;
+            $secretary->password=Hash::make($request->password);
+            $secretary->firstName=$request->firstName;
+            $secretary->lastName=$request->lastName;
+            $secretary->email=$request->email;
+            $secretary->address=$request->address;
+            $secretary->birthDate=$request->birthDate;
+            $secretary->brancheID=$request->branche;
+            $secretary->save();
+            return redirect()->route('owner.addEmployee')->with('message','You successfully added a new secretary!');
+        }
+    }
+
+}
 
 
 

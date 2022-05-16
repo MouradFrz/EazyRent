@@ -45,7 +45,7 @@
             <a href="#" class="nav-link ">owner</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">owner</a>
+            <a href="{{ route('owner.addEmployee') }}" class="nav-link ">Add a new employee</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link ">owner</a>

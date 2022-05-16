@@ -58,6 +58,8 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/logout',[OwnerController::class,'logout'])->name('logout');
         Route::view('/createAgency','owners.addAgency')->name('createAgency');
         Route::post('/createAgency',[AgencyController::class,'create'])->name('createAgencyPost');
+        Route::get('/addEmployee',[OwnerController::class,'addEmployeePage'])->name('addEmployee');
+        Route::post('/addEmployee',[OwnerController::class,'addEmployee'])->name('addEmployeePost');
     });
 });
 
