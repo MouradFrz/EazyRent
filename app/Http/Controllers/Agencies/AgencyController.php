@@ -57,4 +57,8 @@ class AgencyController extends Controller
       return redirect()->route('owner.home');
     }
   }
+  public function getJoiningRequests() {
+    $joiningRequests = AgencyRequest::all();
+    return view('admin.joiningRequests',[ 'joiningRequests' => $joiningRequests]);
+  }
 }

@@ -23,10 +23,10 @@
       @if(Auth::guard('admin')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
           <li class="nav-item active">
-            <a href="#" class="nav-link ">dashboard</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link ">dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">joining requests</a>
+            <a href="{{ route('admin.joiningRequests') }}" class="nav-link ">joining requests</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link ">agencies list</a>
@@ -141,5 +141,6 @@
   {{-- scripts --}}
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  @yield('scripts')
 </body>
 </html>

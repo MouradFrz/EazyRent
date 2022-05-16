@@ -32,8 +32,8 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::get('/',function(){
             return redirect(route('user.login'));
         });
-        Route::view('/login','users.login')->name('login'); 
-        Route::view('/register','users.register')->name('register'); 
+        Route::view('/login','users.login')->name('login');
+        Route::view('/register','users.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/check',[UserController::class,'check'])->name('check');
         });
@@ -49,7 +49,7 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::get('/',function(){
             return redirect(route('workerLogin'));
         });
-        Route::view('/register','owners.register')->name('register'); 
+        Route::view('/register','owners.register')->name('register');
         Route::post('/create',[OwnerController::class,'create'])->name('create');
         Route::post('/check',[OwnerController::class,'check'])->name('check');
         });
@@ -74,6 +74,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         });
     Route::middleware(['auth:admin','PreventBackHistory'])->group(function(){
         Route::view('/dashboard','admin.dashboard')->name('dashboard');
+        Route::view('/joining-requests','admin.joiningRequests')->name('joiningRequests');
+        Route::get('/joining-request',[AgencyController::class,'getJoiningRequests'])->name('joiningRequests');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     });
 });

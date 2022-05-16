@@ -71,3 +71,10 @@ body {
 .main {
   padding: 0;
 }
+
+.joining-requests .container {
+  margin-top: 2em;
+}
+.joining-requests h2 {
+  margin-bottom: 1em;
+}
