@@ -80,6 +80,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/joining-request',[AgencyController::class,'getJoiningRequests'])->name('joiningRequests');
         Route::post('/accept-agency/{id}',[AgencyController::class,'acceptAgency'])->name('acceptAgency');
         Route::post('/refuse-agency/{id}',[AgencyController::class,'refuseAgency'])->name('refuseAgency');
+        Route::view('/agencies-list','admin.agenciesList')->name('agenciesList');
+        Route::get('/agencies-list',[AgencyController::class,'getAgencies'])->name('getAgencies');
+        Route::view('/users-list','admin.usersList')->name('usersList');
+        Route::get('/users-list',[UserController::class, 'getUsersList'])->name('usersList');
+        Route::view('/baned-users','admin.banedUsers')->name('banedUsers');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     });
 });

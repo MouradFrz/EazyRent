@@ -55,13 +55,13 @@
             <a href="{{ route('admin.joiningRequests') }}" class="nav-link ">joining requests</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">agencies list</a>
+            <a href="{{ route('admin.getAgencies') }}" class="nav-link ">agencies list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">users list</a>
+            <a href="{{ route('admin.usersList') }}" class="nav-link ">users list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">baned users</a>
+            <a href="{{ route('admin.banedUsers') }}" class="nav-link ">baned users</a>
           </li>
         </ul>
         @endif
@@ -162,7 +162,7 @@
       @if(Auth::guard('admin')->check())
         <a class="logout" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
         <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form>
-  
+
       @endif
       @if(Auth::guard('owner')->check())
 

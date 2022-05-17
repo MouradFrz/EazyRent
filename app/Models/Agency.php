@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Agency extends Model
 {
-    use HasFactory;
-    protected $table='agencies';
-    public $timestamps = false;
+  use HasFactory;
+  protected $table = 'agencies';
+  protected $primaryKey = 'agencyID';
 }
