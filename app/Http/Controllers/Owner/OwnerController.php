@@ -12,6 +12,8 @@ use App\Models\Secretary;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+use function PHPUnit\Framework\isNull;
+
 class OwnerController extends Controller
 {
     public function home(){
@@ -138,6 +140,58 @@ class OwnerController extends Controller
         }
     }
 
+
+    public function showProfile(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        return view('owners.editProfile');
+    }
+
+
+    public function editProfile(Request $request){
+        
+        $request->validate([
+            ($request->username==Auth::user()->username) ? : 'username'=>'unique:owners,username|min:4|alpha_num|max:15',
+            'lastName'=>'required|alpha|max:25',
+            'firstName'=>'required|alpha|max:25',
+            'birthDate'=>'required|date',
+            'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+            ($request->email==Auth::user()->email) ? : 'email'=>'email|unique:users,email|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
+            ($request->phone=='') ?  :'phone'=>['digits:10','regex:/(05|06|07)[0-9]{8}/'],
+            ($request->newPassword=='') ?  :'newPassword'=>'min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+            'passwordConfirm'=>'same:newPassword',
+            'idCard'=>'required|digits_between:18,18|numeric',
+            'currentPassword' => 'required|current_password:owner'
+        ],
+        [
+            'idCard.required'=>'The identity card number is required.',
+            'idCard.digits_between'=>'The identity card number has to be 18 number long.',
+            'address.regex'=>'The address can only contain letters, numbers and spaces.',
+            'newPassword.regex'=>'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
+            'phone.digits_between'=>'The number must be made of 10 digits',
+        ]);
+
+        
+        $owner = Owner::where('username',Auth::user()->username)->first();
+        // $owner = Auth::user();
+        $owner->username=$request->username;
+        $owner->firstName=$request->firstName;
+        $owner->lastName=$request->lastName;
+        $owner->birthDate=$request->birthDate;
+        $owner->address=$request->address;
+        $owner->email=$request->email;
+        if($request->newPassword!=''){
+            $owner->password = Hash::make($request->newPassword);
+        }
+        $owner->idCard=$request->idCard;
+        if($request->phone!=''){
+        $owner->phoneNumber=$request->phone;
+        }
+        $owner->save();
+
+        return redirect()->route('owner.editProfile')->with('message','Settings updated successfully');
+    }
 }
 
 
