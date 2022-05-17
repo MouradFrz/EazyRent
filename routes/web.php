@@ -62,6 +62,9 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/addEmployee',[OwnerController::class,'addEmployee'])->name('addEmployeePost');
         Route::get('/editProfile',[OwnerController::class,'showProfile'])->name('showProfile');
         Route::post('/editProfile',[OwnerController::class,'editProfile'])->name('editProfile');
+        Route::get('/reclamations',[OwnerController::class,'showReclamations'])->name('showReclamations');
+        Route::get('/reclamations/{recid}',[OwnerController::class,'reclamation'])->name('reclamation');
+        Route::post('/answerReclamation/{recid}',[OwnerController::class,'answerReclamation'])->name('answerReclamation');
     });
 });
 

@@ -76,7 +76,7 @@ class AgencyController extends Controller
       AgencyRequest::where('requestID', $id)->update([
         'state' => 'ACCEPTED'
       ]);
-      redirect()->route('admin.joiningRequests');
+      return redirect()->route('admin.joiningRequests');
 
       // $agency = AgencyRequest::where('requestID', 3);
       // $agency->state = 'Accepted';
@@ -89,7 +89,7 @@ class AgencyController extends Controller
       AgencyRequest::where('requestID', $id)->update([
         'state' => 'REFUSED',
       ]);
-      redirect()->route('admin.joiningRequests');
+      return redirect()->route('admin.joiningRequests');
 
       // $agency = AgencyRequest::where('requestID', 3);
       // $agency->state = 'Accepted';

@@ -68,7 +68,7 @@
         @if(Auth::guard('owner')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
           <li class="nav-item active">
-            <a href="#" class="nav-link ">owner</a>
+            <a href="{{ route('owner.showReclamations') }}" class="nav-link ">View client complaints</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('owner.addEmployee') }}" class="nav-link ">Add a new employee</a>
