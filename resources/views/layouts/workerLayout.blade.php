@@ -20,10 +20,30 @@
         <p class="user-fullname auth username">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
         <div class="placeholder"></div>
         <div class="show-on-hover">
+          @if(Auth::guard('owner')->check())
+          <ul>
+            <li><a href="{{ route('owner.showProfile') }}">Edit profil</a></li>
+            <li><a href="">Show transaction history</a></li>
+          </ul>
+          @endif
+          @if(Auth::guard('admin')->check())
           <ul>
             <li><a href="">Edit profil</a></li>
             <li><a href="">Show transaction history</a></li>
           </ul>
+          @endif
+          @if(Auth::guard('secretary')->check())
+          <ul>
+            <li><a href="">Edit profil</a></li>
+            <li><a href="">Show transaction history</a></li>
+          </ul>
+          @endif
+          @if(Auth::guard('garagist')->check())
+          <ul>
+            <li><a href="">Edit profil</a></li>
+            <li><a href="">Show transaction history</a></li>
+          </ul>
+          @endif
         </div>
       </div>
       @if(Auth::guard('admin')->check())

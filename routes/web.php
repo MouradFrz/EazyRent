@@ -60,6 +60,8 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/createAgency',[AgencyController::class,'create'])->name('createAgencyPost');
         Route::get('/addEmployee',[OwnerController::class,'addEmployeePage'])->name('addEmployee');
         Route::post('/addEmployee',[OwnerController::class,'addEmployee'])->name('addEmployeePost');
+        Route::get('/editProfile',[OwnerController::class,'showProfile'])->name('showProfile');
+        Route::post('/editProfile',[OwnerController::class,'editProfile'])->name('editProfile');
     });
 });
 
