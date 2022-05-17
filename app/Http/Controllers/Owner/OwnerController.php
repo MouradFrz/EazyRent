@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\AgencyRequest;
 use App\Models\Branche;
+use App\Models\complaint;
 use App\Models\Garagist;
 use App\Models\Secretary;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -174,7 +176,6 @@ class OwnerController extends Controller
 
         
         $owner = Owner::where('username',Auth::user()->username)->first();
-        // $owner = Auth::user();
         $owner->username=$request->username;
         $owner->firstName=$request->firstName;
         $owner->lastName=$request->lastName;
@@ -191,6 +192,29 @@ class OwnerController extends Controller
         $owner->save();
 
         return redirect()->route('owner.editProfile')->with('message','Settings updated successfully');
+    }
+
+
+    public function showReclamations(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        $complaints = Complaint::where('recepient',Auth::user()->username)->latest()->paginate(25);;
+        return view('owners.reclamation',['list'=>$complaints]);
+    }
+    public function reclamation($id){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        $complaint = Complaint::where('id',$id)->first();
+        $sender = User::where('username',$complaint->sender)->first();
+        return view('owners.reclamationDetails',['reclamation'=>$complaint,'sender'=>$sender]);
+    }
+    public function answerReclamation(Request $request,$id){
+        $complaint=Complaint::where('id','=',$id)->first();
+        $complaint->response=$request->response;
+        $complaint->save();
+        return redirect()->route('owner.reclamation',$complaint->id)->with('message','Your response successfully sent to the user');
     }
 }
 
