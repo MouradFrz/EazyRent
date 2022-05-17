@@ -11,4 +11,5 @@ class AgencyRequest extends Model
   protected $table = 'agencyrequests';
   public $timestamps = false;
   protected $primaryKey = 'requestID';
+  protected $fillable = ['state','refuseReason'];
 }

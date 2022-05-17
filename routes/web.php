@@ -76,6 +76,8 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::view('/dashboard','admin.dashboard')->name('dashboard');
         Route::view('/joining-requests','admin.joiningRequests')->name('joiningRequests');
         Route::get('/joining-request',[AgencyController::class,'getJoiningRequests'])->name('joiningRequests');
+        Route::post('/accept-agency/{id}',[AgencyController::class,'acceptAgency'])->name('acceptAgency');
+        Route::post('/refuse-agency/{id}',[AgencyController::class,'refuseAgency'])->name('refuseAgency');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     });
 });

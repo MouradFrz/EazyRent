@@ -149,3 +149,9 @@ body {
 .joining-requests h2 {
   margin-bottom: 1em;
 }
+.joining-requests .btn {
+  padding: 0.25em 0.75em;
+}
+.joining-requests a .paginate_button {
+  background-color: #999;
+}

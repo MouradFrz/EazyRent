@@ -26,13 +26,13 @@
  @if (Auth::user()->agencyID)
      <p>This guy has an agency</p>
 
- @elseif ($hasRequest==1)  
+ @elseif ($hasRequest==1)
  <div class="no-agency">
   <div class="container d-flex align-items-center justify-content-center">
     <div class="alert" role="alert" style="border:2px dashed rgb(130, 179, 139);background-color:rgb(130, 179, 139)">
       <p> Your request is being processed by our administrators. Please comeback later</p>
       <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
- <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
+      <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
     </div>
   </div>
 </div>

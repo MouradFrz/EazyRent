@@ -9,30 +9,50 @@
 <div class="joining-requests">
   <div class="container">
     <h2>joining Requests</h2>
-    <table class="table" id="joiningRequests">
+    <table class="table table-striped" id="joiningRequests">
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">name</th>
-          <th scope="col">Registry NB</th>
-          <th scope="col">registeration date</th>
-          <th scope="col">creation Year</th>
-          <th scope="col">owner</th>
+          <th>Name</th>
+          <th>Registry NB</th>
+          <th>Registeration date</th>
+          <th>Creation year</th>
+          <th>Owner</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        @foreach ($joiningRequests as $request)
+        @foreach ($joiningRequests as $jr)
         <tr>
-          <th scope="row">{{$request -> requestID}}</th>
-          <td>{{$request -> name}}</td>
-          <td>{{$request -> registeryNB}}</td>
-          <td>{{$request -> registrationDate}}</td>
-          <td>{{$request -> creationYear}}</td>
-          <td>{{$request -> ownerUsername}}</td>
+          <th scope="row">{{$jr -> requestID}}</th>
+          <td>{{$jr -> name}}</td>
+          <td>{{$jr -> registeryNB}}</td>
+          <td>{{$jr -> registrationDate}}</td>
+          <td>{{$jr -> creationYear}}</td>
+          <td>{{$jr -> ownerUsername}}</td>
+          <td class="d-flex justify-content-between">
+            {{-- <a class="logout" href="{{ route('admin.accept') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();" >
+              accept
+            </a>
+            <form action="{{ route('admin.accept') }}" id="logout-form" method="post">@csrf</form></td> --}}
+            {{-- @php $requestID = $jr-> requestID @endphp --}}
+            <form action="{{route('admin.acceptAgency', ['id' => $jr -> requestID ]  ) }}" method="post">
+              @csrf
+              @method('POST')
+              <button type="sybmit" class="btn btn-primary" href="{{route('admin.acceptAgency', $jr->requestID) }}">accept</button>
+            </form>
+            <form action="{{route('admin.refuseAgency', ['id' => $jr -> requestID ]  ) }}" method="post">
+              @csrf
+            <button type="submit" class="btn btn-danger" href="{{route('admin.refuseAgency', $jr->requestID)}}">
+              refuse
+            </button>
+          </form>
         </tr>
         @endforeach
       </tbody>
     </table>
+    {{$joiningRequests->links()}}
   </div>
 </div>
 

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Agencies;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agency;
 use App\Models\AgencyRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Psy\Readline\Hoa\Console;
+use Psy\Readline\Hoa\ConsoleTput;
 
 class AgencyController extends Controller
 {
@@ -57,8 +60,40 @@ class AgencyController extends Controller
       return redirect()->route('owner.home');
     }
   }
-  public function getJoiningRequests() {
-    $joiningRequests = AgencyRequest::all();
-    return view('admin.joiningRequests',[ 'joiningRequests' => $joiningRequests]);
+  public function getJoiningRequests()
+  {
+    if (Auth::guard('admin')->check()) {
+      $joiningRequests = AgencyRequest::where('state', 'ON GOING')->latest()->paginate(25);
+      return view('admin.joiningRequests', ['joiningRequests' => $joiningRequests]);
+    } else {
+      redirect()->route('admin.login');
+    }
+  }
+
+  public function acceptAgency($id)
+  {
+    if (Auth::guard('admin')->check()) {
+      AgencyRequest::where('requestID', $id)->update([
+        'state' => 'ACCEPTED'
+      ]);
+      redirect()->route('admin.joiningRequests');
+
+      // $agency = AgencyRequest::where('requestID', 3);
+      // $agency->state = 'Accepted';
+      // $agency->save();
+    }
+  }
+  public function refuseAgency($id)
+  {
+    if (Auth::guard('admin')->check()) {
+      AgencyRequest::where('requestID', $id)->update([
+        'state' => 'REFUSED',
+      ]);
+      redirect()->route('admin.joiningRequests');
+
+      // $agency = AgencyRequest::where('requestID', 3);
+      // $agency->state = 'Accepted';
+      // $agency->save();
+    }
   }
 }
