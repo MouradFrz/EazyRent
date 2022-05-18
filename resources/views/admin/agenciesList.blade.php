@@ -13,7 +13,7 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
-          <th>Name</th>
+          <th>name</th>
           <th>owner</th>
           <th>rating</th>
           <th>rating NB</th>
@@ -26,9 +26,9 @@
         <tr>
           <th scope="row">{{$agency -> agencyID}}</th>
           <td>{{$agency -> name}}</td>
-          <td>{{$agency -> ownerUsername}}</td>
-          <td>{{$agency -> rating}}</td>
-          <td>{{$agency -> ratingNB}}</td>
+          <td>{{$agency -> firstName }} {{$agency -> lastName }}</td>
+          <td> @if(is_null($agency -> rating)) No rating @endif</td>
+          <td>@if (is_null($agency -> ratingNB)) no rating @endif</td>
           <td>{{$agency -> creationYear}}</td>
           <td>{{$agency -> created_at}}</td>
           </form>

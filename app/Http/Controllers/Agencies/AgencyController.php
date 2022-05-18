@@ -55,7 +55,7 @@ class AgencyController extends Controller
 
       $agency->save();
 
-     
+
       return redirect()->route('owner.home');
     }
   }
@@ -66,8 +66,10 @@ class AgencyController extends Controller
   }
   public function getAgencies()
   {
-    $agencies = Agency::latest()->paginate(25);
+    // $agencies = Agency::latest()->paginate(25);
+    $agencies = Agency::join('owners', 'agencies.AgencyId' , '=', 'owners.AgencyId')->latest()->paginate(25);
     return view('admin.agenciesList', ['agencies' => $agencies]);
+
   }
 
   public function acceptAgency($id)
