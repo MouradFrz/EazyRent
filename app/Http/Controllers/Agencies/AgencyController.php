@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agencies;
 
 use App\Http\Controllers\Controller;
 use App\Models\Agency;
+use App\Models\Owner;
 use App\Models\AgencyRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,9 +55,7 @@ class AgencyController extends Controller
 
       $agency->save();
 
-      // Owner::where('username',Auth::user()->username)->update([
-      //     'agencyID'=>$agency->id,
-      // ]);
+     
       return redirect()->route('owner.home');
     }
   }
@@ -79,15 +78,18 @@ class AgencyController extends Controller
     ]);
     // agecny creation after accept
     $acceptedAgency = AgencyRequest::find($id);
-    $agency = new AgencyRequest();
+    $agency = new Agency();
 
-    $agency->ownerUsername = $acceptedAgency->ownerUsername;
     $agency->name = $acceptedAgency->name;
     $agency->registeryNb = $acceptedAgency->registeryNB;
     $agency->registrationDate = $acceptedAgency->registrationDate;
     $agency->creationYear = $acceptedAgency->creationYear;
     $agency->created_at = now();
     $agency->save();
+
+    $owner = Owner::where('username',$acceptedAgency->ownerUsername)->first();
+    $owner->agencyID = $id;
+    $owner->save();
 
     return redirect()->route('admin.joiningRequests')
     ->with('message','You successfully added a new agency!');

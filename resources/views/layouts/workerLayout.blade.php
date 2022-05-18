@@ -16,7 +16,7 @@
   <div class="row m-0">
     <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-4 col-md-2 align-self-start">
       <div class="navbar-brand d-flex flex-column align-items-center auth">
-        <img src="{{ asset('images/owners/idCardImages/ferza.jpg') }}" alt="">
+        <img src="{{ asset('images/owners/idCardImages/lololo.jpg') }}" alt="">
         <p class="user-fullname auth username">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
         <div class="placeholder"></div>
         <div class="show-on-hover">
