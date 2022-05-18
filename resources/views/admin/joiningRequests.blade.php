@@ -31,15 +31,8 @@
           <td>{{$jr -> creationYear}}</td>
           <td>{{$jr -> ownerUsername}}</td>
           <td class="d-flex justify-content-between">
-            {{-- <a class="logout" href="{{ route('admin.accept') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();" >
-              accept
-            </a>
-            <form action="{{ route('admin.accept') }}" id="logout-form" method="post">@csrf</form></td> --}}
-            {{-- @php $requestID = $jr-> requestID @endphp --}}
             <form action="{{route('admin.acceptAgency', ['id' => $jr -> requestID ]  ) }}" method="post">
               @csrf
-              @method('POST')
               <button type="sybmit" class="btn btn-primary" href="{{route('admin.acceptAgency', $jr->requestID) }}">accept</button>
             </form>
             <form action="{{route('admin.refuseAgency', ['id' => $jr -> requestID ]  ) }}" method="post">
@@ -47,7 +40,8 @@
             <button type="submit" class="btn btn-danger" href="{{route('admin.refuseAgency', $jr->requestID)}}">
               refuse
             </button>
-          </form>
+            </form>
+          </td>
         </tr>
         @endforeach
       </tbody>

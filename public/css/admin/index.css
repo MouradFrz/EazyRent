@@ -155,3 +155,29 @@ body {
 .joining-requests a .paginate_button {
   background-color: #999;
 }
+
+.tag {
+  font-weight: 600;
+  margin: 0 !important;
+  text-decoration: underline;
+}
+
+.value {
+  color: rgb(98, 98, 98);
+}
+
+.title {
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  min-height: 250px;
+  border: 1px solid rgb(199, 199, 199);
+}
+textarea:focus {
+  border: 1px solid rgb(193, 216, 237);
+  outline: none;
+}

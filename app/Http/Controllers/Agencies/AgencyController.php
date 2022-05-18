@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Agencies;
 
 use App\Http\Controllers\Controller;
 use App\Models\Agency;
+use App\Models\Owner;
 use App\Models\AgencyRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -54,46 +55,53 @@ class AgencyController extends Controller
 
       $agency->save();
 
-      // Owner::where('username',Auth::user()->username)->update([
-      //     'agencyID'=>$agency->id,
-      // ]);
+
       return redirect()->route('owner.home');
     }
   }
   public function getJoiningRequests()
   {
-    if (Auth::guard('admin')->check()) {
-      $joiningRequests = AgencyRequest::where('state', 'ON GOING')->latest()->paginate(25);
-      return view('admin.joiningRequests', ['joiningRequests' => $joiningRequests]);
-    } else {
-      redirect()->route('admin.login');
-    }
+    $joiningRequests = AgencyRequest::where('state', 'ON GOING')->latest()->paginate(25);
+    return view('admin.joiningRequests', ['joiningRequests' => $joiningRequests]);
+  }
+  public function getAgencies()
+  {
+    // $agencies = Agency::latest()->paginate(25);
+    $agencies = Agency::join('owners', 'agencies.AgencyId' , '=', 'owners.AgencyId')->latest()->paginate(25);
+    return view('admin.agenciesList', ['agencies' => $agencies]);
+
   }
 
   public function acceptAgency($id)
   {
-    if (Auth::guard('admin')->check()) {
-      AgencyRequest::where('requestID', $id)->update([
-        'state' => 'ACCEPTED'
-      ]);
-      redirect()->route('admin.joiningRequests');
+    AgencyRequest::where('requestID', $id)->update([
+      'state' => 'ACCEPTED',
+      'adminUsername' => Auth::user()->username,
+    ]);
+    // agecny creation after accept
+    $acceptedAgency = AgencyRequest::find($id);
+    $agency = new Agency();
 
-      // $agency = AgencyRequest::where('requestID', 3);
-      // $agency->state = 'Accepted';
-      // $agency->save();
-    }
+    $agency->name = $acceptedAgency->name;
+    $agency->registeryNb = $acceptedAgency->registeryNB;
+    $agency->registrationDate = $acceptedAgency->registrationDate;
+    $agency->creationYear = $acceptedAgency->creationYear;
+    $agency->created_at = now();
+    $agency->save();
+
+    $owner = Owner::where('username',$acceptedAgency->ownerUsername)->first();
+    $owner->agencyID = $id;
+    $owner->save();
+
+    return redirect()->route('admin.joiningRequests')
+    ->with('message','You successfully added a new agency!');
   }
   public function refuseAgency($id)
   {
-    if (Auth::guard('admin')->check()) {
-      AgencyRequest::where('requestID', $id)->update([
-        'state' => 'REFUSED',
-      ]);
-      redirect()->route('admin.joiningRequests');
-
-      // $agency = AgencyRequest::where('requestID', 3);
-      // $agency->state = 'Accepted';
-      // $agency->save();
-    }
+    AgencyRequest::where('requestID', $id)->update([
+      'state' => 'REFUSED',
+      'adminUsername' => Auth::user()->username,
+    ]);
+    return redirect()->route('admin.joiningRequests');
   }
 }

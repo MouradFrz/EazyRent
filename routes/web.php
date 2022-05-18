@@ -62,6 +62,9 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/addEmployee',[OwnerController::class,'addEmployee'])->name('addEmployeePost');
         Route::get('/editProfile',[OwnerController::class,'showProfile'])->name('showProfile');
         Route::post('/editProfile',[OwnerController::class,'editProfile'])->name('editProfile');
+        Route::get('/reclamations',[OwnerController::class,'showReclamations'])->name('showReclamations');
+        Route::get('/reclamations/{recid}',[OwnerController::class,'reclamation'])->name('reclamation');
+        Route::post('/answerReclamation/{recid}',[OwnerController::class,'answerReclamation'])->name('answerReclamation');
     });
 });
 
@@ -80,6 +83,11 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/joining-request',[AgencyController::class,'getJoiningRequests'])->name('joiningRequests');
         Route::post('/accept-agency/{id}',[AgencyController::class,'acceptAgency'])->name('acceptAgency');
         Route::post('/refuse-agency/{id}',[AgencyController::class,'refuseAgency'])->name('refuseAgency');
+        Route::view('/agencies-list','admin.agenciesList')->name('agenciesList');
+        Route::get('/agencies-list',[AgencyController::class,'getAgencies'])->name('getAgencies');
+        Route::view('/users-list','admin.usersList')->name('usersList');
+        Route::get('/users-list',[UserController::class, 'getUsersList'])->name('usersList');
+        Route::view('/baned-users','admin.banedUsers')->name('banedUsers');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
     });
 });

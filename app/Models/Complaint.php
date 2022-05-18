@@ -5,9 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Agency extends Model
+class Complaint extends Model
 {
-  use HasFactory;
-  protected $table = 'agencies';
-  protected $primaryKey = 'agencyID';
+    use HasFactory;
 }

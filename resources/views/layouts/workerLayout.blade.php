@@ -16,7 +16,7 @@
   <div class="row m-0">
     <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-4 col-md-2 align-self-start">
       <div class="navbar-brand d-flex flex-column align-items-center auth">
-        <img src="{{ asset('images/owners/idCardImages/ferza.jpg') }}" alt="">
+        <img src="{{ asset('images/owners/idCardImages/lololo.jpg') }}" alt="">
         <p class="user-fullname auth username">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
         <div class="placeholder"></div>
         <div class="show-on-hover">
@@ -55,20 +55,20 @@
             <a href="{{ route('admin.joiningRequests') }}" class="nav-link ">joining requests</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">agencies list</a>
+            <a href="{{ route('admin.getAgencies') }}" class="nav-link ">agencies list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">users list</a>
+            <a href="{{ route('admin.usersList') }}" class="nav-link ">users list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">baned users</a>
+            <a href="{{ route('admin.banedUsers') }}" class="nav-link ">baned users</a>
           </li>
         </ul>
         @endif
         @if(Auth::guard('owner')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
           <li class="nav-item active">
-            <a href="#" class="nav-link ">owner</a>
+            <a href="{{ route('owner.showReclamations') }}" class="nav-link ">View client complaints</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('owner.addEmployee') }}" class="nav-link ">Add a new employee</a>
@@ -162,7 +162,7 @@
       @if(Auth::guard('admin')->check())
         <a class="logout" href="{{ route('admin.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
         <form action="{{ route('admin.logout') }}" id="logout-form" method="post">@csrf</form>
-  
+
       @endif
       @if(Auth::guard('owner')->check())
 
