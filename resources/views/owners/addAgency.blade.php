@@ -19,7 +19,7 @@
 @extends('layouts.workerLayout')
 @section('headTags')
 <title>Owner - add agency</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
 <link rel="stylesheet" href="{{ asset('css/owner/index.css') }}"
 @section('content')
 

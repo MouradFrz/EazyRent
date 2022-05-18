@@ -93,7 +93,10 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         });
     Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
         Route::view('/home','secretaries.secretaryHome')->name('home');
+        Route::view('/addVehicule','secretaries.addVehicule')->name('addVehicule');
+        Route::post('/addVehicule',[SecretaryController::class,'create'])->name('addVehiculePost');
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
+        Route::view('/vehicules','secretaries.secretaryVehicules')->name('vehicules');
     });
 });
 //garagists

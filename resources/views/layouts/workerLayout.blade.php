@@ -106,10 +106,10 @@
         @if(Auth::guard('secretary')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
           <li class="nav-item active">
-            <a href="#" class="nav-link ">secretary</a>
+            <a href="#" class="nav-link ">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">secretary</a>
+            <a href="{{ route('secretary.addVehicule') }}" class="nav-link ">Add vehicule</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link ">agencies list</a>
