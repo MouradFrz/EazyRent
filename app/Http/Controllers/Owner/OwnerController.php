@@ -216,7 +216,68 @@ class OwnerController extends Controller
         $complaint->save();
         return redirect()->route('owner.reclamation',$complaint->id)->with('message','Your response successfully sent to the user');
     }
+
+    public function branches(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+
+        $branches = Branche::where('agencyID',Auth::user()->agencyID)->get();
+        
+        return view('owners.branchesList',['branches'=>$branches]);
+    }
+    public function createBranchPage(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+
+        $branches = Branche::where('agencyID',Auth::user()->agencyID)->get();
+        return view('owners.addBranch');
+    }
+    public function createBranch(Request $request){
+        $request->validate([
+            'region'=>'required|alpha',
+            'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/'
+        ]);
+
+        $branch = new Branche();
+        $branch->agencyID= Auth::user()->agencyID;
+        $branch->region=$request->region;
+        $branch->address=$request->address;
+        $branch->save();
+
+        return redirect()->route('owner.showBranches')->with('message','Branch added successfully!');
+    }
+    public function showBranch($id){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        $branch = Branche::where('brancheID',$id)->first();
+
+        if($branch->agencyID != Auth::user()->agencyID){
+            return redirect()->route('owner.home');
+        }
+        $secretaries = Secretary::where('brancheID',$id)->latest()->paginate(25);
+     
+        $garagists = Garagist::where('brancheID',$id)->latest()->paginate(25);
+       
+        
+        return view('owners.brancheDetails',['branch'=>$branch,'secretaries'=>$secretaries,'garagists'=>$garagists]);
+    }
+    public function deleteBranch($id){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        $branch = Branche::where('brancheID',$id)->first();
+        if($branch->agencyID != Auth::user()->agencyID){
+            return redirect()->route('owner.home');
+        }
+
+        Branche::where('brancheID',$id)->delete();
+        return redirect()->route('owner.showBranches')->with('alert','Branch deleted successfully');
+    }
 }
+
 
 
 

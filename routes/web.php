@@ -65,6 +65,10 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::get('/reclamations',[OwnerController::class,'showReclamations'])->name('showReclamations');
         Route::get('/reclamations/{recid}',[OwnerController::class,'reclamation'])->name('reclamation');
         Route::post('/answerReclamation/{recid}',[OwnerController::class,'answerReclamation'])->name('answerReclamation');
+        Route::get('/branches',[OwnerController::class,'branches'])->name('showBranches');
+        Route::post('/addbranch',[OwnerController::class,'createBranch'])->name('addBranchePost');
+        Route::get('/branche/{id}',[OwnerController::class,'showBranch'])->name('showBranch');
+        Route::post('/branche/{id}',[OwnerController::class,'deleteBranch'])->name('deleteBranch');
     });
 });
 
