@@ -78,6 +78,10 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/secTransfer',[OwnerController::class,'secTransfer'])->name('secTransfer');
         Route::get('/getGarTransfer/{id}',[OwnerController::class,'getGarTransfer'])->name('getGarTransfer');
         Route::post('/garTransfer',[OwnerController::class,'garTransfer'])->name('garTransfer');
+        Route::get('/garages',[OwnerController::class,'garages'])->name('showGarages');
+        Route::get('/loadForm',[OwnerController::class,'loadForm'])->name('loadForm');
+        Route::get('/availableGaragists/{id}',[OwnerController::class,'availableGaragists'])->name('availableGaragists');
+        Route::post('/addGarage',[OwnerController::class,'addGarage'])->name('addGarage');
     });
 });
 
@@ -102,6 +106,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/users-list',[UserController::class, 'getUsersList'])->name('usersList');
         Route::view('/baned-users','admin.banedUsers')->name('banedUsers');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
+  
     });
 });
 //secretaries

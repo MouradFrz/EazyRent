@@ -59,3 +59,9 @@ footer {
    
   }
 }
+.btn{
+  box-shadow: none !important;
+  &:active{
+    border: 1px solid black;
+  }
+}

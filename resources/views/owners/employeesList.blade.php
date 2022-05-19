@@ -32,11 +32,12 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete a secretary </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Delete a garage manager </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete this garage manager?</p>
+        <p>Are you sure you want to delete this garage manager? <br>
+        Deleting this garage manager WILL delete the garage that he manages <br> </p>
         <form action="{{ route('owner.deleteGaragist') }}" method="POST" id="garDeleteForm">
           @csrf
           <input type="text" disabled name="fullname" class="form-control" id="garDeleteShow">
@@ -56,7 +57,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete a secretary </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Transfer a secretary </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -81,7 +82,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Delete a garage manager </h5>
+        <h5 class="modal-title" id="exampleModalLabel">Transfer a garage manager </h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">

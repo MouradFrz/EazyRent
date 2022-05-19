@@ -310,7 +310,6 @@
 
 
       document.querySelector('#file-field').onchange = evt => {
-        console.log('rwgw')
          const [file] = document.querySelector('#file-field').files
           if (file) {
             document.querySelector('.image-preview').src = URL.createObjectURL(file)
@@ -318,7 +317,6 @@
          }
 }
 document.querySelector('#file-field-face').onchange = evt => {
-  console.log('changed face')
          const [file] = document.querySelector('#file-field-face').files
           if (file) {
             document.querySelector('#image-preview-face').src = URL.createObjectURL(file)

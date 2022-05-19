@@ -23,7 +23,6 @@
           @if(Auth::guard('owner')->check())
           <ul>
             <li><a href="{{ route('owner.showProfile') }}">Edit profil</a></li>
-            <li><a href="">Show transaction history</a></li>
           </ul>
           @endif
           @if(Auth::guard('admin')->check())
@@ -77,7 +76,7 @@
             <a href="{{ route('owner.showBranches') }}" class="nav-link ">Branches management</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">owner</a>
+            <a href="{{ route('owner.showGarages') }}" class="nav-link ">Garages management</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link ">owner</a>

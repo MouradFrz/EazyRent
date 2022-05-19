@@ -8,6 +8,7 @@ use App\Models\Owner;
 use App\Models\AgencyRequest;
 use App\Models\Branche;
 use App\Models\complaint;
+use App\Models\Garage;
 use App\Models\Garagist;
 use App\Models\Secretary;
 use App\Models\User;
@@ -341,6 +342,44 @@ class OwnerController extends Controller
         $garagist->brancheID = $request->branche;
         $garagist->save();
         return redirect()->route('owner.employeesList')->with('message','Garage manager transfered successfully');
+    }
+
+    public function garages(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+
+        $garages = DB::table('garages')->join('branches','garages.brancheID','=','branches.brancheID')->where('branches.agencyID',Auth::user()->agencyID)->join('garagemanagers','garages.garageManagerUsername','=','garagemanagers.username')->get();
+        return view('owners.garages',['garages'=>$garages]);
+    }
+
+    public function loadForm(){
+        $avGMs=Garagist::join('branches','garagemanagers.brancheID','=','branches.brancheID')->where('agencyID',Auth::user()->agencyID)->get();
+        return [Branche::where('agencyID',Auth::user()->agencyID)->get(),$avGMs];
+    }
+
+    public function availableGaragists($brancheID){
+        $garagists = Garagist::where('brancheID',$brancheID)->whereNotIn('username',Garage::select('garageManagerUsername')->get())->get();
+        return $garagists;
+    }
+    public function addGarage(Request $request){
+        $request->validate([
+            'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+            'capacity'=>'required|numeric',
+            'branche'=>'required|exists:branches,brancheID',
+            'manager'=>'required|exists:garagemanagers,username'
+        ]);
+        $garage = new Garage();
+        $garage->address=$request->address;
+        $garage->capacity=$request->capacity;
+        $garage->brancheID=$request->branche;
+        $garage->garageManagerUsername=$request->manager;
+
+        $garage->save();
+
+        return redirect()->route('owner.showGarages')->with('success','Garage added successfully');
+
+
     }
 }
 
