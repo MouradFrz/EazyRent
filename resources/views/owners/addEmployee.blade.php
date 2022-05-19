@@ -5,25 +5,7 @@
         {{ Session::get('message') }}
     </div>
     @endif
-    {{-- <form action="{{ route('owner.addEmployeePost') }}" method="POST" class="container-fluid">
-        @csrf
-        <div class="row">
-            <div class="col-2">
 
-
-            </div>
-        
-        <input type="text" name="username" id="" class="form-control" placeholder="username">
-        <input type="text" name="password" id="" class="form-control" placeholder="pw">
-        <input type="text" name="firstName" id="" class="form-control" placeholder="firstName">
-        <input type="text" name="lastName" id="" class="form-control" placeholder="lastName">
-        <input type="email" name="email" id="" class="form-control" placeholder="email">
-        <input type="text" name="address" id="" class="form-control" placeholder="address">
-        <input type="date" name="birthDate" id="" class="form-control" placeholder="birth date">
-
-        <button type="submit" class="btn btn-success">Save</button>
-    </div>
-    </form> --}}
     <div class="create-agency mt-5">
         <div class="container">
           <h2>Add employee</h2>

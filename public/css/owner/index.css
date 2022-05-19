@@ -16,6 +16,16 @@
   font-size: 1.5rem;
 }
 
+.tag {
+  font-weight: 600;
+  margin: 0 !important;
+  text-decoration: underline;
+}
+
+.value {
+  color: rgb(98, 98, 98);
+}
+
 .create-agency .container {
   margin-top: 2rem;
 }
@@ -27,4 +37,45 @@
 }
 .create-agency .container form label {
   font-weight: 500;
+}
+
+.card-custom {
+  width: 100%;
+  min-width: 150px;
+  box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  -webkit-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  -moz-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  min-height: 150px;
+}
+.card-custom ul {
+  list-style-type: none;
+  margin: 40px;
+}
+.card-custom ul li {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.card-custom .value {
+  font-weight: 500;
+}
+
+.add-card {
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+.add-card :hover > a {
+  color: gray !important;
+}
+.add-card a {
+  color: black !important;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  flex-wrap: wrap;
 }

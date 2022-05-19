@@ -74,7 +74,7 @@
             <a href="{{ route('owner.addEmployee') }}" class="nav-link ">Add a new employee</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">owner</a>
+            <a href="{{ route('owner.showBranches') }}" class="nav-link ">Branches management</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link ">owner</a>
