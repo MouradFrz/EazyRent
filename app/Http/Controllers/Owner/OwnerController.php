@@ -13,6 +13,7 @@ use App\Models\Secretary;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\isNull;
 
@@ -275,6 +276,71 @@ class OwnerController extends Controller
 
         Branche::where('brancheID',$id)->delete();
         return redirect()->route('owner.showBranches')->with('alert','Branch deleted successfully');
+    }
+    public function employeesList(){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        
+        $secretaries= DB::table('owners')->where('owners.username',Auth::user()->username)->join('branches','owners.agencyID','=','branches.agencyID')
+        ->join('secretaries','branches.brancheID','=','secretaries.brancheID')->latest()->paginate(25);
+
+        $garagists= DB::table('owners')->where('owners.username',Auth::user()->username)->join('branches','owners.agencyID','=','branches.agencyID')
+        ->join('garagemanagers','branches.brancheID','=','garagemanagers.brancheID')->latest()->paginate(25);
+
+        return view('owners.employeesList',['list'=>$secretaries,'glist'=>$garagists]);
+    }
+    public function getSecUsername($id ,Request $request){
+        if($request->ajax()){
+            return Secretary::where('id',$id)->first();
+        }
+    }
+    public function getGarUsername($id ,Request $request){
+        if($request->ajax()){
+            return Garagist::where('id',$id)->first();
+        }
+    }
+    public function deleteSec(Request $request){
+        $sec = Secretary::where('username',$request->username)->first();
+        
+        $sec->delete();
+        return redirect()->route('owner.employeesList')->with('message','Secretary deleted successfully');
+    }
+    public function deleteGar(Request $request){
+        $sec = Garagist::where('username',$request->username)->first();
+        
+        $sec->delete();
+        return redirect()->route('owner.employeesList')->with('message','Garage manager deleted successfully');
+    }
+    public function getSecTransfer($id,Request $request){
+        if($request->ajax()){
+           $sec = Secretary::where('id',$id)->first();
+           $agencyID = Branche::where('brancheID',$sec->brancheID)->first('agencyID')->agencyID;
+            $branchList = Branche::where('agencyID',$agencyID)->where('brancheID','!=',$sec->brancheID)->get(['brancheID','region']);
+        return [$branchList,$sec];
+        }
+    }
+    public function secTransfer(Request $request){
+        $secretary= Secretary::where('username',$request->username)->first();
+        $secretary->brancheID = $request->branche;
+        $secretary->save();
+        return redirect()->route('owner.employeesList')->with('message','Secretary transfered successfully');
+    }
+
+    public function getGarTransfer($id,Request $request){
+        if($request->ajax()){
+           $gar = Garagist::where('id',$id)->first();
+           $agencyID = Branche::where('brancheID',$gar->brancheID)->first('agencyID')->agencyID;
+            $branchList = Branche::where('agencyID',$agencyID)->where('brancheID','!=',$gar->brancheID)->get(['brancheID','region']);
+        return [$branchList,$gar];
+        }
+    }
+    public function garTransfer(Request $request){
+        $garagist= Garagist::where('username',$request->username)->first();
+
+        $garagist->brancheID = $request->branche;
+        $garagist->save();
+        return redirect()->route('owner.employeesList')->with('message','Garage manager transfered successfully');
     }
 }
 

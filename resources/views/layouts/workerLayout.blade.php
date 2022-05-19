@@ -71,7 +71,7 @@
             <a href="{{ route('owner.showReclamations') }}" class="nav-link ">View client complaints</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('owner.addEmployee') }}" class="nav-link ">Add a new employee</a>
+            <a href="{{ route('owner.employeesList') }}" class="nav-link ">Employees management</a>
           </li>
           <li class="nav-item">
             <a href="{{ route('owner.showBranches') }}" class="nav-link ">Branches management</a>
