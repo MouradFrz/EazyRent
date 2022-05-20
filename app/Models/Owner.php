@@ -22,8 +22,7 @@ class Owner extends Authenticatable
         'password',
         'remember_token',
     ];
-
-    /**
+    protected $fillable = ['agencyID'];    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>

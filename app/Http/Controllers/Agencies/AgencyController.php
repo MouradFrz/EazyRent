@@ -88,10 +88,13 @@ class AgencyController extends Controller
     $agency->creationYear = $acceptedAgency->creationYear;
     $agency->created_at = now();
     $agency->save();
+    // dd($agency);
 
-    $owner = Owner::where('username',$acceptedAgency->ownerUsername)->first();
-    $owner->agencyID = $id;
-    $owner->save();
+
+    Owner::where('username',$acceptedAgency->ownerUsername)->update(['agencyID'=>$agency->agencyID]);
+    
+  
+  
 
     return redirect()->route('admin.joiningRequests')
     ->with('message','You successfully added a new agency!');
