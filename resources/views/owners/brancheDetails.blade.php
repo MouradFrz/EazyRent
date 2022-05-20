@@ -35,7 +35,7 @@
                 <p class="value">{{ count($secretaries)+count($garagists) }} ({{ count($secretaries) }} Secretaries And {{ count($garagists) }} Garagists)</p>
             </div>
             <p class="tag">Employees list:</p>
-            <div class="mt-5">
+            <div class="mt-3">
                 <table class="table table-striped " id="emplist">
                     <thead>
                     <tr>
@@ -88,6 +88,9 @@
 //     $('#joiningRequests').DataTable();
 // } );
 let table = new DataTable('#emplist');
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
 @endsection

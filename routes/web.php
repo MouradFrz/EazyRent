@@ -82,6 +82,9 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::get('/loadForm',[OwnerController::class,'loadForm'])->name('loadForm');
         Route::get('/availableGaragists/{id}',[OwnerController::class,'availableGaragists'])->name('availableGaragists');
         Route::post('/addGarage',[OwnerController::class,'addGarage'])->name('addGarage');
+        Route::get('/garageDetails/{id}',[OwnerController::class,'garageDetails'])->name('garageDetails');
+        Route::post('/garage/{id}',[OwnerController::class,'deleteGarage'])->name('deleteGarage');
+        Route::post('/changeManager',[OwnerController::class,'changeManager'])->name('changeManager');
     });
 });
 

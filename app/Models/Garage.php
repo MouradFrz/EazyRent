@@ -9,4 +9,5 @@ class Garage extends Model
 {
     use HasFactory;
     public $timestamps=false;
+    protected $table = 'garages';
 }

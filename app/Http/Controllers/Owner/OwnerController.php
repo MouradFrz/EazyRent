@@ -12,6 +12,7 @@ use App\Models\Garage;
 use App\Models\Garagist;
 use App\Models\Secretary;
 use App\Models\User;
+use App\Models\Vehicule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -378,8 +379,32 @@ class OwnerController extends Controller
         $garage->save();
 
         return redirect()->route('owner.showGarages')->with('success','Garage added successfully');
+    }
 
+    public function garageDetails($id){
+        if(is_null(Auth::user()->agencyID)){
+            return redirect()->route('owner.home');
+        }
+        $garage = Branche::join('garages','branches.brancheID','=','garages.brancheID')->where('garageID',$id)->first();
+        $garagist = Garagist::where('username',$garage->garageManagerUsername)->first();
+        $cars = Vehicule::where('garageID',$id)->get();
+        $AVgaragists = Garagist::where('brancheID',$garage->brancheID)->whereNotIn('username',Garage::select('garageManagerUsername')->get())->get();
+        return view('owners.garageDetails',['garage'=>$garage,'garagist'=>$garagist,'cars'=>$cars,'avGaragists'=>$AVgaragists]);
+    }
+    public function deleteGarage($id){
+        $garage = Garage::where('garageID',$id);
+        $garage->delete();
+        return redirect()->route('owner.showGarages')->with('message','Garage deleted successfully');
+    }
 
+    public function changeManager(Request $request){
+        $request->validate([
+            'manager'=>'required'
+        ]);
+        $garage=Garage::where('garageID',$request->garageID)->update(['garageManagerUsername'=>$request->manager]);
+        
+       
+        return redirect()->route('owner.garageDetails',$request->garageID)->with('message','Garage manager changed successfully');
     }
 }
 

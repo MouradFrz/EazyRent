@@ -40,12 +40,18 @@
   </div>
     <div>
         <div class="container">
+          
             <h2 class="my-3">Garages management</h2>
             <hr>
+            @if (Session::get('message'))
+          <div class="alert alert-danger w-100 " role="alert">
+            {{ Session::get('message') }}
+          </div>
+          @endif
             @if (Session::get('success'))
-            <div class="alert alert-danger w-100 " role="alert">
+            <div class="alert alert-success w-100 " role="alert">
                 {{ Session::get('success') }}
-        </div>
+            </div>
             @endif
             @error('address')
             <div class="alert alert-danger w-100 " role="alert">
@@ -78,12 +84,13 @@
           @foreach ($garages as $garage )
           <div class="card-custom">
             <ul>
-                <li>Garage id : <span class="value">{{ $garage->brancheID }}</span></li>
+                <li>Garage id : <span class="value">{{ $garage->garageID   }}</span></li>
                 <li>Branch: <span class="value">{{ $garage->region }}</span></li>
                 <li>Address: <span class="value">{{ $garage->address }}</span></li>
                 <li>Total capacity: <span class="value">{{ $garage->capacity }}</span></li>
                 <li>Empty spots: <span class="value">{{ $garage->capacity - $garage->vehiculesNb }}</span></li>
                 <li>Manager: <span class="value">{{ $garage->firstName}} {{  $garage->lastName }}</span></li>
+                <li><a href="{{ route('owner.garageDetails',$garage->garageID) }}">View more</a></li>
             </ul>
         </div>
           @endforeach
