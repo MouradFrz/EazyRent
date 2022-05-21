@@ -1,0 +1,142 @@
+[
+  {
+    "id" : 0,
+    "brand" : "dacia",
+    "models" : [
+      {"id": 0,"model" : "logan" },
+      {"id": 1,"model" : "sandero" },
+      {"id": 2,"model" : "sandero stepway" },
+      {"id": 3,"model" : "duster" },
+      {"id": 3,"model" : "lodgy" }
+    ]
+  },
+  {
+    "id" : 1,
+    "brand" : "renault",
+    "models" : [
+      {"id": 0,"model" : "symbole" },
+      {"id": 1,"model" : "clio 4" },
+      {"id": 2,"model" : "kangoo" },
+      {"id": 3,"model" : "megan" },
+      {"id": 3,"model" : "fluence" },
+      {"id": 3,"model" : "kadjar" },
+      {"id": 3,"model" : "trafic" }
+    ]
+  },
+  {
+    "id" : 2,
+    "brand" : "kia",
+    "models" : [
+      {"id": 0,"model" : "picanto" },
+      {"id": 1,"model" : "rio" },
+      {"id": 2,"model" : "sportage" },
+      {"id": 3,"model" : "sorento" }
+    ]
+  },
+  {
+    "id" : 3,
+    "brand" : "hyundai",
+    "models" : [
+      {"id": 0,"model" : "i10" },
+      {"id": 1,"model" : "i20" },
+      {"id": 2,"model" : "elantra" },
+      {"id": 3,"model" : "creta" },
+      {"id": 3,"model" : "tucson" },
+      {"id": 3,"model" : "santa fe" },
+      {"id": 3,"model" : "i 40 crdi bva" }
+    ]
+  },
+  {
+    "id" : 4,
+    "brand" : "seat",
+    "models" : [
+      {"id": 0,"model" : "ibiza" },
+      {"id": 1,"model" : "leon" },
+      {"id": 2,"model" : "arona" },
+      {"id": 3,"model" : "ateca" }
+    ]
+  },
+  {
+    "id" : 5,
+    "brand" : "skoda",
+    "models" : [
+      {"id": 0,"model" : "fabia" },
+      {"id": 1,"model" : "rapid" },
+      {"id": 2,"model" : "octavia" }
+    ]
+  },
+  {
+    "id" : 6,
+    "brand" : "volkswagen",
+    "models" : [
+      {"id": 0,"model" : "polo" },
+      {"id": 1,"model" : "caddy" },
+      {"id": 2,"model" : "golf 7" },
+      {"id": 2,"model" : "tiguan" },
+      {"id": 2,"model" : "amarok" },
+      {"id": 2,"model" : "passat" },
+      {"id": 2,"model" : "transporter" },
+      {"id": 2,"model" : "multivan" },
+      {"id": 2,"model" : "golf 8" },
+      {"id": 2,"model" : "golf 8 break" }
+    ]
+  },
+  {
+    "id" : 7,
+    "brand" : "peugeot",
+    "models" : [
+      {"id": 0,"model" : "207" },
+      {"id": 0,"model" : "207+" },
+      {"id": 0,"model" : "208" },
+      {"id": 1,"model" : "308" },
+      {"id": 2,"model" : "expert" },
+      {"id": 2,"model" : "3008" }
+    ]
+  },
+  {
+    "id" : 8,
+    "brand" : "mitsubishi",
+    "models" : [
+      {"id": 0,"model" : "sportero" }
+    ]
+  },
+  {
+    "id" : 9,
+    "brand" : "infiniti",
+    "models" : [
+      {"id": 0,"model" : "q30" }
+    ]
+  },
+  {
+    "id" : 10,
+    "brand" : "audi",
+    "models" : [
+      {"id": 0,"model" : "a6" }
+    ]
+  },
+  {
+    "id" : 11,
+    "brand" : "mercedes-benz",
+    "models" : [
+      {"id": 0,"model" : "classe v" },
+      {"id": 0,"model" : "classe a" }
+    ]
+  },
+  {
+    "id" : 12,
+    "brand" : "porshe",
+    "models" : [
+      {"id": 0,"model" : "classe v" },
+      {"id": 0,"model" : "classe a" }
+    ]
+  },
+  {
+    "id" : 13,
+    "brand" : "bmw",
+    "models" : [
+      {"id": 0,"model" : "serie 02" },
+      {"id": 0,"model" : "serie 03" },
+      {"id": 0,"model" : "x2 xdrive20d" }
+    ]
+  }
+]
