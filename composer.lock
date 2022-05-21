@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b48e51cf2e3a84d07f63a74dc5cb6852",
+    "content-hash": "ffa236c3cb9b860d49e2b08eae90e833",
     "packages": [
         {
             "name": "brick/math",
@@ -892,6 +892,84 @@
                 }
             ],
             "time": "2022-03-20T21:55:58+00:00"
+        },
+        {
+            "name": "koossaayy/laravel-mapbox",
+            "version": "v0.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/koossaayy/laravel-mapbox.git",
+                "reference": "b267ba59ed8b2982b58317c2a2a2fd9bfec1d998"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/koossaayy/laravel-mapbox/zipball/b267ba59ed8b2982b58317c2a2a2fd9bfec1d998",
+                "reference": "b267ba59ed8b2982b58317c2a2a2fd9bfec1d998",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.11"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "nunomaduro/collision": "^6.0",
+                "orchestra/testbench": "^6.23|^7.0",
+                "pestphp/pest": "^1.10",
+                "pestphp/pest-plugin-laravel": "^1.1",
+                "phpstan/extension-installer": "^1.1",
+                "phpstan/phpstan-deprecation-rules": "^1.0",
+                "phpstan/phpstan-phpunit": "^1.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/laravel-ray": "^1.26"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Koossaayy\\LaravelMapbox\\LaravelMapboxServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelMapbox": "Koossaayy\\LaravelMapbox\\Facades\\LaravelMapbox"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Koossaayy\\LaravelMapbox\\": "src",
+                    "Koossaayy\\LaravelMapbox\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "koossaayy",
+                    "email": "tounessna.2010@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Easily Integration of Mapbox inside your Laravel application",
+            "homepage": "https://github.com/koossaayy/laravel-mapbox",
+            "keywords": [
+                "koossaayy",
+                "laravel",
+                "laravel-mapbox"
+            ],
+            "support": {
+                "issues": "https://github.com/koossaayy/laravel-mapbox/issues",
+                "source": "https://github.com/koossaayy/laravel-mapbox/tree/v0.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/koossaayy",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-02-10T15:50:31+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2790,6 +2868,65 @@
                 }
             ],
             "time": "2022-03-27T21:42:02+00:00"
+        },
+        {
+            "name": "spatie/laravel-package-tools",
+            "version": "1.11.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-package-tools.git",
+                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-package-tools/zipball/baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+                "reference": "baeb3df0ebb3a541394fdaf8cbe6115bf4034a59",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "^7.0|^8.0|^9.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.4",
+                "orchestra/testbench": "^5.0|^6.23|^7.0",
+                "phpunit/phpunit": "^9.4",
+                "spatie/test-time": "^1.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\LaravelPackageTools\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Tools for creating Laravel packages",
+            "homepage": "https://github.com/spatie/laravel-package-tools",
+            "keywords": [
+                "laravel-package-tools",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-package-tools/issues",
+                "source": "https://github.com/spatie/laravel-package-tools/tree/1.11.3"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/spatie",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-03-15T20:01:36+00:00"
         },
         {
             "name": "symfony/console",

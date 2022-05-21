@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Agency;
 use App\Models\Owner;
 use App\Models\AgencyRequest;
+use App\Models\PickUpLocation;
+use App\Models\Secretary;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Psy\Readline\Hoa\Console;
@@ -69,7 +71,6 @@ class AgencyController extends Controller
     // $agencies = Agency::latest()->paginate(25);
     $agencies = Agency::join('owners', 'agencies.AgencyId' , '=', 'owners.AgencyId')->latest()->paginate(25);
     return view('admin.agenciesList', ['agencies' => $agencies]);
-
   }
 
   public function acceptAgency($id)
@@ -103,5 +104,32 @@ class AgencyController extends Controller
       'adminUsername' => Auth::user()->username,
     ]);
     return redirect()->route('admin.joiningRequests');
+  }
+
+  public function getPickUpLocations() {
+    $brancheID = secretary::where('username', Auth::user()->username)->first()->brancheID;
+    $pickUpLocations = PickUpLocation::where('brancheID', $brancheID)->get();
+    // return redirect()->route('secretary.getPickUpLocations')
+    // ->with('pickUpLocations', $pickUpLocations);
+    return view('secretaries.pickUpLocations', ['pickUpLocations' => $pickUpLocations]);
+  }
+  public function addPickUpLoaction(Request $request) {
+    $brancheID = secretary::where('username', Auth::user()->username)->first()->brancheID;
+    $PickUpLocation = new PickUpLocation();
+    $PickUpLocation->brancheID = $brancheID;
+    $PickUpLocation->added_by = Auth::user()->username;
+    $PickUpLocation->address_address = $request->address_address;
+    $PickUpLocation->address_longitude = $request->address_longitude;
+    $PickUpLocation->address_latitude = $request->address_latitude;
+    $PickUpLocation->created_at = now();
+    $save = $PickUpLocation->save();
+
+    if($save) {
+      return redirect()->route('secretary.getPickUpLocations')
+      ->with('success','You successfully added a new pick up location!');
+    }else {
+      return redirect()->route('secretary.getPickUpLocations')
+      ->with('failed','added a new pick up location has been failed');
+    }
   }
 }

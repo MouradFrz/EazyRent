@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Secretary\SecretaryController;
 use App\Http\Controllers\Garagist\GaragistController;
 use App\Http\Controllers\Agencies\AgencyController;
+use App\Http\Controllers\Agencies\PickUpLocationController;
+use App\Models\PickUpLocation;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -107,6 +110,12 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::view('/home','secretaries.secretaryHome')->name('home');
         Route::view('/addVehicule','secretaries.addVehicule')->name('addVehicule');
         Route::post('/addVehicule',[SecretaryController::class,'create'])->name('addVehiculePost');
+
+        // Route::view('/pickUpLocations','secretaries.pickUpLocations')->name('pickUpLocations');
+        // Route::view('/pick-up-locations','secretaries.pickUpLocations')->name('pickUpLocations');
+        Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
+        Route::post('/pick-up-locations',[AgencyController::class,'addPickUpLoaction'])->name('addPickUpLocation');
+
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
         Route::view('/vehicules','secretaries.secretaryVehicules')->name('vehicules');
     });

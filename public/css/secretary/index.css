@@ -1,0 +1,22 @@
+.pick-up-locations {
+  padding-top: 2rem;
+}
+.pick-up-locations .card {
+  aspect-ratio: 4/3;
+  padding: 1rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px dashed #888;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.pick-up-locations .card p {
+  font-size: 1.25rem;
+  padding-bottom: 1rem;
+}
+.pick-up-locations .map-area {
+  width: 100%;
+  height: 100%;
+}

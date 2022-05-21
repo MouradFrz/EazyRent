@@ -115,7 +115,7 @@
             <a href="#" class="nav-link ">agencies list</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">users list</a>
+            <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link ">pick up locations</a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link ">baned users</a>

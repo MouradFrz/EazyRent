@@ -9,6 +9,15 @@
 <div class="agencies-list">
   <div class="container">
     <h2>agencies list</h2>
+    @if (Session::get('fail'))
+    <div class="alert alert-danger w-100" role="alert">
+      {{ Session::get('fail') }}
+    </div>
+    @endif
+    @if (Session::get('success'))
+    <div class="alert alert-success w-100 " role="alert">
+      {{ Session::get('success') }}
+    </div>
     <table class="table table-striped" id="agenciesList">
       <thead>
         <tr>
@@ -42,10 +51,11 @@
 
 @endsection
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script>
-//   $(document).ready( function () {
+  //   $(document).ready( function () {
 //     $('#joiningRequests').DataTable();
 // } );
 let table = new DataTable('#agenciesList');
