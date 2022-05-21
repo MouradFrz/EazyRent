@@ -135,6 +135,7 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
 
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
         Route::view('/vehicules','secretaries.secretaryVehicules')->name('vehicules');
+        
     });
 });
 //garagists

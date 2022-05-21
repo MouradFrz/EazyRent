@@ -1,22 +1,40 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Homepage</title>
-</head>
-<body>
-
-</body>
-</html> --}}
-
 
 @extends('layouts.workerLayout')
+@section('headTags')
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('css/owner/index.css') }}">
+@endsection
  @section('content')
- {{ Auth::guard('secretary')->user() }}
- <p>these are secretary vehicules</p>
+   
 
- <a href="{{ route('secretary.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"> Logout</a>
- <form action="{{ route('secretary.logout') }}" id="logout-form" method="post">@csrf</form>
+ <div class="py-4">
+     <div class="container">
+         
+          <h2>Vehicles list</h2>
+         <div class="cards">
+         @if (count($vehicules)!=0)
+        @foreach ($vehicules as $vehicule)
+            
+        
+          <div class="card-custom">
+            <ul>
+                <li>Vehicule: <span class="value">{{ $vehicule->model.$vehicule->brand }}</span></li>
+                <li>Plate number: <span class="value">{{ $vehicule->plateNb }}</span></li>
+                <li>Garage ID: <span class="value">{{ $vehicule->garageID }}</span></li>
+              
+            </ul>
+        </div>
+       
+        @endforeach
+         <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal"></button>
+     </div>
+     @else
+          <p>You have no vehicles</p>
+          <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Add a new Vehicle
+          </button>
+          @endif
+     </div>
+ </div>
  @endsection

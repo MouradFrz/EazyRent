@@ -7,7 +7,7 @@
 
     <div class="add-vehicule mt-5">
         <div class="container">
-          <h2>Add Car</h2>
+          <h2>Add a vehicle</h2>
           <hr>
           <form method="POST" action="{{route('secretary.addVehiculePost')}}" enctype="multipart/form-data">
             @csrf
@@ -223,7 +223,7 @@
 
       </div>
       <div class="col">
-        <label for="imagePath" class="form-label">Car Image</label>
+        <label for="imagePath" class="form-label">Vehicle Image</label>
          <input type="file" name="imagePath" id="" value="{{ old('imagePath') }} "style="width:100%">
          <span class="text-danger" style="font-size:0.8rem">
           @error('imagePath')
