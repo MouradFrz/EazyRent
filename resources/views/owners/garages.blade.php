@@ -135,7 +135,7 @@
         if(document.querySelector('#branchList').value != false){
       $.get(`availableGaragists/${document.querySelector('#branchList').value}`,function(data){
         let list = document.querySelector('#managersList')
-        list.innerText=''   ;
+        list.innerText='' ;
         let x = document.createElement('option')
         x.value=""
         x.innerText="Choose a manager"

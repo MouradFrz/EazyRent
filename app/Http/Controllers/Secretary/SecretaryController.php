@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Secretary;
 
 use App\Models\Vehicule;
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -112,4 +114,39 @@ class SecretaryController extends Controller
            return view('secretary.secretaryVehicules',['vehicules'=>$vehicules]);   
     }
 
+ 
+
+  public function getReservationRequests(){
+
+    $bookings = Booking::join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('garages','vehicules.garageID','=','garages.garageID')->join('users','clientUsername','=','users.username')->where('garages.brancheID',Auth::user()->brancheID)->where('state','REQUESTED')->latest('bookings.created_at')->paginate(25);
+    return view('secretaries.reservationRequests',['bookings'=>$bookings]);
+  }
+  public function reservationDetails($id){
+    $booking = Booking::join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('users','clientUsername','=','users.username')->where('bookingID',$id)->join('garages','vehicules.garageID','=','garages.garageID')->first();
+    
+    $origin = new DateTime($booking->pickUpDate);
+    $target = new DateTime($booking->dropOffDate);
+    $interval = $origin->diff($target);
+    $str=$interval->format('%a days and %h hours');
+    return view('secretaries.reservationDetails',['booking'=>$booking,'interval'=>$str]);
+
+
+    Vehicule::join('garages','garageID','=','garages.garageID')->join('branches','garages.garageID','=','vehicules.garageID')->where('branches.brancheID',Auth::user()->brancheID)->get();
+  }
 }
+
+
+// {
+//   [
+//     {
+//       marque:'Audi',
+//       ['R8','t2451'],
+//     },
+//     {
+
+//     },
+//     {
+
+//     }
+//   ]
+// }

@@ -114,10 +114,10 @@
             <a href="{{ route('secretary.vehicules') }}" class="nav-link ">Vehicules</a>
           </li>
           <li class="nav-item">
-            <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link ">pick up locations</a>
+            <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link ">Pick up locations</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">baned users</a>
+            <a href="{{ route('secretary.getReservationRequests') }}" class="nav-link ">Reservation requests</a>
           </li>
         </ul>
         @endif

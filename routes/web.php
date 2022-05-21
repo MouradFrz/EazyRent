@@ -127,15 +127,12 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::view('/home','secretaries.secretaryHome')->name('home');
         Route::view('/addVehicule','secretaries.addVehicule')->name('addVehicule');
         Route::post('/addVehicule',[SecretaryController::class,'create'])->name('addVehiculePost');
-
-        // Route::view('/pickUpLocations','secretaries.pickUpLocations')->name('pickUpLocations');
-        // Route::view('/pick-up-locations','secretaries.pickUpLocations')->name('pickUpLocations');
         Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
         Route::post('/pick-up-locations',[AgencyController::class,'addPickUpLoaction'])->name('addPickUpLocation');
-
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
         Route::view('/vehicules','secretaries.secretaryVehicules')->name('vehicules');
-        
+        Route::get('/reservation-requests',[SecretaryController::class,'getReservationRequests'])->name('getReservationRequests');
+        Route::get('/reservationDetails/{id}',[SecretaryController::class,'reservationDetails'])->name('reservationDetails');
     });
 });
 //garagists
