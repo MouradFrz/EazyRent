@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Secretary;
 use App\Models\Vehicule;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Garage;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -133,7 +134,13 @@ class SecretaryController extends Controller
 
     Vehicule::join('garages','garageID','=','garages.garageID')->join('branches','garages.garageID','=','vehicules.garageID')->where('branches.brancheID',Auth::user()->brancheID)->get();
   }
+  public function addVehiculePage(){
+    $garages = Garage::select(['garageID','address'])->where('garages.brancheID',Auth::user()->brancheID)->get();
+    return view('secretaries.addVehicule',['garages'=>$garages]);
+  }
 }
+
+
 
 
 // {

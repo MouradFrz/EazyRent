@@ -125,8 +125,8 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         });
     Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
         Route::view('/home','secretaries.secretaryHome')->name('home');
-        Route::view('/addVehicule','secretaries.addVehicule')->name('addVehicule');
-        Route::post('/addVehicule',[SecretaryController::class,'create'])->name('addVehiculePost');
+        Route::get('/addVehicule',[SecretaryController::class,'addVehiculePage'])->name('addVehicule');
+        Route::post('/addVehicule',[SecretaryController::class,'addVehicule'])->name('addVehiculePost');
         Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
         Route::post('/pick-up-locations',[AgencyController::class,'addPickUpLoaction'])->name('addPickUpLocation');
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
