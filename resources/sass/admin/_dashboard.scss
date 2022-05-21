@@ -1,4 +1,7 @@
 @use "../variables" as *;
+body {
+  background-color: rgb(255, 255, 255);
+}
 .row {
   max-width: 100vw;
   position: relative;
@@ -21,6 +24,7 @@
     }
     img{
       width: 80px;
+      height: 80px;
       border-radius: 50%;
       border:2px solid white;
       padding: 4px;

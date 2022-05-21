@@ -72,6 +72,22 @@ Route::prefix('owner')->name('owner.')->group(function(){
         Route::post('/addbranch',[OwnerController::class,'createBranch'])->name('addBranchePost');
         Route::get('/branche/{id}',[OwnerController::class,'showBranch'])->name('showBranch');
         Route::post('/branche/{id}',[OwnerController::class,'deleteBranch'])->name('deleteBranch');
+        Route::get('/employees',[OwnerController::class,'employeesList'])->name('employeesList');
+        Route::get('/getSecUsername/{id}',[OwnerController::class,'getSecUsername'])->name('getSecUsername');
+        Route::get('/getGarUsername/{id}',[OwnerController::class,'getGarUsername'])->name('getGarUsername');
+        Route::post('/deleteSec',[OwnerController::class,'deleteSec'])->name('deleteSecretary');
+        Route::post('/deleteGar',[OwnerController::class,'deleteGar'])->name('deleteGaragist');
+        Route::get('/getSecTransfer/{id}',[OwnerController::class,'getSecTransfer'])->name('getSecTransfer');
+        Route::post('/secTransfer',[OwnerController::class,'secTransfer'])->name('secTransfer');
+        Route::get('/getGarTransfer/{id}',[OwnerController::class,'getGarTransfer'])->name('getGarTransfer');
+        Route::post('/garTransfer',[OwnerController::class,'garTransfer'])->name('garTransfer');
+        Route::get('/garages',[OwnerController::class,'garages'])->name('showGarages');
+        Route::get('/loadForm',[OwnerController::class,'loadForm'])->name('loadForm');
+        Route::get('/availableGaragists/{id}',[OwnerController::class,'availableGaragists'])->name('availableGaragists');
+        Route::post('/addGarage',[OwnerController::class,'addGarage'])->name('addGarage');
+        Route::get('/garageDetails/{id}',[OwnerController::class,'garageDetails'])->name('garageDetails');
+        Route::post('/garage/{id}',[OwnerController::class,'deleteGarage'])->name('deleteGarage');
+        Route::post('/changeManager',[OwnerController::class,'changeManager'])->name('changeManager');
     });
 });
 
@@ -96,6 +112,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/users-list',[UserController::class, 'getUsersList'])->name('usersList');
         Route::view('/baned-users','admin.banedUsers')->name('banedUsers');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
+  
     });
 });
 //secretaries

@@ -37,7 +37,7 @@
       @if(Session::get('alert'))
       <div class="alert alert-danger w-100" role="alert">
       {{ Session::get('alert') }}
-    </div>
+      </div>
       @endif
       @if(Session::get('message'))
       <div class="alert alert-success w-100" role="alert">
