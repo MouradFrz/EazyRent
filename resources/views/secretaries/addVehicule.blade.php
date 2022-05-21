@@ -1,6 +1,6 @@
 @extends('layouts.workerLayout')
 @section('content')
-  
+
 @if(Session::get('message'))
 {{Session::get('message')}}
 @endif
@@ -20,14 +20,14 @@
                   <option value="motorcycle">Motorcycle</option>
                   <option value="bus"> Bus or Mini-bus</option>
                   <option value="truck">Truck</option>
-          
+
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('category')
                     {{ $message }}
                   @enderror
                 </span>
-  
+
             </div>
             <div class="col">
               <label for="type" class="form-label">Type</label>
@@ -37,14 +37,14 @@
                   <option value="comfort">Comfort</option>
                   <option value="Space">Space</option>
                   <option value="premium">Premium</option>
-                 
+
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('type')
                     {{ $message }}
                   @enderror
                 </span>
-  
+
           </div>
               <div class="col">
                 <label for="brand" class="form-label">Brand</label>
@@ -58,7 +58,7 @@
                 {{ $message }}
             @enderror
             </div>
-            
+
             </div>
             <div class="row">
               <div class="col">
@@ -74,14 +74,14 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
             </div>
                 <div class="col">
                   <label for="year" class="form-label">year</label>
                   <input type="number" min="1970" max="2022" step="1" value="2022"name="year" class="form-control" placeholder="year">
-            
+
                 </div>
-                
+
                 <div class="col">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" name="color" class="form-control" placeholder="Color" value="{{ old('color') }}">
@@ -90,9 +90,9 @@
                         {{ $message }}
                       @enderror
                     </span>
-      
+
                   </div>
-                  
+
             </div>
           <div class="row">
             <div class="col">
@@ -120,7 +120,7 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
             </div>
             <div class="col">
                 <label for="gearType" class="form-label">gear type</label>
@@ -134,9 +134,9 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
               </div>
-             
+
         </div>
         <div class="row">
            <div class="col">
@@ -151,7 +151,7 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
               </div>
           <div class="col">
               <label for="horsePower" class="form-label">Horse power</label>
@@ -163,15 +163,15 @@
               </span>
 
           </div>
-          
+
             <div class="col">
             <label for="airCooling" class="form-label">Air cooling</label>
             <input type="checkbox" name="airCooling"  class="form-check-label" value="1" checked>
-         
+
           </div>
-           
+
       </div>
-      <div class="row">  
+      <div class="row">
           <div class="col">
             <label for="pricePerHour" class="form-label">Price Per Hour</label>
             <input type="text" name="pricePerHour" class="form-control" placeholder="Price per hour" value="{{ old('pricePerHour') }}">
@@ -206,7 +206,7 @@
             </span>
 
           </div>
-         
+
     </div><div class="row">
       <div class="col-4">
           <label for="garageID" class="form-label">Garage</label>
@@ -232,12 +232,12 @@
         </span>
 
       </div>
-     
+
   </div>
-      
+
                    <button type="submit" class="btn my-3 btn-primary">Add Vehicule</button>
 
-            
+
           </form>
         </div>
       </div>

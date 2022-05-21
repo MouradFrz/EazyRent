@@ -38,16 +38,15 @@
     <div class="row row-cols-3">
       {{-- {{isset($pickUpLocations) ? 'is set' : 'is not set'}} --}}
       @foreach($pickUpLocations as $pul)
-        <div class="col card">
-          <p>{{ $pul -> address_address}}</p>
-          <p>{{ $pul -> address_longitude}}</p>
-          <p>{{ $pul -> address_latitude}}</p>
-          <p>{{ $pul -> added_by}}</p>
-          <p>{{ $pul -> address_created_at}}</p>
-        </div>
+      <div class="col card">
+        <p><strong>address: </strong>{{ $pul -> address_address}}</p>
+        <p><strong>added by: </strong>{{ $pul -> added_by}}</p>
+      </div>
       @endforeach
       <div class="col card">
+        @if($pickUpLocations == null)
         <p>you don't have a pick up location yet <br> click the button bellow to add one</p>
+        @endif
         <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addPickUpLocation">add pick up
           location</button>
         <div class="modal fade" id="addPickUpLocation" tabindex="-1" aria-labelledby="addPickUpLocationLabel"
@@ -58,16 +57,18 @@
                 <h5 class="modal-title" id="addPickUpLocationLabel">Add pick up locatoin</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
-              <div class="modal-body d-flex justify-content-center flex-colunn">
+              <form action="{{ route('secretary.addPickUpLocation') }}" method="POST">
+                @csrf
+              <div class="modal-body d-flex justify-content-center align-items-center flex-column">
+                <label for="address">address</label>
+                <input type="text" name="address_address" id="address_address"
+                placeholder="enter pick up location address" class="mb-2" style="width:100%">
                 <div id='map' style='width: 400px; height: 300px;'></div>
               </div>
               <div class="modal-footer d-flex justify-content-center flex-column">
                 {{-- <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button> --}}
-                <span id="info">use the blue marker to ping the pick up location</span>
-                <form action="{{ route('secretary.addPickUpLocation') }}" method="POST">
-                  @csrf
+                <span id="info"><strong> use the blue marker to ping the pick up location</strong></span>
                   <div id="address" class="d-none">
-                    <input type="text" name="address_address" id="address_address">
                     <input type="text" name="address_longitude" id="addressLongitude">
                     <input type="text" name="address_latitude" id="addressLatitude">
                   </div>
@@ -87,7 +88,7 @@
 <script>
   // DEFINE MAPBOX ACCES TOKEN
   const ACCES_TOKEN = '{{ env('MAPBOX_TOKEN', null) }}';
-  mapboxgl.accessToken = ACCES_TOKEN;
+  mapboxgl.accessToken = 'pk.eyJ1IjoiaGFjZW5iYXJiIiwiYSI6ImNsM2MydnpjaTAzanYza2xqMDUxNG1lb2QifQ.I1K8PXTiv_B7uBKYXMlByA';
 
   // get current location
   navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
@@ -160,10 +161,6 @@
       marker.setLngLat(e.lngLat)
       markeAdrress()
     })
-    let address = document.getElementById('address')
-    let addressLongitude = document.getElementById('addressLongitude')
-    let addressLatitude = document.getElementById('addressLatitude')
-    let info = document.getElementById('info')
 
     function markeAdrress() {
       console.log('call function')
@@ -172,10 +169,11 @@
       document.getElementById('addressLongitude').value = location.lng
       document.getElementById('addressLatitude').value = location.lat
       document.getElementById('info').innerHTML = '';
-      fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location.lng},${location.lat}.json?types=place&access_token=${ACCES_TOKEN}`)
-      .then(response => response.json())
-      .then(data => info.appendChild(document.createTextNode(data.features[0].place_name)))
-      .then(data => document.getElementById('address_address').value = info.textContent);
+      document.getElementById('info').appendChild(document.createTextNode(location))
+      // fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location.lng},${location.lat}.json?types=place&access_token=${ACCES_TOKEN}`)
+      // .then(response => response.json())
+      // .then(data => info.appendChild(document.createTextNode(data.features[0].place_name)))
+      // .then(data => document.getElementById('address_address').value = info.textContent);
     }
 
     // marker.on('dragstart', markeAdrress())
@@ -183,142 +181,17 @@
       let location = marker.getLngLat();
       document.getElementById('addressLongitude').value = location.lng
       document.getElementById('addressLatitude').value = location.lat
-
       document.getElementById('info').innerHTML = '';
-      fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location.lng},${location.lat}.json?types=place&access_token=${ACCES_TOKEN}`)
-      .then(response => response.json())
-      .then(data => info.appendChild(document.createTextNode(data.features[0].place_name)))
-      .then(data => document.getElementById('address_address').value = info.textContent);
+      document.getElementById('info').appendChild(document.createTextNode(location))
+      // fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${location.lng},${location.lat}.json?types=place&access_token=${ACCES_TOKEN}`)
+      // .then(response => response.json())
+      // .then(data => info.appendChild(document.createTextNode(data.features[0].place_name)))
+      // .then(data => document.getElementById('address_address').value = info.textContent);
       }
     );
 
   }
 
 </script>
-{{-- <script>
-  mapboxgl.accessToken = '{{ env('MAPBOX_TOKEN', null) }}';
-
-  var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'Style_URL'
-  });
-
-  navigator.geolocation.getCurrentPosition(successLocation,errorLocation,{
-    enableHighAccuracy: true
-  })
-
-  function successLocation(position){
-      console.log(position)
-  }
-  function errorLocation(){
-  }
-
-  function getReverseGeocodingData(lat, lng) {
-      var latlng = new google.maps.LatLng(lat, lng);
-      // This is making the Geocode request
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({ 'latLng': latlng },  (results, status) =>{
-          if (status !== google.maps.GeocoderStatus.OK) {
-              alert(status);
-          }
-          // This is checking to see if the Geoeode Status is OK before proceeding
-          if (status == google.maps.GeocoderStatus.OK) {
-              console.log(results);
-              var address = (results[0].formatted_address);
-          }
-      });
-  }
-
-  function onClick(event){
-    document.getElementById('lat').value = event.latlng.lat;
-    document.getElementById('lng').value = event.latlng.lng;
-    var group = L.featureGroup();
-    group.id = 'group';
-    var p_base = L.circleMarker([event.latlng.lat ,event.latlng.lng], {
-      color: '#fff',
-      fillColor: '#6a97cb',
-      fillOpacity: 1,
-      weight: 1,
-      radius: 6
-    }).addTo(group);
-    map.addLayer(group);
-  }
-
-  // function START for getting lng,lat of current mouse position----------------
-  map.on('mousemove', (e) => {
-  document.getElementById('info').innerHTML =
-  // `e.point` is the x, y coordinates of the `mousemove` event
-  // relative to the top-left corner of the map.
-  JSON.stringify(e.point) +
-  '<br />' +
-  // `e.lngLat` is the longitude, latitude geographical position of the event.
-  JSON.stringify(e.lngLat.wrap());
-  });
-  // function END for getting lng,lat of current mouse position------------------
-
-
-  // function START for getting current location----------------
-  map.addControl(new mapboxgl.NavigationControl());
-  map.addControl(
-  new mapboxgl.GeolocateControl({
-  positionOption:{
-  enableHighAccuracy:true
-  },
-  trackUserLocation:true
-  }));
-  // function END for getting current location------------------
-
-  // function for Direction and Pointing of one Point-----------
-  map.addControl(
-  new MapboxDirections({
-  accessToken: mapboxgl.accessToken
-  }),
-  'top-left'
-  );
-  const addMarker = () => {
-  const marker = new mapboxgl.Marker()
-  // const minPopup = new mapboxgl.Popup({closeButton: false, closeOnClick: false})
-  minPopup.setHTML("")
-  marker.setPopup(minPopup)
-  marker.setLngLat([36.67981,22.10816])
-  marker.addTo(map)
-  marker.togglePopup();
-  }
-  map.on("load",addMarker)
-  $.getJSON("https://jsonip.com?callback=?", function (data) {
-    var ip = data;
-    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-       // console.log(url);
-      $.ajax({
-       url :  '{{URL::to('updateip')}}' + '/' + id,
-        type: 'POST',
-       data: {_token: CSRF_TOKEN,
-         "ip": ip,
-         "id": id
-      },
-         dataType: 'json',
-           success: function(response){
-        }
-      });
-  });
-  // function for Direction and Pointing of one Point-----------
-
-  function show_marker(Lng,Lat,date,In,Out,hname,hin,hout)
-  {
-   const marker = new mapboxgl.Marker({ "color": "#b40219" })
-   // const minPopup = new mapboxgl.Popup({closeButton: false, closeOnClick: false})
-   minPopup.setHTML("<strong><b>IN n OUT DATE:</b><br>"+date+"<br><b>IN n OUT TIME:</b><br>"+In+"-"+Out+"<br><b>HOTEL NAME:</b><br>"+hname+"<br><b>HOTEL IN n OUT:</b><br>"+hin+"-"+hout+"</strong>")
-   // marker.setPopup(minPopup)
-   marker.setLngLat([Lng,Lat])
-   // marker.setRotation(45);
-   marker.addTo(map)
-  }
-
-  const popup = new mapboxgl.Popup({ closeOnClick: false })
-  .setLngLat([-96, 37.8])
-  .setHTML('<h1>Hello World!</h1>')
-  .addTo(map);
-
-</script> --}}
 
 @endsection

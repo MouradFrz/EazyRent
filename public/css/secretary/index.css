@@ -2,21 +2,97 @@
   padding-top: 2rem;
 }
 .pick-up-locations .card {
-  aspect-ratio: 4/3;
   padding: 1rem 0.5rem;
   border-radius: 0.5rem;
-  border: 2px dashed #888;
-  text-align: center;
+  border: 2px solid #888;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.pick-up-locations .card p {
-  font-size: 1.25rem;
-  padding-bottom: 1rem;
-}
 .pick-up-locations .map-area {
   width: 100%;
   height: 100%;
+}
+
+.no-agency {
+  background-color: #BBB;
+  height: 100%;
+}
+.no-agency .container {
+  height: 100%;
+}
+.no-agency .alert {
+  padding: 2rem 2rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #BBB;
+  border: 2px dashed #888;
+  text-align: center;
+}
+.no-agency .alert p {
+  font-size: 1.5rem;
+}
+
+.tag {
+  font-weight: 600;
+  margin: 0 !important;
+  text-decoration: underline;
+}
+
+.value {
+  color: rgb(98, 98, 98);
+}
+
+.add-vehicule .container {
+  margin-top: 2rem;
+}
+.add-vehicule .container hr {
+  margin-bottom: 2rem;
+}
+.add-vehicule .container form .row {
+  margin-bottom: 1rem;
+}
+.add-vehicule .container form label {
+  font-weight: 500;
+}
+
+.card-custom {
+  width: 100%;
+  min-width: 150px;
+  box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  -webkit-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  -moz-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  min-height: 150px;
+}
+.card-custom ul {
+  list-style-type: none;
+  margin: 40px;
+}
+.card-custom ul li {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.card-custom .value {
+  font-weight: 500;
+}
+
+.add-card {
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+}
+.add-card :hover > a {
+  color: gray !important;
+}
+.add-card a {
+  color: black !important;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  flex-wrap: wrap;
 }
