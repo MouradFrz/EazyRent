@@ -211,6 +211,9 @@
       <div class="col-4">
           <label for="garageID" class="form-label">Garage</label>
           <Select name="garageID" id="" class="form-control" >
+            @foreach ( $garages as $garage)
+              <option value="{{$garage->garageID}}"></option>
+            @endforeach
             <option value="">Choose a garage</option>
             <option value="3">3</option>
             <option value="4">4</option>
@@ -235,8 +238,7 @@
      
   </div>
       
-                   <button type="submit" class="btn my-3 btn-primary">Add Vehicule</button>
-
+  <a href="{{ route('secretary.showVehicules') }}"class="btn btn-primary">Add Vehicle</a>
             
           </form>
         </div>

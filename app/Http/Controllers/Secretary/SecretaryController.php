@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Secretary;
 
 use App\Models\Vehicule;
+use App\Models\Branche;
+use App\Models\Garage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -100,16 +102,22 @@ class SecretaryController extends Controller
       $vehicule->pricePerDay = sprintf('%.2f', $request->pricePerDay);
       $vehicule->garageID = $request->garageID;
       $vehicule->imagePath = $request->imagePath;
-
       $vehicule->save();
-      return redirect()->route('secretary.addVehicule')->with('message','Vehicule added successfully');
+      $garages= Garage::select('garageID')->where('garages.brancheID',Auth::user()->brancheID)->get();
+      return redirect()->route('secretary.addVehicule')->with('message','Vehicule added successfully')->with(['garages'=>$garages]);
     }
     public function showVehicules()
     {
-      $vehicules = Vehicule::select('select * from vehicules where garageID IN(
-        select garageID from garages where brancheID IN (
-        select brancheID from secretaries where secretaries.username =?',Auth::user()->username);
-           return view('secretary.secretaryVehicules',['vehicules'=>$vehicules]);   
+     $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.garageID','=','vehicules.garageID')->where('branches.brancheID',Auth::user()->brancheID)->get();
+     
+           return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules]);   
     }
 
+      public function vehiculeDetails($id){
+        if(is_null(Auth::user()->username)){
+          return redirect()->route('secretary.home');
+      }
+     
+
+      }
 }

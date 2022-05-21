@@ -111,7 +111,7 @@
             <a href="{{ route('secretary.addVehicule') }}" class="nav-link ">Add vehicule</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('secretary.vehicules') }}" class="nav-link ">Vehicules</a>
+            <a href="{{ route('secretary.showVehicules') }}" class="nav-link ">Vehicules</a>
           </li>
           <li class="nav-item">
             <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link ">pick up locations</a>
