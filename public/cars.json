@@ -1,0 +1,99 @@
+[
+  {
+    "id": 0,
+    "brand": "dacia",
+    "models": ["logan", "sandero", "sandero stepway", "duster", "lodgy"]
+  },
+  {
+    "id": 1,
+    "brand": "renault",
+    "models": [
+      "symbole",
+      "clio 4",
+      "kangoo",
+      "megan",
+      "fluence",
+      "kadjar",
+      "trafic"
+    ]
+  },
+  {
+    "id": 2,
+    "brand": "kia",
+    "models": ["picanto", "rio", "sportage", "sorento"]
+  },
+  {
+    "id": 3,
+    "brand": "hyundai",
+    "models": [
+      "i10",
+      "i20",
+      "elantra",
+      "creta",
+      "tucson",
+      "santa fe",
+      "i 40 crdi bva"
+    ]
+  },
+  {
+    "id": 4,
+    "brand": "seat",
+    "models": ["ibiza", "leon", "arona", "ateca"]
+  },
+  {
+    "id": 5,
+    "brand": "skoda",
+    "models": ["fabia", "rapid", "octavia"]
+  },
+  {
+    "id": 6,
+    "brand": "volkswagen",
+    "models": [
+      "polo",
+      "caddy",
+      "golf 7",
+      "tiguan",
+      "amarok",
+      "passat",
+      "transporter",
+      "multivan",
+      "golf 8",
+      "golf 8 break"
+    ]
+  },
+  {
+    "id": 7,
+    "brand": "peugeot",
+    "models": ["207", "207+", "208", "308", "expert", "3008"]
+  },
+  {
+    "id": 8,
+    "brand": "mitsubishi",
+    "models": ["sportero"]
+  },
+  {
+    "id": 9,
+    "brand": "infiniti",
+    "models": ["q30"]
+  },
+  {
+    "id": 10,
+    "brand": "audi",
+    "models": ["a6"]
+  },
+  {
+    "id": 11,
+    "brand": "mercedes-benz",
+    "models": ["classe v", "classe a"]
+  },
+  {
+    "id": 12,
+    "brand": "porshe",
+    "models": ["classe v", "classe a"]
+  },
+  {
+    "id": 13,
+    "brand": "bmw",
+    "models": ["serie 02", "serie 03", "x2 xdrive20d"]
+  }
+]

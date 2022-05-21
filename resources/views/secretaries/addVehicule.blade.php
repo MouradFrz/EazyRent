@@ -1,12 +1,15 @@
 @extends('layouts.workerLayout')
 @section('content')
-  
-@if(Session::get('message'))
-{{Session::get('message')}}
-@endif
+
+
 
     <div class="add-vehicule mt-5">
         <div class="container">
+          @if(Session::get('message'))
+          <div class="alert alert-success w-100 " role="alert">
+          {{Session::get('message')}}
+          </div>
+          @endif
           <h2>Add a vehicle</h2>
           <hr>
           <form method="POST" action="{{route('secretary.addVehiculePost')}}" enctype="multipart/form-data">
@@ -20,14 +23,14 @@
                   <option value="motorcycle">Motorcycle</option>
                   <option value="bus"> Bus or Mini-bus</option>
                   <option value="truck">Truck</option>
-          
+
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('category')
                     {{ $message }}
                   @enderror
                 </span>
-  
+
             </div>
             <div class="col">
               <label for="type" class="form-label">Type</label>
@@ -37,51 +40,47 @@
                   <option value="comfort">Comfort</option>
                   <option value="Space">Space</option>
                   <option value="premium">Premium</option>
-                 
+
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('type')
                     {{ $message }}
                   @enderror
                 </span>
-  
+
           </div>
               <div class="col">
                 <label for="brand" class="form-label">Brand</label>
-                <Select name="brand" id="" class="form-control" >
-                  <option value="">Choose a brand</option>
-                  <option value="markaA">A</option>
-                  <option value="markaB">B</option>
-                  <option value="markaC">C</option>
+                <Select name="brand" id="brand" class="form-control" onchange="loadModels()" >
+                  <option value="">Select a brand</option>
+
                 </Select>
                 @error('brand')
                 {{ $message }}
             @enderror
             </div>
-            
+
             </div>
             <div class="row">
               <div class="col">
                 <label for="model" class="form-label">Model</label>
-                <Select name="model" id="" class="form-control" >
+                <Select name="model" id="model" class="form-control" >
                   <option value="">Choose a model</option>
-                  <option value="modelA">A</option>
-                  <option value="modelB">B</option>
-                  <option value="modelC">C</option>
+                
                 </Select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('model')
                     {{ $message }}
                   @enderror
                 </span>
-  
+
             </div>
                 <div class="col">
                   <label for="year" class="form-label">year</label>
                   <input type="number" min="1970" max="2022" step="1" value="2022"name="year" class="form-control" placeholder="year">
-            
+
                 </div>
-                
+
                 <div class="col">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" name="color" class="form-control" placeholder="Color" value="{{ old('color') }}">
@@ -90,9 +89,9 @@
                         {{ $message }}
                       @enderror
                     </span>
-      
+
                   </div>
-                  
+
             </div>
           <div class="row">
             <div class="col">
@@ -120,7 +119,7 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
             </div>
             <div class="col">
                 <label for="gearType" class="form-label">gear type</label>
@@ -134,9 +133,9 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
               </div>
-             
+
         </div>
         <div class="row">
            <div class="col">
@@ -151,7 +150,7 @@
                     {{ $message }}
                   @enderror
                 </span>
-  
+
               </div>
           <div class="col">
               <label for="horsePower" class="form-label">Horse power</label>
@@ -163,15 +162,15 @@
               </span>
 
           </div>
-          
+
             <div class="col">
             <label for="airCooling" class="form-label">Air cooling</label>
             <input type="checkbox" name="airCooling"  class="form-check-label" value="1" checked>
-         
+
           </div>
-           
+
       </div>
-      <div class="row">  
+      <div class="row">
           <div class="col">
             <label for="pricePerHour" class="form-label">Price Per Hour</label>
             <input type="text" name="pricePerHour" class="form-control" placeholder="Price per hour" value="{{ old('pricePerHour') }}">
@@ -206,17 +205,15 @@
             </span>
 
           </div>
-         
+
     </div><div class="row">
       <div class="col-4">
           <label for="garageID" class="form-label">Garage</label>
           <Select name="garageID" id="" class="form-control" >
-            @foreach ( $garages as $garage)
-              <option value="{{$garage->garageID}}"></option>
-            @endforeach
             <option value="">Choose a garage</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
+            @foreach ($garages as $garage)
+              <option value="{{ $garage->garageID }}">{{ $garage->address }}</option>
+            @endforeach
           </Select>
           <span class="text-danger" style="font-size:0.8rem">
             @error('garageID')
@@ -235,7 +232,7 @@
         </span>
 
       </div>
-     
+
   </div>
       
   <a href="{{ route('secretary.showVehicules') }}"class="btn btn-primary">Add Vehicle</a>
@@ -253,4 +250,138 @@
         margin-bottom: 10px !important;
     }
 </style>
+@endsection
+
+@section('scripts')
+
+<script>
+  let cars = 
+  [
+  {
+    "id": 0,
+    "brand": "Dacia",
+    "models": ["Logan", "Dandero", "Fandero Stepway", "Duster", "Lodgy"]
+  },
+  {
+    "id": 1,
+    "brand": "Renault",
+    "models": [
+      "Symbole",
+      "Slio 4",
+      "Kangoo",
+      "Megan",
+      "Fluence",
+      "Kadjar",
+      "Trafic"
+    ]
+  },
+  {
+    "id": 2,
+    "brand": "Kia",
+    "models": ["Picanto", "Rio", "Sportage", "Sorento"]
+  },
+  {
+    "id": 3,
+    "brand": "Hyundai",
+    "models": [
+      "i10",
+      "i20",
+      "Elantra",
+      "Creta",
+      "Tucson",
+      "Santa fe",
+      "i 40 crdi bva"
+    ]
+  },
+  {
+    "id": 4,
+    "brand": "Seat",
+    "models": ["Ibiza", "Leon", "Arona", "Ateca"]
+  },
+  {
+    "id": 5,
+    "brand": "Skoda",
+    "models": ["Fabia", "Rapid", "Octavia"]
+  },
+  {
+    "id": 6,
+    "brand": "Volkswagen",
+    "models": [
+      "Polo",
+      "Caddy",
+      "Golf 7",
+      "Tiguan",
+      "Amarok",
+      "Passat",
+      "Transporter",
+      "Multivan",
+      "Golf 8",
+      "Golf 8 break"
+    ]
+  },
+  {
+    "id": 7,
+    "brand": "Peugeot",
+    "models": ["207", "207+", "208", "308", "Expert", "3008"]
+  },
+  {
+    "id": 8,
+    "brand": "Mitsubishi",
+    "models": ["Sportero"]
+  },
+  {
+    "id": 9,
+    "brand": "Infiniti",
+    "models": ["q30"]
+  },
+  {
+    "id": 10,
+    "brand": "Audi",
+    "models": ["a6"]
+  },
+  {
+    "id": 11,
+    "brand": "Mercedes-Benz",
+    "models": ["Classe v", "Classe a"]
+  },
+  {
+    "id": 12,
+    "brand": "Porshe",
+    "models": ["Classe v", "Classe a"]
+  },
+  {
+    "id": 13,
+    "brand": "Bmw",
+    "models": ["Serie 02", "Serie 03", "x2 xdrive20d"]
+  }
+]
+
+   const brand = document.querySelector('#brand');
+   const model = document.querySelector('#model');
+
+   cars.forEach((e)=>{
+    let option = document.createElement('option');
+    option.value=e.brand;
+    option.textContent=e.brand;
+    brand.appendChild(option);
+   });
+
+   function loadModels(){
+     let defOption = document.createElement('option');
+     model.textContent=''
+     defOption.value=''
+     defOption.textContent="Choose a model"
+     model.appendChild(defOption)
+     cars.forEach((e)=>{
+        if(e.brand==brand.value){
+          e.models.forEach((el)=>{
+            let option = document.createElement('option');
+            option.value=el;
+            option.textContent=el;
+            model.appendChild(option);
+          })
+        }
+     });
+   }
+</script>
 @endsection
