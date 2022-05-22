@@ -96,7 +96,7 @@
           <div class="row">
             <div class="col">
               <label for="plateNb" class="form-label">Plate Number</label>
-              <input type="text" maxlength="10" name="plateNb" class="form-control" placeholder="Plate number" value="{{ old('plateNb') }}" >
+              <input type="text" maxlength="10" name="plateNb" class="form-control" placeholder="Plate number" onkeypress="return isNumber(event)" value="{{ old('plateNb') }}" >
               <span class="text-danger" style="font-size:0.8rem">
                 @error('plateNb')
                   {{ $message }}
@@ -105,7 +105,7 @@
 
             </div>
             <div class="col">
-                <label for="fuel" class="form-label">fuel</label>
+                <label for="fuel" class="form-label">Fuel</label>
                 <Select name="fuel" id="" class="form-control" >
                   <option value="">Choose a type of fuel</option>
                   <option value="sansPlomb">Sans-plomb</option>
@@ -172,8 +172,8 @@
       </div>
       <div class="row">
           <div class="col">
-            <label for="pricePerHour" class="form-label">Price Per Hour</label>
-            <input type="text" name="pricePerHour" class="form-control" placeholder="Price per hour" value="{{ old('pricePerHour') }}">
+            <label for="pricePerHour" class="form-label">Price Per Hour (DZD)</label>
+            <input type="text" name="pricePerHour" class="form-control" placeholder="Price per hour" onkeypress="return isNumber(event)" value="{{ old('pricePerHour') }}">
             <span class="text-danger" style="font-size:0.8rem">
               @error('pricePerHour')
                 {{ $message }}
@@ -182,8 +182,8 @@
 
           </div>
           <div class="col">
-            <label for="pricePerDay" class="form-label">Price Per Day</label>
-            <input type="text" name="pricePerDay"  class="form-control" placeholder="Price per day" value="{{ old('pricePerDay') }}">
+            <label for="pricePerDay" class="form-label">Price Per Day (DZD)</label>
+            <input type="text" name="pricePerDay"  class="form-control" placeholder="Price per day" onkeypress="return isNumber(event)"  value="{{ old('pricePerDay') }}">
             <span class="text-danger" style="font-size:0.8rem">
               @error('pricePerDay')
                 {{ $message }}
@@ -383,5 +383,14 @@
         }
      });
    }
+
+   function isNumber(evt) {
+          evt = (evt) ? evt : window.event;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+              return false;
+            }
+    return true;
+}
 </script>
 @endsection

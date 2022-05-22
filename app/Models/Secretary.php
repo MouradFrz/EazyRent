@@ -12,7 +12,6 @@ class Secretary extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     protected $table = 'secretaries';
-    public $timestamps = false;
     /**
      * The attributes that should be hidden for serialization.
      *

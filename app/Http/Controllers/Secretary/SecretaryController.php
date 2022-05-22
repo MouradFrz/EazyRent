@@ -7,6 +7,7 @@ use App\Models\Branche;
 use App\Models\Garage;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
+use App\Models\Secretary;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -143,6 +144,54 @@ class SecretaryController extends Controller
     $garages = Garage::select(['garageID','address'])->where('garages.brancheID',Auth::user()->brancheID)->get();
     return view('secretaries.addVehicule',['garages'=>$garages]);
   }
+
+
+
+
+  public function showProfile(){ 
+    return view('secretaries.editProfile');
+}
+
+
+public function editProfile(Request $request){
+    
+    $request->validate([
+        ($request->username==Auth::user()->username) ? : 'username'=>'unique:secretaries,username|min:4|alpha_num|max:15',
+        'lastName'=>'required|alpha|max:25',
+        'firstName'=>'required|alpha|max:25',
+        'birthDate'=>'required|date',
+        'address'=>'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+        ($request->email==Auth::user()->email) ? : 'email'=>'email|unique:users,email|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
+        ($request->phone=='') ?  :'phone'=>['digits:10','regex:/(05|06|07)[0-9]{8}/'],
+        ($request->newPassword=='') ?  :'newPassword'=>'min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+        'passwordConfirm'=>'same:newPassword',
+        'currentPassword' => 'required|current_password:secretary'
+    ],
+    [
+        'address.regex'=>'The address can only contain letters, numbers and spaces.',
+        'newPassword.regex'=>'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
+        'phone.digits_between'=>'The number must be made of 10 digits',
+    ]);
+
+    
+    $secretary = Secretary::where('username',Auth::user()->username)->first();
+    $secretary->username=$request->username;
+    $secretary->firstName=$request->firstName;
+    $secretary->lastName=$request->lastName;
+    $secretary->birthDate=$request->birthDate;
+    $secretary->address=$request->address;
+    $secretary->email=$request->email;
+    if($request->newPassword!=''){
+        $secretary->password = Hash::make($request->newPassword);
+    }
+    if($request->phone!=''){
+    $secretary->phoneNumber=$request->phone;
+    }
+    $secretary->save();
+
+    return redirect()->route('secretary.editProfile')->with('message','Settings updated successfully');
+}
+
 }
 
 
