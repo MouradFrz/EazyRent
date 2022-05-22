@@ -27,10 +27,11 @@ class BookingController extends Controller
     'declineReason' => 'required'
   ]);
     $booking = Booking::where('bookingID', $bookingID)->first();
+    // dd($booking);
     $booking->secretaryUsername = Auth::user()->username;
     $booking->state = 'DECLINED';
     // this column does not exist in bookings tables
-    $booking->declineReason = $request -> declineReason;
+    // $booking->declineReason = $request -> declineReason;
     $booking->updated_at = now();
     $save = $booking->save();
 

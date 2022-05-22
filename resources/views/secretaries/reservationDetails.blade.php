@@ -76,7 +76,7 @@
       </div>
     </div>
     <div class=" d-flex g-5">
-      <button class="btn btn-primary" href="{{route('secretary.acceptBooking',$booking->id)}}">accept booking request</button>
+      <button class="btn btn-primary" href="{{route('secretary.acceptBooking',$booking->bookingID)}}">accept booking request</button>
       <button class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#declineBooking">decline
         booking request</button>
       <div class="modal fade" id="declineBooking" tabindex="-1" aria-labelledby="declineBookingLabel"
@@ -87,7 +87,7 @@
               <h5 class="modal-title" id="declineBookingLabel">decline booking request</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('secretary.declineBooking',['bookingID' => $booking -> bookingID ])}}" method="post">
+            <form action="{{route('secretary.declineBooking', $booking->bookingID )}}" method="post">
               @csrf
               <div class="modal-body">
                 <label for="decline-reason" class="form-label">decline reason</label>
