@@ -173,7 +173,7 @@
       <div class="row">
           <div class="col">
             <label for="pricePerHour" class="form-label">Price Per Hour (DZD)</label>
-            <input type="text" name="pricePerHour" class="form-control" placeholder="Price per hour" onkeypress="return isNumber(event)" value="{{ old('pricePerHour') }}">
+            <input type="text" name="pricePerHour" maxlength="4" class="form-control" placeholder="Price per hour" onkeypress="return isNumber(event)" value="{{ old('pricePerHour') }}">
             <span class="text-danger" style="font-size:0.8rem">
               @error('pricePerHour')
                 {{ $message }}
@@ -183,7 +183,7 @@
           </div>
           <div class="col">
             <label for="pricePerDay" class="form-label">Price Per Day (DZD)</label>
-            <input type="text" name="pricePerDay"  class="form-control" placeholder="Price per day" onkeypress="return isNumber(event)"  value="{{ old('pricePerDay') }}">
+            <input type="text" name="pricePerDay" maxlength="4" class="form-control" placeholder="Price per day" onkeypress="return isNumber(event)"  value="{{ old('pricePerDay') }}">
             <span class="text-danger" style="font-size:0.8rem">
               @error('pricePerDay')
                 {{ $message }}

@@ -112,7 +112,6 @@ class SecretaryController extends Controller
     public function showVehicules()
     {
      $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->where('brancheID',Auth::user()->brancheID)->get();
-    //  dd(Auth::user()->brancheID);
      return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules]);   
     }
 
@@ -129,6 +128,10 @@ class SecretaryController extends Controller
     return view('secretaries.reservationRequests',['bookings'=>$bookings]);
   }
   public function reservationDetails($id){
+    $test=Booking::where('bookingID',$id)->first();
+    if($test->secretaryUsername!=Auth::user()->username && $test->secretaryUsername!=null){
+      return redirect()->route('secretary.home');
+    }
     $booking = Booking::join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('users','clientUsername','=','users.username')->where('bookingID',$id)->join('garages','vehicules.garageID','=','garages.garageID')->first();
     
     $origin = new DateTime($booking->pickUpDate);
@@ -190,6 +193,12 @@ public function editProfile(Request $request){
     $secretary->save();
 
     return redirect()->route('secretary.editProfile')->with('message','Settings updated successfully');
+}
+
+public function getHistory(){
+
+ $bookings = Booking::where('secretaryUsername',Auth::user()->username)->where('state','<>','REQUESTED')->join('users','bookings.clientUsername','=','users.username')->latest('bookings.created_at')->paginate(25);
+  return view('secretaries.history',['bookings'=>$bookings]);
 }
 
 }

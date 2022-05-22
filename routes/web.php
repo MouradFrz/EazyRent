@@ -140,6 +140,7 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::get('/reservationDetails/{id}',[SecretaryController::class,'reservationDetails'])->name('reservationDetails');
         Route::post('/accept-booking/{id}',[BookingController::class, 'accept'])->name('acceptBooking');
         Route::post('/decline-booking/{id}',[BookingController::class, 'decline'])->name('declineBooking');
+        Route::get('/history',[SecretaryController::class,"getHistory"])->name('history');
     });
 });
 //garagists
