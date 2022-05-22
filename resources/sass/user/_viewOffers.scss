@@ -1,0 +1,58 @@
+@use '../variables' as *;
+body{min-height: 3000px;}
+.view-offers{
+  &_hero {
+    .container {height: inherit;z-index: 1;}
+    position: relative;
+    height: 60vh;
+    background-color: #EEE;
+    background-image: url( '../../../public/images/view-offers_hero.jpg' );
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+    background-position: center center;
+    color: white;
+    margin-bottom: 4rem;
+    &_content {
+      box-shadow: $box-shadow;
+      text-align: center;
+      h1 {
+        margin: 2rem 0;
+      }
+      h4 {
+        color:#51ecec
+      }
+    }
+  }
+  .minimized-offer {
+    border: 1px solid lightGrey;
+    overflow: hidden;
+    &_media {
+      height: 200px;
+      background-color: grey;
+      // background-image: url()
+    }
+    &_content {
+      padding: 1rem 2rem;
+      h2 p {
+        margin-bottom: 0.5em;
+      }
+    }
+    .rating {
+      margin: 10px 0;
+      justify-content: center;
+      clear: both;
+      .rate {
+        text-align: left;
+      }
+      > span {
+        margin-left: 0.5em;
+        color: darkGrey;
+      }
+      i {
+        font-size: 1.5em;
+        color: darkGrey;
+      }
+    }
+  }
+}

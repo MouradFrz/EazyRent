@@ -41,6 +41,7 @@ Route::prefix('user')->name('user.')->group(function(){
         Route::view('/register','users.register')->name('register');
         Route::post('/create',[UserController::class,'create'])->name('create');
         Route::post('/check',[UserController::class,'check'])->name('check');
+        Route::view('/view-offers','users.viewOffers')->name('viewOffers');
         });
     Route::middleware(['auth:web','PreventBackHistory'])->group(function(){
         Route::view('/home','guestHome')->name('home');

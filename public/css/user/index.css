@@ -197,3 +197,64 @@ nav .container .auth #sign-up:hover {
   background-color: rgb(232, 232, 232);
   color: rgb(187, 190, 105) !important;
 }
+
+body {
+  min-height: 3000px;
+}
+
+.view-offers_hero {
+  position: relative;
+  height: 60vh;
+  background-color: #EEE;
+  background-image: url(/images/view-offers_hero.jpg?737ee8d2a967f1561e85d4658cb06bc0);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-blend-mode: darken;
+  background-position: center center;
+  color: white;
+  margin-bottom: 4rem;
+}
+.view-offers_hero .container {
+  height: inherit;
+  z-index: 1;
+}
+.view-offers_hero_content {
+  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+  text-align: center;
+}
+.view-offers_hero_content h1 {
+  margin: 2rem 0;
+}
+.view-offers_hero_content h4 {
+  color: #51ecec;
+}
+.view-offers .minimized-offer {
+  border: 1px solid lightGrey;
+  overflow: hidden;
+}
+.view-offers .minimized-offer_media {
+  height: 200px;
+  background-color: grey;
+}
+.view-offers .minimized-offer_content {
+  padding: 1rem 2rem;
+}
+.view-offers .minimized-offer_content h2 p {
+  margin-bottom: 0.5em;
+}
+.view-offers .minimized-offer .rating {
+  margin: 10px 0;
+  justify-content: center;
+  clear: both;
+}
+.view-offers .minimized-offer .rating .rate {
+  text-align: left;
+}
+.view-offers .minimized-offer .rating > span {
+  margin-left: 0.5em;
+  color: darkGrey;
+}
+.view-offers .minimized-offer .rating i {
+  font-size: 1.5em;
+  color: darkGrey;
+}
