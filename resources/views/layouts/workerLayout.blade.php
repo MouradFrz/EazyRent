@@ -33,8 +33,8 @@
           @endif
           @if(Auth::guard('secretary')->check())
           <ul>
-            <li><a href="">Edit profil</a></li>
-            <li><a href="">Show transaction history</a></li>
+            <li><a href="{{ route('secretary.showProfile') }}">Edit profil</a></li>
+            <li><a href="{{ route('secretary.history') }}">Show transaction history</a></li>
           </ul>
           @endif
           @if(Auth::guard('garagist')->check())
@@ -108,16 +108,13 @@
             <a href="#" class="nav-link ">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('secretary.addVehicule') }}" class="nav-link ">Add vehicule</a>
+            <a href="{{ route('secretary.getReservationRequests') }}" class="nav-link ">Reservation requests</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('secretary.showVehicules') }}" class="nav-link ">Vehicules</a>
+            <a href="{{ route('secretary.showVehicules') }}" class="nav-link ">Vehicules management</a>
           </li>
           <li class="nav-item">
             <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link ">Pick up locations</a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('secretary.getReservationRequests') }}" class="nav-link ">Reservation requests</a>
           </li>
         </ul>
         @endif

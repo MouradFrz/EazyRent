@@ -18,6 +18,7 @@
     <div class="alert alert-success w-100 " role="alert">
       {{ Session::get('success') }}
     </div>
+    @endif
     <table class="table table-striped" id="agenciesList">
       <thead>
         <tr>

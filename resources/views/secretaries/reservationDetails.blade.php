@@ -76,9 +76,22 @@
       </div>
     </div>
     <div class=" d-flex g-5">
-      <button class="btn btn-primary" href="{{route('secretary.acceptBooking',$booking->id)}}">accept booking request</button>
-      <button class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#declineBooking">decline
+      @if($booking->state=="REQUESTED")
+      <form action="{{route('secretary.acceptBooking',$booking->bookingID)}}" method="POST" id="accept">@csrf</form>
+      <button class="btn btn-primary"  onclick="document.querySelector('#accept').submit()" >Accept booking request</button>
+      <button class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#declineBooking">Decline
         booking request</button>
+      
+      @elseif($booking->state=="DECLINED")
+      <p style="color: red;display:block">You declined this request </p><br>
+      <p class="tag">Decline reason:</p>
+      
+      <p class="value">{{ $booking->declineReason }}</p>
+      @else
+        <p>You accepted this request at {{ $request->updated_at }}</p>
+      @endif
+      
+     
       <div class="modal fade" id="declineBooking" tabindex="-1" aria-labelledby="declineBookingLabel"
         aria-hidden="true">
         <div class="modal-dialog">
@@ -87,7 +100,7 @@
               <h5 class="modal-title" id="declineBookingLabel">decline booking request</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('secretary.declineBooking',['bookingID' => $booking -> bookingID ])}}" method="post">
+            <form action="{{route('secretary.declineBooking', $booking->bookingID )}}" method="post">
               @csrf
               <div class="modal-body">
                 <label for="decline-reason" class="form-label">decline reason</label>
