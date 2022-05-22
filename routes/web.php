@@ -8,6 +8,7 @@ use App\Http\Controllers\Secretary\SecretaryController;
 use App\Http\Controllers\Garagist\GaragistController;
 use App\Http\Controllers\Agencies\AgencyController;
 use App\Http\Controllers\Agencies\PickUpLocationController;
+use App\Http\Controllers\BookingController;
 use App\Models\PickUpLocation;
 use App\Models\Secretary;
 
@@ -113,7 +114,7 @@ Route::prefix('admin')->name('admin.')->group(function(){
         Route::get('/users-list',[UserController::class, 'getUsersList'])->name('usersList');
         Route::view('/baned-users','admin.banedUsers')->name('banedUsers');
         Route::post('/logout',[AdminController::class,'logout'])->name('logout');
-  
+
     });
 });
 //secretaries
@@ -129,7 +130,7 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::get('/vehicles',[SecretaryController::class,'showVehicules'])->name('showVehicules');
         Route::get('/vehicle/{id}',[SecretaryController::class,'vehiculeDetails'])->name('vehiculeDetails');
 
-    
+
         Route::get('/addVehicule',[SecretaryController::class,'addVehiculePage'])->name('addVehicule');
         Route::post('/addVehicule',[SecretaryController::class,'addVehicule'])->name('addVehiculePost');
         Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
@@ -137,6 +138,8 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
         Route::get('/reservation-requests',[SecretaryController::class,'getReservationRequests'])->name('getReservationRequests');
         Route::get('/reservationDetails/{id}',[SecretaryController::class,'reservationDetails'])->name('reservationDetails');
+        Route::post('/accept-booking/{id}',[BookingController::class, 'accept'])->name('acceptBooking');
+        Route::post('/decline-booking/{id}',[BookingController::class, 'decline'])->name('declineBooking');
     });
 });
 //garagists
