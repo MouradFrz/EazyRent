@@ -19,7 +19,7 @@ class AgencyController extends Controller
   {
     $request->validate([
       'agencyName' => 'required|unique:agencyrequests,name|max:45',
-      'commercialRegisterNb' => 'required|unique:agencyrequests,registeryNb',
+      'commercialRegisterNb' => 'required|unique:agencyrequests,registeryNb|unique:agencies,registeryNb',
       'registrationDate' => 'required',
       'agencyCreationYear' => 'required|digits:4|integer|max:' . (date('Y') + 1),
       'password' => 'required|current_password:owner'
@@ -117,6 +117,12 @@ class AgencyController extends Controller
     return view('secretaries.pickUpLocations', ['pickUpLocations' => $pickUpLocations]);
   }
   public function addPickUpLoaction(Request $request) {
+
+    $request->validate([
+      'address_address'=>'required|min:10'
+    ]);
+
+
     $brancheID = secretary::where('username', Auth::user()->username)->first()->brancheID;
     $PickUpLocation = new PickUpLocation();
     $PickUpLocation->brancheID = $brancheID;

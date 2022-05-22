@@ -110,17 +110,15 @@ class SecretaryController extends Controller
     }
     public function showVehicules()
     {
-     $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.garageID','=','vehicules.garageID')->where('branches.brancheID',Auth::user()->brancheID)->get();
-     
-           return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules]);   
+     $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->where('brancheID',Auth::user()->brancheID)->get();
+    //  dd(Auth::user()->brancheID);
+     return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules]);   
     }
 
       public function vehiculeDetails($id){
-        if(is_null(Auth::user()->username)){
+        if(is_null(Auth::user()->username)){  
           return redirect()->route('secretary.home');
       }
-     
-
       }
  
 

@@ -235,7 +235,7 @@
 
   </div>
       
-  <a href="{{ route('secretary.showVehicules') }}"class="btn btn-primary">Add Vehicle</a>
+  <button type="submit" class="btn btn-primary">Add Vehicle</a>
             
           </form>
         </div>
