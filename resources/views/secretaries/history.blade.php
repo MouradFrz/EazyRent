@@ -88,7 +88,17 @@
                   @else
                   <button class="btn btn-success disabled btn-sm" >Rated : {{ $element->secretaryRatesClient }}/5</button>
                   @endif
+                  @if(count($secbans)!=0)
+                  @foreach ($secbans as $ban)
+                    @if($ban->bannedClient==$element->username && $ban->endDate>now())
+                      U already banned this mf
+                    @else
+                    <button class="btn btn-primary btn-sm banbtn" data-fullname="{{ $element->firstName }} {{ $element->lastName }}" data-un="{{ $element->username }}" data-bs-toggle="modal" data-bs-target="#banUser">Ban this user</button>
+                    @endif
+                  @endforeach
+                  @else
                   <button class="btn btn-primary btn-sm banbtn" data-fullname="{{ $element->firstName }} {{ $element->lastName }}" data-un="{{ $element->username }}" data-bs-toggle="modal" data-bs-target="#banUser">Ban this user</button>
+                  @endif
                 </div>
                 </div>
               </td>

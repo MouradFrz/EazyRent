@@ -199,7 +199,8 @@ public function editProfile(Request $request){
 public function getHistory(){
 
  $bookings = Booking::where('secretaryUsername',Auth::user()->username)->where('state','<>','REQUESTED')->join('users','bookings.clientUsername','=','users.username')->latest('bookings.created_at')->paginate(25);
-  return view('secretaries.history',['bookings'=>$bookings]);
+ $secbans = AgencyBan::where('bannedBy',Auth::user()->username)->get();
+  return view('secretaries.history',['bookings'=>$bookings,'secbans'=>$secbans]);
 }
 public function setRating(Request $request){
   $request->validate([
@@ -230,17 +231,7 @@ public function banUser(Request $request){
   return redirect()->route('secretary.history')->with('success','User banned successfully');
 }
 
-public function test(){
-  $vehicules = Vehicule::where('availability',1)
-  ->join('garages','vehicules.garageID','=','garages.garageID')
-  ->join('pickUpLocations','garages.brancheID','=','pickUpLocations.brancheID')
-  ->whereBetween('address_latitude',[36, 37])
-  ->whereBetween('address_longitude',[6, 7])
-  ->select(['plateNb'])
-  ->distinct()
-  ->get();
 
-}
 
 }
 
