@@ -24,6 +24,9 @@
     </div>
   </div> --}}
   <div class="container">
+    @foreach ($vehicules as $vehicule)
+    {{$vehicule}}
+    @endforeach
     <div class="minimized-offer">
       <div class="row">
         <div class="minimized-offer_media col-12 col-md-3"></div>

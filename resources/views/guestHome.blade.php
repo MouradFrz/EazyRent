@@ -9,45 +9,54 @@
 <div>
   <div class="container d-flex align-items-center justify-content-center flex-column">
     <div class="search-panel d-flex align-itmes-center justify-content-center flex-column">
-      <form action="{{route('user.viewOffers')}}"></form>
-      <div class="location d-flex flex-column">
-        <label for="">Pick-up location :</label>
-        <div class="inputs" type="text" name="pickUpLocation" id="pickUpLocation" ></div>
-        <pre id="result"></pre>
-        <div class="location d-flex flex-column" v-if="!pickUpSameAsDropOff">
-          <label class="dropOffInput" for="">Drop off location :</label>
-          <input class="inputs dropOffInput" type="text" id="dropOffLocation" />
-        </div>
-        <div class="d-flex align-items-center">
-          <input type="checkbox" class="dropOffCheck" name="" id="" checked />
-          <p>Drop off at same location</p>
-        </div>
-      </div>
-      <div class="date-time d-flex justify-content-between">
-        <div class="left d-flex flex-column">
-          <label for="">Pick up at :</label>
-          <input class="inputs" type="datetime-local" name="pickUpDate" />
-          <div class="d-flex align-items-center">
-            <input type="checkbox" class="" name="" id="driverAgeCheck" />
-            <p>Driver age is less than 25</p>
+      <form action="{{route('user.getOffers')}}" method="POST">
+        @csrf
+        <div class="location d-flex flex-column">
+          <label for="">Pick-up location :</label>
+          <div class="inputs" id="pickUpLocation" ></div>
+          <div>
+            <input type="text" id="pickUpLng" class="inputs" name="pickUpLng" />
+            <input type="text" id="pickUpLat" class="inputs" name="pickUpLat" />
           </div>
-          <div class="d-flex align-items-center ">
-            <label class="driverAge">Driver's age :</label>
-            <input type="number" class="inputs driverAge" style="margin-left: 16px" min="18" max="25" />
-          </div>
-        </div>
-        <div class="right d-flex flex-column justify-content-between">
-          <div class="d-flex flex-column m-0">
-            <label for="">Drop off at :</label>
-            <input class="inputs" type="datetime-local" name="dropOffDate" />
-            <div class="d-flex align-items-center">
-              <input type="checkbox" name="" id="" checked />
-              <p>Driver's licence older than 2 years</p>
+          <div class="location d-flex flex-column">
+            <label class="dropOffInput" for="">Drop off location :</label>
+            <div class="inputs dropOffInput "id="dropOffLocation"></div>
+            <div class="dropOffInput">
+              <input type="text" id="dropOffLng" class="inputs" name="dropOffLng" />
+              <input type="text" id="dropOffLat" class="inputs" name="dropOffLat" />
             </div>
           </div>
-          <button class="custom-btn">Search</button>
+          <div class="d-flex align-items-center">
+            <input id="dropOffAtSameLocation" type="checkbox" class="dropOffCheck" checked />
+            <p>Drop off at same location</p>
+          </div>
         </div>
-      </div>
+        <div class="date-time d-flex justify-content-between">
+          <div class="left d-flex flex-column">
+            <label for="">Pick up at :</label>
+            <input class="inputs" type="datetime-local" name="pickUpDate" />
+            <div class="d-flex align-items-center">
+              <input type="checkbox" class="" id="driverAgeCheck" name="minAge" />
+              <p>Driver age is less than 25</p>
+            </div>
+            <div class="d-flex align-items-center ">
+              <label class="driverAge">Driver's age :</label>
+              <input type="number" name="driverAge"class="inputs driverAge" style="margin-left: 16px" min="18" max="25" value="25"/>
+            </div>
+          </div>
+          <div class="right d-flex flex-column justify-content-between">
+            <div class="d-flex flex-column m-0">
+              <label for="">Drop off at :</label>
+              <input class="inputs" type="datetime-local" name="dropOffDate" />
+              <div class="d-flex align-items-center">
+                <input type="checkbox" name="PermenentDriverLicence" id="" checked />
+                <p>Driver has a permanent Driver Licence</p>
+              </div>
+            </div>
+            <button type="submit" class="custom-btn">Search</button>
+          </div>
+        </div>
+      </form>
     </div>
     <div class="why-us d-flex align-items-center justify-content-center flex-column" style="margin-bottom: 60px">
       <h1 style="margin-bottom: 40px">Why us ?</h1>
@@ -159,25 +168,59 @@
     null,
     true // Lazy load the plugin
   );
-  const geocoder = new MapboxGeocoder({
+  const pirckUpGeocoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     types: 'country,region,place,postcode,locality,neighborhood',
     countries: 'dz',
-    enableGeolocation: true,
+    // enableGeolocation: true,
   });
-  geocoder.addTo('#pickUpLocation');
+  pirckUpGeocoder.addTo('#pickUpLocation');
 
   // Get the geocoder results container.
-  const results = document.getElementById('result');
+  const pickUpLng = document.getElementById('pickUpLng');
+  const pickUpLat = document.getElementById('pickUpLat');
 
   // Add geocoder result to container.
-  geocoder.on('result', (e) => {
-  results.innerText = JSON.stringify(e.result, null, 2);
+  pirckUpGeocoder.on('result', (e) => {
+    pickUpLng.value = e.result.center[0];
+    pickUpLat.value = e.result.center[1];
+    // if(document.getElementById('dropOffAtSameLocation').checked) {
+    // }else{
+      dropOffLng.value = e.result.center[0];
+      dropOffLat.value = e.result.center[1];
+    // }
   });
 
   // Clear results container when search is cleared.
-  geocoder.on('clear', () => {
-  results.innerText = '';
+  pirckUpGeocoder.on('clear', () => {
+    pickUpLng.innerText = '';
+    pickUpLat.innerText = '';
   });
+  // ----------------------------------------------
+  const dropOffGeocoder = new MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    types: 'country,region,place,postcode,locality,neighborhood',
+    countries: 'dz',
+    // enableGeolocation: true,
+  });
+  dropOffGeocoder.addTo('#dropOffLocation');
+
+  // Get the geocoder results container.
+  const dropOffLng = document.getElementById('dropOffLng');
+  const dropOffLat = document.getElementById('dropOffLat');
+
+  // Add geocoder result to container.
+  dropOffGeocoder.on('result', (e) => {
+    dropOffLng.value = e.result.center[0];
+    dropOffLat.value = e.result.center[1];
+  });
+
+  // Clear results container when search is cleared.
+  dropOffGeocoder.on('clear', () => {
+    pickUpLng.innerText = '';
+    pickUpLat.innerText = '';
+  });
+
+
 </script>
 @endsection
