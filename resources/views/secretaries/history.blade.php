@@ -91,13 +91,15 @@
                   @if(count($secbans)!=0)
                   @foreach ($secbans as $ban)
                     @if($ban->bannedClient==$element->username && $ban->endDate>now())
-                      U already banned this mf
+                      <button class="btn btn-danger btn-sm" disabled>Banned</button>
+                      @break
                     @else
-                    <button class="btn btn-primary btn-sm banbtn" data-fullname="{{ $element->firstName }} {{ $element->lastName }}" data-un="{{ $element->username }}" data-bs-toggle="modal" data-bs-target="#banUser">Ban this user</button>
+                    <button class="btn btn-danger btn-sm banbtn" data-fullname="{{ $element->firstName }} {{ $element->lastName }}" data-un="{{ $element->username }}" data-bs-toggle="modal" data-bs-target="#banUser">Ban this user</button>
+                    @break
                     @endif
                   @endforeach
                   @else
-                  <button class="btn btn-primary btn-sm banbtn" data-fullname="{{ $element->firstName }} {{ $element->lastName }}" data-un="{{ $element->username }}" data-bs-toggle="modal" data-bs-target="#banUser">Ban this user</button>
+                  <button class="btn btn-danger btn-sm banbtn" data-fullname="{{ $element->firstName }} {{ $element->lastName }}" data-un="{{ $element->username }}" data-bs-toggle="modal" data-bs-target="#banUser">Ban this user</button>
                   @endif
                 </div>
                 </div>
@@ -106,7 +108,13 @@
                 <td>{{ $element->state }}</td>
                 <td>{{ $element->created_at }}</td>
                 <td>{{ $element->updated_at }}</td>
-                <td>YES/NO</td>
+                <td>
+                  @if($ban->bannedClient==$element->username && $ban->endDate>now())
+                    YES
+                  @else
+                  NO
+                  @endif
+                </td>
                 <td><a href="{{ route('secretary.reservationDetails',$element->bookingID) }}">View details</a></td>       
               </tr>
               @endforeach

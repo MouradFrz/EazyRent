@@ -79,7 +79,7 @@
                     <input type="text" name="address_longitude" id="addressLongitude">
                     <input type="text" name="address_latitude" id="addressLatitude">
                   </div>
-                  <button class="btn btn-primary" type="submit">add now!</button>
+                  <button class="btn btn-primary" type="submit">Add now!</button>
                 </form>
               </div>
             </div>

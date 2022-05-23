@@ -199,7 +199,7 @@ public function editProfile(Request $request){
 public function getHistory(){
 
  $bookings = Booking::where('secretaryUsername',Auth::user()->username)->where('state','<>','REQUESTED')->join('users','bookings.clientUsername','=','users.username')->latest('bookings.created_at')->paginate(25);
- $secbans = AgencyBan::where('bannedBy',Auth::user()->username)->get();
+ $secbans = AgencyBan::where('bannedBy',Auth::user()->username)->orderBy('startDate','DESC')->get();
   return view('secretaries.history',['bookings'=>$bookings,'secbans'=>$secbans]);
 }
 public function setRating(Request $request){
