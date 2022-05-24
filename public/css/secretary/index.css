@@ -100,3 +100,62 @@
   margin: 0;
   box-sizing: border-box;
 }
+
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin: 20px auto;
+  max-width: 1000px;
+  background-color: white;
+  padding: 0;
+  box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  -webkit-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+  -moz-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+.form-control-pog {
+  height: 25px;
+  width: 150px;
+  border: none;
+  border-radius: 0;
+  font-weight: 800;
+  padding: 0 0 5px 0;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border-bottom: 2px solid #ccc;
+  margin: 0;
+  font-size: 14px;
+}
+
+.form-control-pog:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #ccc;
+  background-color: transparent;
+}
+
+.text-muted-pog {
+  font-size: 10px;
+}
+
+.textmuted-pog {
+  color: #6c757d;
+  font-size: 13px;
+}
