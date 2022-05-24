@@ -14,7 +14,7 @@
         <div class="location d-flex flex-column">
           <label for="">Pick-up location :</label>
           <div class="inputs" id="pickUpLocation" ></div>
-          @error('pickUpLng'){{$message}}@enderror
+          @error('pickUpLng')<span style="color: red">{{$message}}</span>@enderror
           <div class="d-none">
             <input type="text" id="pickUpLng" class="inputs" name="pickUpLng" />
             <input type="text" id="pickUpLat" class="inputs" name="pickUpLat" />
@@ -36,7 +36,7 @@
           <div class="left d-flex flex-column">
             <label for="">Pick up at :</label>
             <input class="inputs" type="datetime-local" name="pickUpDate" min="{{now()}}"/>
-            @error('pickUpDate'){{$message}}@enderror
+            @error('pickUpDate')<span style="color: red">{{$message}}</span>@enderror
             <div class="d-flex align-items-center">
               <input type="checkbox" class="" id="driverAgeCheck" name="minAge" />
               <p>Driver age is less than 25</p>
@@ -50,7 +50,7 @@
             <div class="d-flex flex-column m-0">
               <label for="">Drop off at :</label>
               <input class="inputs" type="datetime-local" name="dropOffDate" min="{{now()}}"/>
-              @error('dropOffDate'){{$message}}@enderror
+              @error('dropOffDate')<span style="color: red">{{$message}}</span>@enderror
               <div class="d-flex align-items-center">
                 <input type="checkbox" name="PermenentDriverLicence" id="" checked />
                 <p>Driver has a permanent Driver Licence</p>
