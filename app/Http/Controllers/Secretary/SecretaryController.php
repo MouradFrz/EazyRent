@@ -105,6 +105,7 @@ class SecretaryController extends Controller
       $vehicule->pricePerDay = sprintf('%.2f', $request->pricePerDay);
       $vehicule->garageID = $request->garageID;
       $vehicule->imagePath = $request->imagePath;
+      $vehicule->addedBy = Auth::user()->username;
       $vehicule->save();
       $garages= Garage::select('garageID')->where('garages.brancheID',Auth::user()->brancheID)->get();
       return redirect()->route('secretary.addVehicule')->with('message','Vehicule added successfully')->with(['garages'=>$garages]);
@@ -116,9 +117,24 @@ class SecretaryController extends Controller
     }
 
       public function vehiculeDetails($id){
-        if(is_null(Auth::user()->username)){  
+        $vehicule = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages,brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
+        if ($vehicule->brancheID !=Auth::user()->brancheID){
           return redirect()->route('secretary.home');
+        }
+        return view('secretaries.vehiculeDetails',['vehicule'=>$vehicule]);
       }
+      public function deleteVehicule($id){
+        $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages,brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
+        if ($vehicules->brancheID !=Auth::user()->brancheID){
+          return redirect()->route('secretary.home');
+        }
+
+        Vehicule::where('plateNb',$id)->delete();
+        return redirect()->route('secretary.secretaryVehicules')->with('alert','Vehicle deleted successfully');
+        
+      }
+      public function updateState(){
+
       }
  
 

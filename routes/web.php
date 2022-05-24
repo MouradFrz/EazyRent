@@ -128,11 +128,12 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
     Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
         Route::view('/home','secretaries.secretaryHome')->name('home');
         Route::get('/vehicles',[SecretaryController::class,'showVehicules'])->name('showVehicules');
-        Route::get('/vehicle/{id}',[SecretaryController::class,'vehiculeDetails'])->name('vehiculeDetails');
         Route::get('/editProfile',[SecretaryController::class,'showProfile'])->name('showProfile');
         Route::post('/editProfile',[SecretaryController::class,'editProfile'])->name('editProfile');
         Route::get('/addVehicule',[SecretaryController::class,'addVehiculePage'])->name('addVehicule');
         Route::post('/addVehicule',[SecretaryController::class,'addVehicule'])->name('addVehiculePost');
+        Route::get('/vehicle/{id}',[SecretaryController::class,'vehiculeDetails'])->name('vehiculeDetails');
+        Route::post('/vehicle/{id}',[SecretaryController::class,'deleteVehicule'])->name('deleteVehicule');
         Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
         Route::post('/pick-up-locations',[AgencyController::class,'addPickUpLoaction'])->name('addPickUpLocation');
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
@@ -141,6 +142,7 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::post('/accept-booking/{id}',[BookingController::class, 'accept'])->name('acceptBooking');
         Route::post('/decline-booking/{id}',[BookingController::class, 'decline'])->name('declineBooking');
         Route::get('/history',[SecretaryController::class,"getHistory"])->name('history');
+    
     });
 });
 //garagists
