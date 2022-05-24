@@ -1267,7 +1267,6 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 			"css/app": 0,
 /******/ 			"css/bootstrap": 0,
 /******/ 			"css/vehicules/index": 0,
-/******/ 			"css/secretary/index": 0,
 /******/ 			"css/owner/index": 0,
 /******/ 			"css/admin/index": 0
 /******/ 		};
@@ -1319,25 +1318,16 @@ eval("// shim for using process in browser\nvar process = module.exports = {};\n
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/bootstrap.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/login.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/register.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/user/index.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/admin/index.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/owner/index.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/secretary/index.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/js/app.js")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/bootstrap.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/app.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/login.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/register.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/user/index.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/admin/index.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/owner/index.scss")))
-/******/ 	__webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/secretary/index.scss")))
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/secretary/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/vehicules/index.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/js/app.js")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/bootstrap.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/app.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/login.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/register.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/user/index.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/admin/index.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/owner/index.scss")))
+/******/ 	__webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/secretary/index.scss")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/secretary/index","css/user/index","css/register","css/login","css/app","css/bootstrap","css/vehicules/index","css/owner/index","css/admin/index"], () => (__webpack_require__("./resources/sass/vehicules/index.scss")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

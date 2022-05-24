@@ -42,4 +42,8 @@ class VehiculeController extends Controller
     $pickUpDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $request->pickUpDate));
     return view('users.viewOffers')->with(['vehicules' => $vehicules, 'pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate]);
   }
+  public function viewOfferDetails($plateNb) {
+    $vehicule = Vehicule::find($plateNb)->first();
+    return view('users.offer')->with('vehicule', $vehicule);
+  }
 }

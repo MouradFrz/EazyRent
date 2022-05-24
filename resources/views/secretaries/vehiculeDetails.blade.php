@@ -50,8 +50,7 @@
         <div class="col-lg-7 pb-5 pe-lg-5">
             <div class="row">
                 <div class="col-12 p-5">
-                    <img src="{{ $vehicule->imagePath }}"
-                        alt="">
+                    <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath  )}}" alt="" style="max-height:300px">
                 </div>
                 <div class="row m-0 bg-light">
                     <div class="col-md-4 col-6 ps-30 pe-0 my-4">
@@ -125,18 +124,18 @@
                         <div class="col-12 px-4">
                             <div class="d-flex  mb-4">
                                 <span class="">
-                                    <p class="text-muted-pog">Plate Number</p>
-                                    <input class="form-control-pog" type="text" value="{{ $vehicule->plateNb }}" disabled
-                                        placeholder="1234 5678 9012 3456">
+                                    <p class="text-muted">Plate Number</p>
+                                    <input class="form-control" type="text" value="{{ $vehicule->plateNb }}"
+                                        placeholder="1234 5678 9012 3456" disabled>
                                 </span>
                                 <div class=" w-100 d-flex flex-column align-items-end">
                                 </div>
                             </div>
                             <div class="d-flex mb-5">
                                 <span class="me-5">
-                                    <p class="text-muted-pog">Added By</p>
-                                    <input class="form-control-pog" type="text" value="{{ $vehicule->addedBy }} "disabled
-                                        placeholder="Name">
+                                    <p class="text-muted">Added By</p>
+                                    <input class="form-control" type="text" value="{{ $vehicule->addedBy }}"
+                                        placeholder="Name" disabled>
                                 </span>
                                 
                             </div>

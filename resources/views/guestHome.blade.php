@@ -35,7 +35,7 @@
         <div class="date-time d-flex justify-content-between">
           <div class="left d-flex flex-column">
             <label for="">Pick up at :</label>
-            <input class="inputs" type="datetime-local" name="pickUpDate" min="{{now() }}"/>
+            <input class="inputs" type="datetime-local" name="pickUpDate" min="{{now()}}"/>
             @error('pickUpDate'){{$message}}@enderror
             <div class="d-flex align-items-center">
               <input type="checkbox" class="" id="driverAgeCheck" name="minAge" />
@@ -220,7 +220,7 @@
   //   pickUpLng.innerText = '';
   //   pickUpLat.innerText = '';
   // });
-
+  document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
 @endsection

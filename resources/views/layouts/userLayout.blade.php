@@ -7,7 +7,7 @@
   <title>EasyRent</title>
   <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet"  defer>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" defer>
   <link href="{{ asset('css/user/index.css') }}" rel="stylesheet">
   @yield('head')
 </head>
@@ -91,7 +91,7 @@
                 document.querySelector(".dropdown").classList.toggle('active')
             });
   </script>
-@yield('script')
+  @yield('script')
 </body>
 
 </html>
