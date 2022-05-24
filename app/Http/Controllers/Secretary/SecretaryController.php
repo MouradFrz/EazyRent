@@ -134,9 +134,25 @@ class SecretaryController extends Controller
         return redirect()->route('secretary.showVehicules')->with('alert','Vehicle deleted successfully');
         
       }
-      public function updateState(){
+      public function updateState($id){
 
-      }
+       
+      $vehicule = Vehicule::where('plateNb',$id)->first();
+          if($vehicule->availability==0){
+
+            $vehicule->update(['availability'=>1]);
+
+          }else{
+            $vehicule->update(['availability'=>0]);
+
+          }
+        
+
+          return redirect()->route('secretary.vehiculeDetails',$id)->with('alert','Vehicle state was updated successfully');
+        }
+        
+
+      
  
 
   public function getReservationRequests(){
