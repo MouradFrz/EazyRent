@@ -62,7 +62,8 @@
 
             </div>
             <span>{{$vehicule -> rating}}</span>
-            <a href="{{ route('user.viewOfferDetails',$vehicule->plateNb) }}" class="custom-btn">view More</a>
+            
+            <a href="{{ route('user.viewOfferDetails',['plateNb'=>$vehicule->plateNb,'doDate'=>$dropOffDate->format('Y-m-j H:i'),'puDate'=>$pickUpDate->format('Y-m-j H:i')]) }}" class="custom-btn">view More</a>
           </div>
         </div>
       </div>

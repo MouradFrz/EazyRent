@@ -1,6 +1,7 @@
 @extends('layouts.userLayout')
 @section('content')
 {{$vehicule}}
+{{ $dropOffDate }}
 <div class="offer">
   <div class="container">
     <div class="offer_media"></div>
