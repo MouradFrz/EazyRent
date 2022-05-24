@@ -1,3 +1,4 @@
+@use "../variables" as *;
 .pick-up-locations {
   padding-top: 2rem;
   .card {
@@ -25,5 +26,45 @@
   .map-area {
     width: 100%;
     height: 100%;
+  }
+}
+
+
+.dropmenu{
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  background-color: #eee !important;
+  box-shadow: $box-shadow;
+  border-radius: 5px;
+  .drop-align{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin: 10px;
+    button{
+      width: 150px;
+    }
+  }
+}
+.show{
+  display: block;
+}
+.fullname.show{
+  text-decoration: underline;
+  font-weight: bold;
+  
+}
+// .auth:hover > .dropmenu {
+//   display: block;
+// }
+.fullname{
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  .username:hover{
+    text-decoration: underline !important;
   }
 }

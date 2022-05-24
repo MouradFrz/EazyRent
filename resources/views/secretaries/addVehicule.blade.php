@@ -19,10 +19,10 @@
                 <label for="category" class="form-label">Category</label>
                 <select type="text" name="category" class="form-control">
                   <option value="">Choose a category</option>
-                  <option value="car">Car</option>
-                  <option value="motorcycle">Motorcycle</option>
-                  <option value="bus"> Bus or Mini-bus</option>
-                  <option value="truck">Truck</option>
+                  <option value="Car">Car</option>
+                  <option value="Motorcycle">Motorcycle</option>
+                  <option value="Bus"> Bus or Mini-bus</option>
+                  <option value="Truck">Truck</option>
 
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
@@ -36,10 +36,10 @@
               <label for="type" class="form-label">Type</label>
               <select type="text" name="type" class="form-control">
               <option value="">Choose a type</option>
-                  <option value="classic">Classic</option>
-                  <option value="comfort">Comfort</option>
+                  <option value="Classic">Classic</option>
+                  <option value="Comfort">Comfort</option>
                   <option value="Space">Space</option>
-                  <option value="premium">Premium</option>
+                  <option value="Premium">Premium</option>
 
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
@@ -108,11 +108,11 @@
                 <label for="fuel" class="form-label">Fuel</label>
                 <Select name="fuel" id="" class="form-control" >
                   <option value="">Choose a type of fuel</option>
-                  <option value="sansPlomb">Sans-plomb</option>
-                  <option value="mazot">Mazot</option>
-                  <option value="diesel">Diesel</option>
-                  <option value="gaz">Gaz</option>
-                  <option value="super">Super</option>
+                  <option value="Sans-Plomb">Sans-plomb</option>
+                  <option value="Mazot">Mazot</option>
+                  <option value="Diesel">Diesel</option>
+                  <option value="Gaz">Gaz</option>
+                  <option value="Super">Super</option>
                 </Select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('fuel')
@@ -195,8 +195,8 @@
             <label for="physicalState" class="form-label">Physical state</label>
             <Select name="physicalState" id="" class="form-control" >
               <option value="">Current vehicle state</option>
-              <option value="classic">mliha</option>
-              <option value="classic">ma mlihach</option>
+              <option value="mliha">mliha</option>
+              <option value="ma mlihach">ma mlihach</option>
             </Select>
             <span class="text-danger" style="font-size:0.8rem">
               @error('physicalState')

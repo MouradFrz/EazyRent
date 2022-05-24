@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Booking extends Model
+class AgencyBan extends Model
 {
     use HasFactory;
-    protected $primaryKey = 'bookingID';
-    protected $fillable = ['secretaryRatesClient'];
+    public $table = "agencybans";
+    public $timestamps = false;
 }
