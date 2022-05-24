@@ -5,7 +5,7 @@
     <div class="container d-flex flex-column align-items-center">
       <div class="view-offers_hero_content">
         <h1>view offers</h1>
-        <h4>choose the most appropriate car for you!</h4>
+        <h2>choose the most appropriate car for you!</h2>
       </div>
     </div>
   </div>
@@ -62,7 +62,7 @@
 
             </div>
             <span>{{$vehicule -> rating}}</span>
-            <a href="#" class="custom-btn">view More</a>
+            <a href="{{route('user.viewOfferDetails', $vehicule->plateNb)}}" class="custom-btn">view More</a>
           </div>
         </div>
       </div>
