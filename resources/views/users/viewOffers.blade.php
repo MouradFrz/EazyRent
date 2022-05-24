@@ -25,38 +25,49 @@
   </div> --}}
   <div class="container">
     @foreach ($vehicules as $vehicule)
-    {{$vehicule}}
-    @endforeach
     <div class="minimized-offer">
       <div class="row">
-        <div class="minimized-offer_media col-12 col-md-3"></div>
+        <div class="minimized-offer_media col-12 col-md-3">
+          {{-- there is probleme when saving cars images the pathshould containt name of the image not the full path --}}
+          <img src="{{asset('images/vehicules'.$vehicule -> imagePath  )}}" alt="">
+        </div>
         <div class="minimized-offer_content col-md-9">
           <div class="d-flex justify-content-between">
             <div>
-              <h2>car name</h2>
-              <p>-agnecy name-</p>
+              <h2>{{$vehicule -> brand}} {{$vehicule -> model}}</h2>
             </div>
             <div class="text-end">
-              <strong>00.00 dzd</strong>
+              <strong>
+                @php
+                $diff = $dropOffDate->diff($pickUpDate);
+                $days = $diff->days;
+                $hours = $diff->h;
+                $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
+                echo $price , ' dzd';
+                @endphp
+              </strong>
               <p>vehicle price</p>
             </div>
           </div>
           <hr />
           <div class="d-flex justify-content-between align-items-center">
             <div class="rating">
+              @for($c=1;$c<=5;$c++)
+              @if($vehicule -> rating >= $c)
               <i class="fa-solid fa-star" style="color:darkorange"></i>
-              <i class="fa-solid fa-star" style="color: darkorange"></i>
-              <i class="fa-solid fa-star" style="color: darkorange"></i>
+              @else
               <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <span>3.2</span>
+              @endif
+              @endfor
+
             </div>
+            <span>{{$vehicule -> rating}}</span>
             <a href="#" class="custom-btn">view More</a>
           </div>
         </div>
       </div>
     </div>
+    @endforeach
   </div>
-
 </div>
 @endsection

@@ -14,27 +14,29 @@
         <div class="location d-flex flex-column">
           <label for="">Pick-up location :</label>
           <div class="inputs" id="pickUpLocation" ></div>
-          <div>
+          @error('pickUpLng'){{$message}}@enderror
+          <div class="d-none">
             <input type="text" id="pickUpLng" class="inputs" name="pickUpLng" />
             <input type="text" id="pickUpLat" class="inputs" name="pickUpLat" />
           </div>
-          <div class="location d-flex flex-column">
+          {{-- <div class="location d-flex flex-column">
             <label class="dropOffInput" for="">Drop off location :</label>
             <div class="inputs dropOffInput "id="dropOffLocation"></div>
             <div class="dropOffInput">
               <input type="text" id="dropOffLng" class="inputs" name="dropOffLng" />
               <input type="text" id="dropOffLat" class="inputs" name="dropOffLat" />
             </div>
-          </div>
-          <div class="d-flex align-items-center">
+          </div> --}}
+          {{-- <div class="d-flex align-items-center">
             <input id="dropOffAtSameLocation" type="checkbox" class="dropOffCheck" checked />
             <p>Drop off at same location</p>
-          </div>
+          </div> --}}
         </div>
         <div class="date-time d-flex justify-content-between">
           <div class="left d-flex flex-column">
             <label for="">Pick up at :</label>
-            <input class="inputs" type="datetime-local" name="pickUpDate" />
+            <input class="inputs" type="datetime-local" name="pickUpDate" min="{{now() }}"/>
+            @error('pickUpDate'){{$message}}@enderror
             <div class="d-flex align-items-center">
               <input type="checkbox" class="" id="driverAgeCheck" name="minAge" />
               <p>Driver age is less than 25</p>
@@ -47,7 +49,8 @@
           <div class="right d-flex flex-column justify-content-between">
             <div class="d-flex flex-column m-0">
               <label for="">Drop off at :</label>
-              <input class="inputs" type="datetime-local" name="dropOffDate" />
+              <input class="inputs" type="datetime-local" name="dropOffDate" min="{{now()}}"/>
+              @error('dropOffDate'){{$message}}@enderror
               <div class="d-flex align-items-center">
                 <input type="checkbox" name="PermenentDriverLicence" id="" checked />
                 <p>Driver has a permanent Driver Licence</p>
@@ -149,10 +152,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script>
-  $('.dropOffInput').hide();
-    $('.dropOffCheck').click(function(){
-        $('.dropOffInput').toggle();
-    });
+  // $('.dropOffInput').hide();
+  //   $('.dropOffCheck').click(function(){
+  //       $('.dropOffInput').toggle();
+  //   });
 
     $('.driverAge').hide();
     $('#driverAgeCheck').click(function(){
@@ -184,11 +187,8 @@
   pirckUpGeocoder.on('result', (e) => {
     pickUpLng.value = e.result.center[0];
     pickUpLat.value = e.result.center[1];
-    // if(document.getElementById('dropOffAtSameLocation').checked) {
-    // }else{
-      dropOffLng.value = e.result.center[0];
-      dropOffLat.value = e.result.center[1];
-    // }
+      // dropOffLng.value = e.result.center[0];
+      // dropOffLat.value = e.result.center[1];
   });
 
   // Clear results container when search is cleared.
@@ -197,29 +197,29 @@
     pickUpLat.innerText = '';
   });
   // ----------------------------------------------
-  const dropOffGeocoder = new MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    types: 'country,region,place,postcode,locality,neighborhood',
-    countries: 'dz',
-    // enableGeolocation: true,
-  });
-  dropOffGeocoder.addTo('#dropOffLocation');
+  // const dropOffGeocoder = new MapboxGeocoder({
+  //   accessToken: mapboxgl.accessToken,
+  //   types: 'country,region,place,postcode,locality,neighborhood',
+  //   countries: 'dz',
+  //   // enableGeolocation: true,
+  // });
+  // dropOffGeocoder.addTo('#dropOffLocation');
 
-  // Get the geocoder results container.
-  const dropOffLng = document.getElementById('dropOffLng');
-  const dropOffLat = document.getElementById('dropOffLat');
+  // // Get the geocoder results container.
+  // const dropOffLng = document.getElementById('dropOffLng');
+  // const dropOffLat = document.getElementById('dropOffLat');
 
-  // Add geocoder result to container.
-  dropOffGeocoder.on('result', (e) => {
-    dropOffLng.value = e.result.center[0];
-    dropOffLat.value = e.result.center[1];
-  });
+  // // Add geocoder result to container.
+  // dropOffGeocoder.on('result', (e) => {
+  //   dropOffLng.value = e.result.center[0];
+  //   dropOffLat.value = e.result.center[1];
+  // });
 
-  // Clear results container when search is cleared.
-  dropOffGeocoder.on('clear', () => {
-    pickUpLng.innerText = '';
-    pickUpLat.innerText = '';
-  });
+  // // Clear results container when search is cleared.
+  // dropOffGeocoder.on('clear', () => {
+  //   pickUpLng.innerText = '';
+  //   pickUpLat.innerText = '';
+  // });
 
 
 </script>
