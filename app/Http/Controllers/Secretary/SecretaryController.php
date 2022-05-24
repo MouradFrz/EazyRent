@@ -84,9 +84,9 @@ class SecretaryController extends Controller
       ]);
     
       //vehiculeeeee
-      $newCarName = $request->brand . $request->model . '.' . $request->imagePath->extension();
+      $newCarName = $request->plateNb . '.' . $request->imagePath->extension();
       $request->imagePath->move(public_path('images/vehicules/imagePaths'), $newCarName);
-
+  
       $vehicule = new Vehicule();
       $vehicule->plateNb = $request->plateNb;
       $vehicule->brand = $request->brand;
@@ -105,7 +105,7 @@ class SecretaryController extends Controller
       $vehicule->pricePerHour = sprintf('%.2f', $request->pricePerHour);
       $vehicule->pricePerDay = sprintf('%.2f', $request->pricePerDay);
       $vehicule->garageID = $request->garageID;
-      $vehicule->imagePath = $request->imagePath;
+      $vehicule->imagePath = $newCarName;
       $vehicule->addedBy = Auth::user()->username;
       $vehicule->save();
       $garages= Garage::select('garageID')->where('garages.brancheID',Auth::user()->brancheID)->get();

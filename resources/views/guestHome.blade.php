@@ -220,7 +220,7 @@
   //   pickUpLng.innerText = '';
   //   pickUpLat.innerText = '';
   // });
-
+  document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
 @endsection

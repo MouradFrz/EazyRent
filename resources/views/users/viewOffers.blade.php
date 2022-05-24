@@ -29,7 +29,7 @@
       <div class="row">
         <div class="minimized-offer_media col-12 col-md-3">
           {{-- there is probleme when saving cars images the pathshould containt name of the image not the full path --}}
-          <img src="{{asset('images/vehicules'.$vehicule -> imagePath  )}}" alt="">
+          <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath  )}}" alt="">
         </div>
         <div class="minimized-offer_content col-md-9">
           <div class="d-flex justify-content-between">
@@ -62,7 +62,7 @@
 
             </div>
             <span>{{$vehicule -> rating}}</span>
-            <a href="{{route('user.viewOfferDetails', $vehicule->plateNb)}}" class="custom-btn">view More</a>
+            <a href="{{ route('user.viewOfferDetails',$vehicule->plateNb) }}" class="custom-btn">view More</a>
           </div>
         </div>
       </div>
