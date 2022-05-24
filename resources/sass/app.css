@@ -1,0 +1,67 @@
+* {
+  text-decoration: none !important;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+label {
+  text-transform: capitalize;
+}
+
+.inputs {
+  padding: 12px 15px;
+  outline: none;
+  border: 1px solid rgb(155, 155, 155);
+  border-radius: 3px;
+  margin-top: 5px;
+}
+
+.custom-btn {
+  font-weight: 600;
+  background-color: rgb(187, 190, 105);
+  color: rgb(255, 255, 255);
+  padding: 8px 20px;
+  border-radius: 3px;
+  transition: 0.2s all ease;
+  border: none;
+  align-self: flex-start;
+  transition: all 300ms ease-in-out;
+}
+.custom-btn:hover {
+  background-color: rgb(232, 232, 232);
+  color: rgb(187, 190, 105);
+}
+.custom-btn:disabled {
+  background-color: rgb(187, 187, 187);
+  color: rgb(68, 68, 68);
+}
+
+footer {
+  background-color: rgb(201, 201, 201);
+}
+@media (max-width: 980px) {
+  footer div {
+    flex-direction: column !important;
+  }
+}
+
+.form-control {
+  padding: 10px !important;
+}
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.btn {
+  box-shadow: none !important;
+}
+.btn:active {
+  border: 1px solid black;
+}/*# sourceMappingURL=app.css.map */

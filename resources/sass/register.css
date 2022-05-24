@@ -1,0 +1,68 @@
+.title {
+  text-align: center;
+  color: rgb(187, 190, 105);
+}
+
+.file-input {
+  cursor: pointer;
+}
+
+.invalid {
+  border: 1px solid red;
+  margin: 0 !important;
+}
+
+.step-index {
+  font-weight: 900;
+  background-color: rgb(187, 190, 105);
+  align-self: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.image-preview {
+  max-width: 250px;
+  cursor: pointer;
+}
+
+.image-selector {
+  width: 250px;
+  height: 250px;
+  cursor: pointer;
+  border: 1px solid rgb(177, 177, 177);
+  border-radius: 2px;
+  position: relative;
+  transition: 0.1s ease;
+}
+.image-selector::after {
+  content: "+";
+  font-size: 5rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.image-selector:hover {
+  background-color: gainsboro;
+}
+
+.signup-panel {
+  border: 1px solid rgb(238, 238, 238);
+  max-width: 650px;
+  width: 100%;
+  padding: 40px;
+  border-radius: 5px;
+  margin: 60px 0;
+  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+}
+.signup-panel .form-login {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.signup-panel .form-login input {
+  margin: 0 0 0 0 !important;
+}
+.signup-panel .form-login label {
+  margin-top: 15px !important;
+}/*# sourceMappingURL=register.css.map */

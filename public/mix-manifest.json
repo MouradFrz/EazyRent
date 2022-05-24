@@ -6,6 +6,8 @@
     "/css/login.css": "/css/login.css",
     "/css/app.css": "/css/app.css",
     "/css/bootstrap.css": "/css/bootstrap.css",
+    "/css/vehicules/index.css": "/css/vehicules/index.css",
+    "/css/secretary/index.css": "/css/secretary/index.css",
     "/css/owner/index.css": "/css/owner/index.css",
     "/css/admin/index.css": "/css/admin/index.css",
     "/css/secretary/index.css": "/css/secretary/index.css"

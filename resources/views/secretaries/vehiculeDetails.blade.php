@@ -6,6 +6,24 @@
 @endsection
 @section('content')
 <!-- Button trigger modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">You are about to delete this vehicle </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <p>Are you sure you want to delete this vehicle ? </p> 
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" onclick="document.querySelector('#form').submit()">Confirm</button>
+            <form action="{{ route('secretary.deleteVehicule',$vehicule->plateNb) }}" id="form" method="POST">@csrf</form>
+          </div>
+      </div>
+    </div>
+  </div>
 <div class="container">
     <div class="row m-0">
         <div class="col-lg-7 pb-5 pe-lg-5">
@@ -101,6 +119,9 @@
                                 </span>
                                 
                             </div>
+                            <button type="button" class="btn btn-danger my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Delete this vehicle
+                              </button>
                         </div>
                     </div>
                    
