@@ -1,7 +1,7 @@
 @extends('layouts.workerLayout')
 @section('headTags')
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-{{-- <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
+<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('css/secretary/index.css') }}">
 @endsection
 @section('content')
@@ -45,7 +45,7 @@
       </div>
     </div>
   </div>
-<div class="container container-pog">
+<div class="container">
     <div class="row m-0">
         <div class="col-lg-7 pb-5 pe-lg-5">
             <div class="row">
@@ -84,8 +84,8 @@
             <div class="row m-0">
                 <div class="col-12 px-4">
                     <div class="d-flex align-items-end mt-4 mb-2">
-                        <p class="h4 m-0"><span class="pe-1">{{ $vehicule->model }}</span><span class="pe-1">{{ $vehicule->brand }}</span><span
-                                class="pe-1">B</span></p>
+                        <p class="h4 m-0"><span class="pe-1">{{ $vehicule->model }}</span><span class="pe-1">{{ $vehicule->brand }}</span>
+                        <p class="h4 m-0"><span class="pe-1">{{ $vehicule->availability }}</span>    
                         
                     </div>
                     <div class="d-flex justify-content-between mb-2">
