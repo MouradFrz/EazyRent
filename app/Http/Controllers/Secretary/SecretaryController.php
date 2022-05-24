@@ -6,6 +6,7 @@ use App\Models\Vehicule;
 use App\Models\Branche;
 use App\Models\Garage;
 use App\Http\Controllers\Controller;
+use App\Models\AgencyBan;
 use App\Models\Booking;
 use App\Models\Secretary;
 use DateTime;
@@ -214,8 +215,39 @@ public function editProfile(Request $request){
 public function getHistory(){
 
  $bookings = Booking::where('secretaryUsername',Auth::user()->username)->where('state','<>','REQUESTED')->join('users','bookings.clientUsername','=','users.username')->latest('bookings.created_at')->paginate(25);
-  return view('secretaries.history',['bookings'=>$bookings]);
+ $secbans = AgencyBan::where('bannedBy',Auth::user()->username)->orderBy('startDate','DESC')->get();
+  return view('secretaries.history',['bookings'=>$bookings,'secbans'=>$secbans]);
 }
+public function setRating(Request $request){
+  $request->validate([
+    'bookingID'=>'required|numeric',
+    'rating'=>'required|numeric|max:5|min:0'
+  ]);
+  $booking = Booking::where('bookingID',$request->bookingID)->first();
+  $booking->update(['secretaryRatesClient'=>$request->rating]);
+  return redirect()->route('secretary.history')->with('success','Rating sent successfully');
+}
+public function banUser(Request $request){
+  $request->validate([
+    'reason'=>'required',
+    'duration'=>'required|numeric',
+    'username'=>'required|exists:users,username'
+  ]);
+
+  $ban = new AgencyBan();
+  $ban->bannedClient=$request->username;
+  $ban->bannedBy=Auth::user()->username;
+  $ban->startDate=now();
+  $date = date_create(now());
+  date_add($date, date_interval_create_from_date_string($request->duration.' days'));
+  
+  $ban->endDate=$date;
+  $ban->reason=$request->reason;
+  $ban->save();
+  return redirect()->route('secretary.history')->with('success','User banned successfully');
+}
+
+
 
 }
 

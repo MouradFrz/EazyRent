@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Vehicule extends Model
+class AgencyBan extends Model
 {
-    protected $table = 'vehicules';
-    protected $primaryKey = 'plateNb';
+    use HasFactory;
+    public $table = "agencybans";
     public $timestamps = false;
 }
