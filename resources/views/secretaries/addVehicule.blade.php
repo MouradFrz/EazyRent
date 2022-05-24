@@ -235,7 +235,7 @@
 
   </div>
       
-  <button type="submit" class="btn btn-primary">Add Vehicle</a>
+  <button type="submit" class="btn my-3 btn-primary">Add Vehicule</button>
             
           </form>
         </div>

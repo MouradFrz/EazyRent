@@ -118,20 +118,20 @@ class SecretaryController extends Controller
     }
 
       public function vehiculeDetails($id){
-        $vehicule = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages,brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
+        $vehicule = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
         if ($vehicule->brancheID !=Auth::user()->brancheID){
           return redirect()->route('secretary.home');
         }
         return view('secretaries.vehiculeDetails',['vehicule'=>$vehicule]);
       }
       public function deleteVehicule($id){
-        $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages,brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
-        if ($vehicules->brancheID !=Auth::user()->brancheID){
+        $blob = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
+        if ($blob->brancheID !=Auth::user()->brancheID){
           return redirect()->route('secretary.home');
         }
 
         Vehicule::where('plateNb',$id)->delete();
-        return redirect()->route('secretary.secretaryVehicules')->with('alert','Vehicle deleted successfully');
+        return redirect()->route('secretary.showVehicules')->with('alert','Vehicle deleted successfully');
         
       }
       public function updateState(){
@@ -158,8 +158,8 @@ class SecretaryController extends Controller
     return view('secretaries.reservationDetails',['booking'=>$booking,'interval'=>$str]);
 
 
-    Vehicule::join('garages','garageID','=','garages.garageID')->join('branches','garages.garageID','=','vehicules.garageID')->where('branches.brancheID',Auth::user()->brancheID)->get();
-  }
+    
+    }
   public function addVehiculePage(){
     $garages = Garage::select(['garageID','address'])->where('garages.brancheID',Auth::user()->brancheID)->get();
     return view('secretaries.addVehicule',['garages'=>$garages]);
