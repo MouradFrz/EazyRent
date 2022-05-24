@@ -27,15 +27,22 @@ body{min-height: 3000px;}
   .minimized-offer {
     border: 1px solid lightGrey;
     overflow: hidden;
+    margin-bottom: 3rem;
     &_media {
-      height: 200px;
+      min-height: 15rem;
       background-color: grey;
       // background-image: url()
     }
     &_content {
+      .head{
+        margin-bottom: 3rem;
+      }
       padding: 1rem 2rem;
       h2 p {
         margin-bottom: 0.5em;
+      }
+      .prop > ul > li > i {
+          color: #005252;
       }
     }
     .rating {

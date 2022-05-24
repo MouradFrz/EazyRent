@@ -231,16 +231,23 @@ body {
 .view-offers .minimized-offer {
   border: 1px solid lightGrey;
   overflow: hidden;
+  margin-bottom: 3rem;
 }
 .view-offers .minimized-offer_media {
-  height: 200px;
+  min-height: 15rem;
   background-color: grey;
 }
 .view-offers .minimized-offer_content {
   padding: 1rem 2rem;
 }
+.view-offers .minimized-offer_content .head {
+  margin-bottom: 3rem;
+}
 .view-offers .minimized-offer_content h2 p {
   margin-bottom: 0.5em;
+}
+.view-offers .minimized-offer_content .prop > ul > li > i {
+  color: #005252;
 }
 .view-offers .minimized-offer .rating {
   margin: 10px 0;
@@ -257,4 +264,8 @@ body {
 .view-offers .minimized-offer .rating i {
   font-size: 1.5em;
   color: darkGrey;
+}
+
+.offer_media {
+  max-width: 200px;
 }

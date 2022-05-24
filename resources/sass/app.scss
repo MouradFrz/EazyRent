@@ -7,7 +7,7 @@
   text-decoration: none !important;
   margin: 0;
   padding: 0;
-  box-sizing:border-box !important;
+  box-sizing: border-box !important;
 }
 h1,
 h2,
@@ -44,6 +44,33 @@ label {
     color: rgb(68, 68, 68);
   }
 }
+// .custom-btn {
+//   font-weight: 500;
+//   background-color: #fcfcfc;
+//   color: #51ecec;
+//   padding: .5rem 2rem;
+//   border-radius: .5rem;
+//   border: none;
+//   align-self: flex-start;
+//   transition: all 300ms ease-in-out;
+//   cursor: pointer;
+//   text-align: center;
+//   box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+//     6px 6px 10px rgba(0, 0, 0, 0.2);
+//   &:hover {
+//     opacity: 0.3;
+//     box-shadow: -6px -6px 10px rgba(255, 255, 255, 0.8),
+//       6px 6px 10px rgba(0, 0, 0, 0.2);
+//   }
+//   &:active {
+//     opacity: 1;
+//     box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+//       inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+//     &:disabled {
+//       background-color: rgb(187, 187, 187);
+//       color: rgb(68, 68, 68);
+//     }
+// }
 footer {
   background-color: rgb(201, 201, 201);
   div {
@@ -52,16 +79,15 @@ footer {
     }
   }
 }
-.form-control{
+.form-control {
   padding: 10px !important;
-  &:focus{
+  &:focus {
     box-shadow: none !important;
-
   }
 }
-.btn{
+.btn {
   box-shadow: none !important;
-  &:active{
+  &:active {
     border: 1px solid black;
   }
 }
