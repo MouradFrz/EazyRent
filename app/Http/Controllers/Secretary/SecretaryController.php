@@ -84,9 +84,9 @@ class SecretaryController extends Controller
       ]);
     
       //vehiculeeeee
-      $newCarName = $request->brand . $request->model . '.' . $request->imagePath->extension();
+      $newCarName = $request->plateNb . '.' . $request->imagePath->extension();
       $request->imagePath->move(public_path('images/vehicules/imagePaths'), $newCarName);
-
+  
       $vehicule = new Vehicule();
       $vehicule->plateNb = $request->plateNb;
       $vehicule->brand = $request->brand;
@@ -105,7 +105,7 @@ class SecretaryController extends Controller
       $vehicule->pricePerHour = sprintf('%.2f', $request->pricePerHour);
       $vehicule->pricePerDay = sprintf('%.2f', $request->pricePerDay);
       $vehicule->garageID = $request->garageID;
-      $vehicule->imagePath = $request->imagePath;
+      $vehicule->imagePath = $newCarName;
       $vehicule->addedBy = Auth::user()->username;
       $vehicule->save();
       $garages= Garage::select('garageID')->where('garages.brancheID',Auth::user()->brancheID)->get();
@@ -134,9 +134,25 @@ class SecretaryController extends Controller
         return redirect()->route('secretary.showVehicules')->with('alert','Vehicle deleted successfully');
         
       }
-      public function updateState(){
+      public function updateState($id){
 
-      }
+       
+      $vehicule = Vehicule::where('plateNb',$id)->first();
+          if($vehicule->availability==0){
+
+            $vehicule->update(['availability'=>1]);
+
+          }else{
+            $vehicule->update(['availability'=>0]);
+
+          }
+        
+
+          return redirect()->route('secretary.vehiculeDetails',$id)->with('alert','Vehicle state was updated successfully');
+        }
+        
+
+      
  
 
   public function getReservationRequests(){
