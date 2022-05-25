@@ -316,13 +316,13 @@
             document.querySelector('.image-selector').style.display="none";
          }
 }
-document.querySelector('#file-field-face').onchange = evt => {
-         const [file] = document.querySelector('#file-field-face').files
-          if (file) {
-            document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
-            document.querySelector('#image-selector-face').style.display="none";
-         }
-}
+// document.querySelector('#file-field-face').onchange = evt => {
+//          const [file] = document.querySelector('#file-field-face').files
+//           if (file) {
+//             document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
+//             document.querySelector('#image-selector-face').style.display="none";
+//          }
+// }
 
 
     function openFilePicker(){

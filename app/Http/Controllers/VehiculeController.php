@@ -43,7 +43,7 @@ class VehiculeController extends Controller
     return view('users.viewOffers')->with(['vehicules' => $vehicules, 'pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate]);
   }
   public function viewOfferDetails($plateNb,$pickUpDate,$dropOffDate) {
-    $vehicule = Vehicule::find($plateNb)->first();
+    $vehicule = Vehicule::find($plateNb);
     return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>$pickUpDate,'dropOffDate'=>$dropOffDate]);
   }
 }

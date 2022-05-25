@@ -22,7 +22,7 @@ use function PHPUnit\Framework\isNull;
 class OwnerController extends Controller
 {
     public function home(){
-        return view('owners.ownerHome',['hasRequest'=>count(AgencyRequest::where('ownerUsername',Auth::user()->username)->get())]);
+        return view('owners.ownerHome',['Request'=>AgencyRequest::where('ownerUsername',Auth::user()->username)->first()]);
     }
     public function create(Request $request){
         $request->validate([

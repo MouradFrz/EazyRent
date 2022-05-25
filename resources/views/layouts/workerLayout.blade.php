@@ -16,7 +16,7 @@
   <div class="row m-0">
     <aside class="sidebar d-flex flex-column justify-content-between align-items-center col-4 col-md-2 align-self-start">
       <div class="navbar-brand d-flex flex-column align-items-center auth">
-        <img src="{{ asset('images/owners/idCardImages/lololo.jpg') }}" alt="">
+        <img src="{{ asset('images/download.png') }}" alt="">
         <p class="user-fullname auth username">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
         <div class="placeholder"></div>
         <div class="show-on-hover">
@@ -77,9 +77,6 @@
           </li>
           <li class="nav-item">
             <a href="{{ route('owner.showGarages') }}" class="nav-link ">Garages management</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link ">owner</a>
           </li>
         </ul>
         @endif

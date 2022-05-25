@@ -17,7 +17,7 @@
     <div class="container d-flex justify-content-between align-items-center">
       @auth
       <div class="auth d-flex align-items-center">
-        <img src="{{ asset('images/users/idCardImages/'. Auth::user()->idCardPath) }}" id="user-icon" alt="">
+        <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon" alt="">
         <h6 class="m-0 username " style="color:rgb(79, 79, 79)">
           {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} &#9660
         </h6>

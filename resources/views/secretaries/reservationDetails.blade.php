@@ -88,7 +88,7 @@
       
       <p class="value">{{ $booking->declineReason }}</p>
       @else
-        <p>You accepted this request at {{ $request->updated_at }}</p>
+        <p>You accepted this request at {{ $booking->updated_at }}</p>
       @endif
       
      

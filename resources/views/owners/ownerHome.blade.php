@@ -26,7 +26,8 @@
  @if (Auth::user()->agencyID)
      <p>This guy has an agency</p>
 
- @elseif ($hasRequest==1)
+ @elseif (!is_null($Request))
+  @if($Request->state =="ON GOING")
  <div class="no-agency">
   <div class="container d-flex align-items-center justify-content-center">
     <div class="alert" role="alert" style="border:2px dashed rgb(130, 179, 139);background-color:rgb(130, 179, 139)">
@@ -36,6 +37,18 @@
     </div>
   </div>
 </div>
+@elseif($Request->state =="REFUSED")
+<div class="no-agency">
+  <div class="container d-flex align-items-center justify-content-center">
+    <div class="alert" role="alert" style="border:2px dashed rgb(179, 133, 130);background-color:rgb(179, 148, 130)">
+      <p> Your request was refused because of invalid or missing informations.</p>
+      <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
+      <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
+    </div>
+  </div>
+</div>
+@endif
+
  @else
   <div class="no-agency">
     <div class="container d-flex align-items-center justify-content-center">

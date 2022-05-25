@@ -43,6 +43,11 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/register', 'users.register')->name('register');
     Route::post('/create', [UserController::class, 'create'])->name('create');
     Route::post('/check', [UserController::class, 'check'])->name('check');
+    // Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
+    // Route::get('/offer/{plateNb}/{pickDate}/{dropDate}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
+  });
+
+  Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
     Route::get('/offer/{plateNb}/{pickDate}/{dropDate}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
   });

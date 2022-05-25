@@ -8,7 +8,7 @@
     <div class="row">
       <div class="offer_media col-8">
         {{-- <img src="{{asset('pubclic/images/vehicules'.$vehicule->imagePath)}}" alt=""> --}}
-        <img src="{{asset('images/view-offers_hero.jpg')}}" alt="" loading="lazy">
+        <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath)}}" alt="">
       </div>
       <div class="offer_details col-4">
         <table class="table table-striped">
