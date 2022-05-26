@@ -29,4 +29,8 @@ class GaragistController extends Controller
         Auth::guard('garagist')->logout();
         return redirect()->route('workerLogin');
     }
+
+    public function showProfile(){ 
+        return view('garagists.editProfile');
+    }
 }

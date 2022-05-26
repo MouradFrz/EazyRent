@@ -64,7 +64,7 @@ class VehiculeController extends Controller
     return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>str_replace(' ', 'T',$pickUpDate),'dropOffDate'=>str_replace(' ', 'T',$dropOffDate),'pickUpLocations' => $pickUpLocations ]);
   }
   public function book(Request $request,$vehiculePLateNb) {
-
+    
     $request->validate([
       'pickUpLocation' => 'required',
       'dropOffLocation' => 'required',
@@ -72,33 +72,37 @@ class VehiculeController extends Controller
       'pickUpLocation.required' => 'you have to choose a pick up location',
       'dropOffLocation.required' => 'you have to choose a drop off location',
     ]);
-
+    
     $booking = new Booking;
     $booking->created_at = now();
     // REQUESTED ACCEPTED REFUSED SIGNED CANCELED ON GOING FINISHED
-    $booking->state = 'REQUESTD';
+    $booking->state = 'REQUESTED';
     // by default it's false secretary will update this when the client pay the booking
     $booking->isPaid = false;
     // 'HAND BY HAND' 'ONLINE'
     $booking->payementMethod = 'HAND BY HAND';
     $booking->pickUpLocation = $request->pickUpLocation;
     $booking->dropOffLocation = $request->pickUpLocation;
-
-    $pickUpDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->pickUpDate));
-    $dropOffDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->dropOffDate));
-    $booking->pickUpDate = $pickUpDate;
-    $booking->dropOffDate = $dropOffDate;
+    
+    // $pickUpDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->pickUpDate));
+    // $dropOffDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->dropOffDate));
+    $booking->clientUsername= 'User1';
+    $booking->pickUpDate = $request->pickUpDate;
+    $booking->dropOffDate = $request->dropOffDate;
     // not yet
     // $booking->clientUsername = Auth::user()->username;
     $booking->vehiculePlateNB = $vehiculePLateNb;
-    dd($request->pickUpDate);
+    
     $save = $booking->save();
-    if($save) {
-      return redirect()->route('user.offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('success','booking success');
-    }
-    else {
-      return redirect()->route('user.offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('fail','booking has been failed');
-    }
+    // if($save) {
+    //   return redirect()->route('user.offer',)->with('success','booking success');
+    // }
+    // else {
+    //   return redirect()->route('user/offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('fail','booking has been failed');
+    // }
+
+
+  
     // http://127.0.0.1:8000/user/offer/2456376573/2022-05-27%2009:19/2022-05-31%2009:19
   }
 }

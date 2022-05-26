@@ -39,8 +39,7 @@
           @endif
           @if(Auth::guard('garagist')->check())
           <ul>
-            <li><a href="">Edit profil</a></li>
-            <li><a href="">Show transaction history</a></li>
+            <li><a href="{{ route('garagist.showProfile') }}">Edit profil</a></li>
           </ul>
           @endif
         </div>
@@ -48,19 +47,19 @@
       @if(Auth::guard('admin')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
           <li class="nav-item active">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link ">dashboard</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link ">Dashboard</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.joiningRequests') }}" class="nav-link ">joining requests</a>
+            <a href="{{ route('admin.joiningRequests') }}" class="nav-link ">Joining requests</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.getAgencies') }}" class="nav-link ">agencies list</a>
+            <a href="{{ route('admin.getAgencies') }}" class="nav-link ">Agencies list</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.usersList') }}" class="nav-link ">users list</a>
+            <a href="{{ route('admin.usersList') }}" class="nav-link ">Users list</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.banedUsers') }}" class="nav-link ">baned users</a>
+            <a href="{{ route('admin.banedUsers') }}" class="nav-link ">Banned users</a>
           </li>
         </ul>
         @endif

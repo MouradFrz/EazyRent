@@ -27,21 +27,21 @@
           <div class="row">
             <div class="col">
               <label for="vehicule" class="form-label">vehicule</label>
-              <input type="text" value="{{$vehicule->brand}} {{$vehicule->model}}" class="form-control" disabled>
+              <input type="text" value="{{$vehicule->brand}} {{$vehicule->model}}" class="form-control" >
             </div>
             <div class="col">
               <label for="agency" class="form-label">agency</label>
-              <input type="text" value="{{$vehicule->name}}" class="form-control" disabled>
+              <input type="text" value="{{$vehicule->name}}" class="form-control" >
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="pickUpDate" class="form-label">pick up at</label>
-              <input type="datetime-local" name="pickUpDate" value="{{$pickUpDate}}" class="form-control" disabled>
+              <input type="datetime-local" name="pickUpDate" value="{{$pickUpDate}}" class="form-control" >
             </div>
             <div class="col">
               <label for="drop Off Date" class="form-label">drop off at</label>
-              <input type="datetime-local" name="dropOffDate" value="{{$dropOffDate}}" class="form-control" disabled>
+              <input type="datetime-local" name="dropOffDate" value="{{$dropOffDate}}" class="form-control" >
             </div>
           </div>
           <div class="row">
@@ -87,7 +87,7 @@
             <div class="col">
               <label for="pickUpLocation" class="form-group">pick up at</label>
               <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
-                <option selected>sellect a pick up location</option>
+                <option selected value="">select a pick up location</option>
                 @foreach ($pickUpLocations as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
