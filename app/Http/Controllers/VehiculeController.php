@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PickUpLocation;
 use Illuminate\Http\Request;
 use App\Models\Vehicule;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,12 @@ class VehiculeController extends Controller
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath','agencies.name'])
       ->find($plateNb)
     ;
-    return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>str_replace(' ', 'T',$pickUpDate),'dropOffDate'=>str_replace(' ', 'T',$dropOffDate)]);
+    $pickUpLocations = Vehicule::join('garages', 'vehicules.garageID', '=', 'garages.garageID')
+    ->join('pickUpLocations', 'garages.brancheID', '=', 'pickUpLocations.brancheID')
+    ->where('vehicules.plateNb',$plateNb)
+    ->select('pickUpLocations.address_address')
+    ->get()
+    ;
+    return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>str_replace(' ', 'T',$pickUpDate),'dropOffDate'=>str_replace(' ', 'T',$dropOffDate),'pickUpLocations' => $pickUpLocations ]);
   }
 }
