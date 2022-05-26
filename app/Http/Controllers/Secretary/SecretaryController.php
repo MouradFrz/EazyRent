@@ -113,8 +113,9 @@ class SecretaryController extends Controller
     }
     public function showVehicules()
     {
+      $bookings = Booking::orderBy('created_at','DESC')->get();
      $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->where('brancheID',Auth::user()->brancheID)->get();
-     return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules]);   
+     return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules,'bookings'=>$bookings]);   
     }
 
       public function vehiculeDetails($id){
@@ -122,7 +123,9 @@ class SecretaryController extends Controller
         if ($vehicule->brancheID !=Auth::user()->brancheID){
           return redirect()->route('secretary.home');
         }
-        return view('secretaries.vehiculeDetails',['vehicule'=>$vehicule]);
+        $garages = Garage::where('brancheID',$vehicule->brancheID)->get();
+        $latestBooking = Booking::where('vehiculePlateNB',$id)->orderBy('created_at','DESC')->first();
+        return view('secretaries.vehiculeDetails',['vehicule'=>$vehicule,'garages'=>$garages,'latestBooking'=>$latestBooking]);
       }
       public function deleteVehicule($id){
         $blob = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.brancheID','=','branches.brancheID')->where('plateNb',$id)->first();
@@ -146,9 +149,13 @@ class SecretaryController extends Controller
             $vehicule->update(['availability'=>0]);
 
           }
-        
-
-          return redirect()->route('secretary.vehiculeDetails',$id)->with('alert','Vehicle state was updated successfully');
+          return redirect()->back()->with('alert','Vehicle state was updated successfully');
+        }
+        public function transferVehicle(Request $request,$id){
+          Vehicule::find($id)->update(["garageID" => $request->garageID]);
+         
+          // dd(Vehicule::find($id));
+          return redirect()->route('secretary.vehiculeDetails',$id)->with("message","Vehicle succesfully transfered!");
         }
         
 

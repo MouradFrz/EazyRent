@@ -125,5 +125,8 @@
 @endsection
 
 @section('scripts')
+  <script> 
 
+  console.log(JSON.parse('@json($booking)'))
+  </script>
 @endsection

@@ -12,6 +12,7 @@
             <th>Sender</th>
             <th>Type</th>
             <th>Date</th>
+            <th>Answered</th>
             <th>Message</th>
           </tr>
         </thead>
@@ -21,6 +22,11 @@
             <th scope="row">{{$element ->sender}}</th>
             <td>{{$element->problemType}}</td>
             <td>{{$element ->created_at}}</td>
+            @if (is_null($element->response))
+            <td>No</td>
+            @else
+            <td>Yes</td>
+            @endif
             <td><a href="{{ route('owner.reclamation',$element->id) }}">Details</a></td>
           </tr>
           @endforeach

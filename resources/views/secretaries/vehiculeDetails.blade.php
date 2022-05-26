@@ -10,7 +10,40 @@
 {{  Session::get('alert')}}
     
 @endif
+@if (Session::get('message'))
+    
+{{  Session::get('message')}}
+    
+@endif
 <!-- Button trigger modal -->
+<div class="modal fade" id="transferModal" tabindex="-1" aria-labelledby="transferModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">You are about to transfer this vehicule to another garage </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         <p>Chose the garage you want to transfer the vehicule to</p> 
+         <form action="{{ route('secretary.transferVehicle',$vehicule->plateNb) }}" id="transferForm" method="POST">@csrf
+            <select name="garageID" id="" class="form-control">
+                @foreach ($garages as $garage)
+                @if ($garage->garageID!=$vehicule->garageID)
+                <option value="{{ $garage->garageID }}"> {{ $garage->address }}</option>
+                @endif
+                    
+                @endforeach
+            </select>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-danger" onclick="document.querySelector('#transferForm').submit()">Confirm</button>
+            
+          </div>
+      </div>
+    </div>
+  </div>
 <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -46,6 +79,7 @@
     </div>
   </div>
 <div class="container">
+    
     <div class="row m-0">
         <div class="col-lg-7 pb-5 pe-lg-5">
             <div class="row">
@@ -113,7 +147,7 @@
                         <p class="fs-14 fw-bold"><span class="fas fa-dollar-sign pe-1"></span>
                             {{ $vehicule->physicalState }}</p>
                     </div>
-                  
+                 
                     
                 </div>
                 <div class="col-12 px-0">
@@ -139,8 +173,36 @@
                                 </span>
                                 
                             </div>
+                            <div class="d-flex flex-column">
+                                @if (!is_null($latestBooking))
+                                    
+                                
+                                    @if ($latestBooking->state=='REQUESTED' || $latestBooking->state=='ACCEPTED' || $latestBooking->state=='SIGNED' || $latestBooking->state=='ON GOING')
+                                        
+                                        @if ($vehicule->availability)
+                                        <button type="button" class="btn btn-warning my-3" disabled data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                        @else
+                                        <button type="button" class="btn btn-success my-3" disabled data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                        @endif
+
+                                    @else
+                                        @if ($vehicule->availability)
+                                        <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                        @else
+                                        <button type="button" class="btn btn-success my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                        @endif
+
+                                    @endif
+                                @else
+                                         @if ($vehicule->availability)
+                                        <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                        @else
+                                        <button type="button" class="btn btn-success my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                        @endif
+                                @endif
+                            <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#transferModal"> Transfer to another garage</button>
                             <button type="button" class="btn btn-danger my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal1"> Delete this vehicle</button>
-                            <button type="button" class="btn btn-warning my-3"style='margin-left:50px'  data-bs-toggle="modal" data-bs-target="#exampleModal2"> Change state</button>
+                            </div>
                         </div>
                     </div>
                    
