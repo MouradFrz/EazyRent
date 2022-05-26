@@ -46,11 +46,10 @@ Route::prefix('user')->name('user.')->group(function () {
     // Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
     // Route::get('/offer/{plateNb}/{pickDate}/{dropDate}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
   });
-
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
     Route::get('/offer/{plateNb}/{pickDate}/{dropDate}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
-    Route::post('book',[VehiculeController::class,'book'])->name('book');
+    Route::post('/book/{vehiculePlateNb}',[VehiculeController::class,'book'])->name('book');
   });
   Route::middleware(['auth:web', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');

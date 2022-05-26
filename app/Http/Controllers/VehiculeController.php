@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\PickUpLocation;
 use Illuminate\Http\Request;
 use App\Models\Vehicule;
+use App\Models\Booking;
 use Illuminate\Support\Facades\DB;
 use DateTime;
+use Illuminate\Support\Facades\Auth;
 
 class VehiculeController extends Controller
 {
@@ -48,15 +50,55 @@ class VehiculeController extends Controller
         join('garages', 'vehicules.garageID', '=', 'garages.garageID')
       ->join('branches', 'garages.brancheID', '=', 'branches.brancheID')
       ->join('agencies', 'branches.agencyID','=','agencies.agencyID')
+      // check later what u realy need to select
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath','agencies.name'])
       ->find($plateNb)
     ;
+    // maybe later agency it will be in it's own variable
     $pickUpLocations = Vehicule::join('garages', 'vehicules.garageID', '=', 'garages.garageID')
     ->join('pickUpLocations', 'garages.brancheID', '=', 'pickUpLocations.brancheID')
     ->where('vehicules.plateNb',$plateNb)
-    ->select('pickUpLocations.address_address')
+    ->select('pickUpLocations.id','pickUpLocations.address_address')
     ->get()
     ;
     return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>str_replace(' ', 'T',$pickUpDate),'dropOffDate'=>str_replace(' ', 'T',$dropOffDate),'pickUpLocations' => $pickUpLocations ]);
+  }
+  public function book(Request $request,$vehiculePLateNb) {
+
+    $request->validate([
+      'pickUpLocation' => 'required',
+      'dropOffLocation' => 'required',
+    ],[
+      'pickUpLocation.required' => 'you have to choose a pick up location',
+      'dropOffLocation.required' => 'you have to choose a drop off location',
+    ]);
+
+    $booking = new Booking;
+    $booking->created_at = now();
+    // REQUESTED ACCEPTED REFUSED SIGNED CANCELED ON GOING FINISHED
+    $booking->state = 'REQUESTD';
+    // by default it's false secretary will update this when the client pay the booking
+    $booking->isPaid = false;
+    // 'HAND BY HAND' 'ONLINE'
+    $booking->payementMethod = 'HAND BY HAND';
+    $booking->pickUpLocation = $request->pickUpLocation;
+    $booking->dropOffLocation = $request->pickUpLocation;
+
+    $pickUpDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->pickUpDate));
+    $dropOffDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->dropOffDate));
+    $booking->pickUpDate = $pickUpDate;
+    $booking->dropOffDate = $dropOffDate;
+    // not yet
+    // $booking->clientUsername = Auth::user()->username;
+    $booking->vehiculePlateNB = $vehiculePLateNb;
+    dd($request->pickUpDate);
+    $save = $booking->save();
+    if($save) {
+      return redirect()->route('user.offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('success','booking success');
+    }
+    else {
+      return redirect()->route('user.offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('fail','booking has been failed');
+    }
+    // http://127.0.0.1:8000/user/offer/2456376573/2022-05-27%2009:19/2022-05-31%2009:19
   }
 }

@@ -10,13 +10,15 @@
   <div class="container">
     <h2>agencies list</h2>
     @if (Session::get('fail'))
-    <div class="alert alert-danger w-100" role="alert">
+    <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
       {{ Session::get('fail') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     @if (Session::get('success'))
-    <div class="alert alert-success w-100 " role="alert">
+    <div class="alert alert-success w-100 alert-dismissible fade show" role="alert">
       {{ Session::get('success') }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <table class="table table-striped" id="agenciesList">

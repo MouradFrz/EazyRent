@@ -1,18 +1,28 @@
 @extends('layouts.userLayout')
 @section('content')
 <div class="offer">
-
   <div class="container">
     <div class="offer_header">
       <h1>{{$vehicule->brand}} {{$vehicule->model}}</h1>
     </div>
+    @if (Session::get('fail'))
+    <div class="alert alert-danger w-100" role="alert">
+      {{ Session::get('fail') }}
+    </div>
+    @endif
+    @if (Session::get('success'))
+    <div class="alert alert-success w-100 " role="alert">
+      {{ Session::get('success') }}
+    </div>
+    @endif
     <div class="row">
       <div class="col-8">
         <div class="offer_media">
           <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath)}}"
             alt="{{$vehicule->brand}} {{$vehicule->model}}" loading="lazy">
         </div>
-        <form action="" method="post" id="reservation-form">
+        <form action="{{route('user.book',['vehiculePlateNb' => $vehicule->plateNb]) }}" method="post"
+          id="reservation-form">
           @csrf
           <div class="row">
             <div class="col">
@@ -27,11 +37,11 @@
           <div class="row">
             <div class="col">
               <label for="pickUpDate" class="form-label">pick up at</label>
-              <input type="datetime-local" value="{{$pickUpDate}}" class="form-control" disabled>
+              <input type="datetime-local" name="pickUpDate" value="{{$pickUpDate}}" class="form-control" disabled>
             </div>
             <div class="col">
               <label for="drop Off Date" class="form-label">drop off at</label>
-              <input type="datetime-local" value="{{$dropOffDate}}" class="form-control" disabled>
+              <input type="datetime-local" name="dropOffDate" value="{{$dropOffDate}}" class="form-control" disabled>
             </div>
           </div>
           <div class="row">
@@ -76,12 +86,23 @@
           <div class="row">
             <div class="col">
               <label for="pickUpLocation" class="form-group">pick up at</label>
-              <select id="pickUpLocations" name="pickUpLocations" class="form-select" aria-label="pickUpLocations">
+              <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
                 <option selected>sellect a pick up location</option>
                 @foreach ($pickUpLocations as $address)
-                  <option value="{{$address -> address_address}}">{{$address -> address_address}}</option>
+                <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
               </select>
+              @error('pickUpLocation')<span style="color: red">{{$message}}</span>@enderror
+            </div>
+            <div class="col">
+              <label for="dropOffLocation" class="form-group">drop off at</label>
+              <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
+                <option selected>sellect a drop off location</option>
+                @foreach ($pickUpLocations as $address)
+                <option value="{{$address -> id}}">{{$address -> address_address}}</option>
+                @endforeach
+              </select>
+              @error('dropOffLocation')<span style="color: red">{{$message}}</span>@enderror
             </div>
           </div>
           <button class="custom-btn" onclick="event.preventDefault();" data-bs-toggle="modal"
@@ -97,7 +118,7 @@
                   <p>you are on one step to book this car</p>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">cancel</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="event.preventDefault();">cancel</button>
                   <button type="button" class="btn btn-primary"
                     onclick="document.getElementById('reservation-form').submit()">confirm my choise</button>
                 </div>
