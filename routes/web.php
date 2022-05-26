@@ -146,6 +146,7 @@ Route::prefix('secretary')->name('secretary.')->group(function(){
         Route::get('/vehicle/{id}',[SecretaryController::class,'vehiculeDetails'])->name('vehiculeDetails');
         Route::post('/vehicle/{id}',[SecretaryController::class,'deleteVehicule'])->name('deleteVehicule');
         Route::post('/vehicle1/{id}', [SecretaryController::class, 'updateState'])->name('updateState');
+        Route::post('/vehicle-transfer/{id}',[SecretaryController::class,'transferVehicle'])->name('transferVehicle');
         Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
         Route::post('/pick-up-locations',[AgencyController::class,'addPickUpLoaction'])->name('addPickUpLocation');
         Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
