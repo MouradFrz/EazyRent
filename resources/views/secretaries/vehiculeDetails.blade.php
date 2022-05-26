@@ -79,6 +79,7 @@
     </div>
   </div>
 <div class="container">
+    
     <div class="row m-0">
         <div class="col-lg-7 pb-5 pe-lg-5">
             <div class="row">
@@ -173,10 +174,31 @@
                                 
                             </div>
                             <div class="d-flex flex-column">
-                                @if ($vehicule->availability)
-                                <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                @if (!is_null($latestBooking))
+                                    
+                                
+                                    @if ($latestBooking->state=='REQUESTED' || $latestBooking->state=='ACCEPTED' || $latestBooking->state=='SIGNED' || $latestBooking->state=='ON GOING')
+                                        
+                                        @if ($vehicule->availability)
+                                        <button type="button" class="btn btn-warning my-3" disabled data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                        @else
+                                        <button type="button" class="btn btn-success my-3" disabled data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                        @endif
+
+                                    @else
+                                        @if ($vehicule->availability)
+                                        <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                        @else
+                                        <button type="button" class="btn btn-success my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                        @endif
+
+                                    @endif
                                 @else
-                                <button type="button" class="btn btn-success my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                         @if ($vehicule->availability)
+                                        <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
+                                        @else
+                                        <button type="button" class="btn btn-success my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal2">Set available</button>
+                                        @endif
                                 @endif
                             <button type="button" class="btn btn-warning my-3"  data-bs-toggle="modal" data-bs-target="#transferModal"> Transfer to another garage</button>
                             <button type="button" class="btn btn-danger my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal1"> Delete this vehicle</button>
