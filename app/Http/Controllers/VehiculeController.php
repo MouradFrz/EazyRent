@@ -43,7 +43,13 @@ class VehiculeController extends Controller
     return view('users.viewOffers')->with(['vehicules' => $vehicules, 'pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate]);
   }
   public function viewOfferDetails($plateNb,$pickUpDate,$dropOffDate) {
-    $vehicule = Vehicule::find($plateNb);
-    return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>$pickUpDate,'dropOffDate'=>$dropOffDate]);
+    $vehicule = Vehicule::
+        join('garages', 'vehicules.garageID', '=', 'garages.garageID')
+      ->join('branches', 'garages.brancheID', '=', 'branches.brancheID')
+      ->join('agencies', 'branches.agencyID','=','agencies.agencyID')
+      ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath','agencies.name'])
+      ->find($plateNb)
+    ;
+    return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>str_replace(' ', 'T',$pickUpDate),'dropOffDate'=>str_replace(' ', 'T',$dropOffDate)]);
   }
 }

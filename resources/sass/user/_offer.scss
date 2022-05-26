@@ -3,9 +3,12 @@
     margin-top: 2rem;
     margin-bottom: 1rem;
   }
-  &_media > img{
-    width: 100%;
-    height: 100%;
+  &_media {
+    margin-bottom: 1rem;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
   }
   &_details {
     table > tbody > tr > th {
