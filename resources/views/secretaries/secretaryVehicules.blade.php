@@ -49,6 +49,7 @@
              @foreach ($vehicules as $vehicule)
                 <div class="card-custom">
                   <ul>
+                    <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath  )}}" alt="" style="max-height:200px; float:center;">
                     <li>Vehicule: <span class="value">{{$vehicule->brand}} {{ $vehicule->model }}</span></li>
                     <li>Plate number: <span class="value">{{ $vehicule->plateNb }}</span></li>
                     <li>Garage ID: <span class="value">{{ $vehicule->garageID }}</span></li>
