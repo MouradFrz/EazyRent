@@ -45,7 +45,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/check', [UserController::class, 'check'])->name('check');
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
-    Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
+    Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
     Route::get('/offer/{plateNb}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
   });
   Route::middleware(['auth:web', 'PreventBackHistory'])->group(function () {

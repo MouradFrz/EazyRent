@@ -9,7 +9,7 @@
 <div>
   <div class="container d-flex align-items-center justify-content-center flex-column">
     <div class="search-panel d-flex align-itmes-center justify-content-center flex-column">
-      <form action="{{route('user.getOffers')}}" method="POST">
+      <form action="{{route('user.viewOffers')}}" method="POST">
         @csrf
         <div class="location d-flex flex-column">
           <label for="">Pick-up location :</label>

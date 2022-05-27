@@ -2,6 +2,10 @@
 @section('content')
 <div class="offer">
   <div class="container">
+    <form action="{{route('user.viewOffers')}}" method="POST" id="goBack">
+    @csrf
+    <a type="submit" onclick="document.getElementById('goBack').submit()"><span><i class="fa-solid fa-arrow-left"></i> Go back</span></a>
+    </form>
     <div class="offer_header">
       <h1>{{session('vehicule')->brand}} {{session('vehicule')->model}}</h1>
     </div>
@@ -23,6 +27,8 @@
           <img src="{{asset('images/vehicules/imagePaths/'.session('vehicule')->imagePath)}}"
             alt="{{session('vehicule')->brand}} {{session('vehicule')->model}}" loading="lazy">
         </div>
+        @if (Session::get('success'))
+        @else
         <form action="{{route('user.book') }}" method="post"
           id="reservation-form">
           @csrf
@@ -129,6 +135,7 @@
           </p>
           @endif
         </form>
+        @endif
       </div>
       <div class="offer_details col-4">
         <table class="table table-striped">

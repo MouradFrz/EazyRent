@@ -2,18 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\PickUpLocation;
 use Illuminate\Http\Request;
 use App\Models\Vehicule;
 use App\Models\Booking;
-use Illuminate\Support\Facades\DB;
 use DateTime;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class VehiculeController extends Controller
 {
   public function searchVehicules(Request $request)
   {
+    if(session()->has('vehicules')) {
+      return view('users.viewOffers');
+    }
     $request->validate([
       'pickUpLng' => 'required|numeric',
       'pickUpLat' => 'required|numeric',
@@ -46,10 +48,11 @@ class VehiculeController extends Controller
 
     session(['pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate,
     'pickUpString' => $request->pickUpDate, 'dropOffString' => $request->dropOffDate,
-    'pickUpLat' => $pickUpLat, 'pickUpLng' => $pickUpLng]);
+    'pickUpLat' => $pickUpLat, 'pickUpLng' => $pickUpLng,
+    'vehicules' => $vehicules
+    ]);
 
-    // return view('users.viewOffers')->with(['vehicules' => $vehicules, 'pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate]);
-    return view('users.viewOffers')->with(['vehicules' => $vehicules]);
+    return view('users.viewOffers');
   }
   public function viewOfferDetails($plateNb) {
     $vehicule = Vehicule::select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
@@ -84,8 +87,17 @@ class VehiculeController extends Controller
 
     $vehicule = Vehicule::find(session('vehiculePlateNb'));
     if($vehicule->availability == false) {
-      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','vehicule is not available');
+      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','vehicle is not available');
     }
+
+    // foreach(session('vehicules') as $vehicule) {
+    //   if($vehicule->plateNb == session('vehiculePlateNb')){
+    //     session('vehicules').$vehicule = null;
+    //     dd(session('vehicules').$vehicule);
+    //   }
+    // }
+    // dd(session('vehicules'));
+
     $booking = new Booking;
     $booking->created_at = now();
     // REQUESTED ACCEPTED REFUSED SIGNED CANCELED ON GOING FINISHED
@@ -99,16 +111,20 @@ class VehiculeController extends Controller
 
     $booking->pickUpDate = session('pickUpDate');
     $booking->dropOffDate = session('dropOffDate');
-    // not yet
+
     $booking->clientUsername = Auth::user()->username;
     $booking->vehiculePlateNB = session('vehiculePlateNb');
     $save = $booking->save();
     if($save) {
-      $vehicule ->availability = false;
-      $vehicule -> save();
-      $plateNb = session('vehiculePlateNb');
-      // session()->forget(['vehiculePlate']);
-      return redirect()->route('user.viewOfferDetails', ['plateNb' => $plateNb ])->with('success','booking success');
+      try {
+        $vehicule ->availability = false;
+        $vehicule -> save();
+        $plateNb = session('vehiculePlateNb');
+        session()->forget(['vehiculePlateNb', 'vehicule', 'agencyName','pickUpLocations']);
+        return redirect()->route('user.viewOfferDetails', ['plateNb' => $plateNb ])->with('success','booking success');
+      }catch(Exception $e) {
+        return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','booking has been failed');
+      }
     }
     else {
       return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','booking has been failed');

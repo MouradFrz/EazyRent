@@ -27,7 +27,7 @@
     </div>
   </div> --}}
   <div class="container">
-    @foreach ($vehicules as $vehicule)
+    @foreach (session('vehicules') as $vehicule)
     <div class="minimized-offer row">
       <div class="minimized-offer_media col-12 col-md-3">
         {{-- there is probleme when saving cars images the pathshould containt name of the image not the full path --}}
@@ -48,7 +48,7 @@
               echo $price , ' dzd';
               @endphp
             </strong>
-            <p>vehicle price</p>
+            <p>{{$vehicule -> pricePerDay}} dzd per day</p>
           </div>
         </div>
         <div class="prop">
