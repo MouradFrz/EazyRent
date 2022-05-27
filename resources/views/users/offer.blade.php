@@ -103,6 +103,7 @@
               @error('dropOffLocation')<span style="color: red">{{$message}}</span>@enderror
             </div>
           </div>
+          @if(Auth::guard('web')->check())
           <button class="custom-btn" onclick="event.preventDefault();" data-bs-toggle="modal"
             data-bs-target="#confirm">confirm booking</button>
           <div class="modal fade" id="confirm" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
@@ -123,6 +124,11 @@
               </div>
             </div>
           </div>
+          @else
+          <p>you have to log in before booking a vehicule
+            <a href="{{ route('user.login') }}" id="log-in">log in now!</a>
+          </p>
+          @endif
         </form>
       </div>
       <div class="offer_details col-4">

@@ -82,6 +82,10 @@ class VehiculeController extends Controller
       'dropOffLocation.required' => 'you have to choose a drop off location',
     ]);
 
+    $vehicule = Vehicule::find(session('vehiculePlateNb'));
+    if($vehicule->availability == false) {
+      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','vehicule is not available');
+    }
     $booking = new Booking;
     $booking->created_at = now();
     // REQUESTED ACCEPTED REFUSED SIGNED CANCELED ON GOING FINISHED
@@ -100,10 +104,11 @@ class VehiculeController extends Controller
     $booking->vehiculePlateNB = session('vehiculePlateNb');
     $save = $booking->save();
     if($save) {
-      $vehicule = Vehicule::find(session('vehiculePlateNb'));
       $vehicule ->availability = false;
       $vehicule -> save();
-      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('success','booking success');
+      $plateNb = session('vehiculePlateNb');
+      // session()->forget(['vehiculePlate']);
+      return redirect()->route('user.viewOfferDetails', ['plateNb' => $plateNb ])->with('success','booking success');
     }
     else {
       return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','booking has been failed');
