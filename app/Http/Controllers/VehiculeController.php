@@ -39,31 +39,40 @@ class VehiculeController extends Controller
       ->whereBetween('address_longitude', [$pickUpLng - .18, $pickUpLng + .18])
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
       ->distinct()
-      ->get();
-
+      ->get()
+    ;
     $dropOffDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $request->dropOffDate));
     $pickUpDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $request->pickUpDate));
-    return view('users.viewOffers')->with(['vehicules' => $vehicules, 'pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate]);
+
+    session(['pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate,
+    'pickUpString' => $request->pickUpDate, 'dropOffString' => $request->dropOffDate,
+    'pickUpLat' => $pickUpLat, 'pickUpLng' => $pickUpLng]);
+
+    // return view('users.viewOffers')->with(['vehicules' => $vehicules, 'pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate]);
+    return view('users.viewOffers')->with(['vehicules' => $vehicules]);
   }
-  public function viewOfferDetails($plateNb,$pickUpDate,$dropOffDate) {
-    $vehicule = Vehicule::
-        join('garages', 'vehicules.garageID', '=', 'garages.garageID')
+  public function viewOfferDetails($plateNb) {
+    $vehicule = Vehicule::select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
+    ->find($plateNb)
+    ;
+    $agency = Vehicule::join('garages', 'vehicules.garageID', '=', 'garages.garageID')
       ->join('branches', 'garages.brancheID', '=', 'branches.brancheID')
       ->join('agencies', 'branches.agencyID','=','agencies.agencyID')
-      // check later what u realy need to select
-      ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath','agencies.name'])
+      ->select(['agencies.name'])
       ->find($plateNb)
     ;
-    // maybe later agency it will be in it's own variable
     $pickUpLocations = Vehicule::join('garages', 'vehicules.garageID', '=', 'garages.garageID')
-    ->join('pickUpLocations', 'garages.brancheID', '=', 'pickUpLocations.brancheID')
-    ->where('vehicules.plateNb',$plateNb)
-    ->select('pickUpLocations.id','pickUpLocations.address_address')
-    ->get()
+      ->join('pickUpLocations', 'garages.brancheID', '=', 'pickUpLocations.brancheID')
+      ->where('vehicules.plateNb',$plateNb)
+      ->select('pickUpLocations.id','pickUpLocations.address_address')
+      ->get()
     ;
-    return view('users.offer')->with(['vehicule'=> $vehicule,'pickUpDate'=>str_replace(' ', 'T',$pickUpDate),'dropOffDate'=>str_replace(' ', 'T',$dropOffDate),'pickUpLocations' => $pickUpLocations ]);
+    session()->forget(['0', '1']);
+    $agnecyName = $agency -> name;
+    session(['vehiculePlateNb' => $plateNb,'agencyName' => $agnecyName]);
+    return view('users.offer')->with(['vehicule' => $vehicule, 'pickUpLocations' => $pickUpLocations]);
   }
-  public function book(Request $request,$vehiculePLateNb) {
+  public function book(Request $request) {
 
     $request->validate([
       'pickUpLocation' => 'required',
@@ -84,20 +93,20 @@ class VehiculeController extends Controller
     $booking->pickUpLocation = $request->pickUpLocation;
     $booking->dropOffLocation = $request->pickUpLocation;
 
-    $pickUpDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->pickUpDate));
-    $dropOffDate = DateTime::createFromFormat('Y-m-j H:i:s', str_replace('T',' ', $request->dropOffDate));
-    $booking->pickUpDate = $pickUpDate;
-    $booking->dropOffDate = $dropOffDate;
+    $booking->pickUpDate = session('pickUpDate');
+    $booking->dropOffDate = session('dropOffDate');
     // not yet
     // $booking->clientUsername = Auth::user()->username;
-    $booking->vehiculePlateNB = $vehiculePLateNb;
-    dd($request->pickUpDate);
+    $booking->vehiculePlateNB = session('vehiculePlateNb');
     $save = $booking->save();
     if($save) {
-      return redirect()->route('user.offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('success','booking success');
+      $vehicule = Vehicule::find(session('vehiculePlateNb'));
+      $vehicule ->availability = false;
+      $vehicule -> save();
+      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('success','booking success');
     }
     else {
-      return redirect()->route('user.offer/vehiculePLateNb/$request->pickUpDate/$request->dropOffDate')->with('fail','booking has been failed');
+      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','booking has been failed');
     }
     // http://127.0.0.1:8000/user/offer/2456376573/2022-05-27%2009:19/2022-05-31%2009:19
   }

@@ -6,13 +6,15 @@
       <h1>{{$vehicule->brand}} {{$vehicule->model}}</h1>
     </div>
     @if (Session::get('fail'))
-    <div class="alert alert-danger w-100" role="alert">
-      {{ Session::get('fail') }}
+    <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
+      <strong>{{ Session::get('fail') }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     @if (Session::get('success'))
-    <div class="alert alert-success w-100 " role="alert">
-      {{ Session::get('success') }}
+    <div class="alert alert-success w-100 alert-dismissible fade show" role="alert">
+      <strong>{{ Session::get('success') }}</strong>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <div class="row">
@@ -21,7 +23,7 @@
           <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath)}}"
             alt="{{$vehicule->brand}} {{$vehicule->model}}" loading="lazy">
         </div>
-        <form action="{{route('user.book',['vehiculePlateNb' => $vehicule->plateNb]) }}" method="post"
+        <form action="{{route('user.book') }}" method="post"
           id="reservation-form">
           @csrf
           <div class="row">
@@ -31,34 +33,34 @@
             </div>
             <div class="col">
               <label for="agency" class="form-label">agency</label>
-              <input type="text" value="{{$vehicule->name}}" class="form-control" disabled>
+              <input type="text" value="{{session('agencyName')}}" class="form-control" disabled>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="pickUpDate" class="form-label">pick up at</label>
-              <input type="datetime-local" name="pickUpDate" value="{{$pickUpDate}}" class="form-control" disabled>
+              <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" class="form-control" disabled>
             </div>
             <div class="col">
               <label for="drop Off Date" class="form-label">drop off at</label>
-              <input type="datetime-local" name="dropOffDate" value="{{$dropOffDate}}" class="form-control" disabled>
+              <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}" class="form-control" disabled>
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label for="daysNbr" class="form-label">days number</label>
               <input type="string" value="@php
-              $diff = DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $dropOffDate))
-              ->diff(DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $pickUpDate)));
-              echo $diff->days;
+              $diff = session('dropOffDate')->diff(session('pickUpDate'));
+              $days =  $diff->days;
+              echo $days;
               @endphp" class="form-control" disabled>
             </div>
             <div class="col">
               <label for="hoursNbr" class="form-label">hours number</label>
               <input type="number" value="@php
-              $diff = DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $dropOffDate))
-              ->diff(DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $pickUpDate)));
-              echo $diff->h;
+              // $diff = session('dropOffDate')->diff(session('pickUpDate'));
+              $hours = $diff->h;
+              echo $hours;
               @endphp" class="form-control" disabled>
             </div>
           </div>
@@ -74,10 +76,6 @@
             <div class="col">
               <label for="totalPrice" class="form-label">total price</label>
               <input type="number" class="form-control" value="@php
-              $diff = DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $dropOffDate))
-              ->diff(DateTime::createFromFormat('Y-m-j H:i', str_replace('T',' ', $pickUpDate)));
-              $days = $diff->days;
-              $hours = $diff->h;
               $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
               echo $price;
               @endphp" disabled>
@@ -87,7 +85,7 @@
             <div class="col">
               <label for="pickUpLocation" class="form-group">pick up at</label>
               <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
-                <option selected>sellect a pick up location</option>
+                <option selected value="">sellect a pick up location</option>
                 @foreach ($pickUpLocations as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
@@ -97,7 +95,7 @@
             <div class="col">
               <label for="dropOffLocation" class="form-group">drop off at</label>
               <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
-                <option selected>sellect a drop off location</option>
+                <option selected value="">sellect a drop off location</option>
                 @foreach ($pickUpLocations as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach

@@ -41,7 +41,7 @@
           <div class="text-end">
             <strong>
               @php
-              $diff = $dropOffDate->diff($pickUpDate);
+              $diff = session('dropOffDate')->diff(session('pickUpDate'));
               $days = $diff->days;
               $hours = $diff->h;
               $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
@@ -74,7 +74,7 @@
               <span>{{$vehicule -> rating}}</span>
           </div>
           <a
-            href="{{ route('user.viewOfferDetails',['plateNb'=>$vehicule->plateNb,'dropDate'=>$dropOffDate->format('Y-m-j H:i'),'pickDate'=>$pickUpDate->format('Y-m-j H:i')]) }}"
+            href="{{ route('user.viewOfferDetails', ['plateNb'=>$vehicule->plateNb]) }}"
             class="custom-btn">view More
           </a>
         </div>
