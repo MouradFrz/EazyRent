@@ -43,8 +43,6 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/register', 'users.register')->name('register');
     Route::post('/create', [UserController::class, 'create'])->name('create');
     Route::post('/check', [UserController::class, 'check'])->name('check');
-    // Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
-    // Route::get('/offer/{plateNb}/{pickDate}/{dropDate}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
@@ -54,8 +52,6 @@ Route::prefix('user')->name('user.')->group(function () {
   Route::middleware(['auth:web', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-    // Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('getOffers');
-    // Route::get('/offer/{plateNb}/{puDate}/{doDate}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
   });
 });
 
@@ -189,5 +185,7 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
   Route::middleware(['auth:garagist', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'garagists.garagistHome')->name('home');
     Route::post('/logout', [GaragistController::class, 'logout'])->name('logout');
+    Route::get('/editProfile',[GaragistController::class,'showProfile'])->name('showProfile');
+    Route::post('/editProfile',[GaragistController::class,'editProfile'])->name('editProfile');
   });
 });

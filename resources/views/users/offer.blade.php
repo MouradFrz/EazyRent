@@ -29,7 +29,7 @@
           <div class="row">
             <div class="col">
               <label for="vehicule" class="form-label">vehicule</label>
-              <input type="text" value="{{$vehicule->brand}} {{$vehicule->model}}" class="form-control" disabled>
+              <input type="text" value="{{$vehicule->brand}} {{$vehicule->model}}" class="form-control" >
             </div>
             <div class="col">
               <label for="agency" class="form-label">agency</label>

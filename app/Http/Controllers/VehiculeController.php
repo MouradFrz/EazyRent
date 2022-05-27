@@ -85,7 +85,7 @@ class VehiculeController extends Controller
     $booking = new Booking;
     $booking->created_at = now();
     // REQUESTED ACCEPTED REFUSED SIGNED CANCELED ON GOING FINISHED
-    $booking->state = 'REQUESTD';
+    $booking->state = 'REQUESTED';
     // by default it's false secretary will update this when the client pay the booking
     $booking->isPaid = false;
     // 'HAND BY HAND' 'ONLINE'
