@@ -118,18 +118,22 @@
                 <td>{{ $element->created_at }}</td>
                 <td>{{ $element->updated_at }}</td>
                 <td>
+                  @if (count($secbans)!=0)
                   @foreach ($secbans as $ban)
-                    @if($ban->bannedClient==$element->username)
+                  @if($ban->bannedClient==$element->username)
                       @if ($ban->endDate>now())
                         YES 
                         @break
-                    
-                    @else
-                    NO
-                    @break
+                      @else
+                      NO
+                      @break
                     @endif
-                    @endif
-                  @endforeach
+                  @endif
+                @endforeach
+                @else
+                NO
+                  @endif
+                  
                 </td>
                 <td><a href="{{ route('secretary.reservationDetails',$element->bookingID) }}">View details</a></td>       
               </tr>

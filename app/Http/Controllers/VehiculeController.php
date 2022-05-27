@@ -100,7 +100,7 @@ class VehiculeController extends Controller
     $booking->pickUpDate = session('pickUpDate');
     $booking->dropOffDate = session('dropOffDate');
     // not yet
-    // $booking->clientUsername = Auth::user()->username;
+    $booking->clientUsername = Auth::user()->username;
     $booking->vehiculePlateNB = session('vehiculePlateNb');
     $save = $booking->save();
     if($save) {

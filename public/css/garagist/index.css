@@ -1,0 +1,25 @@
+.review {
+  background-color: rgb(226, 226, 226);
+  padding: 30px;
+  margin-bottom: 18px;
+}
+.review img {
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #b56e6e;
+  padding: 4px;
+}
+.review .title {
+  font-weight: 500;
+  font-size: 1.2rem;
+  margin-bottom: 0px;
+}
+.review .comment {
+  margin: 15px 0;
+}
+.review .date {
+  margin: 0;
+}

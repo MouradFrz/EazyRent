@@ -7,6 +7,7 @@
     "/css/app.css": "/css/app.css",
     "/css/bootstrap.css": "/css/bootstrap.css",
     "/css/vehicules/index.css": "/css/vehicules/index.css",
+    "/css/garagist/index.css": "/css/garagist/index.css",
     "/css/owner/index.css": "/css/owner/index.css",
     "/css/admin/index.css": "/css/admin/index.css"
 }

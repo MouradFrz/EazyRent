@@ -183,9 +183,12 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
     Route::post('/check', [GaragistController::class, 'check'])->name('check');
   });
   Route::middleware(['auth:garagist', 'PreventBackHistory'])->group(function () {
-    Route::view('/home', 'garagists.garagistHome')->name('home');
+    Route::get('/home',  [GaragistController::class, 'home'])->name('home');
     Route::post('/logout', [GaragistController::class, 'logout'])->name('logout');
     Route::get('/editProfile',[GaragistController::class,'showProfile'])->name('showProfile');
     Route::post('/editProfile',[GaragistController::class,'editProfile'])->name('editProfile');
+    Route::get('/vehicles',[GaragistController::class,'showVehicles'])->name('vehicles');
+    Route::get('/manageVehicle/{id}',[GaragistController::class,'manageVehicle'])->name('manageVehicle');
+    Route::post('/set-condition/{id}',[GaragistController::class,'setCondition'])->name('setCondition');
   });
 });

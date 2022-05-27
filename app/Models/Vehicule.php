@@ -10,5 +10,5 @@ class Vehicule extends Model
     protected $table = 'vehicules';
     protected $primaryKey = 'plateNb';
     public $timestamps = false;
-    public $fillable=['availability','garageID'];
+    public $fillable=['availability','garageID','physicalState','note'];
 }

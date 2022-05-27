@@ -82,19 +82,10 @@
         @if(Auth::guard('garagist')->check())
         <ul class="nav flex-column align-items-center justify-content-center">
           <li class="nav-item active">
-            <a href="#" class="nav-link ">garagist</a>
+            <a href="{{ route('garagist.vehicles') }}" class="nav-link ">Vehicle management</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">garagist</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link ">agencies list</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link ">users list</a>
-          </li>
-          <li class="nav-item">
-            <a href="#" class="nav-link ">baned users</a>
+            <a href="#" class="nav-link ">On going reservations</a>
           </li>
         </ul>
         @endif
