@@ -3,7 +3,7 @@
 <div class="offer">
   <div class="container">
     <div class="offer_header">
-      <h1>{{$vehicule->brand}} {{$vehicule->model}}</h1>
+      <h1>{{session('vehicule')->brand}} {{session('vehicule')->model}}</h1>
     </div>
     @if (Session::get('fail'))
     <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
@@ -20,8 +20,8 @@
     <div class="row">
       <div class="col-8">
         <div class="offer_media">
-          <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath)}}"
-            alt="{{$vehicule->brand}} {{$vehicule->model}}" loading="lazy">
+          <img src="{{asset('images/vehicules/imagePaths/'.session('vehicule')->imagePath)}}"
+            alt="{{session('vehicule')->brand}} {{session('vehicule')->model}}" loading="lazy">
         </div>
         <form action="{{route('user.book') }}" method="post"
           id="reservation-form">
@@ -29,7 +29,7 @@
           <div class="row">
             <div class="col">
               <label for="vehicule" class="form-label">vehicule</label>
-              <input type="text" value="{{$vehicule->brand}} {{$vehicule->model}}" class="form-control" >
+              <input type="text" value="{{session('vehicule')->brand}} {{session('vehicule')->model}}" class="form-control" disabled>
             </div>
             <div class="col">
               <label for="agency" class="form-label">agency</label>
@@ -58,7 +58,6 @@
             <div class="col">
               <label for="hoursNbr" class="form-label">hours number</label>
               <input type="number" value="@php
-              // $diff = session('dropOffDate')->diff(session('pickUpDate'));
               $hours = $diff->h;
               echo $hours;
               @endphp" class="form-control" disabled>
@@ -67,16 +66,16 @@
           <div class="row">
             <div class="col">
               <label for="pricePerHour" class="form-label">price per hour</label>
-              <input type="number" class="form-control" value="{{$vehicule->pricePerHour}}" disabled>
+              <input type="number" class="form-control" value="{{session('vehicule')->pricePerHour}}" disabled>
             </div>
             <div class="col">
               <label for="pricePerDay" class="form-label">price per day</label>
-              <input type="number" class="form-control" value="{{$vehicule->pricePerDay}}" disabled>
+              <input type="number" class="form-control" value="{{session('vehicule')->pricePerDay}}" disabled>
             </div>
             <div class="col">
               <label for="totalPrice" class="form-label">total price</label>
               <input type="number" class="form-control" value="@php
-              $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
+              $price = session('vehicule')->pricePerHour * $hours + session('vehicule')->pricePerDay * $days;
               echo $price;
               @endphp" disabled>
             </div>
@@ -86,7 +85,7 @@
               <label for="pickUpLocation" class="form-group">pick up at</label>
               <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
                 <option selected value="">sellect a pick up location</option>
-                @foreach ($pickUpLocations as $address)
+                @foreach (session('pickUpLocations') as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
               </select>
@@ -96,7 +95,7 @@
               <label for="dropOffLocation" class="form-group">drop off at</label>
               <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
                 <option selected value="">sellect a drop off location</option>
-                @foreach ($pickUpLocations as $address)
+                @foreach (session('pickUpLocations') as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
               </select>
@@ -136,39 +135,39 @@
           <tbody>
             <tr>
               <th scope="row">color : </th>
-              <td>{{$vehicule->color}}</td>
+              <td>{{session('vehicule')->color}}</td>
             </tr>
             <tr>
               <th scope="row">type : </th>
-              <td>{{$vehicule->type}}</td>
+              <td>{{session('vehicule')->type}}</td>
             </tr>
             <tr>
               <th scope="row">fuel : </th>
-              <td>{{$vehicule->fuel}}</td>
+              <td>{{session('vehicule')->fuel}}</td>
             </tr>
             <tr>
               <th scope="row">year : </th>
-              <td>{{$vehicule->year}}</td>
+              <td>{{session('vehicule')->year}}</td>
             </tr>
             <tr>
               <th scope="row">gear type : </th>
-              <td>{{$vehicule->gearType}}</td>
+              <td>{{session('vehicule')->gearType}}</td>
             </tr>
             <tr>
               <th scope="row">doors number : </th>
-              <td>{{$vehicule->doorsNb}}</td>
+              <td>{{session('vehicule')->doorsNb}}</td>
             </tr>
             <tr>
               <th scope="row">horse power : </th>
-              <td>{{$vehicule->horsePower}}</td>
+              <td>{{session('vehicule')->horsePower}}</td>
             </tr>
             <tr>
               <th scope="row">air cooling : </th>
-              <td>{{$vehicule->airCooling}}</td>
+              <td>{{session('vehicule')->airCooling}}</td>
             </tr>
             <tr>
               <th scope="row">rating : </th>
-              <td>{{$vehicule->rating}}</td>
+              <td>{{session('vehicule')->rating}}</td>
             </tr>
           </tbody>
         </table>

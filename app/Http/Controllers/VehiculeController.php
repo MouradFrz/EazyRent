@@ -69,8 +69,8 @@ class VehiculeController extends Controller
     ;
     session()->forget(['0', '1']);
     $agnecyName = $agency -> name;
-    session(['vehiculePlateNb' => $plateNb,'agencyName' => $agnecyName]);
-    return view('users.offer')->with(['vehicule' => $vehicule, 'pickUpLocations' => $pickUpLocations]);
+    session(['vehiculePlateNb' => $plateNb,'agencyName' => $agnecyName, 'vehicule' => $vehicule, 'pickUpLocations' => $pickUpLocations]);
+    return view('users.offer');
   }
   public function book(Request $request) {
 
