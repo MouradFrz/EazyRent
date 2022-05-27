@@ -85,7 +85,7 @@
             <a href="{{ route('garagist.vehicles') }}" class="nav-link ">Vehicle management</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link ">On going reservations</a>
+            <a href="{{ route('garagist.getReservations') }}" class="nav-link ">On going reservations</a>
           </li>
         </ul>
         @endif
