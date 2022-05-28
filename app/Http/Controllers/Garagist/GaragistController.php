@@ -97,32 +97,45 @@ class GaragistController extends Controller
         if (count($hasGarage) == 0) {
             return redirect()->route('garagist.home');
         }
-        $vehicles = Vehicule::where('garageID',$hasGarage[0]->garageID)->get();
-        return view('garagists.vehicles',['vehicles'=>$vehicles]);
+        $vehicles = Vehicule::where('garageID', $hasGarage[0]->garageID)->get();
+        return view('garagists.vehicles', ['vehicles' => $vehicles]);
     }
 
-    public function manageVehicle($id){
+    public function manageVehicle($id)
+    {
         $vehicle = Vehicule::find($id);
-        $bookings = Booking::where('vehiculePlateNb',$id)->join('users','bookings.clientUsername','=','users.username')->get();
-        return view('garagists.manageVehicle',['vehicule'=>$vehicle,'bookings'=>$bookings]);
+        $bookings = Booking::where('vehiculePlateNb', $id)->join('users', 'bookings.clientUsername', '=', 'users.username')->get();
+        return view('garagists.manageVehicle', ['vehicule' => $vehicle, 'bookings' => $bookings]);
     }
-    public function setCondition(Request $request,$id){
+    public function setCondition(Request $request, $id)
+    {
         $hasGarage = Garage::join('garagemanagers', 'garageManagerUsername', '=', 'garagemanagers.username')->where('username', Auth::user()->username)->get();
 
         $vehicule = Vehicule::find($id);
 
-        if($vehicule->garageID != $hasGarage[0]->garageID){
+        if ($vehicule->garageID != $hasGarage[0]->garageID) {
             return redirect()->route('garagist.home');
         }
         $request->validate([
-            'condition'=>'required',
-            'note'=>'required|regex:/^[a-z\d\-_\s\,.]+$/i|min:10',
+            'condition' => 'required',
+            'note' => 'required|regex:/^[a-z\d\-_\s\,.]+$/i|min:10',
         ]);
         $vehicule->update([
-            'physicalState'=>$request->condition,
-            'note'=>$request->note
+            'physicalState' => $request->condition,
+            'note' => $request->note
         ]);
 
-        return redirect()->route('garagist.manageVehicle',$id)->with('message','Vehicle condition updated successfully!');
+        return redirect()->route('garagist.manageVehicle', $id)->with('message', 'Vehicle condition updated successfully!');
+    }
+
+
+    public function getReservations()
+    {
+        $hasGarage = Garage::join('garagemanagers', 'garageManagerUsername', '=', 'garagemanagers.username')->where('username', Auth::user()->username)->get();
+        if (count($hasGarage) == 0) {
+            return redirect()->route('garagist.home');
+        }
+        $bookings = Booking::join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->join('users', 'bookings.clientUsername', '=', 'users.username')->join('pickUpLocations', 'bookings.dropOffLocation', '=', 'pickUpLocations.id')->where('garageID', $hasGarage[0]->garageID)->latest('bookings.created_at')->paginate(25);
+        return view('garagists.ongoingBookings', compact('bookings'));
     }
 }

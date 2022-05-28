@@ -190,5 +190,6 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
     Route::get('/vehicles',[GaragistController::class,'showVehicles'])->name('vehicles');
     Route::get('/manageVehicle/{id}',[GaragistController::class,'manageVehicle'])->name('manageVehicle');
     Route::post('/set-condition/{id}',[GaragistController::class,'setCondition'])->name('setCondition');
+    Route::get('/reservation',[GaragistController::class,'getReservations'])->name('getReservations');
   });
 });
