@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
     <title>Signup</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/register.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
     <style>
       .hide{
         position: absolute;
@@ -246,12 +248,14 @@
                 id="image-preview-face"
                 alt=""
               />
+              <span id="verification"></span>
               <div class="d-flex justify-content-end ">
                 <input
                   style="margin-top: 15px !important; width: 150px;"
                   type="submit"
                   value="Sign up!"
                   class="custom-btn"
+                  id="submit-button"
                 />
               </div>
               <p class="step-index">4/4</p>
@@ -278,10 +282,13 @@
         </div>
         </div>
       </div>
+      <script src="{{ asset('js/face-api.min.js') }}"></script>
       <script>
+        const imageUpload = document.getElementById('file-field-face')
         const pages = document.querySelectorAll('.signupStep')
         const stepInc = document.querySelector('#next')
         const stepDec = document.querySelector('#prev')
+        
 
         let currentStep=0;
         stepDec.disabled=true;
@@ -324,8 +331,37 @@
             if (charCode > 31 && (charCode < 48 || charCode > 57)) {
               return false;
             }
-    return true;
-}
+            return true;
+            }
+            // var faceapi = "../../../public/js"
+            // console.log(faceapi)
+            const models_uri = ""
+ Promise.all([
+            // faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
+            // faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
+            faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
+            ]).then(start)
+  function start(){
+    const submitButton = document.querySelector('#submit-button');
+    submitButton.disabled = true
+          
+          imageUpload.addEventListener('change',async ()=>{
+          const image = await faceapi.bufferToImage(imageUpload.files[0])
+          const detections = await faceapi.detectAllFaces(image)
+         
+           const verification = document.querySelector('#verification');
+            
+          if(detections.length == 1){
+              verification.textContent = "Your image is valid"
+              verification.style.color="green"
+              submitButton.disabled = false
+          }else{
+            verification.textContent = "Your image invalid, please choose a more clear picture"
+              verification.style.color="red"
+              submitButton.disabled = true
+          }           
+          }) 
+        }
 
 // function imageSelected(e){
 //       var reader,files = e.target.files
@@ -343,7 +379,7 @@
 
 
       document.querySelector('#file-field').onchange = evt => {
-        console.log('rwgw')
+        
          const [file] = document.querySelector('#file-field').files
           if (file) {
             document.querySelector('.image-preview').src = URL.createObjectURL(file)
@@ -351,7 +387,7 @@
          }
 }
 document.querySelector('#file-field-face').onchange = evt => {
-  console.log('changed face')
+  
          const [file] = document.querySelector('#file-field-face').files
           if (file) {
             document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
@@ -396,3 +432,7 @@ document.querySelector('#file-field-face').onchange = evt => {
     </script> --}}
 </body>
 </html>
+@section('scripts')
+<script defer src="{{ asset('js/face-api.min.js') }}"></script>
+<script defer src="{{ asset('js/faceScript.js') }}"></script>
+@endsection
