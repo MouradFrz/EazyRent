@@ -192,7 +192,7 @@ const ratingbtns = document.querySelectorAll(".ratingbtn");
 const userfullname = document.querySelector("#userfullname");
 const resId = document.querySelector("#resID");
 
-console.log(ratingbtns[0]);
+
 ratingbtns.forEach((e) => {
   e.addEventListener("click", () => {
     userfullname.textContent = e.dataset.fullname;

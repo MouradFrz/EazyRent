@@ -9,4 +9,5 @@ class AdminBan extends Model
 {
     use HasFactory;
     protected $table = 'adminbans';
+    protected $primaryKey='banID';
 }

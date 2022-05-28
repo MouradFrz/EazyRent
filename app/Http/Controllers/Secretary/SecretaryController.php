@@ -10,6 +10,7 @@ use App\Models\AdminBan;
 use App\Models\AgencyBan;
 use App\Models\Booking;
 use App\Models\Secretary;
+use App\Models\User;
 use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -268,6 +269,11 @@ public function banUser(Request $request){
   $ban->endDate=$date;
   $ban->reason=$request->reason;
   $ban->save();
+
+   $user =  User::where('username',$request->username)->first();
+
+   $user->update(['nbBan'=>$user->nbBan + 1]);
+
   if(AgencyBan::where('bannedClient',$request->username)->count()==3){
     $adminban = new AdminBan();
     $adminban->bannedUsername=$request->username;
