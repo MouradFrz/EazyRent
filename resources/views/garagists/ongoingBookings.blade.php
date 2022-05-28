@@ -2,6 +2,7 @@
 
 @section('headTags')
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+<link rel="stylesheet" href="{{ asset('css/garagist/index.css') }}">
 @endsection
 
 @section('content')
@@ -22,14 +23,56 @@
                 </thead>
                 <tbody>
                   
-                   @foreach ($bookings as $element)
+                   @foreach ($bookings as $index => $element)
                   <tr>
+                    
                     <td>{{ $element->model }} {{ $element->brand }}</td>
                     <td>{{ $element->vehiculePlateNB }}</td>
                     <td>{{ $element->firstName }} {{ $element->lastName }}</td>
                     <td>{{ $element->address_address }}</td>
                     <td>{{ $element->dropOffDate }}</td>
-                    <td><a href="">View details</a></td>
+                    <td style="position: relative" class="trigger"><p class="view-more fullname">View more</p>
+                      <div class="dropmenu">
+                        <div class="drop-align">
+                          <div class="d-flex justify-content-between">
+                            <p>Client:</p>
+                            <p>{{ $element->firstName }} {{ $element->lastName }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Vehicule:</p>
+                            <p>{{ $element->brand }} {{ $element->model }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Plate number:</p>
+                            <p>{{ $element->plateNb }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Pick up date:</p>
+                            <p>{{ $element->pickUpDate }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Pick up location:</p>
+                            <p>{{ $pickUpLocations[$index]->address_address }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Drop off date:</p>
+                            <p>{{ $element->dropOffDate }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Drop off location:</p>
+                            <p>{{ $element->address_address }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Payement method:</p>
+                            <p>{{ $element->payementMethod }}</p>
+                          </div>
+                          <div class="d-flex justify-content-between">
+                            <p>Accepted by:</p>
+                            <p>{{ $element->secretaryUsername }}</p>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
 
                   </tr>
                   @endforeach
