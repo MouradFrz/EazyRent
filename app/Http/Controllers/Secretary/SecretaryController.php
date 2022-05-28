@@ -6,6 +6,7 @@ use App\Models\Vehicule;
 use App\Models\Branche;
 use App\Models\Garage;
 use App\Http\Controllers\Controller;
+use App\Models\AdminBan;
 use App\Models\AgencyBan;
 use App\Models\Booking;
 use App\Models\Secretary;
@@ -267,6 +268,13 @@ public function banUser(Request $request){
   $ban->endDate=$date;
   $ban->reason=$request->reason;
   $ban->save();
+  if(AgencyBan::where('bannedClient',$request->username)->count()==3){
+    $adminban = new AdminBan();
+    $adminban->bannedUsername=$request->username;
+    $adminban->reason="This is an automatic ban. You have been banned from 3 agencies.";
+    $adminban->save();
+  }
+
   return redirect()->route('secretary.history')->with('success','User banned successfully');
 }
 

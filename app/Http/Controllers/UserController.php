@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminBan;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -83,6 +84,11 @@ class UserController extends Controller
     $creds = $request->only('username', 'password');
 
     if (Auth::guard('web')->attempt($creds, $request->remember)) {
+      $bans=AdminBan::where('bannedUsername',Auth::user()->username)->get();
+      if(count($bans)!=0){
+        Auth::guard('web')->logout();
+        return redirect()->route('user.login')->with('ban','You have been banned from the website.')->with('reason',$bans[0]->reason);
+      }
       if(session()->has('vehiculePlateNb')) {
         session()->regenerate();
         return redirect()->route('user.viewOfferDetails', ['plateNb'=>session('vehiculePlateNb')]);

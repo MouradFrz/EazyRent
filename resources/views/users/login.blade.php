@@ -34,6 +34,13 @@
                 {{ Session::get('fail') }}
               </div>
               @endif
+              @if (Session::get('ban'))
+              <div class="alert alert-danger w-100" role="alert">
+                {{ Session::get('ban') }} <br>
+                <span class="fw-bold"> Reason:</span> <br>
+                {{ Session::get('reason') }}
+              </div>
+              @endif
               <div class="d-flex align-items-center  "><input type="checkbox" class="m-0" name="remember" id=""> <p class="m-0 ms-2">Remember me</p></div>
 
               <a href="" class="text-decoration-underline">Forgot password?</a>
