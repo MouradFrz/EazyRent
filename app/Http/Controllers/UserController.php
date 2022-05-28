@@ -85,7 +85,7 @@ class UserController extends Controller
     if (Auth::guard('web')->attempt($creds, $request->remember)) {
       if(session()->has('vehiculePlateNb')) {
         session()->regenerate();
-        return view('users.offer');
+        return redirect()->route('user.viewOfferDetails', ['plateNb'=>session('vehiculePlateNb')]);
       }
       return redirect()->route('user.home');
     } else {

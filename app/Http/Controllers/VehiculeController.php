@@ -48,11 +48,9 @@ class VehiculeController extends Controller
 
     session(['pickUpDate' => $pickUpDate, 'dropOffDate' => $dropOffDate,
     'pickUpString' => $request->pickUpDate, 'dropOffString' => $request->dropOffDate,
-    'pickUpLat' => $pickUpLat, 'pickUpLng' => $pickUpLng,
-    'vehicules' => $vehicules
-    ]);
+    'pickUpLat' => $pickUpLat, 'pickUpLng' => $pickUpLng]);
 
-    return view('users.viewOffers');
+    return view('users.viewOffers')->with(['vehicules' => $vehicules]);
   }
   public function viewOfferDetails($plateNb) {
     $vehicule = Vehicule::select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'vehicules.rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
@@ -72,8 +70,8 @@ class VehiculeController extends Controller
     ;
     session()->forget(['0', '1']);
     $agnecyName = $agency -> name;
-    session(['vehiculePlateNb' => $plateNb,'agencyName' => $agnecyName, 'vehicule' => $vehicule, 'pickUpLocations' => $pickUpLocations]);
-    return view('users.offer');
+    session(['vehiculePlateNb' => $plateNb]);
+    return view('users.offer')->with(['vehicule' => $vehicule, 'pickUpLocations' => $pickUpLocations, 'agencyName' => $agnecyName]);
   }
   public function book(Request $request) {
 
@@ -109,8 +107,8 @@ class VehiculeController extends Controller
     $booking->pickUpLocation = $request->pickUpLocation;
     $booking->dropOffLocation = $request->pickUpLocation;
 
-    $booking->pickUpDate = session('pickUpDate');
-    $booking->dropOffDate = session('dropOffDate');
+    $booking->pickUpDate = session('pickUpString'); // string not date
+    $booking->dropOffDate = session('dropOffString');
 
     $booking->clientUsername = Auth::user()->username;
     $booking->vehiculePlateNB = session('vehiculePlateNb');
@@ -119,9 +117,8 @@ class VehiculeController extends Controller
       try {
         $vehicule ->availability = false;
         $vehicule -> save();
-        $plateNb = session('vehiculePlateNb');
-        session()->forget(['vehiculePlateNb', 'vehicule', 'agencyName','pickUpLocations']);
-        return redirect()->route('user.viewOfferDetails', ['plateNb' => $plateNb ])->with('success','booking success');
+        session()->forget(['agencyName','pickUpLocations']);
+        return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('success','booking success');
       }catch(Exception $e) {
         return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail','booking has been failed');
       }

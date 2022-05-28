@@ -4,10 +4,16 @@
   <div class="container">
     <form action="{{route('user.viewOffers')}}" method="POST" id="goBack">
     @csrf
+    <div class="d-none">
+      <input type="text" name="pickUpLng" value="{{session('pickUpLng')}}"/>
+      <input type="text" name="pickUpLat" value="{{session('pickUpLat')}}" />
+      <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" />
+      <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}"/>
+    </div>
     <a type="submit" onclick="document.getElementById('goBack').submit()"><span><i class="fa-solid fa-arrow-left"></i> Go back</span></a>
     </form>
     <div class="offer_header">
-      <h1>{{session('vehicule')->brand}} {{session('vehicule')->model}}</h1>
+      <h1>{{$vehicule -> brand}} {{$vehicule -> model}}</h1>
     </div>
     @if (Session::get('fail'))
     <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
@@ -24,8 +30,8 @@
     <div class="row">
       <div class="col-8">
         <div class="offer_media">
-          <img src="{{asset('images/vehicules/imagePaths/'.session('vehicule')->imagePath)}}"
-            alt="{{session('vehicule')->brand}} {{session('vehicule')->model}}" loading="lazy">
+          <img src="{{asset('images/vehicules/imagePaths/'.$vehicule -> imagePath)}}"
+            alt="{{$vehicule -> brand}} {{$vehicule -> model}}" loading="lazy">
         </div>
         @if (Session::get('success'))
         @else
@@ -35,11 +41,11 @@
           <div class="row">
             <div class="col">
               <label for="vehicule" class="form-label">vehicule</label>
-              <input type="text" value="{{session('vehicule')->brand}} {{session('vehicule')->model}}" class="form-control" disabled>
+              <input type="text" value="{{$vehicule -> brand}} {{$vehicule -> model}}" class="form-control" disabled>
             </div>
             <div class="col">
               <label for="agency" class="form-label">agency</label>
-              <input type="text" value="{{session('agencyName')}}" class="form-control" disabled>
+              <input type="text" value="{{$agencyName}}" class="form-control" disabled>
             </div>
           </div>
           <div class="row">
@@ -72,16 +78,16 @@
           <div class="row">
             <div class="col">
               <label for="pricePerHour" class="form-label">price per hour</label>
-              <input type="number" class="form-control" value="{{session('vehicule')->pricePerHour}}" disabled>
+              <input type="number" class="form-control" value="{{$vehicule -> pricePerHour}}" disabled>
             </div>
             <div class="col">
               <label for="pricePerDay" class="form-label">price per day</label>
-              <input type="number" class="form-control" value="{{session('vehicule')->pricePerDay}}" disabled>
+              <input type="number" class="form-control" value="{{$vehicule -> pricePerDay}}" disabled>
             </div>
             <div class="col">
               <label for="totalPrice" class="form-label">total price</label>
               <input type="number" class="form-control" value="@php
-              $price = session('vehicule')->pricePerHour * $hours + session('vehicule')->pricePerDay * $days;
+              $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
               echo $price;
               @endphp" disabled>
             </div>
@@ -91,7 +97,7 @@
               <label for="pickUpLocation" class="form-group">pick up at</label>
               <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
                 <option selected value="">sellect a pick up location</option>
-                @foreach (session('pickUpLocations') as $address)
+                @foreach ($pickUpLocations as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
               </select>
@@ -101,7 +107,7 @@
               <label for="dropOffLocation" class="form-group">drop off at</label>
               <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
                 <option selected value="">sellect a drop off location</option>
-                @foreach (session('pickUpLocations') as $address)
+                @foreach ($pickUpLocations as $address)
                 <option value="{{$address -> id}}">{{$address -> address_address}}</option>
                 @endforeach
               </select>
@@ -142,39 +148,39 @@
           <tbody>
             <tr>
               <th scope="row">color : </th>
-              <td>{{session('vehicule')->color}}</td>
+              <td>{{$vehicule -> color}}</td>
             </tr>
             <tr>
               <th scope="row">type : </th>
-              <td>{{session('vehicule')->type}}</td>
+              <td>{{$vehicule -> type}}</td>
             </tr>
             <tr>
               <th scope="row">fuel : </th>
-              <td>{{session('vehicule')->fuel}}</td>
+              <td>{{$vehicule -> fuel}}</td>
             </tr>
             <tr>
               <th scope="row">year : </th>
-              <td>{{session('vehicule')->year}}</td>
+              <td>{$vehicule -> year}}</td>
             </tr>
             <tr>
               <th scope="row">gear type : </th>
-              <td>{{session('vehicule')->gearType}}</td>
+              <td>{{$vehicule -> gearType}}</td>
             </tr>
             <tr>
               <th scope="row">doors number : </th>
-              <td>{{session('vehicule')->doorsNb}}</td>
+              <td>{{$vehicule -> doorsNb}}</td>
             </tr>
             <tr>
               <th scope="row">horse power : </th>
-              <td>{{session('vehicule')->horsePower}}</td>
+              <td>{{$vehicule -> horsePower}}</td>
             </tr>
             <tr>
               <th scope="row">air cooling : </th>
-              <td>{{session('vehicule')->airCooling}}</td>
+              <td>{{$vehicule -> airCooling}}</td>
             </tr>
             <tr>
               <th scope="row">rating : </th>
-              <td>{{session('vehicule')->rating}}</td>
+              <td>{{$vehicule -> rating}}</td>
             </tr>
           </tbody>
         </table>

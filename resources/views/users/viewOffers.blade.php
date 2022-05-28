@@ -27,7 +27,7 @@
     </div>
   </div> --}}
   <div class="container">
-    @foreach (session('vehicules') as $vehicule)
+    @foreach ($vehicules as $vehicule)
     <div class="minimized-offer row">
       <div class="minimized-offer_media col-12 col-md-3">
         {{-- there is probleme when saving cars images the pathshould containt name of the image not the full path --}}
