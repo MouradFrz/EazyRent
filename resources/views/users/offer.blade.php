@@ -160,7 +160,7 @@
             </tr>
             <tr>
               <th scope="row">year : </th>
-              <td>{$vehicule -> year}}</td>
+              <td>{{$vehicule -> year}}</td>
             </tr>
             <tr>
               <th scope="row">gear type : </th>
