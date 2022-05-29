@@ -52,6 +52,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/book',[VehiculeController::class,'book'])->name('book');
+    Route::view('/checkFace','users.faceRecognition')->name('checkFace');
   });
 });
 

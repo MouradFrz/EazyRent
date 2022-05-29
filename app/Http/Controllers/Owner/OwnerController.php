@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\AgencyRequest;
+use App\Models\Booking;
 use App\Models\Branche;
 use App\Models\complaint;
 use App\Models\Garage;
 use App\Models\Garagist;
+use App\Models\PickUpLocation;
 use App\Models\Secretary;
 use App\Models\User;
 use App\Models\Vehicule;
@@ -23,7 +25,75 @@ class OwnerController extends Controller
 {
   public function home()
   {
-    return view('owners.ownerHome', ['Request' => AgencyRequest::where('ownerUsername', Auth::user()->username)->first()]);
+    $branchesWithCount = DB::select("SELECT branches.address , count(garages.brancheID) as Co
+    FROM yassir.bookings , yassir.vehicules , yassir.garages ,yassir.branches
+    where yassir.bookings.vehiculePlateNB = yassir.vehicules.plateNb
+    AND yassir.vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
+    AND garages.brancheID IN
+                (Select brancheID
+                from branches
+                            where agencyID
+                            IN (SELECT agencyID 
+                  from owners 
+                                where owners.username = :owner)
+                                )
+    group by garages.brancheID;", ['owner' => Auth::user()->username]);
+    $dates = [];
+    $reservationsPerDay = [];
+    for ($i = 0; $i <= 6; $i++) {
+      $date = now();
+      $reservationsPerDay[$i] = DB::select("SELECT count(bookingID) as Co
+        FROM yassir.bookings , yassir.vehicules , yassir.garages ,yassir.branches
+        where yassir.bookings.vehiculePlateNB = yassir.vehicules.plateNb
+        AND yassir.vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
+        AND bookings.created_at LIKE  :date
+        AND garages.brancheID IN
+              (Select brancheID
+              from branches
+                          where agencyID
+                          IN (SELECT agencyID 
+                from owners 
+                              where owners.username = :owner)
+                              );", ['owner' => Auth::user()->username, 'date' => date('Y-m-d', (strtotime('-' . $i . ' day', strtotime($date)))) . '%']);
+      $dates[$i] = date('Y-m-d', (strtotime('-' . $i . ' day', strtotime($date))));
+    }
+
+    $branchesWithTotalMoney = DB::select("SELECT branches.address , sum(bookings.bookingPrice) as Total
+    FROM yassir.bookings , yassir.vehicules , yassir.garages ,yassir.branches
+    where yassir.bookings.vehiculePlateNB = yassir.vehicules.plateNb
+    AND yassir.vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
+    AND garages.brancheID IN
+                (Select brancheID
+                from branches
+                            where agencyID
+                            IN (SELECT agencyID 
+                  from owners 
+                                where owners.username = :owner)
+                                )
+    group by garages.brancheID;", ['owner' => Auth::user()->username]);
+
+    $garageCount = Garage::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
+    $pulCount = PickUpLocation::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
+    $secCount = Secretary::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
+    $managerCount = Garagist::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
+    $reviews = Booking::where('vehiculeComment','<>',null)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')
+    ->join('garages','vehicules.garageID','=','garages.garageID')->join('users','bookings.clientUsername','=','users.username')
+    ->whereIn('garages.brancheID',Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())
+    ->select(['firstName','lastName','vehiculeRating','vehiculeComment','commentDate','model','brand','faceIdPath','state'])->latest('commentDate')->limit(5)->get();
+    // dd($reviews);
+    return view('owners.ownerHome', [
+      'Request' => AgencyRequest::where('ownerUsername', Auth::user()->username)->first(),
+      'branches' => $branchesWithCount,
+      'resPerDay' => $reservationsPerDay,
+      'dates' => $dates,
+      'moneyPerBranch' => $branchesWithTotalMoney,
+      'branchCount' => Branche::where('agencyID', Auth::user()->agencyID)->count(),
+      'garageCount' => $garageCount,
+      'pulCount' => $pulCount,
+      'secCount' => $secCount,
+      'managerCount' => $managerCount,
+      'reviews'=>$reviews
+    ]);
   }
   public function create(Request $request)
   {
