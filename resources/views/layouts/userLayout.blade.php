@@ -15,6 +15,23 @@
 <body>
   <nav>
     <div class="container d-flex justify-content-between align-items-center">
+      <div class="brand d-flex align-items-center">
+        <img src="" alt="" />
+        <h1 class="fw-bold">EazyRent</h1>
+      </div>
+      <div class="link-list">
+        <ul class="d-flex justify-content-center">
+          <li>
+            <a class="link" href="/home">Search for a car</a>
+          </li>
+          <li>
+            <a class="link" href="/order-car">Why us?</a>
+          </li>
+          <li><a class="link" href="#">Testimonials</a></li>
+          <li><a class="link" href="#">Our partners</a></li>
+          <li><a class="link" href="#">Contact us</a></li>
+        </ul>
+      </div>
       @auth
       <div class="auth d-flex align-items-center">
         <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon" alt="">
@@ -38,23 +55,6 @@
         <a href="{{ route('user.login') }}" class="" id="log-in">LogIn</a>
       </div>
       @endguest
-      <div class="brand d-flex align-items-center">
-        <img src="" alt="" />
-        <h1 class="fw-bold">EazyRent</h1>
-      </div>
-      <div class="link-list">
-        <ul class="d-flex justify-content-center">
-          <li>
-            <a class="link" href="/home">Search for a car</a>
-          </li>
-          <li>
-            <a class="link" href="/order-car">Why us?</a>
-          </li>
-          <li><a class="link" href="#">Testimonials</a></li>
-          <li><a class="link" href="#">Our partners</a></li>
-          <li><a class="link" href="#">Contact us</a></li>
-        </ul>
-      </div>
       <button class="btn-dropdown">
         <i class="bi bi-list"></i>
       </button>
@@ -73,17 +73,15 @@
       </div>
     </div>
   </nav>
-  <div>
-    @yield('content')
-  </div>
-  {{-- <footer>
+  @yield('content')
+  <footer>
     <div class="container-md d-flex">
       <a href="" class="nav-link">Terms and conditions</a>
       <a href="" class="nav-link">FAQ</a>
       <a href="" class="nav-link">Our Values</a>
       <a href="" class="nav-link">About us</a>
       <a href="" class="nav-link">Contact us</a>
-    </div> --}}
+    </div>
   </footer>
   <script src="{{ asset('js/app.js') }}"></script>
   <script>
