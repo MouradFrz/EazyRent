@@ -119,8 +119,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/agencies-list', [AgencyController::class, 'getAgencies'])->name('getAgencies');
     Route::view('/users-list', 'admin.usersList')->name('usersList');
     Route::get('/users-list', [UserController::class, 'getUsersList'])->name('usersList');
-    Route::view('/baned-users', 'admin.banedUsers')->name('banedUsers');
+    Route::get('/bans',[AdminController::class,'loadBans'])->name('loadBans');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
+    Route::post('/ban',[AdminController::class,'banUser'])->name('ban');
+    Route::post('/unban',[AdminController::class,'unbanUser'])->name('unban');
   });
 });
 //secretaries

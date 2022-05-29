@@ -59,7 +59,7 @@
             <a href="{{ route('admin.usersList') }}" class="nav-link ">Users list</a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('admin.banedUsers') }}" class="nav-link ">Banned users</a>
+            <a href="{{ route('admin.loadBans') }}" class="nav-link ">Banned users</a>
           </li>
         </ul>
         @endif
