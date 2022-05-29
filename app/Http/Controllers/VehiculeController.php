@@ -112,6 +112,11 @@ class VehiculeController extends Controller
 
     $booking->clientUsername = Auth::user()->username;
     $booking->vehiculePlateNB = session('vehiculePlateNb');
+    $diff = session('dropOffDate')->diff(session('pickUpDate'));
+    $days =  $diff->days;
+    $hours = $diff->h;
+    $price = $vehicule->pricePerHour * $hours + $vehicule->pricePerDay * $days;
+    $booking->bookingPrice = $price;
     $save = $booking->save();
     if($save) {
       try {
