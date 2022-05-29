@@ -13,38 +13,50 @@
 </head>
 
 <body>
-  <nav>
-    <div class="container d-flex justify-content-between align-items-center">
-      <div class="brand d-flex align-items-center">
-        <img src="" alt="" />
-        <h1 class="fw-bold">EazyRent</h1>
-      </div>
-      <div class="link-list">
-        <ul class="d-flex justify-content-center">
-          <li>
-            <a class="link" href="/home">Search for a car</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">EazyRent</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
-          <li>
-            <a class="link" href="/order-car">Why us?</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">best deals</a>
           </li>
-          <li><a class="link" href="#">Testimonials</a></li>
-          <li><a class="link" href="#">Our partners</a></li>
-          <li><a class="link" href="#">Contact us</a></li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">why us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">our partners</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">contact us</a>
+          </li>
         </ul>
-      </div>
-      @auth
-      <div class="auth d-flex align-items-center">
-        <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon" alt="">
-        <h6 class="m-0 username " style="color:rgb(79, 79, 79)">
-          {{ Auth::user()->firstName }} {{ Auth::user()->lastName }} &#9660
-        </h6>
-        <div class="show-on-hover">
-          <ul>
-            <li><a href="">Edit profil</a></li>
-            <li><a href="">Show transaction history</a></li>
-            <li><a href="{{ route('user.logout') }}"
-                onclick="event.preventDefault();document.getElementById('logout-form').submit();">Log out</a></li>
-            <form action="{{ route('user.logout') }}" id="logout-form" method="post">@csrf</form>
+        @auth
+        <div class="auth d-flex align-items-center dropdown">
+          <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon"
+            alt="{{Auth::user()->username}}">
+          <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{ Auth::user()->username }}
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item cs" href="#">Edit profil</a></li>
+            <li><a class="dropdown-item cs" href="#">Show transaction history</a></li>
+            <hr class="dropdown-divider">
+            <li>
+              <a class="dropdown-item danger " href="{{ route('user.logout') }}"
+                  onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                Log out
+              </a>
+              <form action="{{ route('user.logout') }}" id="logout-form" method="post">@csrf</form>
+            </li>
           </ul>
         </div>
       </div>
@@ -55,22 +67,7 @@
         <a href="{{ route('user.login') }}" class="" id="log-in">LogIn</a>
       </div>
       @endguest
-      <button class="btn-dropdown">
-        <i class="bi bi-list"></i>
-      </button>
     </div>
-    <div class="dropdown">
-      <div class="link-list">
-        <ul class="container">
-          <li>
-            <a class="link" href="#">Search for a car</a>
-          </li>
-          <li><a class="link" href="#">Why us?</a></li>
-          <li><a class="link" href="#">Testimonials</a></li>
-          <li><a class="link" href="#">Our partners</a></li>
-          <li><a class="link" href="#">Contact us</a></li>
-        </ul>
-      </div>
     </div>
   </nav>
   @yield('content')
@@ -83,13 +80,6 @@
       <a href="" class="nav-link">Contact us</a>
     </div>
   </footer>
-  <script src="{{ asset('js/app.js') }}"></script>
-  <script>
-    document.querySelector(".btn-dropdown").addEventListener('click',()=>{
-                document.querySelector(".dropdown").classList.toggle('active')
-            });
-  </script>
   @yield('script')
 </body>
-
 </html>

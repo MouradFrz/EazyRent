@@ -20,12 +20,31 @@ label {
 p {
   cursor: default;
 }
+ul li, a {
+  text-decoration: none;
+  list-style-type: none;
+}
+a {
+  color: $blue;
+}
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .inputs {
   width: 100%;
   padding: .375rem 1.5rem;
   border-radius: .375rem;
   border: 0;
   box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+}
+.danger {
+  color: $red;
+  &:hover, &:focus {
+    background-color: transparent;
+    color: $red;
+    border: none;
+  }
 }
 .custom-btn {
   font-weight: 600;
@@ -81,15 +100,15 @@ footer {
     }
   }
 }
-.form-control {
-  padding: 10px !important;
-  &:focus {
-    box-shadow: none !important;
-  }
-}
-.btn {
-  box-shadow: none !important;
-  &:active {
-    border: 1px solid black;
-  }
-}
+// .form-control {
+//   padding: 10px !important;
+//   &:focus {
+//     box-shadow: none !important;
+//   }
+// }
+// .btn {
+//   box-shadow: none !important;
+//   &:active {
+//     border: 1px solid black;
+//   }
+// }

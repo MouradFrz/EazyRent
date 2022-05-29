@@ -22,7 +22,7 @@
       background-color: rgba($color: #fff, $alpha: 0.9);
       top: 70%;
       left: 50%;
-      z-index: 5;
+      z-index: 1;
       transform: translate(-50%, -50%);
       padding: 1rem 3rem;
       border-radius: 1rem;
@@ -71,16 +71,10 @@
   text-align: center;
 }
 
-// @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css");
-* {
-  text-decoration: none;
-  list-style-type: none;
-}
 .show-on-hover {
   display: none;
   position: absolute;
   top: 62px;
-
   ul {
     background-color: rgb(236, 236, 236);
     box-shadow: $box-shadow;
@@ -95,86 +89,56 @@
     }
   }
 }
-.username {
-  cursor: pointer;
-  &:hover {
-    text-decoration: underline !important;
-  }
-}
-.auth:hover > .show-on-hover {
-  display: block;
-}
-
-.btn-dropdown {
-  border: none;
-  display: none;
-  font-size: 2rem;
-  background-color: white;
-  @media (max-width: 992px) {
-    display: block;
-  }
-}
-#user-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgb(187, 190, 105);
-  padding: 3px;
-}
 nav {
-  .a-active {
-    color: rgb(187, 190, 105) !important;
-  }
-  position: relative;
-  .dropdown {
-    position: absolute;
-    z-index: 0;
-    background: rgb(255, 255, 255);
-    border-bottom: 1px solid rgb(187, 190, 105);
-    transition: 0.2s ease;
-    width: 100%;
-    top: -400px;
-    li a {
-      color: rgb(0, 0, 0) !important;
-      padding: 10px;
-    }
-    &.active {
-      top: 62px;
-    }
-  }
   .container {
-    z-index: 3;
-    width: 100%;
     padding: 10px 0px;
-    .link-list {
-      @media (max-width: 992px) {
-        display: none;
+
+    .active {
+      color: $cyan !important;
+      border-bottom: 2px solid $cyan;
+    }
+    .nav-link {
+      transition: all 30ms liner;
+      position: relative;
+      &:hover, &:focus {
+        color: $cyan !important;
       }
-      ul {
-        gap: 10px;
-        margin: 0;
-        .link {
-          color: gray;
-          font-weight: 600;
-          transition: 0.2s ease;
-          &:hover {
-            color: rgb(187, 190, 105);
-          }
+      &:hover::after,&:focus::after  {
+        content: "";
+        position: absolute;
+        top: 40px;
+        left: 0;
+        height: 0;
+        width: 0;
+        z-index: 1;
+        border-bottom: 2px solid $cyan;
+        animation: grow 300ms linear;
+        animation-fill-mode: forwards;
+      }
+      @keyframes grow {
+        100% {
+          width: 100%;
         }
       }
     }
-    .brand {
-      h1 {
-        padding: 0;
-        font-size: 1.6rem;
-        margin: 0;
-      }
-      img {
-        width: 48px;
+    .dropdown-item  {
+      transform: all 300ms linear;
+      &:hover, &:focus {
+        background-color: transparent;
+        color: $cyan;
+        border-left: 5px solid $cyan;
       }
     }
     .auth {
       gap: 10px;
+      > img {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        object-fit: cover;
+        object-position: center;
+        box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+      }
       #log-in {
         font-weight: 600;
         background-color: rgb(187, 190, 105);

@@ -18,12 +18,34 @@ p {
   cursor: default;
 }
 
+ul li, a {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+a {
+  color: rgb(0, 122, 255);
+}
+
+.navbar {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .inputs {
   width: 100%;
   padding: 0.375rem 1.5rem;
   border-radius: 0.375rem;
   border: 0;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.danger {
+  color: rgb(255, 59, 48);
+}
+.danger:hover, .danger:focus {
+  background-color: transparent;
+  color: rgb(255, 59, 48);
 }
 
 .custom-btn {
@@ -53,18 +75,4 @@ footer {
   footer div {
     flex-direction: column !important;
   }
-}
-
-.form-control {
-  padding: 10px !important;
-}
-.form-control:focus {
-  box-shadow: none !important;
-}
-
-.btn {
-  box-shadow: none !important;
-}
-.btn:active {
-  border: 1px solid black;
 }
