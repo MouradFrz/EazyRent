@@ -3,8 +3,7 @@
 // Variables
 @use "variables" as *;
 
-* {
-  text-decoration: none !important;
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box !important;
@@ -18,12 +17,15 @@ h6,
 label {
   text-transform: capitalize;
 }
+p {
+  cursor: default;
+}
 .inputs {
-  padding: 12px 15px;
-  outline: none;
-  border: 1px solid rgb(155, 155, 155);
-  border-radius: 3px;
-  margin-top: 5px;
+  width: 100%;
+  padding: .375rem 1.5rem;
+  border-radius: .375rem;
+  border: 0;
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
 }
 .custom-btn {
   font-weight: 600;
