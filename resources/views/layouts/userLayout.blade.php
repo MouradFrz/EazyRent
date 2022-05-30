@@ -63,8 +63,7 @@
       @endauth
       @guest
       <div class="auth d-flex align-items-center">
-        <a href="{{ route('user.register') }}" class="" id="sign-up">Register</a>
-        <a href="{{ route('user.login') }}" class="" id="log-in">LogIn</a>
+        <a href="{{ route('user.login') }}" class="custom-btn custom-btn-dark" id="log-in">Go to Account</a>
       </div>
       @endguest
     </div>

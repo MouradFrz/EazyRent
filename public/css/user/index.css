@@ -88,24 +88,24 @@
   color: rgb(187, 190, 105) !important;
 }
 
-nav .container {
-  padding: 10px 0px;
+.navbar {
+  min-height: 4rem;
 }
-nav .container .active {
+.navbar .active {
   color: rgb(85, 190, 240) !important;
   border-bottom: 2px solid rgb(85, 190, 240);
 }
-nav .container .nav-link {
-  transition: all 30ms liner;
+.navbar .nav-link {
+  transition: all 300ms linear;
   position: relative;
 }
-nav .container .nav-link:hover, nav .container .nav-link:focus {
+.navbar .nav-link:hover, .navbar .nav-link:focus {
   color: rgb(85, 190, 240) !important;
 }
-nav .container .nav-link:hover::after, nav .container .nav-link:focus::after {
+.navbar .nav-link:hover::after, .navbar .nav-link:focus::after {
   content: "";
   position: absolute;
-  top: 40px;
+  top: 2.5rem;
   left: 0;
   height: 0;
   width: 0;
@@ -126,50 +126,26 @@ nav .container .nav-link:hover::after, nav .container .nav-link:focus::after {
     width: 100%;
   }
 }
-nav .container .dropdown-item {
+.navbar .dropdown-item {
   transform: all 300ms linear;
 }
-nav .container .dropdown-item:hover, nav .container .dropdown-item:focus {
+.navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
   background-color: transparent;
   color: rgb(85, 190, 240);
   border-left: 5px solid rgb(85, 190, 240);
 }
-nav .container .auth {
+.navbar .auth {
   gap: 10px;
 }
-nav .container .auth > img {
-  width: 36px;
-  height: 36px;
+.navbar .auth > img {
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
-}
-nav .container .auth #log-in {
-  font-weight: 600;
-  background-color: rgb(187, 190, 105);
-  color: rgb(255, 255, 255) !important;
-  padding: 8px 18px;
-  border-radius: 3px;
-  transition: 0.2s ease;
-}
-nav .container .auth #log-in:hover {
-  background-color: rgb(232, 232, 232);
-  color: rgb(187, 190, 105) !important;
-}
-nav .container .auth #sign-up {
-  font-weight: 600;
-  background-color: rgb(187, 190, 105);
-  color: rgb(255, 255, 255) !important;
-  padding: 8px 18px;
-  border-radius: 3px;
-  transition: 0.2s ease;
-}
-nav .container .auth #sign-up:hover {
-  background-color: rgb(232, 232, 232);
-  color: rgb(187, 190, 105) !important;
 }
 
 body {

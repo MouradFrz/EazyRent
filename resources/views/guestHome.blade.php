@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="col-12 col-md-4">
-            <button type="submit" class="custom-btn">Search</button>
+            <button type="submit" class="custom-btn custom-btn-dark">Search</button>
           </div>
         </div>
     </div>
