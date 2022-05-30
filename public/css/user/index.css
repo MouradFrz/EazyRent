@@ -64,7 +64,7 @@
 
 .hero {
   background-color: #eee;
-  background-image: url(/images/home-hero-lg.jpg?3681ea08d5268dec7f298b6c61216ca8);
+  background-image: url(/images/home-hero-md.jpg?524de2ebafcc68661cf398867af9a30c);
   width: 100%;
   height: calc(101vh - 4rem);
   background-size: cover;
@@ -124,7 +124,8 @@
   font-size: 1.6rem;
   text-align: center;
 }
-.testimonials .carousel-control-next, .testimonials .carousel-control-prev {
+.testimonials .carousel-control-next,
+.testimonials .carousel-control-prev {
   color: rgb(0, 122, 255);
   font-weight: 300;
   font-size: 2.5rem;
@@ -140,14 +141,21 @@
   border-radius: 50%;
 }
 
-.our-partners h1 {
-  text-align: center !important;
+.our-partners .brands {
+  margin-bottom: 1rem;
 }
-.our-partners .logos {
-  gap: 60px;
+.our-partners .brand {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.our-partners .logos i {
-  font-size: 7rem;
+.our-partners i {
+  font-size: 5rem;
+  color: rgb(142, 142, 147);
+}
+.our-partners .cta {
+  text-align: right;
 }
 
 body {

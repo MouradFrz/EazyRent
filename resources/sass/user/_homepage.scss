@@ -2,7 +2,7 @@
 // NAVBAR
 .navbar {
   min-height: 4rem;
-  background-color: rgba(255, 255, 255,.95);
+  background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: saturate(180%) blur(20px);
   font-size: 1.2rem;
   .active {
@@ -59,7 +59,7 @@
 // HERO
 .hero {
   background-color: #eee;
-  background-image: url("../../../public/images/home-hero-lg.jpg");
+  background-image: url("../../../public/images/home-hero-md.jpg");
   width: 100%;
   height: calc(101vh - 4rem); // 101vh - navbar height
   background-size: cover;
@@ -109,12 +109,12 @@
     text-align: center;
     font-size: 1.4rem;
     > i {
-      font-size:1.4rem;
+      font-size: 1.4rem;
       &:first-of-type {
-        margin-right: .5rem;
+        margin-right: 0.5rem;
       }
       &:last-of-type {
-        margin-left: .5rem;
+        margin-left: 0.5rem;
       }
     }
   }
@@ -122,7 +122,8 @@
     font-size: 1.6rem;
     text-align: center;
   }
-  .carousel-control-next, .carousel-control-prev {
+  .carousel-control-next,
+  .carousel-control-prev {
     color: $blue;
     font-weight: 300;
     font-size: 2.5rem;
@@ -132,20 +133,28 @@
   }
   carousel-indicators > button {
     margin-top: 20rem;
-    width: .5rem;
-    height: .5rem;
+    width: 0.5rem;
+    height: 0.5rem;
     border: 0;
     border-radius: 50%;
   }
 }
+// OUR PARTNERS
 .our-partners {
-  h1 {
-    text-align: center !important;
+  .brands {
+    margin-bottom: 1rem;
   }
-  .logos {
-    gap: 60px;
-    i {
-      font-size: 7rem;
-    }
+  .brand {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  i {
+    font-size: 5rem;
+    color: $grey;
+  }
+  .cta {
+    text-align: right;
   }
 }

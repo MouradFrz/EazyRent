@@ -78,6 +78,19 @@ a {
   color: #FFF;
 }
 
+.link {
+  color: rgb(0, 122, 255);
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 300ms linear;
+}
+.link:hover {
+  text-decoration: underline;
+}
+.link::after {
+  content: ">";
+}
+
 footer {
   background-color: rgb(201, 201, 201);
 }

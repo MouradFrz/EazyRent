@@ -127,15 +127,52 @@
   </div>
   <div class="white-space"></div>
 </div>
-
-<div class="our-partners">
-  <h1 style="margin-bottom: 40px">Our partners</h1>
-  <div class="logos d-flex justify-content-center align-items-center">
-    <i class="bi bi-check-circle-fill"></i>
-    <i class="bi bi-spotify"></i>
-    <i class="bi bi-apple"></i>
-    <i class="bi bi-star-fill"></i>
+<div id="ourPartners" class="our-partners">
+  <div class="white-space"></div>
+  <h2 class="section-header">companies who trus us</h2>
+  <div class="container">
+    <div class="row brands">
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-aws"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-aviato"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-bandcamp"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-apper"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-blackberry"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-buffer"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-cc-visa"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-bots"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-aviato"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-app-store"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-airbnb"></i>
+      </div>
+      <div class="brand col-4 col-md-3 col-lg-2">
+        <i class="fa-brands fa-adversal"></i>
+      </div>
+    </div>
+    <p class="cta">you have a renting cars agency ? <a class="link">Join us</a></p>
   </div>
+
+  <div class="white-space"></div>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js">
