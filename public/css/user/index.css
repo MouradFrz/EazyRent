@@ -1,93 +1,3 @@
-.hero {
-  background-color: #eee;
-  background-image: url(/images/home-hero-lg.jpg?3681ea08d5268dec7f298b6c61216ca8);
-  width: 100%;
-  height: calc(100vh - 4rem);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  border-radius: 0 0 5rem 5rem;
-  position: relative;
-}
-.hero_content .search-panel {
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
-  top: 70%;
-  left: 50%;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  padding: 1rem 3rem;
-  border-radius: 1rem;
-  width: 75vw;
-  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
-}
-.hero_content .search-panel .row {
-  margin-bottom: 1rem;
-}
-.hero_content .search-panel h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-}
-.hero_content .search-panel .mapboxgl-ctrl-geocoder {
-  width: 100%;
-}
-
-.card {
-  max-width: 450px;
-  text-align: center;
-  border: 1px solid lightGrey;
-  padding: 35px !important;
-  border: 1px solid rgb(196, 196, 196) !important;
-  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
-}
-.card i {
-  font-size: 2rem;
-  color: rgb(187, 190, 105);
-}
-.card p {
-  color: black;
-}
-
-.cards-container {
-  gap: 20px;
-}
-
-.our-partners h1 {
-  text-align: center !important;
-}
-.our-partners .logos {
-  gap: 60px;
-}
-.our-partners .logos i {
-  font-size: 7rem;
-}
-
-.wrapper {
-  width: 100%;
-  height: 350px;
-  background-color: rgb(196, 196, 196);
-  text-align: center;
-}
-
-.show-on-hover {
-  display: none;
-  position: absolute;
-  top: 62px;
-}
-.show-on-hover ul {
-  background-color: rgb(236, 236, 236);
-  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
-  border-radius: 5px;
-  padding: 10px 20px !important;
-}
-.show-on-hover ul a {
-  color: black !important;
-}
-.show-on-hover ul a:hover {
-  text-decoration: underline !important;
-  color: rgb(187, 190, 105) !important;
-}
-
 .navbar {
   min-height: 4rem;
   background-color: rgba(255, 255, 255, 0.95);
@@ -149,6 +59,64 @@
   -o-object-position: center;
      object-position: center;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.hero {
+  background-color: #eee;
+  background-image: url(/images/home-hero-lg.jpg?3681ea08d5268dec7f298b6c61216ca8);
+  width: 100%;
+  height: calc(101vh - 4rem);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  border-radius: 0 0 5rem 5rem;
+  position: relative;
+}
+.hero_content .search-panel {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  top: 70%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  padding: 1rem 3rem;
+  border-radius: 1rem;
+  width: 75vw;
+  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+}
+.hero_content .search-panel .row {
+  margin-bottom: 1rem;
+}
+.hero_content .search-panel h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+.hero_content .search-panel .mapboxgl-ctrl-geocoder {
+  width: 100%;
+}
+
+.who-us p {
+  font-weight: 500;
+}
+.who-us p > span {
+  color: rgb(88, 86, 214);
+}
+
+.our-partners h1 {
+  text-align: center !important;
+}
+.our-partners .logos {
+  gap: 60px;
+}
+.our-partners .logos i {
+  font-size: 7rem;
+}
+
+.wrapper {
+  width: 100%;
+  height: 350px;
+  background-color: rgb(196, 196, 196);
+  text-align: center;
 }
 
 body {

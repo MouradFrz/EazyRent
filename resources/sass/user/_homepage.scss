@@ -1,94 +1,5 @@
 @use "../variables" as *;
-.hero {
-  background-color: #eee;
-  background-image: url("../../../public/images/home-hero-lg.jpg");
-  width: 100%;
-  height: calc(100vh - 4rem); // 100vh - navbar height
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  border-radius: 0 0 5rem 5rem;
-  position: relative;
-  &_content {
-    .search-panel {
-      .row {
-        margin-bottom: 1rem;
-      }
-      h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-      position: absolute;
-      background-color: rgba($color: #fff, $alpha: 0.9);
-      top: 70%;
-      left: 50%;
-      z-index: 1;
-      transform: translate(-50%, -50%);
-      padding: 1rem 3rem;
-      border-radius: 1rem;
-      width: 75vw;
-      box-shadow: $box-shadow;
-      .mapboxgl-ctrl-geocoder {
-        width: 100%;
-      }
-    }
-  }
-}
-.card {
-  max-width: 450px;
-  text-align: center;
-  border: 1px solid lightGrey;
-  padding: 35px !important;
-  border: 1px solid rgb(196, 196, 196) !important;
-  box-shadow: $box-shadow;
-  i {
-    font-size: 2rem;
-    color: rgb(187, 190, 105);
-  }
-  p {
-    color: black;
-  }
-}
-
-.cards-container {
-  gap: 20px;
-}
-.our-partners {
-  h1 {
-    text-align: center !important;
-  }
-  .logos {
-    gap: 60px;
-    i {
-      font-size: 7rem;
-    }
-  }
-}
-.wrapper {
-  width: 100%;
-  height: 350px;
-  background-color: rgb(196, 196, 196);
-  text-align: center;
-}
-
-.show-on-hover {
-  display: none;
-  position: absolute;
-  top: 62px;
-  ul {
-    background-color: rgb(236, 236, 236);
-    box-shadow: $box-shadow;
-    border-radius: 5px;
-    padding: 10px 20px !important;
-    a {
-      color: black !important;
-      &:hover {
-        text-decoration: underline !important;
-        color: rgb(187, 190, 105) !important;
-      }
-    }
-  }
-}
+// NAVBAR
 .navbar {
   min-height: 4rem;
   background-color: rgba(255, 255, 255,.95);
@@ -143,4 +54,66 @@
       box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
     }
   }
+}
+// HERO
+.hero {
+  background-color: #eee;
+  background-image: url("../../../public/images/home-hero-lg.jpg");
+  width: 100%;
+  height: calc(101vh - 4rem); // 101vh - navbar height
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top;
+  border-radius: 0 0 5rem 5rem;
+  position: relative;
+  &_content {
+    .search-panel {
+      .row {
+        margin-bottom: 1rem;
+      }
+      h2 {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      position: absolute;
+      background-color: rgba($color: #fff, $alpha: 0.9);
+      top: 70%;
+      left: 50%;
+      z-index: 1;
+      transform: translate(-50%, -50%);
+      padding: 1rem 3rem;
+      border-radius: 1rem;
+      width: 75vw;
+      box-shadow: $box-shadow;
+      .mapboxgl-ctrl-geocoder {
+        width: 100%;
+      }
+    }
+  }
+}
+// WHO US
+.who-us {
+  p {
+    font-weight: 500;
+    > span {
+      color: $indigo;
+    }
+  }
+}
+.our-partners {
+  h1 {
+    text-align: center !important;
+  }
+  .logos {
+    gap: 60px;
+    i {
+      font-size: 7rem;
+    }
+  }
+}
+.wrapper {
+  width: 100%;
+  height: 350px;
+  background-color: rgb(196, 196, 196);
+  text-align: center;
 }
