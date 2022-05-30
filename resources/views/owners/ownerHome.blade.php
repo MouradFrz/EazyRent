@@ -39,21 +39,21 @@
          </div>
         
         
-         <div style="width: 40%">
+         <div style="width: 60%">
           <h6>Nombre de reservation par branche</h6>
           <canvas  id="myChart"></canvas>
         </div>
-        <div style="width: 40%">
+        <div style="width: 60%">
           <h6>Nombre de reservation par jours dans la derniere semaine</h6>
           <canvas  id="lineChart"></canvas>
         </div>
-        <div style="width: 40%">
+        <div style="width: 60%">
           <h6>Argent gagne par chaque branche</h6>
           <canvas  id="mpb"></canvas>
         </div>
         <div>
           <h6>Latest 5 reviews for my cars</h6>
-          <div class="reveiws " style="width: 50%">
+          <div class="reveiws " style="width: 40%">
             
             @foreach ($reviews as $booking)
             @if ($booking->state == "FINISHED")
@@ -82,7 +82,8 @@
             @endforeach
         </div>
         </div>
-        <div>
+        <div style="width: 60%">
+          
           <canvas id="pickUpLocations"></canvas>
         </div>
         <div class="mostRentedcars">
@@ -199,10 +200,10 @@ const data1 = {
   datasets: [{
     label: 'Count of reservations per day for the past 7 days.',
     data: [],
-    borderColor: 'rgb(75, 192, 192)',
-    backgroundColor:'rgb(75, 192, 192)',
-    fill:true,
-    tension: 0.5
+    borderColor: 'rgb(255, 192, 192)',
+    backgroundColor:'rgb(0, 0, 192)',
+
+    tension: 0.3
   }]
 };
 reservationsPerDay.forEach((e,i,a)=>{

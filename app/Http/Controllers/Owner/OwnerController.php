@@ -26,9 +26,9 @@ class OwnerController extends Controller
   public function home()
   {
     $branchesWithCount = DB::select("SELECT branches.address , count(garages.brancheID) as Co
-    FROM yassir.bookings , yassir.vehicules , yassir.garages ,yassir.branches
-    where yassir.bookings.vehiculePlateNB = yassir.vehicules.plateNb
-    AND yassir.vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
+    FROM bookings , vehicules , garages ,branches
+    where bookings.vehiculePlateNB = vehicules.plateNb
+    AND vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
     AND garages.brancheID IN
                 (Select brancheID
                 from branches
@@ -43,9 +43,9 @@ class OwnerController extends Controller
     for ($i = 0; $i <= 6; $i++) {
       $date = now();
       $reservationsPerDay[$i] = DB::select("SELECT count(bookingID) as Co
-        FROM yassir.bookings , yassir.vehicules , yassir.garages ,yassir.branches
-        where yassir.bookings.vehiculePlateNB = yassir.vehicules.plateNb
-        AND yassir.vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
+        FROM  bookings ,  vehicules ,  garages , branches
+        where  bookings.vehiculePlateNB =  vehicules.plateNb
+        AND  vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
         AND bookings.created_at LIKE  :date
         AND garages.brancheID IN
               (Select brancheID
@@ -59,9 +59,9 @@ class OwnerController extends Controller
     }
 
     $branchesWithTotalMoney = DB::select("SELECT branches.address , sum(bookings.bookingPrice) as Total
-    FROM yassir.bookings , yassir.vehicules , yassir.garages ,yassir.branches
-    where yassir.bookings.vehiculePlateNB = yassir.vehicules.plateNb
-    AND yassir.vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
+    FROM  bookings ,  vehicules ,  garages , branches
+    where  bookings.vehiculePlateNB =  vehicules.plateNb
+    AND  vehicules.garageID = garages.garageID AND garages.brancheID=branches.brancheID
     AND garages.brancheID IN
                 (Select brancheID
                 from branches
