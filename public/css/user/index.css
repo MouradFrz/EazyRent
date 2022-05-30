@@ -3,6 +3,7 @@
   background-color: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
           backdrop-filter: saturate(180%) blur(20px);
+  font-size: 1.2rem;
 }
 .navbar .active {
   color: rgb(85, 190, 240) !important;
@@ -18,7 +19,7 @@
 .navbar .nav-link:hover::after, .navbar .nav-link:focus::after {
   content: "";
   position: absolute;
-  top: 2.5rem;
+  top: 2.8rem;
   left: 0;
   height: 0;
   width: 0;

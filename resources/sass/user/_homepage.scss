@@ -4,6 +4,7 @@
   min-height: 4rem;
   background-color: rgba(255, 255, 255,.95);
   backdrop-filter: saturate(180%) blur(20px);
+  font-size: 1.2rem;
   .active {
     color: $cyan !important;
     border-bottom: 2px solid $cyan;
@@ -19,7 +20,7 @@
     &:focus::after {
       content: "";
       position: absolute;
-      top: 2.5rem;
+      top: 2.8rem;
       left: 0;
       height: 0;
       width: 0;
