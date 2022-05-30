@@ -52,8 +52,6 @@ a {
 .custom-btn {
   font-weight: 600;
   background-color: rgba(255, 255, 255, 0.95);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
   color: #000;
   padding: 0.5rem 1rem;
   transition: 300ms all linear;
@@ -70,8 +68,6 @@ a {
 }
 .custom-btn-dark {
   background-color: rgba(0, 0, 0, 0.95);
-  -webkit-backdrop-filter: blur(2px);
-          backdrop-filter: blur(2px);
   color: #FFF;
 }
 .custom-btn-dark:hover {

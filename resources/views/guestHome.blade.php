@@ -16,7 +16,7 @@
           <div class="col">
             <label for="">Pick-up location :</label>
             <div id="pickUpLocation"></div>
-            @error('pickUpLng')<span style="color: red">{{$message}}</span>@enderror
+            @error('pickUpLng')<span class="danger">{{$message}}</span>@enderror
             <div class="d-none">
               <input type="text" id="pickUpLng" name="pickUpLng" />
               <input type="text" id="pickUpLat" name="pickUpLat" />
@@ -25,12 +25,12 @@
           <div class="col">
             <label for="">Pick up at :</label>
             <input type="datetime-local" class="inputs" name="pickUpDate" min="{{now()}}" />
-            @error('pickUpDate')<span style="color: red">{{$message}}</span>@enderror
+            @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
           </div>
           <div class="col">
             <label for="">Drop off at :</label>
             <input type="datetime-local" class="inputs" name="dropOffDate" min="{{now()}}" />
-            @error('dropOffDate')<span style="color: red">{{$message}}</span>@enderror
+            @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
           </div>
         </div>
         <div class="row">
