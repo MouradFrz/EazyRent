@@ -82,6 +82,20 @@
             @endforeach
         </div>
         </div>
+        <div>
+          <canvas id="pickUpLocations"></canvas>
+        </div>
+        <div class="mostRentedcars">
+          <h1>Most rented cars</h1>
+          @foreach ($mostRentedCars as $car)
+            <div class="cars">
+              <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
+              <p>{{ $car->brand }} {{ $car->model }}</p>
+              <p> Rating :{{ $car->rating }}</p>
+              <p>Bookings count : {{ $car->bookCount }}</p>
+            </div>
+          @endforeach
+        </div>
        </div>
      </div>
 
@@ -245,4 +259,62 @@ const myChart2 = new Chart(
 );
 </script>
   
+
+
+
+
+<script>
+   var pickUpLocationsCount = {!! json_encode($pickUpLocationsCount, JSON_HEX_TAG) !!}
+  const labels3 = [];
+
+  pickUpLocationsCount.forEach((e)=>{
+    labels3.push(e.address_address)
+  });
+const data3 = {
+  labels: labels3,
+  datasets: [{
+    label: 'Bookings per pick up location',
+    data: [],
+    backgroundColor: [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+      'rgba(255, 205, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(201, 203, 207, 0.2)'
+    ],borderColor: [
+      'rgb(255, 99, 132)',
+      'rgb(255, 159, 64)',
+      'rgb(255, 205, 86)',
+      'rgb(75, 192, 192)',
+      'rgb(54, 162, 235)',
+      'rgb(153, 102, 255)',
+      'rgb(201, 203, 207)'
+    ],
+    borderWidth: 1
+  }]
+};
+pickUpLocationsCount.forEach((e)=>{
+    data3.datasets[0].data.push(e.Co);
+  });
+
+const config3 = {
+  type: 'bar',
+  data: data3,
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  },
+};
+
+
+const barChart = new Chart(
+  document.getElementById('pickUpLocations'),
+  config3
+);
+</script>
 @endsection

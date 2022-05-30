@@ -72,14 +72,67 @@ class OwnerController extends Controller
                                 )
     group by garages.brancheID;", ['owner' => Auth::user()->username]);
 
+    $pickUpLocationsCount = DB::select("SELECT address_address,count(bookingID) as Co from bookings , pickuplocations 
+    where bookings.pickUpLocation = pickuplocations.id AND pickuplocations.brancheID IN 
+                                              (SELECT brancheID 
+                                                                                        from branches
+                                                                                        where branches.agencyID = :agency)
+    group by pickUpLocation ;", ['agency' => Auth::user()->agencyID]);
+    // dd($pickUpLocationsCount);
+
+    $mostRentedCars= DB::select('SELECT
+    brand,
+    model,
+    rating,
+    imagePath,
+    plateNb,
+    count(bookingID) as bookCount
+ from
+    bookings,
+    vehicules 
+ where
+    bookings.vehiculePlateNB = vehicules.plateNb 
+    AND vehiculePlateNb IN 
+    (
+       Select
+          plateNb 
+       from
+          vehicules 
+       where
+          garageID in 
+          (
+             Select
+                garageID 
+             from
+                garages 
+             where
+                brancheID in 
+                (
+                   Select
+                      brancheID 
+                   from
+                      branches 
+                   where
+                      agencyID = 39
+                )
+          )
+    )
+ group by
+    vehiculePlateNb 
+ order by
+    count(bookingID) DESC
+    limit 5 ;');
+  // dd($mostRentedCars);
+
+
     $garageCount = Garage::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
     $pulCount = PickUpLocation::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
     $secCount = Secretary::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
     $managerCount = Garagist::whereIn('brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())->count();
-    $reviews = Booking::where('vehiculeComment','<>',null)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')
-    ->join('garages','vehicules.garageID','=','garages.garageID')->join('users','bookings.clientUsername','=','users.username')
-    ->whereIn('garages.brancheID',Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())
-    ->select(['firstName','lastName','vehiculeRating','vehiculeComment','commentDate','model','brand','faceIdPath','state'])->latest('commentDate')->limit(5)->get();
+    $reviews = Booking::where('vehiculeComment', '<>', null)->join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')
+      ->join('garages', 'vehicules.garageID', '=', 'garages.garageID')->join('users', 'bookings.clientUsername', '=', 'users.username')
+      ->whereIn('garages.brancheID', Branche::where('agencyID', Auth::user()->agencyID)->select('agencyID')->select('brancheID')->get()->toArray())
+      ->select(['firstName', 'lastName', 'vehiculeRating', 'vehiculeComment', 'commentDate', 'model', 'brand', 'faceIdPath', 'state'])->latest('commentDate')->limit(5)->get();
     // dd($reviews);
     return view('owners.ownerHome', [
       'Request' => AgencyRequest::where('ownerUsername', Auth::user()->username)->first(),
@@ -92,7 +145,9 @@ class OwnerController extends Controller
       'pulCount' => $pulCount,
       'secCount' => $secCount,
       'managerCount' => $managerCount,
-      'reviews'=>$reviews
+      'reviews' => $reviews,
+      'pickUpLocationsCount' => $pickUpLocationsCount,
+      'mostRentedCars'=> $mostRentedCars
     ]);
   }
   public function create(Request $request)
