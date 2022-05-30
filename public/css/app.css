@@ -4,10 +4,6 @@
   box-sizing: border-box !important;
 }
 
-body {
-  background-color: rgba(85, 190, 240, 0.2);
-}
-
 h1,
 h2,
 h3,
@@ -103,4 +99,5 @@ footer {
   text-align: center;
   font-size: 3.5rem;
   margin-bottom: 2.5rem;
+  color: rgb(85, 190, 240);
 }

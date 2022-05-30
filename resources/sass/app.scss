@@ -8,9 +8,6 @@
   padding: 0;
   box-sizing: border-box !important;
 }
-body {
-  background-color: rgba($color: $cyan, $alpha: .2);
-}
 h1,
 h2,
 h3,
@@ -136,4 +133,5 @@ footer {
   text-align: center;
   font-size: 3.5rem;
   margin-bottom: 2.5rem;
+  color: $cyan;
 }

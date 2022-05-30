@@ -100,6 +100,43 @@
     }
   }
 }
+// TESTIMONIALS
+.testimonials {
+  background-color: $lightestGrey;
+  blockquote {
+    padding-inline: 1rem;
+    text-align: center;
+    font-size: 1.4rem;
+    > i {
+      font-size:1.4rem;
+      &:first-of-type {
+        margin-right: .5rem;
+      }
+      &:last-of-type {
+        margin-left: .5rem;
+      }
+    }
+  }
+  h6 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  .carousel-control-next, .carousel-control-prev {
+    color: $blue;
+    font-weight: 300;
+    font-size: 2.5rem;
+  }
+  .carousel-item {
+    margin-bottom: 1rem;
+  }
+  carousel-indicators > button {
+    margin-top: 20rem;
+    width: .5rem;
+    height: .5rem;
+    border: 0;
+    border-radius: 50%;
+  }
+}
 .our-partners {
   h1 {
     text-align: center !important;
@@ -110,10 +147,4 @@
       font-size: 7rem;
     }
   }
-}
-.wrapper {
-  width: 100%;
-  height: 350px;
-  background-color: rgb(196, 196, 196);
-  text-align: center;
 }

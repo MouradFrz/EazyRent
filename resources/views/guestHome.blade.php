@@ -57,7 +57,7 @@
 <div id="whoUs" class="who-us">
   <div class="white-space"></div>
   <div class="container">
-    <h2 class="section-header">what is <span>EAZYRENT</span></h2>
+    <h2 class="section-header">what is EAZYRENT ?</h2>
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="d-flex justify-content-center align-items-center">
@@ -65,62 +65,69 @@
         </div>
       </div>
       <div class="col-12 col-md-6">
-        <p><span>EazyRent</span> is a platform that makes renting your next vehicle a simple task in an easy, fast and secure way.
-        <br><br>
-        Our goal is to gather agencies from all around the nation in one place.
-        <br><br>
-        To give you <span>the best options with the least effort.</span>
+        <p><span>EazyRent</span> is a platform that makes renting your next vehicle a simple task in an easy, fast and
+          secure way.
+          <br><br>
+          Our goal is to gather agencies from all around the nation in one place.
+          <br><br>
+          To give you <span>the best options with the least effort.</span>
         </p>
       </div>
     </div>
   </div>
   <div class="white-space"></div>
 </div>
-<div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-      aria-current="true" aria-label="Slide 1"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-      aria-label="Slide 2"></button>
-    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-      aria-label="Slide 3"></button>
+<div id="testimonials" class="testimonials">
+  <div class="white-space"></div>
+  <h2 class="section-header">what people say about us ?</h2>
+  <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
+    <div class="container">
+      {{-- carousel indecators ma7boch ybano n7ithom --}}
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <blockquote>
+            <i class="fa-solid fa-quote-left"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            <i class="fa-solid fa-quote-right"></i>
+          </blockquote>
+          <h6>| elon musq |</h6>
+        </div>
+        <div class="carousel-item">
+          <blockquote>
+            <i class="fa-solid fa-quote-left"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            <i class="fa-solid fa-quote-right"></i>
+          </blockquote>
+          <h6>| elon musq |</h6>
+        </div>
+        <div class="carousel-item">
+          <blockquote>
+            <i class="fa-solid fa-quote-left"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            <i class="fa-solid fa-quote-right"></i>
+          </blockquote>
+          <h6>| elon musq |</h6>
+        </div>
+        <div class="carousel-item">
+          <blockquote>
+            <i class="fa-solid fa-quote-left"></i>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            <i class="fa-solid fa-quote-right"></i>
+          </blockquote>
+          <h6>| elon musq |</h6>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <i class="fa-solid fa-angle-left"></i>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <i class="fa-solid fa-angle-right"></i>
+    </button>
   </div>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <div class="wrapper d-flex justify-content-center align-items-center flex-column">
-        <i class="bi bi-square-fill"></i>
-        <h1>Lorem ipsum</h1>
-        <p>Lorem ipsum dolor sit amet , adipisicing elit. Assumenda facilis magni blanditiis enim tempora quis.
-        </p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="wrapper d-flex justify-content-center align-items-center flex-column">
-        <i class="bi bi-square-fill"></i>
-        <h1>Lorem ipsum</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda facilis magni blanditiis enim
-          tempora quis.</p>
-      </div>
-    </div>
-    <div class="carousel-item">
-      <div class="wrapper d-flex justify-content-center align-items-center flex-column">
-        <i class="bi bi-square-fill"></i>
-        <h1>Lorem ipsum</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda facilis magni blanditiis enim
-          tempora quis.</p>
-      </div>
-    </div>
-  </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
+  <div class="white-space"></div>
 </div>
-</div>
+
 <div class="our-partners">
   <h1 style="margin-bottom: 40px">Our partners</h1>
   <div class="logos d-flex justify-content-center align-items-center">

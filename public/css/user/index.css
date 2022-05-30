@@ -102,6 +102,43 @@
   color: rgb(88, 86, 214);
 }
 
+.testimonials {
+  background-color: rgb(229, 229, 234);
+}
+.testimonials blockquote {
+  padding-inline: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+}
+.testimonials blockquote > i {
+  font-size: 1.4rem;
+}
+.testimonials blockquote > i:first-of-type {
+  margin-right: 0.5rem;
+}
+.testimonials blockquote > i:last-of-type {
+  margin-left: 0.5rem;
+}
+.testimonials h6 {
+  font-size: 1.6rem;
+  text-align: center;
+}
+.testimonials .carousel-control-next, .testimonials .carousel-control-prev {
+  color: rgb(0, 122, 255);
+  font-weight: 300;
+  font-size: 2.5rem;
+}
+.testimonials .carousel-item {
+  margin-bottom: 1rem;
+}
+.testimonials carousel-indicators > button {
+  margin-top: 20rem;
+  width: 0.5rem;
+  height: 0.5rem;
+  border: 0;
+  border-radius: 50%;
+}
+
 .our-partners h1 {
   text-align: center !important;
 }
@@ -110,13 +147,6 @@
 }
 .our-partners .logos i {
   font-size: 7rem;
-}
-
-.wrapper {
-  width: 100%;
-  height: 350px;
-  background-color: rgb(196, 196, 196);
-  text-align: center;
 }
 
 body {
