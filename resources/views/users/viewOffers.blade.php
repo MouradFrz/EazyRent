@@ -30,7 +30,6 @@
     @foreach ($vehicules as $vehicule)
     <div class="minimized-offer row">
       <div class="minimized-offer_media col-12 col-md-3">
-        {{-- there is probleme when saving cars images the pathshould containt name of the image not the full path --}}
         <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath)}}" alt="">
       </div>
       <div class="minimized-offer_content col-md-9">
@@ -38,7 +37,7 @@
           <div>
             <h2>{{$vehicule -> brand}} {{$vehicule -> model}}</h2>
           </div>
-          <div class="text-end">
+          <div class="price">
             <strong>
               @php
               $diff = session('dropOffDate')->diff(session('pickUpDate'));
@@ -48,7 +47,7 @@
               echo $price , ' dzd';
               @endphp
             </strong>
-            <p>{{$vehicule -> pricePerDay}} dzd per day</p>
+            <p>{{$vehicule -> pricePerDay}} dzd /day</p>
           </div>
         </div>
         <div class="prop">
@@ -65,17 +64,18 @@
         <hr />
         <div class="d-flex justify-content-between">
           <div class="rating">
-            @for($c=1;$c<=5;$c++) @if($vehicule -> rating >= $c)
+            @for($c=1;$c<=5;$c++)
+              @if($vehicule -> rating >= $c)
               <i class="fa-solid fa-star" style="color:darkorange;font-size:1rem;"></i>
               @else
               <i class="fa-solid fa-star" style="font-size:1rem;"></i>
               @endif
-              @endfor
-              <span>{{$vehicule -> rating}}</span>
+            @endfor
+              <span>{{($vehicule -> rating == null) ? 0 : $vehicule -> rating }}</span>
           </div>
           <a
             href="{{ route('user.viewOfferDetails', ['plateNb'=>$vehicule->plateNb]) }}"
-            class="custom-btn">view More
+            class="custom-btn custom-btn-dark">view More
           </a>
         </div>
       </div>

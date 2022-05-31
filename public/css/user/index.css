@@ -215,8 +215,17 @@ footer .footer-end p > span {
   margin-bottom: 3rem;
 }
 .view-offers .minimized-offer_media {
+  padding: 0 !important;
   min-height: 15rem;
-  background-color: grey;
+  overflow: hidden;
+}
+.view-offers .minimized-offer_media > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: fit;
+     object-fit: fit;
+  -o-object-position: center center;
+     object-position: center center;
 }
 .view-offers .minimized-offer_content {
   padding: 1rem 2rem;
@@ -224,8 +233,12 @@ footer .footer-end p > span {
 .view-offers .minimized-offer_content .head {
   margin-bottom: 3rem;
 }
-.view-offers .minimized-offer_content h2 p {
-  margin-bottom: 0.5em;
+.view-offers .minimized-offer_content .head .price {
+  text-align: right;
+}
+.view-offers .minimized-offer_content .head .price > p {
+  font-size: 1rem;
+  line-height: 1;
 }
 .view-offers .minimized-offer_content .prop > ul > li > i {
   color: rgb(97, 97, 101);
