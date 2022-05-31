@@ -37,7 +37,7 @@ class VehiculeController extends Controller
 
     $vehicules = Vehicule::where('availability', 1)
       ->join('garages', 'vehicules.garageID', '=', 'garages.garageID')
-      ->join('pickUpLocations', 'garages.brancheID', '=', 'pickUpLocations.brancheID')
+      ->join('pickuplocations', 'garages.brancheID', '=', 'pickuplocations.brancheID')
       ->whereBetween('address_latitude', [$pickUpLat - .18, $pickUpLat + .18])
       ->whereBetween('address_longitude', [$pickUpLng - .18, $pickUpLng + .18])
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
@@ -64,9 +64,9 @@ class VehiculeController extends Controller
       ->select(['agencies.name'])
       ->find($plateNb);
     $pickUpLocations = Vehicule::join('garages', 'vehicules.garageID', '=', 'garages.garageID')
-      ->join('pickUpLocations', 'garages.brancheID', '=', 'pickUpLocations.brancheID')
+      ->join('pickuplocations', 'garages.brancheID', '=', 'pickuplocations.brancheID')
       ->where('vehicules.plateNb', $plateNb)
-      ->select('pickUpLocations.id', 'pickUpLocations.address_address')
+      ->select('pickuplocations.id', 'pickuplocations.address_address')
       ->get();
     session()->forget(['0', '1']);
     $agnecyName = $agency->name;
