@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet"href=" {{ asset('css/login.css') }}">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 <body>
 
@@ -61,7 +62,7 @@
                   >Sign Up!</a
                 >
               </p>
-              <a  href="{{ route('user.loginWithGoogle') }}" class="btn btn-primary">Login with google</a>
+              <a  href="{{ route('user.loginWithGoogle') }}" class="btn " style="background-color:#BB001B;color:white;"> <i class="bi bi-google"></i> Login with Google</a>
             </form>
           </div>
         </div>
