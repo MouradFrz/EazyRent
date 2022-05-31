@@ -13,6 +13,8 @@ class BookingController extends Controller
     $booking->secretaryUsername = Auth::user()->username;
     $booking->state = 'ACCEPTED';
     $booking->updated_at = now();
+
+    
     $save = $booking->save();
     if($save) {
       return redirect()->route('secretary.getReservationRequests')
@@ -33,7 +35,6 @@ class BookingController extends Controller
     $booking->declineReason = $request -> declineReason;
     $booking->updated_at = now();
     $save = $booking->save();
-
     if($save) {
       return redirect()->route('secretary.getReservationRequests')
       ->with('success','You successfully decline a booking request!');

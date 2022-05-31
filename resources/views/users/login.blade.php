@@ -34,6 +34,11 @@
                 {{ Session::get('fail') }}
               </div>
               @endif
+              @if (Session::get('message'))
+              <div class="alert alert-danger w-100" role="alert">
+                {{ Session::get('message') }}
+              </div>
+              @endif
               @if (Session::get('ban'))
               <div class="alert alert-danger w-100" role="alert">
                 {{ Session::get('ban') }} <br>
@@ -56,6 +61,7 @@
                   >Sign Up!</a
                 >
               </p>
+              <a  href="{{ route('user.loginWithGoogle') }}" class="btn btn-primary">Login with google</a>
             </form>
           </div>
         </div>

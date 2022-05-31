@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
+
 class UserController extends Controller
 {
   public function create(Request $request)
@@ -111,7 +112,6 @@ class UserController extends Controller
   }
 
   public function getHistory(){
-
     $bookings = Booking::where('clientUsername',Auth::user()->username)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->get();
     return view('users.history',[
       'bookings'=>$bookings,

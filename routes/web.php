@@ -10,6 +10,7 @@ use App\Http\Controllers\Agencies\AgencyController;
 use App\Http\Controllers\VehiculeController;
 use App\Http\Controllers\Agencies\PickUpLocationController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\GoogleController;
 use App\Models\PickUpLocation;
 use App\Models\Secretary;
 use App\Models\Vehicule;
@@ -43,6 +44,8 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/register', 'users.register')->name('register');
     Route::post('/create', [UserController::class, 'create'])->name('create');
     Route::post('/check', [UserController::class, 'check'])->name('check');
+    Route::get('/google',[GoogleController::class,'loginWithGoogle'])->name('loginWithGoogle');
+    Route::any('/google/login',[GoogleController::class,'callbackFromGoogle'])->name('callback');
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
