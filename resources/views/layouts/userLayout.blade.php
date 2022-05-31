@@ -48,7 +48,7 @@
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
             <li><a class="dropdown-item cs" href="#">Edit profil</a></li>
-            <li><a class="dropdown-item cs" href="#">Show transaction history</a></li>
+            <li><a class="dropdown-item cs" href="{{ route('user.history') }}">Show transaction history</a></li>
             <hr class="dropdown-divider">
             <li>
               <a class="dropdown-item danger " href="{{ route('user.logout') }}"
@@ -80,5 +80,6 @@
     </div>
   </footer>
   @yield('script')
+  <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

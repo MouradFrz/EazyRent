@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminBan;
+use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
@@ -107,5 +108,13 @@ class UserController extends Controller
   {
     $users = User::latest()->paginate(25);
     return view('admin.usersList', ['users' => $users]);
+  }
+
+  public function getHistory(){
+
+    $bookings = Booking::where('clientUsername',Auth::user()->username)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->get();
+    return view('users.history',[
+      'bookings'=>$bookings,
+    ]);
   }
 }
