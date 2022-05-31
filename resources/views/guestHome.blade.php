@@ -87,7 +87,9 @@
         <div class="carousel-item active">
           <blockquote>
             <i class="fa-solid fa-quote-left"></i>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis
+            cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit
+            tempora?
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
@@ -95,7 +97,9 @@
         <div class="carousel-item">
           <blockquote>
             <i class="fa-solid fa-quote-left"></i>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis
+            cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit
+            tempora?
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
@@ -103,7 +107,9 @@
         <div class="carousel-item">
           <blockquote>
             <i class="fa-solid fa-quote-left"></i>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis
+            cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit
+            tempora?
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
@@ -111,17 +117,21 @@
         <div class="carousel-item">
           <blockquote>
             <i class="fa-solid fa-quote-left"></i>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit tempora?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas consequatur ut voluptatum inventore quis
+            cumque ad atque omnis aut doloremque error, deleniti maxime distinctio velit? Delectus quae magni suscipit
+            tempora?
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
         </div>
       </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="prev">
       <i class="fa-solid fa-angle-left"></i>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+      data-bs-slide="next">
       <i class="fa-solid fa-angle-right"></i>
     </button>
   </div>
@@ -171,10 +181,53 @@
     </div>
     <p class="cta">you have a renting cars agency ? <a class="link">Join us</a></p>
   </div>
-
   <div class="white-space"></div>
 </div>
-{{-- <script src="{{ asset('js/app.js') }}"></script> --}}
+<footer id="contactUs">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-6">
+        <h2 class="footer_header">EAZYRENT</h2>
+        <p>
+        EazyRent is a platform that makes renting your next vehicle a simple task in an easy, fast and
+        secure way.
+        <br>
+        Our goal is to gather agencies from all around the nation in one place.
+        <br>
+        To give you the best options with the least effort.
+        </p>
+      </div>
+      <div class="col-12 col-md-6">
+        <h2 class="footer_header">contact</h2>
+        <ul class="contact">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>address</span>Constantine, Constantine, Algerie
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <span>phone number</span><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +213 (0) 555 55 55 55 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +213 (0) 666 66 66 66 <br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +213 (0) 777 77 77 77 <br>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <span>email</span>contact@eazyrent.com
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-end">
+    <div class="container">
+      <hr>
+      <p>by <span>hacene barboucha, mourad yaou, oussama foura</span></p>
+      <p>All rights reserved Copyright &copy; 2022</p>
+    </div>
+  </div>
+</footer>
+<script src="{{ asset('js/app.js') }}"></script>
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js">
 </script>
 <script>

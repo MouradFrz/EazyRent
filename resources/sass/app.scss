@@ -1,6 +1,3 @@
-// Fonts
-// @import url('https://fonts.googleapis.com/css?family=Nunito');
-// Variables
 @use "variables" as *;
 
 *, *::before, *::after {
@@ -29,10 +26,6 @@ ul li, a {
 }
 a {
   color: $blue;
-}
-.navbar {
-  padding-top: 0;
-  padding-bottom: 0;
 }
 .inputs {
   width: 100%;
@@ -113,14 +106,6 @@ a {
 //       color: rgb(68, 68, 68);
 //     }
 // }
-footer {
-  background-color: rgb(201, 201, 201);
-  div {
-    @media (max-width: 980px) {
-      flex-direction: column !important;
-    }
-  }
-}
 // .form-control {
 //   padding: 10px !important;
 //   &:focus {
