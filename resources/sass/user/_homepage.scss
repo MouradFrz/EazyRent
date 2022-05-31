@@ -4,7 +4,6 @@
   min-height: 4rem;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: saturate(180%) blur(20px);
-  font-size: 1.1rem;
   .active {
     color: $cyan !important;
     border-bottom: 2px solid $cyan;
@@ -12,6 +11,7 @@
   .nav-link {
     transition: all 300ms linear;
     position: relative;
+    font-size: 1.1rem;
     &:hover,
     &:focus,
     &:active {
@@ -179,6 +179,7 @@ footer {
     text-align: center;
     p > span {
       color: $blue;
+      text-transform: capitalize;
     }
   }
 }
