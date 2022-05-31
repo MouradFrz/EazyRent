@@ -4,7 +4,7 @@
   min-height: 4rem;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: saturate(180%) blur(20px);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   .active {
     color: $cyan !important;
     border-bottom: 2px solid $cyan;
@@ -13,14 +13,15 @@
     transition: all 300ms linear;
     position: relative;
     &:hover,
-    &:focus {
+    &:focus,
+    &:active {
       color: $cyan !important;
     }
     &:hover::after,
     &:focus::after {
       content: "";
       position: absolute;
-      top: 2.8rem;
+      top: 2.65rem;
       left: 0;
       height: 0;
       width: 0;
@@ -131,13 +132,6 @@
   .carousel-item {
     margin-bottom: 1rem;
   }
-  carousel-indicators > button {
-    margin-top: 20rem;
-    width: 0.5rem;
-    height: 0.5rem;
-    border: 0;
-    border-radius: 50%;
-  }
 }
 // OUR PARTNERS
 .our-partners {
@@ -156,5 +150,35 @@
   }
   .cta {
     text-align: right;
+  }
+}
+footer {
+  background-color: $lightGrey;
+  padding-block: 2rem;
+  .col-12 {
+    margin-bottom: 2rem;
+  }
+  .contact {
+    padding-left: 0;
+   li {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    > span {
+      font-weight: 500;
+      &::after {
+        content: ' : ';
+      }
+    }
+    > i {
+      color: $blue;
+      margin-right: .5rem;
+    }
+    }
+  }
+  .footer-end{
+    text-align: center;
+    p > span {
+      color: $blue;
+    }
   }
 }

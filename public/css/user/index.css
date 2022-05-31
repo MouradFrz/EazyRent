@@ -3,7 +3,7 @@
   background-color: rgba(255, 255, 255, 0.95);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
           backdrop-filter: saturate(180%) blur(20px);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 }
 .navbar .active {
   color: rgb(85, 190, 240) !important;
@@ -13,13 +13,13 @@
   transition: all 300ms linear;
   position: relative;
 }
-.navbar .nav-link:hover, .navbar .nav-link:focus {
+.navbar .nav-link:hover, .navbar .nav-link:focus, .navbar .nav-link:active {
   color: rgb(85, 190, 240) !important;
 }
 .navbar .nav-link:hover::after, .navbar .nav-link:focus::after {
   content: "";
   position: absolute;
-  top: 2.8rem;
+  top: 2.65rem;
   left: 0;
   height: 0;
   width: 0;
@@ -133,13 +133,6 @@
 .testimonials .carousel-item {
   margin-bottom: 1rem;
 }
-.testimonials carousel-indicators > button {
-  margin-top: 20rem;
-  width: 0.5rem;
-  height: 0.5rem;
-  border: 0;
-  border-radius: 50%;
-}
 
 .our-partners .brands {
   margin-bottom: 1rem;
@@ -158,8 +151,35 @@
   text-align: right;
 }
 
-body {
-  min-height: 3000px;
+footer {
+  background-color: rgb(199, 199, 201);
+  padding-block: 2rem;
+}
+footer .col-12 {
+  margin-bottom: 2rem;
+}
+footer .contact {
+  padding-left: 0;
+}
+footer .contact li {
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+footer .contact li > span {
+  font-weight: 500;
+}
+footer .contact li > span::after {
+  content: " : ";
+}
+footer .contact li > i {
+  color: rgb(0, 122, 255);
+  margin-right: 0.5rem;
+}
+footer .footer-end {
+  text-align: center;
+}
+footer .footer-end p > span {
+  color: rgb(0, 122, 255);
 }
 
 .view-offers_hero {
@@ -207,7 +227,7 @@ body {
   margin-bottom: 0.5em;
 }
 .view-offers .minimized-offer_content .prop > ul > li > i {
-  color: #005252;
+  color: rgb(97, 97, 101);
 }
 .view-offers .minimized-offer .rating {
   margin: 10px 0;

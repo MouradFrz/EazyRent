@@ -1,5 +1,4 @@
 @use '../variables' as *;
-body{min-height: 3000px;}
 .view-offers{
   &_hero {
     .container {height: inherit;z-index: 1;}
@@ -42,7 +41,7 @@ body{min-height: 3000px;}
         margin-bottom: 0.5em;
       }
       .prop > ul > li > i {
-          color: #005252;
+          color: $darkGrey;
       }
     }
     .rating {

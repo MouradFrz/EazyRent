@@ -26,16 +26,16 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">best deals</a>
+            <a class="nav-link" href="#whoUs">Who us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">why us</a>
+            <a class="nav-link" href="#testimonials">Testimonials</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">our partners</a>
+            <a class="nav-link" href="#ourPartners">Our partners</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">contact us</a>
+            <a class="nav-link" href="#contactUs">Contact us</a>
           </li>
         </ul>
         @auth
@@ -70,15 +70,6 @@
     </div>
   </nav>
   @yield('content')
-  <footer>
-    <div class="container-md d-flex">
-      <a href="" class="nav-link">Terms and conditions</a>
-      <a href="" class="nav-link">FAQ</a>
-      <a href="" class="nav-link">Our Values</a>
-      <a href="" class="nav-link">About us</a>
-      <a href="" class="nav-link">Contact us</a>
-    </div>
-  </footer>
   @yield('script')
 </body>
 </html>
