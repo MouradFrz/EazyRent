@@ -104,12 +104,19 @@
 }
 
 .testimonials {
-  background-color: rgb(229, 229, 234);
+  background-color: rgb(88, 86, 214);
+  color: #FFF;
+}
+.testimonials .section-header {
+  margin-bottom: 4rem;
+}
+.testimonials .content {
+  color: rgb(229, 229, 234);
+  text-align: center;
 }
 .testimonials blockquote {
   padding-inline: 1rem;
-  text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 .testimonials blockquote > i {
   font-size: 1.4rem;
@@ -122,7 +129,6 @@
 }
 .testimonials h6 {
   font-size: 1.6rem;
-  text-align: center;
 }
 .testimonials .carousel-control-next,
 .testimonials .carousel-control-prev {
@@ -152,8 +158,10 @@
 }
 
 footer {
-  background-color: rgb(199, 199, 201);
-  padding-block: 2rem;
+  background-color: rgb(88, 86, 214);
+  padding-top: 2rem;
+  color: #FFF;
+  font-weight: 300;
 }
 footer .col-12 {
   margin-bottom: 2rem;
@@ -172,14 +180,16 @@ footer .contact li > span::after {
   content: " : ";
 }
 footer .contact li > i {
-  color: rgb(0, 122, 255);
+  color: rgb(85, 190, 240);
   margin-right: 0.5rem;
 }
 footer .footer-end {
+  background-color: rgb(47, 47, 49);
   text-align: center;
+  padding-bottom: 2rem;
 }
 footer .footer-end p > span {
-  color: rgb(0, 122, 255);
+  color: rgb(85, 190, 240);
   text-transform: capitalize;
 }
 

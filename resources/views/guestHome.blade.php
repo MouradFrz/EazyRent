@@ -3,7 +3,7 @@
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
 <link rel="stylesheet"
-  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css">
 @endsection
 @section('content')
 <div class="hero">
@@ -61,7 +61,7 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="d-flex justify-content-center align-items-center">
-          <object data="{{asset('images/who-us.svg')}}" width="200" height="200"></object>
+          <object data="{{asset('images/who-us.svg')}}" width="250" height="250"></object>
         </div>
       </div>
       <div class="col-12 col-md-6">
@@ -81,7 +81,7 @@
   <div class="white-space"></div>
   <h2 class="section-header">what people say about us ?</h2>
   <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
-    <div class="container">
+    <div class="container content">
       {{-- carousel indecators ma7boch ybano n7ithom --}}
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -93,6 +93,7 @@
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
+          <p>CEO of Tesla</p>
         </div>
         <div class="carousel-item">
           <blockquote>
@@ -103,6 +104,7 @@
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
+          <p>CEO of Tesla</p>
         </div>
         <div class="carousel-item">
           <blockquote>
@@ -113,6 +115,7 @@
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
+          <p>CEO of Tesla</p>
         </div>
         <div class="carousel-item">
           <blockquote>
@@ -123,6 +126,7 @@
             <i class="fa-solid fa-quote-right"></i>
           </blockquote>
           <h6>| elon musq |</h6>
+          <p>CEO of Tesla</p>
         </div>
       </div>
     </div>
@@ -179,7 +183,7 @@
         <i class="fa-brands fa-adversal"></i>
       </div>
     </div>
-    <p class="cta">you have a renting cars agency ? <a class="link">Join us</a></p>
+    <p class="cta">you have a renting cars agency ? <a class="link">Join us &#62; </a></p>
   </div>
   <div class="white-space"></div>
 </div>

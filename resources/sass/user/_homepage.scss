@@ -104,11 +104,18 @@
 }
 // TESTIMONIALS
 .testimonials {
-  background-color: $lightestGrey;
+  background-color: $indigo;
+  color: #FFF;
+  .section-header {
+    margin-bottom: 4rem;
+  }
+  .content {
+    color: $lightestGrey;
+    text-align: center;
+  }
   blockquote {
     padding-inline: 1rem;
-    text-align: center;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     > i {
       font-size: 1.4rem;
       &:first-of-type {
@@ -121,7 +128,6 @@
   }
   h6 {
     font-size: 1.6rem;
-    text-align: center;
   }
   .carousel-control-next,
   .carousel-control-prev {
@@ -152,9 +158,12 @@
     text-align: right;
   }
 }
+// FOOTER
 footer {
-  background-color: $lightGrey;
-  padding-block: 2rem;
+  background-color: $indigo;
+  padding-top: 2rem;
+  color: #FFF;
+  font-weight: 300;
   .col-12 {
     margin-bottom: 2rem;
   }
@@ -170,15 +179,17 @@ footer {
       }
     }
     > i {
-      color: $blue;
+      color: $cyan;
       margin-right: .5rem;
     }
     }
   }
   .footer-end{
+    background-color: $darkestGrey;
     text-align: center;
+    padding-bottom: 2rem;
     p > span {
-      color: $blue;
+      color: $cyan;
       text-transform: capitalize;
     }
   }
