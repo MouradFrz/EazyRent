@@ -8,7 +8,7 @@
   <title>Login</title>
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <link rel="stylesheet" href=" {{ asset('css/login.css') }}">
+  <link rel="stylesheet" href=" {{ asset('css/authentication.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
 </head>
 
