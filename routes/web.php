@@ -58,6 +58,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/checkFace','users.faceRecognition')->name('checkFace');
     Route::get('/history',[UserController::class,'getHistory'])->name('history');
     Route::get('/booking-details/{id}',[UserController::class,'getBookingDetails'])->name('bookingDetails');
+    Route::get('/download/{id}',[UserController::class,'downloadPdf'])->name('downloadPdf');
   });
 });
 

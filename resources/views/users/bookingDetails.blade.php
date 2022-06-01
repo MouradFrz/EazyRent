@@ -27,6 +27,18 @@
                 <canvas id="the-canvas"></canvas>
             </div>
             @endif
+            <div>
+                @if ($booking->state=="ACCEPTED")
+                <button class="btn btn-warning">Cancel contract</button>
+                <a href="{{ route('user.downloadPdf',$booking->bookingID) }}" class="btn btn-primary">Download Contract</a>
+                <button class="btn btn-success">Sign contract</button>
+                
+                @elseif($booking->state=="SIGNED" || $booking->state=="ON GOING" || $booking->state=="FINISHED")
+                <button class="btn btn-primary">Download Contract</button>
+                
+                @endif
+               
+            </div>
         </div>
     </div>
 @endsection

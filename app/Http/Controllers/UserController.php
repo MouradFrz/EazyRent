@@ -9,7 +9,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
-
+use File;
+use Response;
 class UserController extends Controller
 {
   public function create(Request $request)
@@ -128,4 +129,10 @@ class UserController extends Controller
 
     return view('users.bookingDetails',['booking'=>$booking]);
   }
+
+  public function downloadPdf($id){
+    $path = public_path('contracts\contract_').$id.'.pdf';
+    return response()->download($path);
+  }
+  
 }
