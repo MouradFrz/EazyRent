@@ -20,7 +20,7 @@
         <p>please enter your personal info to access to your account</p>
         <p>
           Don't have an account?
-          <a href="{{ route('user.register') }}" class="link">Sign Up</a>
+          <a href="{{ route('user.register') }}" class="custom-btn">Sign Up</a>
         </p>
       </div>
     </div>
@@ -30,10 +30,9 @@
         <form class="form-login d-flex flex-column" action="{{ route('user.check') }}" method="POST">
           @csrf
           <label for="username">Username</label>
-          <input class="inputs" name="username" type="text" value="{{ old('username') }}"
-            placeholder="enter username here" />
+          <input class="inputs" name="username" type="text" value="{{ old('username') }}"/>
           <label for="password">Password</label>
-          <input class="inputs" name="password" type="password" placeholder="enter password here" />
+          <input class="inputs" name="password" type="password"/>
           <span>
             <input type="checkbox" name="rememberMe" value="remember me">
             <label for="remember me" class="last">remember me</label>
@@ -68,10 +67,10 @@
           <p class="or">-or-</p>
           <p>forget Password ? <a href="#" class="link">click here</a></p>
           <div class="d-flex justify-content-center">
-            <button href="{{ route('user.loginWithGoogle') }}" class="google-login">
+            <a href="{{ route('user.loginWithGoogle') }}" class="google-login">
               <object data="{{asset('/images/icons/google-icon.svg')}}" width="24" height="24"></object>
               Login with Google
-            </button>
+            </a>
           </div>
         </div>
       </div>
