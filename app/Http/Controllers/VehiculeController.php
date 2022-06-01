@@ -98,7 +98,7 @@ class VehiculeController extends Controller
     // 'HAND BY HAND' 'ONLINE'
     $booking->payementMethod = 'HAND BY HAND';
     $booking->pickUpLocation = $request->pickUpLocation;
-    $booking->dropOffLocation = $request->pickUpLocation;
+    $booking->dropOffLocation = $request->dropOffLocation;
 
     $booking->pickUpDate = session('pickUpString');
     $booking->dropOffDate = session('dropOffString');
