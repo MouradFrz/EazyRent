@@ -119,4 +119,13 @@ class UserController extends Controller
       'bookings'=>$bookings,
     ]);
   }
+
+  public function getBookingDetails($id){
+    $booking = Booking::find($id);
+    if($booking->clientUsername!=Auth::user()->username){
+      return redirect()->route('user.home');
+    }
+
+    return view('users.bookingDetails',['booking'=>$booking]);
+  }
 }

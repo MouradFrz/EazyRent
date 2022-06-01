@@ -60,7 +60,7 @@
           </div>
           <div class="row">
             <div class="col">
-              <label for="daysNbr" class="form-label">days number</label>
+              <label for="daysNbr" class="form-label">days count</label>
               <input type="string" value="@php
               $diff = session('dropOffDate')->diff(session('pickUpDate'));
               $days =  $diff->days;
@@ -68,7 +68,7 @@
               @endphp" class="form-control" disabled>
             </div>
             <div class="col">
-              <label for="hoursNbr" class="form-label">hours number</label>
+              <label for="hoursNbr" class="form-label">hours count</label>
               <input type="number" value="@php
               $hours = $diff->h;
               echo $hours;
