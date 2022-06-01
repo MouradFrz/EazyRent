@@ -1,46 +1,119 @@
-.login-panel {
-    border: 1px solid gainsboro;
-    max-width: 650px;
-    width: 100%;
-    padding: 40px;
-    border-radius: 5px;
-    margin: 60px 0px;
-    position: relative;
-    box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05),
-    0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071),
-    0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077),
-    0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);;
-    .form-login {
-      width: 100%;
-      margin-bottom: 10px;
-      input {
-        margin: 0 0 15px 0;
+@use "variables" as v;
+.login {
+  min-height: 100vh;
+  margin-inline: 0;
+  &_welcome {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: v.$cyan;
+    color: #fff;
+    text-align: center;
+    .content {
+      padding: 4rem 1rem;
+    }
+    h2 {
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+  }
+}
+.login_panel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .section-header {
+    color: v.$cyan;
+  }
+  .content {
+    width: 450px;
+    border: .5px solid #ccc;
+    border-radius: 2rem;
+    padding: 2rem 4rem;
+    box-shadow: v.$box-shadow;
+  }
+  .form-login {
+    label {
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+    input {
+      margin-bottom: 0.5rem;
+      &[type="checkbox"] {
+        margin-right: 0.25rem;
       }
     }
+    .last {
+      margin-bottom: 2rem;
+    }
+    .login-btn {
+      padding-inline: 2rem;
+    }
+    .inputs {
+      box-shadow: none;
+      border: .5px solid #CCC;
+    }
   }
-  .title {
+  .login_options {
     text-align: center;
-    color: rgb(187, 190, 105);
-  }
-  .type-buttons{
-    margin-bottom: 18px;
-    &>button{
-    background-color: white;
-    color: black;
-    border-bottom: 2px solid gray;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0px;
-    margin: 0;
-    transition: all 0.2s ease;
-    &.active{
-      border-bottom: 2px solid rgb(187, 190, 105);
-      color: rgb(187, 190, 105);
+    .or {
+      margin-block: 1rem;
+    }
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
   }
 }
-.form-login-worker.active{
-  display: flex !important;
+.google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFF;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  transition: 300ms all linear;
+  border: none;
+  border-radius: 1rem;
+  color: #4285f4;
+  > object {
+    margin-right: 0.5rem;
+    background-color: white;
+    border-radius: 50%;
+  }
+  &:hover {
+    background-color: #4285f4;
+    color: #FFF;
+  }
+
 }
-.form-login-worker{
-  display: none !important;
-}
+
+// .type-buttons {
+//   margin-bottom: 18px;
+//   & > button {
+//     background-color: white;
+//     color: black;
+//     border-bottom: 2px solid gray;
+//     border-bottom-left-radius: 0px;
+//     border-bottom-right-radius: 0px;
+//     margin: 0;
+//     transition: all 0.2s ease;
+//     &.active {
+//       border-bottom: 2px solid rgb(187, 190, 105);
+//       color: rgb(187, 190, 105);
+//     }
+//   }
+// }
+// .form-login-worker.active {
+//   display: flex !important;
+// }
+// .form-login-worker {
+//   display: none !important;
+// }
