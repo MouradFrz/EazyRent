@@ -20,20 +20,35 @@
                                 <li>Garage ID: <span class="value">{{ $vehicule->garageID }}</span></li>
                                 <li><a href="{{ route('secretary.vehiculeDetails', $vehicule->plateNb) }}">View
                                         more</a></span></li>
+                                @if (count($bookings) != 0)
 
-                                @foreach ($bookings as $booking)
-                                    @if ($booking->vehiculePlateNB == $vehicule->plateNb)
-                                        @if ($booking->state == 'REQUESTED' || $booking->state == 'ACCEPTED' || $booking->state == 'SIGNED' || $booking->state == 'ON GOING')
+
+                                    @foreach ($bookings as $booking)
+                                        @if ($booking->vehiculePlateNB == $vehicule->plateNb)
+                                            @if ($booking->state == 'REQUESTED' || $booking->state == 'ACCEPTED' || $booking->state == 'SIGNED' || $booking->state == 'ON GOING')
+                                                @if ($vehicule->availability)
+                                                    <button type="button" class="btn btn-warning my-3" disabled>Set
+                                                        unavailable</button>
+                                                @else
+                                                    <button type="button" class="btn btn-success my-3" disabled>Set
+                                                        available</button>
+                                                @endif
+                                            @break
+
+                                        @else
                                             @if ($vehicule->availability)
-                                                <button type="button" class="btn btn-warning my-3" disabled>Set
+                                                <button type="button" class="btn btn-warning my-3"
+                                                    onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
                                                     unavailable</button>
                                             @else
-                                                <button type="button" class="btn btn-success my-3" disabled>Set
+                                                <button type="button" class="btn btn-success my-3"
+                                                    onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
                                                     available</button>
                                             @endif
                                         @break
-
-                                    @else
+                                    @endif
+                                @else
+                                    @if ($loop->index == count($bookings) - 1)
                                         @if ($vehicule->availability)
                                             <button type="button" class="btn btn-warning my-3"
                                                 onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
@@ -44,25 +59,23 @@
                                                 available</button>
                                         @endif
                                     @break
-                                @endif
-                            @else
-                                @if ($loop->index == count($bookings) - 1)
-                                    @if ($vehicule->availability)
-                                        <button type="button" class="btn btn-warning my-3"
-                                            onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
-                                            unavailable</button>
-                                    @else
-                                        <button type="button" class="btn btn-success my-3"
-                                            onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
-                                            available</button>
-                                    @endif
-                                @break
 
-                            @else
-                                @continue
+                                @else
+                                    @continue
+                                @endif
                             @endif
+                        @endforeach
+                    @else
+                        @if ($vehicule->availability)
+                            <button type="button" class="btn btn-warning my-3"
+                                onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
+                                unavailable</button>
+                        @else
+                            <button type="button" class="btn btn-success my-3"
+                                onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
+                                available</button>
                         @endif
-                    @endforeach
+                    @endif
                     <form action="{{ route('secretary.updateState', $vehicule->plateNb) }}"
                         id="form{{ $vehicule->plateNb }}" method="POST">@csrf</form>
                 </ul>
