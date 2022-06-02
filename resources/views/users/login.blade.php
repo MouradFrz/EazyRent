@@ -13,8 +13,8 @@
 </head>
 
 <body>
-  <div class="login row">
-    <div class="login_welcome col-12 col-md-4">
+  <div class="authentication row">
+    <div class="authentication_welcome col-12 col-md-4">
       <div class="content">
         <h2 class="section-heading">welcome back!</h2>
         <p>please enter your personal info to access to your account</p>
@@ -24,10 +24,10 @@
         </p>
       </div>
     </div>
-    <div class="login_panel col-12 col-md-8">
+    <div class="authentication_panel col-12 col-md-8">
       <h2 class="section-header">Log in to eazyrent</h2>
       <div class="content container-fluid">
-        <form class="form-login d-flex flex-column" action="{{ route('user.check') }}" method="POST">
+        <form class="form-login d-flex flex-column" action="{{ route('user.check') }}" method="POST" enctype="multipart/form-data">
           @csrf
           <label for="username">Username</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}"/>
@@ -63,9 +63,9 @@
             <button type="submit" class="custom-btn custom-btn-dark login-btn">log in</button>
           </div>
         </form>
-        <div class="login_options">
+        <div class="authentication_options">
           <p class="or">-or-</p>
-          <p>forget Password ? <a href="#" class="link">click here</a></p>
+          <p>forget Password ? <a href="#" class="link">click here </a></p>
           <div class="d-flex justify-content-center">
             <a href="{{ route('user.loginWithGoogle') }}" class="google-login">
               <object data="{{asset('/images/icons/google-icon.svg')}}" width="24" height="24"></object>

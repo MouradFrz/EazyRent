@@ -1,8 +1,8 @@
-.login {
+.authentication {
   min-height: 100vh;
   margin-inline: 0;
 }
-.login_welcome {
+.authentication_welcome {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,62 +10,62 @@
   color: #fff;
   text-align: center;
 }
-.login_welcome .content {
+.authentication_welcome .content {
   padding: 4rem 1rem;
 }
-.login_welcome h2 {
+.authentication_welcome h2 {
   font-size: 2.5rem;
   text-transform: uppercase;
   margin-bottom: 2rem;
 }
-.login_welcome p {
+.authentication_welcome p {
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
 
-.login_panel {
+.authentication_panel {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-.login_panel .section-header {
+.authentication_panel .section-header {
   color: rgb(88, 86, 214);
 }
-.login_panel .content {
+.authentication_panel .content {
   width: 450px;
   border: 0.5px solid #ccc;
   border-radius: 2rem;
   padding: 2rem 4rem;
   box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
 }
-.login_panel .form-login label {
+.authentication_panel .form-login label {
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
-.login_panel .form-login input {
+.authentication_panel .form-login input {
   margin-bottom: 0.5rem;
 }
-.login_panel .form-login input[type=checkbox] {
+.authentication_panel .form-login input[type=checkbox] {
   margin-right: 0.25rem;
 }
-.login_panel .form-login .last {
+.authentication_panel .form-login .last {
   margin-bottom: 2rem;
 }
-.login_panel .form-login .login-btn {
+.authentication_panel .form-login .login-btn {
   padding-inline: 2rem;
 }
-.login_panel .form-login .inputs {
+.authentication_panel .form-login .inputs {
   box-shadow: none;
   border: 0.5px solid #CCC;
 }
-.login_panel .login_options {
+.authentication_panel .authentication_options {
   text-align: center;
 }
-.login_panel .login_options .or {
+.authentication_panel .authentication_options .or {
   margin-block: 1rem;
 }
-.login_panel .login_options p {
+.authentication_panel .authentication_options p {
   font-size: 1.1rem;
   margin-bottom: 0.5rem;
 }
