@@ -14,6 +14,8 @@ use App\Http\Controllers\GoogleController;
 use App\Models\PickUpLocation;
 use App\Models\Secretary;
 use App\Models\Vehicule;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +36,27 @@ Route::middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary',
 });
 
 
+//// EMail verification routes
+Route::get('/email/verify', function () {
+  return view('users.verifyEmail');
+})->middleware('auth')->name('verification.notice');
+
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+  $request->fulfill();
+  return redirect()->route('user.home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+  $request->user()->sendEmailVerificationNotification();
+
+  return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 // users
 Route::prefix('user')->name('user.')->group(function () {
   Route::middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
@@ -44,23 +67,24 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/register', 'users.register')->name('register');
     Route::post('/create', [UserController::class, 'create'])->name('create');
     Route::post('/check', [UserController::class, 'check'])->name('check');
-    Route::get('/google',[GoogleController::class,'loginWithGoogle'])->name('loginWithGoogle');
-    Route::any('/google/login',[GoogleController::class,'callbackFromGoogle'])->name('callback');
+    Route::get('/google', [GoogleController::class, 'loginWithGoogle'])->name('loginWithGoogle');
+    Route::any('/google/login', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
-    Route::get('/offer/{plateNb}',[VehiculeController::class,'viewOfferDetails'])->name('viewOfferDetails');
+    Route::get('/offer/{plateNb}', [VehiculeController::class, 'viewOfferDetails'])->name('viewOfferDetails');
   });
-  Route::middleware(['auth:web', 'PreventBackHistory'])->group(function () {
+  Route::middleware(['auth:web','verified', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::post('/book',[VehiculeController::class,'book'])->name('book');
-    Route::view('/checkFace','users.faceRecognition')->name('checkFace');
-    Route::get('/history',[UserController::class,'getHistory'])->name('history');
-    Route::get('/booking-details/{id}',[UserController::class,'getBookingDetails'])->name('bookingDetails');
-    Route::get('/download/{id}',[UserController::class,'downloadPdf'])->name('downloadPdf');
-    Route::post('/signContract/{id}',[UserController::class,'signContract'])->name('signContract');
-    Route::post('/declineContract/{id}',[UserController::class,'declineContract'])->name('declineContract');
+    Route::post('/book', [VehiculeController::class, 'book'])->name('book');
+    Route::view('/checkFace', 'users.faceRecognition')->name('checkFace');
+    Route::get('/history', [UserController::class, 'getHistory'])->name('history');
+    Route::get('/booking-details/{id}', [UserController::class, 'getBookingDetails'])->name('bookingDetails');
+    Route::get('/download/{id}', [UserController::class, 'downloadPdf'])->name('downloadPdf');
+    Route::post('/signContract/{id}', [UserController::class, 'signContract'])->name('signContract');
+    Route::post('/declineContract/{id}', [UserController::class, 'declineContract'])->name('declineContract');
+    
   });
 });
 
@@ -128,44 +152,43 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/agencies-list', [AgencyController::class, 'getAgencies'])->name('getAgencies');
     Route::view('/users-list', 'admin.usersList')->name('usersList');
     Route::get('/users-list', [UserController::class, 'getUsersList'])->name('usersList');
-    Route::get('/bans',[AdminController::class,'loadBans'])->name('loadBans');
+    Route::get('/bans', [AdminController::class, 'loadBans'])->name('loadBans');
     Route::post('/logout', [AdminController::class, 'logout'])->name('logout');
-    Route::post('/ban',[AdminController::class,'banUser'])->name('ban');
-    Route::post('/unban',[AdminController::class,'unbanUser'])->name('unban');
+    Route::post('/ban', [AdminController::class, 'banUser'])->name('ban');
+    Route::post('/unban', [AdminController::class, 'unbanUser'])->name('unban');
   });
 });
 //secretaries
-Route::prefix('secretary')->name('secretary.')->group(function(){
-    Route::middleware(['guest:web','guest:owner','guest:admin','guest:secretary','guest:garagist','PreventBackHistory'])->group(function(){
-        Route::get('/',function(){
-            return redirect(route('workerLogin'));
-        });
-        Route::post('/check',[SecretaryController::class,'check'])->name('check');
-        });
-    Route::middleware(['auth:secretary','PreventBackHistory'])->group(function(){
-        Route::view('/home','secretaries.secretaryHome')->name('home');
-        Route::get('/vehicles',[SecretaryController::class,'showVehicules'])->name('showVehicules');
-        Route::get('/editProfile',[SecretaryController::class,'showProfile'])->name('showProfile');
-        Route::post('/editProfile',[SecretaryController::class,'editProfile'])->name('editProfile');
-        Route::get('/addVehicule',[SecretaryController::class,'addVehiculePage'])->name('addVehicule');
-        Route::post('/addVehicule',[SecretaryController::class,'addVehicule'])->name('addVehiculePost');
-        Route::get('/vehicle/{id}',[SecretaryController::class,'vehiculeDetails'])->name('vehiculeDetails');
-        Route::post('/vehicle/{id}',[SecretaryController::class,'deleteVehicule'])->name('deleteVehicule');
-        Route::post('/vehicle1/{id}', [SecretaryController::class, 'updateState'])->name('updateState');
-        Route::post('/vehicle-transfer/{id}',[SecretaryController::class,'transferVehicle'])->name('transferVehicle');
-        Route::get('/pick-up-locations',[AgencyController::class,'getPickUpLocations'])->name('getPickUpLocations');
-        Route::post('/pick-up-locations',[AgencyController::class,'addPickUpLoaction'])->name('addPickUpLocation');
-        Route::post('/logout',[SecretaryController::class,'logout'])->name('logout');
-        Route::get('/reservation-requests',[SecretaryController::class,'getReservationRequests'])->name('getReservationRequests');
-        Route::get('/reservationDetails/{id}',[SecretaryController::class,'reservationDetails'])->name('reservationDetails');
-        Route::post('/accept-booking/{id}',[BookingController::class, 'accept'])->name('acceptBooking');
-        Route::post('/decline-booking/{id}',[BookingController::class, 'decline'])->name('declineBooking');
-        Route::get('/history',[SecretaryController::class,"getHistory"])->name('history');
-        Route::post('/setRating',[SecretaryController::class, 'setRating'])->name('setRating');
-        Route::post('/banUser',[SecretaryController::class, 'banUser'])->name('banUser');
-        Route::get('/testroute',[SecretaryController::class, 'test']);
+Route::prefix('secretary')->name('secretary.')->group(function () {
+  Route::middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
+    Route::get('/', function () {
+      return redirect(route('workerLogin'));
     });
-
+    Route::post('/check', [SecretaryController::class, 'check'])->name('check');
+  });
+  Route::middleware(['auth:secretary', 'PreventBackHistory'])->group(function () {
+    Route::view('/home', 'secretaries.secretaryHome')->name('home');
+    Route::get('/vehicles', [SecretaryController::class, 'showVehicules'])->name('showVehicules');
+    Route::get('/editProfile', [SecretaryController::class, 'showProfile'])->name('showProfile');
+    Route::post('/editProfile', [SecretaryController::class, 'editProfile'])->name('editProfile');
+    Route::get('/addVehicule', [SecretaryController::class, 'addVehiculePage'])->name('addVehicule');
+    Route::post('/addVehicule', [SecretaryController::class, 'addVehicule'])->name('addVehiculePost');
+    Route::get('/vehicle/{id}', [SecretaryController::class, 'vehiculeDetails'])->name('vehiculeDetails');
+    Route::post('/vehicle/{id}', [SecretaryController::class, 'deleteVehicule'])->name('deleteVehicule');
+    Route::post('/vehicle1/{id}', [SecretaryController::class, 'updateState'])->name('updateState');
+    Route::post('/vehicle-transfer/{id}', [SecretaryController::class, 'transferVehicle'])->name('transferVehicle');
+    Route::get('/pick-up-locations', [AgencyController::class, 'getPickUpLocations'])->name('getPickUpLocations');
+    Route::post('/pick-up-locations', [AgencyController::class, 'addPickUpLoaction'])->name('addPickUpLocation');
+    Route::post('/logout', [SecretaryController::class, 'logout'])->name('logout');
+    Route::get('/reservation-requests', [SecretaryController::class, 'getReservationRequests'])->name('getReservationRequests');
+    Route::get('/reservationDetails/{id}', [SecretaryController::class, 'reservationDetails'])->name('reservationDetails');
+    Route::post('/accept-booking/{id}', [BookingController::class, 'accept'])->name('acceptBooking');
+    Route::post('/decline-booking/{id}', [BookingController::class, 'decline'])->name('declineBooking');
+    Route::get('/history', [SecretaryController::class, "getHistory"])->name('history');
+    Route::post('/setRating', [SecretaryController::class, 'setRating'])->name('setRating');
+    Route::post('/banUser', [SecretaryController::class, 'banUser'])->name('banUser');
+    Route::get('/testroute', [SecretaryController::class, 'test']);
+  });
 });
 //garagists
 Route::prefix('garagist')->name('garagist.')->group(function () {
@@ -178,11 +201,11 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
   Route::middleware(['auth:garagist', 'PreventBackHistory'])->group(function () {
     Route::get('/home',  [GaragistController::class, 'home'])->name('home');
     Route::post('/logout', [GaragistController::class, 'logout'])->name('logout');
-    Route::get('/editProfile',[GaragistController::class,'showProfile'])->name('showProfile');
-    Route::post('/editProfile',[GaragistController::class,'editProfile'])->name('editProfile');
-    Route::get('/vehicles',[GaragistController::class,'showVehicles'])->name('vehicles');
-    Route::get('/manageVehicle/{id}',[GaragistController::class,'manageVehicle'])->name('manageVehicle');
-    Route::post('/set-condition/{id}',[GaragistController::class,'setCondition'])->name('setCondition');
-    Route::get('/reservation',[GaragistController::class,'getReservations'])->name('getReservations');
+    Route::get('/editProfile', [GaragistController::class, 'showProfile'])->name('showProfile');
+    Route::post('/editProfile', [GaragistController::class, 'editProfile'])->name('editProfile');
+    Route::get('/vehicles', [GaragistController::class, 'showVehicles'])->name('vehicles');
+    Route::get('/manageVehicle/{id}', [GaragistController::class, 'manageVehicle'])->name('manageVehicle');
+    Route::post('/set-condition/{id}', [GaragistController::class, 'setCondition'])->name('setCondition');
+    Route::get('/reservation', [GaragistController::class, 'getReservations'])->name('getReservations');
   });
 });
