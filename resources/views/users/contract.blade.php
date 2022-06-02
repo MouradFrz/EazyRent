@@ -8,5 +8,15 @@
 </head>
 <body>
     This is the contact  {{ $userFirstName}} 
+
+
+    @php
+        now();
+    @endphp
+    Dudes signature
+    @isset($signature)
+
+    {{ $userFirstName}} {{ $userLastName}} 
+    @endisset
 </body>
 </html>

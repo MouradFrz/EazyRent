@@ -6,11 +6,12 @@ use App\Models\AdminBan;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rules\Password;
-use File;
-use Response;
+use Barryvdh\DomPDF\Facade\PDF;
+use Illuminate\Support\Facades\DB;
+
 class UserController extends Controller
 {
   public function create(Request $request)
@@ -131,8 +132,60 @@ class UserController extends Controller
   }
 
   public function downloadPdf($id){
+    $booking = Booking::find($id);
+    if($booking->clientUsername!=Auth::user()->username){
+      return redirect()->route('user.home');
+    }
     $path = public_path('contracts\contract_').$id.'.pdf';
     return response()->download($path);
   }
+  public function signContract(Request $request,$id){
+    $booking = Booking::find($id);
+    if($booking->clientUsername!=Auth::user()->username){
+      return redirect()->route('user.home');
+    }
+
+    
+    $contractData = DB::select('SELECT bookingID,payementMethod,pickUpDate,dropOffDate,users.firstName as userFirstName,users.lastName as userLastName
+    , secretaries.firstName as secFirstName,secretaries.lastName as secLastName,
+    address_address,vehiculePlateNb,model,brand,bookingPrice,pricePerHour,pricePerDay,agencies.name as agencyName,registeryNb
+    
+    FROM bookings,vehicules,secretaries,agencies,pickuplocations,branches,users
+    where bookings.vehiculePlateNB = vehicules.plateNb 
+    AND bookings.clientUsername=users.username 
+    AND bookings.secretaryUsername=secretaries.username
+    AND secretaries.brancheID = branches.brancheID
+    AND branches.agencyID = agencies.agencyID 
+    AND bookings.pickUpLocation = pickuplocations.id
+    AND bookings.bookingID=:bookID;',['bookID'=>$id]);
+
+    $array = json_decode(json_encode($contractData), true);
+    
+    $array[0]['signature']=true;
+    $pdf = PDF::loadView('users.contract', $array[0]);
+    $pdf->save(public_path('contracts\contract_').$id.'.pdf');
+
+
+    $request->validate([
+      'password'=>'required|current_password:web',
+      'valid'=>'accepted'
+    ]);
+    $booking->update(['state'=>'SIGNED']);
+    return redirect()->route('user.bookingDetails',$id)->with('success','Contract Signed successfully.');
+  }
   
+  public function declineContract(Request $request,$id){
+    $booking = Booking::find($id);
+    if($booking->clientUsername!=Auth::user()->username){
+      return redirect()->route('user.home');
+    }
+
+
+    $request->validate([
+      'password'=>'required|current_password:web',
+      'valid'=>'accepted'
+    ]);
+    $booking->update(['state'=>'CANCELED']);
+    return redirect()->route('user.bookingDetails',$id)->with('declined','Contract declined.');
+  }
 }

@@ -9,5 +9,5 @@ class Booking extends Model
 {
     use HasFactory;
     protected $primaryKey = 'bookingID';
-    protected $fillable = ['secretaryRatesClient'];
+    protected $fillable = ['secretaryRatesClient','state'];
 }
