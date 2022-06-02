@@ -59,6 +59,8 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/history',[UserController::class,'getHistory'])->name('history');
     Route::get('/booking-details/{id}',[UserController::class,'getBookingDetails'])->name('bookingDetails');
     Route::get('/download/{id}',[UserController::class,'downloadPdf'])->name('downloadPdf');
+    Route::post('/signContract/{id}',[UserController::class,'signContract'])->name('signContract');
+    Route::post('/declineContract/{id}',[UserController::class,'declineContract'])->name('declineContract');
   });
 });
 
