@@ -77,6 +77,15 @@
             @enderror
           </div>
         </div>
+        <div class="row">
+          <div class="col-6">
+            <label for="logo" class="form-label">Insert an image of your agency's logo</label>
+            <input type="file"  accept="image/png, image/jpeg" name="logo" class="form-control">
+            @error('logo')
+                {{ $message }}
+            @enderror
+          </div>
+        </div>
         <button type="submit" class="btn btn-primary">add agency</button>
       </form>
     </div>

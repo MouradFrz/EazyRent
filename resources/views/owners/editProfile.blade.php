@@ -15,7 +15,7 @@
         @csrf
         <div class="row">
             <div>
-                {{-- <img src="{{ asset('images/owners/idCardImages/ferza.jpg') }}" alt="" style="width: 150px;border-radius:50%;"> --}}
+                <img src="{{ asset('images/agencies/logos/'.$agency->logo) }}" alt="" style="width: 150px;border-radius:50%;">
                 <h5>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</h5>
                 <h6 class="text-muted fw-light">{{ Auth::user()->username }}</h6>
             </div>
