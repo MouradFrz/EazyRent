@@ -8,24 +8,26 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
 </head>
 <body>
-  <div class="signup">
-    <div class="signup_welcome col-12 col-md-4">
+  <div class="authentication row">
+    <div class="authentication_welcome col-12 col-md-4">
       <div class="content">
         <h2 class="section-heading">welcome back!</h2>
-        <p>please enter your personal info to access to your account</p>
+        <p>Please enter your personal info to join us</p>
         <p>
-          Don't have an account?
-          <a href="{{ route('user.login') }}" class="custom-btn">Sign Up</a>
+          You already have an account
+          <a href="{{ route('user.login') }}" class="custom-btn">Log in</a>
         </p>
       </div>
     </div>
-    <div class="container d-flex justify-content-center align-items-center " style="min-height: 100vh">
-      <div class=" signup-panel d-flex align-items-center justify-content-center flex-column">
-        <form class=" d-flex align-items-center justify-content-center flex-column" action="{{ route('user.create') }}"
-          method="POST" style="width: 100%" enctype="multipart/form-data">
-          <h1 class="title fw-bold">Sign up</h1>
+    <div class="authentication_panel col-12 col-md-8">
+      <h2 class="section-header">Join eazyrent</h2>
+      <div class="content containter-fluid">
+        <form class="form-signup d-flex flex-column" action="{{ route('user.create') }}"
+          method="POST" enctype="multipart/form-data">
+          @csrf
           @if (Session::get('fail'))
           <div class="alert alert-danger w-100" role="alert">
             {{ Session::get('fail') }}
@@ -36,77 +38,72 @@
             {{ Session::get('success') }}
           </div>
           @endif
-          @csrf
           <div class="form-login d-flex flex-column w-100 signupStep">
             <label for="">First name</label>
             <input type="text" name="firstName" maxlength="45" class="inputs" value="{{ old('firstName') }}" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('firstName')
               {{ $message }}
               @enderror
             </span>
             <label for="">Last name</label>
             <input type="text" name="lastName" maxlength="45" class="inputs" value="{{ old('lastName') }}" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('lastName')
               {{ $message }}
               @enderror
             </span>
             <label for="">Birth Date</label>
             <input class="inputs" type="date" name="birthDate" max="2003-01-01" value="{{ old('birthDate') }}" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('birthDate')
               {{ $message }}
               @enderror
             </span>
             <label for="">Address</label>
             <input class="inputs" type="text" name="address" value="{{ old('address') }}" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('address')
               {{ $message }}
               @enderror
             </span>
-            <p class="my-2">
-              Already have an account?
-              <a href="{{ route('user.login') }}" class="text-decoration-underline">Log in</a>
-            </p>
             <p class="step-index">1/4</p>
           </div>
           <div class="form-login d-flex flex-column signupStep hide">
-            <label for="">Username</label>
+            <label for="username">Username</label>
             <input class="inputs" type="text" name="username" value="{{ old('username') }}" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('username')
               {{ $message }}
               @enderror
             </span>
-            <label for="">E-mail</label>
+            <label for="email">E-mail</label>
             <input class="inputs" type="email" value="{{ old('email') }}" name="email" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('email')
               {{ $message }}
               @enderror
             </span>
-            <label for="">Phone number
+            <label for="phone number">Phone number
               <span style="font-size: 10px; color: gray">optional</span></label>
             <input class="inputs" type="text" maxlength="10" name="phone" value="{{ old('phone') }}"
               onkeypress="return isNumber(event)" />
-            <span class="text-danger" style="font-size:0.8rem">
+            <span class="text-danger">
               @error('phone')
               {{ $message }}
               @enderror
             </span>
             <div class="d-flex flex-column">
-              <label for="">Password</label>
+              <label for="password">Password</label>
               <input class="inputs" type="password" name="password" />
-              <span class="text-danger" style="font-size:0.8rem">
+              <span class="text-danger">
                 @error('password')
                 {{ $message }}
                 @enderror
               </span>
-              <label for="">Password confirmation</label>
+              <label for="password confirmation">Password confirmation</label>
               <input class="inputs" type="password" name="passwordConfirm" />
-              <span class="text-danger" style="font-size:0.8rem">
+              <span class="text-danger">
                 @error('passwordConfirm')
                 {{ $message }}
                 @enderror
@@ -115,18 +112,15 @@
             <p class="step-index">2/4</p>
           </div>
           <div class="form-login d-flex flex-column signupStep hide">
-            <label for=""> Identity card number</label>
+            <label for="identity card number"> Identity card number</label>
             <input class="inputs" type="text" maxlength="18" name="idCard" value="{{ old('idCard') }}"
               onkeypress="return isNumber(event)" />
-
             <span class="text-danger" style="font-size:0.8rem">
               @error('idCard')
               {{ $message }}
               @enderror
             </span>
-
-
-            <label for="">Upload an image of your identity card</label>
+            <label for="identity card image">Upload an image of your identity card</label>
             <input class="inputs file-input" type="file" accept="image/*" name="idCardImage" style="display: none"
               id="file-field" value="{{ old('idCardImage') }}" />
             <span class="text-danger" style="font-size:0.8rem">

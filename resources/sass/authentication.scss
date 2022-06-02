@@ -1,5 +1,5 @@
 @use "variables" as v;
-.login {
+.authentication {
   min-height: 100vh;
   margin-inline: 0;
   &_welcome {
@@ -23,7 +23,7 @@
     }
   }
 }
-.login_panel {
+.authentication_panel {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,7 +61,7 @@
       border: .5px solid #CCC;
     }
   }
-  .login_options {
+  .authentication_options {
     text-align: center;
     .or {
       margin-block: 1rem;
