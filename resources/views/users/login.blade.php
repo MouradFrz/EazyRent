@@ -18,10 +18,8 @@
         <object data="{{asset('images/icons/hi-authentication.svg')}}" width="300" height="300" defer loading="lazy"></object>
         <h2 class="section-heading">welcome back!</h2>
         <p>please enter your personal info to access to your account</p>
-        <p>
-          Don't have an account?
-          <a href="{{ route('user.register') }}" class="custom-btn">Sign Up</a>
-        </p>
+        <p>Don't have an account?</p>
+        <a href="{{ route('user.register') }}" class="custom-btn">Sign Up</a>
       </div>
     </div>
     <div class="authentication_panel col-12 col-md-8">

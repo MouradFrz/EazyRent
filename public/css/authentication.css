@@ -26,8 +26,9 @@
 .authentication_panel {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
+  padding-bottom: 2rem;
 }
 .authentication_panel .section-header {
   color: rgb(88, 86, 214);
@@ -123,6 +124,9 @@
   position: absolute;
   visibility: hidden;
   z-index: -10;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }
 
 .file-input {
