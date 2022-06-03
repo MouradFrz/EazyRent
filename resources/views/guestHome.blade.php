@@ -255,20 +255,20 @@
     null,
     true // Lazy load the plugin
   );
-  const pirckUpGeocoder = new MapboxGeocoder({
+  const pickUpGecoder = new MapboxGeocoder({
     accessToken: mapboxgl.accessToken,
     types: 'country,region,place,postcode,locality,neighborhood',
     countries: 'dz',
     // enableGeolocation: true,
   });
-  pirckUpGeocoder.addTo('#pickUpLocation');
+  pickUpGecoder.addTo('#pickUpLocation');
 
   // Get the geocoder results container.
   const pickUpLng = document.getElementById('pickUpLng');
   const pickUpLat = document.getElementById('pickUpLat');
 
   // Add geocoder result to container.
-  pirckUpGeocoder.on('result', (e) => {
+  pickUpGecoder.on('result', (e) => {
     pickUpLng.value = e.result.center[0];
     pickUpLat.value = e.result.center[1];
       // dropOffLng.value = e.result.center[0];
@@ -276,7 +276,7 @@
   });
 
   // Clear results container when search is cleared.
-  pirckUpGeocoder.on('clear', () => {
+  pickUpGecoder.on('clear', () => {
     pickUpLng.innerText = '';
     pickUpLat.innerText = '';
   });

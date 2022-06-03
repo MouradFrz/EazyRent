@@ -31,8 +31,12 @@ a {
   width: 100%;
   padding: .375rem 1.5rem;
   border-radius: .375rem;
-  border: 0;
-  box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+  // box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+  box-shadow: none;
+  border: 0.5px solid #ccc;
+  &:focus{
+    border-color: #DDD;
+  }
 }
 .danger {
   color: $red;
@@ -55,8 +59,8 @@ a {
     color: #000;
   }
   &:disabled {
-    background-color: $grey;
-    color: $darkGrey;
+    background-color: $lightGrey;
+    // color: $darkGrey;
   }
   &-dark {
     background-color: rgba(0, 0, 0, .95);
@@ -64,6 +68,9 @@ a {
     &:hover {
       background-color: rgba(0, 0, 0, .85);
       color: #FFF;
+    }
+    &:disabled {
+      background-color: $lightGrey;
     }
   }
 }

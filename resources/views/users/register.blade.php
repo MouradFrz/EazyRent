@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,19 @@
   <title>Sign up</title>
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/register.css') }}">
+  {{--
+  <link rel="stylesheet" href="{{ asset('css/register.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" defer>
 </head>
+
 <body>
   <div class="authentication row">
     <div class="authentication_welcome col-12 col-md-4">
-      <div class="content">
-        <h2 class="section-heading">welcome back!</h2>
+      <div class="content align-self-start">
+        <object data="{{asset('images/icons/hi-authentication.svg')}}" width="300" height="300" defer
+          loading="lazy"></object>
+        <h2 class="section-heading">Welcome!</h2>
         <p>Please enter your personal info to join us</p>
         <p>
           You already have an account
@@ -25,8 +31,8 @@
     <div class="authentication_panel col-12 col-md-8">
       <h2 class="section-header">Join eazyrent</h2>
       <div class="content containter-fluid">
-        <form class="form-signup d-flex flex-column" action="{{ route('user.create') }}"
-          method="POST" enctype="multipart/form-data">
+        <form class="form-signup" action="{{ route('user.create') }}" method="POST"
+          enctype="multipart/form-data">
           @csrf
           @if (Session::get('fail'))
           <div class="alert alert-danger w-100" role="alert">
@@ -38,29 +44,29 @@
             {{ Session::get('success') }}
           </div>
           @endif
-          <div class="form-login d-flex flex-column w-100 signupStep">
-            <label for="">First name</label>
+          <div class="form-authentication signupStep">
+            <label for="first name">First name</label>
             <input type="text" name="firstName" maxlength="45" class="inputs" value="{{ old('firstName') }}" />
             <span class="text-danger">
               @error('firstName')
               {{ $message }}
               @enderror
             </span>
-            <label for="">Last name</label>
+            <label for="last name">Last name</label>
             <input type="text" name="lastName" maxlength="45" class="inputs" value="{{ old('lastName') }}" />
             <span class="text-danger">
               @error('lastName')
               {{ $message }}
               @enderror
             </span>
-            <label for="">Birth Date</label>
+            <label for="birth date">Birth Date</label>
             <input class="inputs" type="date" name="birthDate" max="2003-01-01" value="{{ old('birthDate') }}" />
             <span class="text-danger">
               @error('birthDate')
               {{ $message }}
               @enderror
             </span>
-            <label for="">Address</label>
+            <label for="address">Address</label>
             <input class="inputs" type="text" name="address" value="{{ old('address') }}" />
             <span class="text-danger">
               @error('address')
@@ -69,7 +75,7 @@
             </span>
             <p class="step-index">1/4</p>
           </div>
-          <div class="form-login d-flex flex-column signupStep hide">
+          <div class="form-authentication signupStep hide">
             <label for="username">Username</label>
             <input class="inputs" type="text" name="username" value="{{ old('username') }}" />
             <span class="text-danger">
@@ -111,7 +117,7 @@
             </div>
             <p class="step-index">2/4</p>
           </div>
-          <div class="form-login d-flex flex-column signupStep hide">
+          <div class="form-authentication signupStep hide">
             <label for="identity card number"> Identity card number</label>
             <input class="inputs" type="text" maxlength="18" name="idCard" value="{{ old('idCard') }}"
               onkeypress="return isNumber(event)" />
@@ -130,10 +136,9 @@
             </span>
             <div class="image-selector" alt="" onclick="openFilePicker()"></div>
             <img onclick="openFilePicker()" class="image-preview" alt="" />
-
             <p class="step-index">3/4</p>
           </div>
-          <div class="form-login d-flex flex-column signupStep hide">
+          <div class="form-authentication signupStep hide">
             <label for="">Upload an image where your face is clearly visible</label>
             <input class="inputs file-input" type="file" accept="image/*" name="faceIdImage" style="display: none"
               id="file-field-face" />
@@ -145,23 +150,22 @@
             <div class="image-selector" id="image-selector-face" alt="" onclick="openFilePickerFace()"></div>
             <img onclick="openFilePickerFace()" class="image-preview" id="image-preview-face" alt="" />
             <span id="verification"></span>
-            <div class="d-flex justify-content-end ">
-              <input style="margin-top: 15px !important; width: 150px;" type="submit" value="Sign up!"
-                class="custom-btn" id="submit-button" />
-            </div>
+
+            {{-- <div class="d-flex justify-content-end ">
+              <input id="submit-button" type="submit" value="Sign up!" class="custom-btn custom-btn-dark" />
+            </div> --}}
             <p class="step-index">4/4</p>
           </div>
+          <div class="d-flex justify-content-between">
+            <button class="custom-btn custom-btn-dark" id="prev" onclick="event.preventDefault()" type="text">
+              Previous
+            </button>
+            <button class="custom-btn custom-btn-dark" id="next" onclick="event.preventDefault()" type="text">
+              &nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;
+            </button>
+            <input type="submit" class="custom-btn custom-btn-dark d-none" id="submitBtn" value="Sign up">
+          </div>
         </form>
-        <div class="d-flex justify-content-between w-100">
-          <button style="margin-top: 15px; width: 150px" class="custom-btn" id="prev">
-            Previous
-          </button>
-          <button style="margin-top: 15px; width: 150px; align-self: flex-end" class="custom-btn" id="next">
-            Next
-          </button>
-        </div>
-
-
       </div>
     </div>
   </div>
@@ -171,40 +175,39 @@
         const pages = document.querySelectorAll('.signupStep')
         const stepInc = document.querySelector('#next')
         const stepDec = document.querySelector('#prev')
-
-
+        const submitBtn = document.querySelector('#submitBtn')
         let currentStep=0;
         stepDec.disabled=true;
-        // stepDec.style.backgroundColor ='gray'
         stepInc.addEventListener('click',()=>{
           currentStep++;
           pages.forEach(element => {
             element.classList.add('hide');
           });
-            pages[currentStep].classList.remove("hide");
+          pages[currentStep].classList.remove("hide");
+
           if(currentStep==3){
-            // stepInc.style.backgroundColor ='gray'
             stepInc.disabled=true;
+            stepInc.classList.add('d-none')
+            submitBtn.classList.remove('d-none')
           }
-          if(currentStep!=3){
-            // stepDec.style.backgroundColor ='rgb(187, 190, 105)'
+          if(currentStep==1) {
             stepDec.disabled=false;
           }
         });
-
         stepDec.addEventListener('click',()=>{
           currentStep--;
           pages.forEach(element => {
             element.classList.add('hide');
           });
-            pages[currentStep].classList.remove("hide");
+          pages[currentStep].classList.remove("hide");
+
           if(currentStep==0){
-            // stepDec.style.backgroundColor ='gray'
             stepDec.disabled=true;
           }
-          if(currentStep!=3){
-            // stepInc.style.backgroundColor ='rgb(187, 190, 105)'
+          if(currentStep==2){
             stepInc.disabled=false;
+            stepInc.classList.remove('d-none')
+            submitBtn.classList.add('d-none')
           }
         });
 

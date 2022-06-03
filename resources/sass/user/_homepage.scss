@@ -89,6 +89,9 @@
       box-shadow: $box-shadow;
       .mapboxgl-ctrl-geocoder {
         width: 100%;
+        box-shadow: none;
+        border: 0.5px solid #ccc;
+        // box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
       }
     }
   }
@@ -105,7 +108,7 @@
 // TESTIMONIALS
 .testimonials {
   background-color: $indigo;
-  color: #FFF;
+  color: #fff;
   .section-header {
     margin-bottom: 4rem;
   }
@@ -162,29 +165,29 @@
 footer {
   background-color: $indigo;
   padding-top: 2rem;
-  color: #FFF;
+  color: #fff;
   font-weight: 300;
   .col-12 {
     margin-bottom: 2rem;
   }
   .contact {
     padding-left: 0;
-   li {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    > span {
-      font-weight: 500;
-      &::after {
-        content: ' : ';
+    li {
+      font-size: 1.2rem;
+      line-height: 1.6;
+      > span {
+        font-weight: 500;
+        &::after {
+          content: " : ";
+        }
+      }
+      > i {
+        color: $cyan;
+        margin-right: 0.5rem;
       }
     }
-    > i {
-      color: $cyan;
-      margin-right: .5rem;
-    }
-    }
   }
-  .footer-end{
+  .footer-end {
     background-color: $darkestGrey;
     text-align: center;
     padding-bottom: 2rem;
