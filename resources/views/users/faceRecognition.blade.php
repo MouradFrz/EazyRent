@@ -6,6 +6,7 @@
     
     <title>Face Recognition</title>
     <style>
+        
         body {
             margin: 0;
             padding: 0;
@@ -19,10 +20,14 @@
         canvas{
             position: absolute;
         }
+       
     </style>
+    
 </head>
 <body>
-    <video id="videoInput" width="460" height="380" muted controls>
+    <button id="button1" onclick="startFace()">Start face ID</button>
+    <p style="background-image:url('../images/dashboard/dashboard.jpeg')"></p>
+    <video id="videoInput" width="460" height="380" style="display: none" muted controls>
 </body>
 </html>
 <script src="{{ asset('js/face-api.min.js') }}"></script>
@@ -88,7 +93,7 @@ async function recognizeFaces() {
 
 
 function loadLabeledImages() {
-    //const labels = ['Black Widow', 'Captain America', 'Hawkeye' , 'Jim Rhodes', 'Tony Stark', 'Thor', 'Captain Marvel']
+   
     const labels = ['{!! Auth::user()->firstName!!} {!! Auth::user()->lastName!!} '] // for WebCam
     return Promise.all(
         labels.map(async (label)=>{
@@ -104,6 +109,28 @@ function loadLabeledImages() {
         })
     )
 }
+function startFace() {
+var x = document.getElementById("videoInput");
+
+if (x.style.display === "none") {
+x.style.display = "block";
+
+} else {
+x.style.display = "none";
+}
+} 
+const btn = document.getElementById("button1");
+
+btn.addEventListener("click", ()=>{
+    
+    if(btn.innerText === "Start face ID"){
+        btn.innerText = "Stop face ID";
+    }else{
+        btn.innerText= "Start Face ID";
+    }
+
+});
+
 </script>
 @section('scripts')
 <script defer src="{{ asset('js/face-api.min.js') }}"></script>
