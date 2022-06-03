@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Owner;
 
 use App\Http\Controllers\Controller;
+use App\Models\Agency;
 use Illuminate\Http\Request;
 use App\Models\Owner;
 use App\Models\AgencyRequest;
@@ -286,7 +287,8 @@ class OwnerController extends Controller
     if (is_null(Auth::user()->agencyID)) {
       return redirect()->route('owner.home');
     }
-    return view('owners.editProfile');
+    $agency=Agency::find(Auth::user()->agencyID);
+    return view('owners.editProfile')->with('agency',$agency);
   }
 
 

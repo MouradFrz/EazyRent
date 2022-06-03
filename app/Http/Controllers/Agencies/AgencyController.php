@@ -22,7 +22,8 @@ class AgencyController extends Controller
       'commercialRegisterNb' => 'required|unique:agencyrequests,registeryNb|unique:agencies,registeryNb',
       'registrationDate' => 'required',
       'agencyCreationYear' => 'required|digits:4|integer|max:' . (date('Y') + 1),
-      'password' => 'required|current_password:owner'
+      'password' => 'required|current_password:owner',
+      'logo'=>'required'
     ], [
       'agencyName.required' => 'This field is required',
       'commercialRegisterNb.required' => 'This field is required',
@@ -34,7 +35,11 @@ class AgencyController extends Controller
       'agencyCreationYear.max' => 'please enter a valide year value',
       'password.required' => 'This field is required',
       'password.current_password' => 'password incorrect',
+    
     ]);
+    
+
+    
 
     $requestSent = AgencyRequest::where('ownerUsername', Auth::user()->username)->get();
 
@@ -54,9 +59,13 @@ class AgencyController extends Controller
       $agency->registeryNb = $request->commercialRegisterNb;
       $agency->registrationDate = $request->registrationDate;
       $agency->creationYear = $request->agencyCreationYear;
-
+      
       $agency->save();
-
+      
+      $newImageName = $agency->requestID . '.' . $request->logo->extension();
+      $request->logo->move(public_path('images/agencies/logos'), $newImageName);
+      $agency->logo = $newImageName;
+      $agency->save();
 
       return redirect()->route('owner.home');
     }
@@ -88,6 +97,7 @@ class AgencyController extends Controller
     $agency->registrationDate = $acceptedAgency->registrationDate;
     $agency->creationYear = $acceptedAgency->creationYear;
     $agency->created_at = now();
+    $agency->logo= $acceptedAgency->logo;
     $agency->save();
     // dd($agency);
 
