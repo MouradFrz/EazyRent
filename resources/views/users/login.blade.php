@@ -45,6 +45,11 @@
             {{ Session::get('fail') }}
           </div>
           @endif
+          @if (Session::get('status'))
+          <div class="alert alert-success w-100" role="alert">
+            {{ Session::get('status') }}
+          </div>
+          @endif
           @if (Session::get('message'))
           <div class="alert alert-danger w-100" role="alert">
             {{ Session::get('message') }}
@@ -62,8 +67,8 @@
           </div>
         </form>
         <div class="authentication_options">
-          <p class="or">-or-</p>
-          <p>forget Password ? <a href="#" class="link">click here </a></p>
+          <p class="or">-Or-</p>
+          <p >Forgot password? <a href="{{ route('password.email') }}" class="link">Click here </a></p>
           <div class="d-flex justify-content-center">
             <a href="{{ route('user.loginWithGoogle') }}" class="google-login">
               <object data="{{asset('/images/icons/google-icon.svg')}}" width="24" height="24"></object>

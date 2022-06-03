@@ -8,15 +8,17 @@ use App\Http\Controllers\Secretary\SecretaryController;
 use App\Http\Controllers\Garagist\GaragistController;
 use App\Http\Controllers\Agencies\AgencyController;
 use App\Http\Controllers\VehiculeController;
-use App\Http\Controllers\Agencies\PickUpLocationController;
+
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\GoogleController;
-use App\Models\PickUpLocation;
-use App\Models\Secretary;
-use App\Models\Vehicule;
+
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,7 +62,54 @@ Route::prefix('email')->name('verification.')->group(function () {
   
 });
 ////////////////////////////////////////////////////////////////////////////////
+//////// password reset routes
+Route::get('/forgot-password', function () {
+  return view('users.forgot-password');
+})->middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist'])->name('password.request');
 
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+ 
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+ 
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist'])->name('password.email');
+
+
+
+Route::get('/reset-password/{token}', function ($token) {
+  return view('users.reset-password', ['token' => $token]);
+})->middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist'])->name('password.reset');
+
+
+Route::post('/reset-password', function (Request $request) {
+  $request->validate([
+      'token' => 'required',
+      'email' => 'required|email',
+      'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed'
+  ]);
+  
+  $status = Password::reset(
+      $request->only('email', 'password', 'password_confirmation', 'token'),
+      function ($user, $password) {
+          $user->forceFill([
+              'password' => Hash::make($password)
+          ])->setRememberToken(Str::random(60));
+
+          $user->save();
+
+          event(new PasswordReset($user));
+      }
+  );
+
+  return $status === Password::PASSWORD_RESET
+              ? redirect()->route('user.login')->with('status', __($status))
+              : back()->withErrors(['email' => [__($status)]]);
+})->middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist'])->name('password.update');
 
 
 
