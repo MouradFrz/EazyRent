@@ -22,12 +22,12 @@
         <a href="{{ route('user.register') }}" class="custom-btn">Sign Up</a>
       </div>
     </div>
-    <div class="authentication_panel col-12 col-md-8">
+    <div class="authentication_panel col-12 col-md-8 center">
       <h2 class="section-header">Log in to eazyrent</h2>
       <div class="content container-fluid">
         <form class="form-authentication" action="{{ route('user.check') }}" method="POST" enctype="multipart/form-data">
           @csrf
-          <label for="username">Username</label>
+          <label for="username">Username or Email</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}"/>
           <label for="password">Password</label>
           <input class="inputs" name="password" type="password"/>
@@ -63,11 +63,11 @@
           </div>
           @endif
           <div class="d-flex justify-content-center">
-            <button type="submit" class="custom-btn custom-btn-dark login-btn">log in</button>
+            <button type="submit" class="custom-btn custom-btn-dark login-btn">Log in</button>
           </div>
         </form>
         <div class="authentication_options">
-          <p class="or">-Or-</p>
+          {{-- <p class="or">-Or-</p> --}}
           <p >Forgot password? <a href="{{ route('password.email') }}" class="link">Click here </a></p>
           <div class="d-flex justify-content-center">
             <a href="{{ route('user.loginWithGoogle') }}" class="google-login">
