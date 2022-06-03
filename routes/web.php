@@ -16,6 +16,7 @@ use App\Models\Secretary;
 use App\Models\Vehicule;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,21 +38,27 @@ Route::middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary',
 
 
 //// EMail verification routes
-Route::get('/email/verify', function () {
-  return view('users.verifyEmail');
-})->middleware('auth')->name('verification.notice');
-
-
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-  $request->fulfill();
-  return redirect()->route('user.home');
-})->middleware(['auth', 'signed'])->name('verification.verify');
-
-Route::post('/email/verification-notification', function (Request $request) {
-  $request->user()->sendEmailVerificationNotification();
-
-  return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::prefix('email')->name('verification.')->group(function () {
+// dd(Auth::guard());
+  Route::middleware('PreventBackHistory')->group(function(){
+    Route::get('/verify', function () {
+      return view('users.verifyEmail');
+    })->middleware('auth')->name('notice');
+    
+    
+    Route::get('/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+      $request->fulfill();
+      return redirect()->route('user.home');
+    })->middleware(['auth', 'signed'])->name('verify');
+    
+    Route::post('/verification-notification', function (Request $request) {
+      $request->user()->sendEmailVerificationNotification();
+    
+      return back()->with('message', 'Verification link sent!');
+    })->middleware(['auth', 'throttle:6,1'])->name('send');
+  });
+  
+});
 ////////////////////////////////////////////////////////////////////////////////
 
 
@@ -84,7 +91,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/download/{id}', [UserController::class, 'downloadPdf'])->name('downloadPdf');
     Route::post('/signContract/{id}', [UserController::class, 'signContract'])->name('signContract');
     Route::post('/declineContract/{id}', [UserController::class, 'declineContract'])->name('declineContract');
-    
+    Route::get('/loadNotifications', [UserController::class, 'loadNotifications'])->name('loadNotifications');
   });
 });
 

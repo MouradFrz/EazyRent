@@ -197,3 +197,32 @@ footer {
     }
   }
 }
+.notification {
+  padding: 10px;
+  color: black;
+  width: 350px;
+  max-width: 100%;
+  display: block;
+  &:hover {
+    background-color: #eee;
+  }
+}
+.accepted {
+  border-left: 3px solid green;
+}
+.declined {
+  border-left: 3px solid red;
+}
+.abs {
+  transform: translateX(-55%);
+}
+.new-notification-count {
+  background: red;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: white;
+  padding: 0 4px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\AdminBan;
 use App\Models\Booking;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -124,6 +125,8 @@ class UserController extends Controller
 
   public function getBookingDetails($id){
     $booking = Booking::find($id);
+
+    Notification::where('bookingID',$id)->update(['read_at'=>now()]);
     if($booking->clientUsername!=Auth::user()->username){
       return redirect()->route('user.home');
     }
@@ -187,5 +190,9 @@ class UserController extends Controller
     ]);
     $booking->update(['state'=>'CANCELED']);
     return redirect()->route('user.bookingDetails',$id)->with('declined','Contract declined.');
+  }
+
+  public function loadNotifications(){
+    return Notification::where("notifiedUsername",Auth::user()->username)->get();
   }
 }

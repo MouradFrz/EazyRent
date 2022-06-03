@@ -58,6 +58,17 @@
               <form action="{{ route('user.logout') }}" id="logout-form" method="post">@csrf</form>
             </li>
           </ul>
+
+          <a class="dropdown-toggle" href="#" id="notificationsDropdown" style="position: relative" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <span  class="new-notification-count" id="new-notification-count"></span>
+            <i class="fas fa-bell"></i>
+          </a>
+          <ul class="dropdown-menu abs" id="notification-list" aria-labelledby="notificationsDropdown">
+           {{-- <li><a href="" class="notification">wgrgwrhteheh</a></li> --}}
+          </ul>
+
+
         </div>
       </div>
       @endauth
@@ -72,5 +83,46 @@
   @yield('content')
   @yield('script')
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    let list = document.querySelector('#notification-list')
+    
+    let newNotifCount = document.querySelector('#new-notification-count')
+    let newNotifications = 0
+    $.get(`http://localhost:8000/user/loadNotifications`,function(data){
+      if(data.length===0){
+        let x = document.createElement('li')
+      x.innerText="You have no notifications"
+      list.appendChild(x);
+      }else{
+        data.forEach((e)=>{
+          let a = document.createElement('a')
+          a.href=`http://localhost:8000/user/booking-details/${e.bookingID}`
+          a.textContent = e.message
+          a.classList.add('notification')
+          if(e.type=="ACCEPTED"){
+            a.classList.add('accepted')
+          }
+          if(e.type=="DECLINED"){
+            a.classList.add('declined')
+          }
+          let li = document.createElement('li')
+          li.appendChild(a)
+          list.appendChild(li)
+
+          if(e.read_at===null){
+            newNotifications++;
+          }
+        })
+      }
+
+      if(newNotifications!=0){
+        newNotifCount.innerText = newNotifications
+      }
+      
+
+       
+      })
+  </script>
 </body>
 </html>
