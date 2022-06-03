@@ -47,7 +47,7 @@
             </div>
           </div>
           <div class="col-12 col-md-4">
-            <button type="submit" class="custom-btn custom-btn-dark">Search</button>
+            <button type="submit" class="custom-btn custom-btn-dark"><i class="fa-solid fa-magnifying-glass" style="font-size: .95rem;margin-right:.75rem"></i>Search</button>
           </div>
         </div>
     </div>

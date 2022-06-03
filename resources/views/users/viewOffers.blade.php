@@ -12,20 +12,6 @@
       </div>
     </div>
   </div>
-  {{-- <div class="view-offers_steps">
-    <div class="container">
-      <div class="view-offers_steps_steps d-felx justify-content-center align-items center">
-        <div class="step">1</div>
-        <div class="step">2</div>
-        <div class="step">3</div>
-      </div>
-    </div>
-  </div> --}}
-  {{-- <div class="view-offers_content">
-    <div class="offer">
-      <img src="" alt="">
-    </div>
-  </div> --}}
   <div class="container">
     @foreach ($vehicules as $vehicule)
     <div class="minimized-offer row">

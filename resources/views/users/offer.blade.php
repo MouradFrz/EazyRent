@@ -3,18 +3,16 @@
 <div class="offer">
   <div class="container">
     <form action="{{route('user.viewOffers')}}" method="POST" id="goBack">
-    @csrf
-    <div class="d-none">
-      <input type="text" name="pickUpLng" value="{{session('pickUpLng')}}"/>
-      <input type="text" name="pickUpLat" value="{{session('pickUpLat')}}" />
-      <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" />
-      <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}"/>
-    </div>
-    <a type="submit" onclick="document.getElementById('goBack').submit()"><span><i class="fa-solid fa-arrow-left"></i> Go back</span></a>
+      @csrf
+      <div class="d-none">
+        <input type="text" name="pickUpLng" value="{{session('pickUpLng')}}" />
+        <input type="text" name="pickUpLat" value="{{session('pickUpLat')}}" />
+        <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" />
+        <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}" />
+      </div>
+      <a type="submit" onclick="document.getElementById('goBack').submit()" class="link link_no_decoration"><i
+          class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
-    <div class="offer_header">
-      <h1>{{$vehicule -> brand}} {{$vehicule -> model}}</h1>
-    </div>
     @if (Session::get('fail'))
     <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
       <strong>{{ Session::get('fail') }}</strong>
@@ -28,122 +26,13 @@
     </div>
     @endif
     <div class="row">
-      <div class="col-8">
-        <div class="offer_media">
-          <img src="{{asset('images/vehicules/imagePaths/'.$vehicule -> imagePath)}}"
-            alt="{{$vehicule -> brand}} {{$vehicule -> model}}" loading="lazy">
-        </div>
-        @if (Session::get('success'))
-        @else
-        <form action="{{route('user.book') }}" method="post"
-          id="reservation-form">
-          @csrf
-          <div class="row">
-            <div class="col">
-              <label for="vehicule" class="form-label">vehicule</label>
-              <input type="text" value="{{$vehicule -> brand}} {{$vehicule -> model}}" class="form-control" disabled>
-            </div>
-            <div class="col">
-              <label for="agency" class="form-label">agency</label>
-              <input type="text" value="{{$agencyName}}" class="form-control" disabled>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label for="pickUpDate" class="form-label">pick up at</label>
-              <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" class="form-control" disabled>
-            </div>
-            <div class="col">
-              <label for="drop Off Date" class="form-label">drop off at</label>
-              <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}" class="form-control" disabled>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label for="daysNbr" class="form-label">days count</label>
-              <input type="string" value="@php
-              $diff = session('dropOffDate')->diff(session('pickUpDate'));
-              $days =  $diff->days;
-              echo $days;
-              @endphp" class="form-control" disabled>
-            </div>
-            <div class="col">
-              <label for="hoursNbr" class="form-label">hours count</label>
-              <input type="number" value="@php
-              $hours = $diff->h;
-              echo $hours;
-              @endphp" class="form-control" disabled>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label for="pricePerHour" class="form-label">price per hour</label>
-              <input type="number" class="form-control" value="{{$vehicule -> pricePerHour}}" disabled>
-            </div>
-            <div class="col">
-              <label for="pricePerDay" class="form-label">price per day</label>
-              <input type="number" class="form-control" value="{{$vehicule -> pricePerDay}}" disabled>
-            </div>
-            <div class="col">
-              <label for="totalPrice" class="form-label">total price</label>
-              <input type="number" class="form-control" value="@php
-              $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
-              echo $price;
-              @endphp" disabled>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col">
-              <label for="pickUpLocation" class="form-group">pick up at</label>
-              <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
-                <option selected value="">sellect a pick up location</option>
-                @foreach ($pickUpLocations as $address)
-                <option value="{{$address -> id}}">{{$address -> address_address}}</option>
-                @endforeach
-              </select>
-              @error('pickUpLocation')<span style="color: red">{{$message}}</span>@enderror
-            </div>
-            <div class="col">
-              <label for="dropOffLocation" class="form-group">drop off at</label>
-              <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
-                <option selected value="">sellect a drop off location</option>
-                @foreach ($pickUpLocations as $address)
-                <option value="{{$address -> id}}">{{$address -> address_address}}</option>
-                @endforeach
-              </select>
-              @error('dropOffLocation')<span style="color: red">{{$message}}</span>@enderror
-            </div>
-          </div>
-          @if(Auth::guard('web')->check())
-          <button class="custom-btn" onclick="event.preventDefault();" data-bs-toggle="modal"
-            data-bs-target="#confirm">confirm booking</button>
-          <div class="modal fade" id="confirm" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="confirmLabel">Confirm choise</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <p>you are on one step to book this car</p>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="event.preventDefault();">cancel</button>
-                  <button type="button" class="btn btn-primary"
-                    onclick="document.getElementById('reservation-form').submit()">confirm my choise</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          @else
-          <p>you have to log in before booking a vehicule
-            <a href="{{ route('user.login') }}" id="log-in">log in now!</a>
-          </p>
-          @endif
-        </form>
-        @endif
+      <h1 class="section-header">{{$vehicule -> brand}} {{$vehicule -> model}}</h1>
+      <div class="offer_media col-12 col-md-6 col-lg-8">
+        <img src="{{asset('images/vehicules/imagePaths/'.$vehicule -> imagePath)}}"
+          alt="{{$vehicule -> brand}} {{$vehicule -> model}}" loading="lazy">
       </div>
-      <div class="offer_details col-4">
+      <div class="offer_details col-12 col-md-6 col-lg-4">
+        <h2>Vehicule info</h2>
         <table class="table table-striped">
           <tbody>
             <tr>
@@ -186,6 +75,127 @@
         </table>
       </div>
     </div>
+    @if(Auth::guard('web')->check())
+    @if (Session::get('success'))
+    @else
+    <h2>rent this car</h2>
+    <div class="offer_rent">
+      <form action="{{route('user.book') }}" method="post" id="reservation-form" class="reservation-form">
+        @csrf
+        <div class="row">
+          <div class="col">
+            <label for="vehicule" class="form-label">vehicule</label>
+            <input type="text" value="{{$vehicule -> brand}} {{$vehicule -> model}}" class="form-control" disabled>
+          </div>
+          <div class="col">
+            <label for="agency" class="form-label">agency</label>
+            <input type="text" value="{{$agencyName}}" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="pickUpDate" class="form-label">pick up at</label>
+            <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" class="form-control"
+              disabled>
+          </div>
+          <div class="col">
+            <label for="drop Off Date" class="form-label">drop off at</label>
+            <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}" class="form-control"
+              disabled>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="daysNbr" class="form-label">days count</label>
+            <input type="string" value="@php
+              $diff = session('dropOffDate')->diff(session('pickUpDate'));
+              $days =  $diff->days;
+              echo $days;
+              @endphp" class="form-control" disabled>
+          </div>
+          <div class="col">
+            <label for="hoursNbr" class="form-label">hours count</label>
+            <input type="number" value="@php
+              $hours = $diff->h;
+              echo $hours;
+              @endphp" class="form-control" disabled>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="pricePerHour" class="form-label">price per hour</label>
+            <input type="number" class="form-control" value="{{$vehicule -> pricePerHour}}" disabled>
+          </div>
+          <div class="col">
+            <label for="pricePerDay" class="form-label">price per day</label>
+            <input type="number" class="form-control" value="{{$vehicule -> pricePerDay}}" disabled>
+          </div>
+          <div class="col">
+            <label for="totalPrice" class="form-label">total price</label>
+            <input type="number" class="form-control" value="@php
+              $price = $vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days;
+              echo $price;
+              @endphp" disabled>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="pickUpLocation" class="form-group">pick up at</label>
+            <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
+              <option selected value="">sellect a pick up location</option>
+              @foreach ($pickUpLocations as $address)
+              <option value="{{$address -> id}}">{{$address -> address_address}}</option>
+              @endforeach
+            </select>
+            @error('pickUpLocation')<span style="color: red">{{$message}}</span>@enderror
+          </div>
+          <div class="col">
+            <label for="dropOffLocation" class="form-group">drop off at</label>
+            <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
+              <option selected value="">sellect a drop off location</option>
+              @foreach ($pickUpLocations as $address)
+              <option value="{{$address -> id}}">{{$address -> address_address}}</option>
+              @endforeach
+            </select>
+            @error('dropOffLocation')<span style="color: red">{{$message}}</span>@enderror
+          </div>
+        </div>
+        <button class="custom-btn custom-btn-dark mt-4" onclick="event.preventDefault();" data-bs-toggle="modal"
+          data-bs-target="#confirm">confirm booking</button>
+        <div class="modal fade" id="confirm" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="confirmLabel">Confirm choise</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <p>are you sure you want to book <strong>{{$vehicule -> brand}} {{$vehicule -> model}}</strong>
+                  for <strong>{{$days}} day @if($hours!=0) and {{$hours}} hour @endif </strong> start at
+                  <strong>{{str_replace('T', ' ', session('pickUpString'))}} </strong>
+                </p>
+                </p>
+                <p>Total price: <strong>{{$price}} dzd</strong></p>
+              </div>
+              <div class="modal-footer d-flex justify-content-between">
+                <button type="button" class="custom-btn custom-btn-secondary" data-bs-dismiss="modal"
+                  onclick="event.preventDefault();">cancel</button>
+                <button type="button" class="custom-btn custom-btn-success"
+                  onclick="document.getElementById('reservation-form').submit()">confirm my choise</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    @endif
+    @else
+    <div class="offer_rent">
+      <strong>you have to log in before booking a vehicule
+        <a href="{{ route('user.login') }}" id="log-in" class="link">log in now!</a>
+      </strong>
+    </div>
+    @endif
   </div>
 
 </div>
