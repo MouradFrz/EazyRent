@@ -159,7 +159,7 @@
               Previous
             </button>
             <button class="custom-btn custom-btn-dark" id="next" onclick="event.preventDefault()" type="text">
-              &nbsp;&nbsp;&nbsp;Next&nbsp;&nbsp;&nbsp;
+              Next
             </button>
             <input type="submit" class="custom-btn custom-btn-dark d-none" id="submitBtn" value="Sign up">
           </div>

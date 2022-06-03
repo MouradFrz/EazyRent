@@ -149,3 +149,7 @@
   max-width: 250px;
   cursor: pointer;
 }
+
+#next {
+  padding-inline: 1.7rem;
+}

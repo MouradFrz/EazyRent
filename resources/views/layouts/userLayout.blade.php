@@ -47,11 +47,11 @@
             {{ Auth::user()->username }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item cs" href="#">Edit profil</a></li>
-            <li><a class="dropdown-item cs" href="{{ route('user.history') }}">Show transaction history</a></li>
+            <li><a class="dropdown-item cs" href="#">Profil</a></li>
+            <li><a class="dropdown-item cs" href="{{ route('user.history') }}">Transaction history</a></li>
             <hr class="dropdown-divider">
             <li>
-              <a class="dropdown-item danger " href="{{ route('user.logout') }}"
+              <a class="dropdown-item danger" href="{{ route('user.logout') }}"
                   onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 Log out
               </a>
@@ -86,7 +86,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     let list = document.querySelector('#notification-list')
-    
+
     let newNotifCount = document.querySelector('#new-notification-count')
     let newNotifications = 0
     $.get(`http://localhost:8000/user/loadNotifications`,function(data){
@@ -119,9 +119,9 @@
       if(newNotifications!=0){
         newNotifCount.innerText = newNotifications
       }
-      
 
-       
+
+
       })
   </script>
 </body>

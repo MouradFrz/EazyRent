@@ -36,13 +36,27 @@
       }
     }
   }
+  .dropdown-menu {
+    right: 50%;
+    left: auto;
+    transform: translateX(50%);
+  }
   .dropdown-item {
-    transform: all 300ms linear;
+    transition: all 150ms ease-in-out;
     &:hover,
-    &:focus {
+    &:active {
       background-color: transparent;
       color: $cyan;
       border-left: 5px solid $cyan;
+    }
+  }
+  .danger {
+    transition: all 150ms ease-in-out;
+    &:hover,
+    &:active {
+      background-color: transparent;
+      color: $red;
+      border-left: 5px solid $red;
     }
   }
   .auth {

@@ -40,13 +40,26 @@
     width: 100%;
   }
 }
-.navbar .dropdown-item {
-  transform: all 300ms linear;
+.navbar .dropdown-menu {
+  right: 50%;
+  left: auto;
+  transform: translateX(50%);
 }
-.navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+.navbar .dropdown-item {
+  transition: all 150ms ease-in-out;
+}
+.navbar .dropdown-item:hover, .navbar .dropdown-item:active {
   background-color: transparent;
   color: rgb(85, 190, 240);
   border-left: 5px solid rgb(85, 190, 240);
+}
+.navbar .danger {
+  transition: all 150ms ease-in-out;
+}
+.navbar .danger:hover, .navbar .danger:active {
+  background-color: transparent;
+  color: rgb(255, 59, 48);
+  border-left: 5px solid rgb(255, 59, 48);
 }
 .navbar .auth {
   gap: 10px;
