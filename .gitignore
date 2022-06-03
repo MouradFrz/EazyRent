@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-# /public/images/users/faceIdImages
+/public/images/users/faceIdImages
 # /public/images/users/idCardImages
 .env
 .env.backup
