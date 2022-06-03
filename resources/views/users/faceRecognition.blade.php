@@ -25,20 +25,33 @@
     
 </head>
 <body>
-    <button id="button1" onclick="startFace()">Start face ID</button>
-    {{-- <video id="videoInput" width="460" height="380" style="display: none" muted controls> --}}
-        <video id="webCam" width="460" height="380" autoplay playsinlne >
-        <canvas id="canvas"></canvas>
+        {{-- <button id="button1" onclick="startFace()">Start face ID</button>
+        <video id="webCam" width="460" height="380" autoplay  >
+        <canvas id="canvas"></canvas> --}}
+        <div class="display-cover">
+            <video id="webCam" width="460" height="380" autoplay></video>
+            <canvas class="d-none"></canvas>
 </body>
 </html>
 <script src="{{ asset('js/face-api.min.js') }}"></script>
-<script src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
+
 <script>
     // const video = document.getElementById('videoInput')
-    const webCamElement = document.getElementById('webCam');
-    const canvasElement = document.getElementById('canvas');
-    const webcam = new Webcam(webCamElement,"user",canvasElement);
-    webcam.start();
+    // const webCamElement = document.getElementById('webCam');
+    // const canvasElement = document.getElementById('canvas');
+    // const webcam = new Webcam(webCamElement,"user",canvasElement);
+    // webcam.start();
+    var video = document.querySelector("#webCam");
+
+if (navigator.mediaDevices.getUserMedia) {
+  navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function (stream) {
+      video.srcObject = stream;
+    })
+    .catch(function (err0r) {
+      console.log("Something went wrong!");
+    });
+}
 
 Promise.all([
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -67,16 +80,16 @@ async function recognizeFaces() {
 
     // video.addEventListener('play', async () => {
         console.log('Playing')
-        const canvas = faceapi.createCanvasFromMedia(webCamElement)
+        const canvas = faceapi.createCanvasFromMedia(video)
         document.body.append(canvas)
 
-        const displaySize = { width: webCamElement.width, height: webCamElement.height }
+        const displaySize = { width: video.width, height: video.height }
         faceapi.matchDimensions(canvas, displaySize)
 
         
 
         setInterval(async () => {
-            const detections = await faceapi.detectAllFaces(webCamElement).withFaceLandmarks().withFaceDescriptors()
+            const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors()
 
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
 
@@ -107,7 +120,6 @@ function loadLabeledImages() {
             for(let i=1; i<=2; i++) {
                 const img = await faceapi.fetchImage(`../images/users/faceidImages/{!! Auth::user()->username !!}_faceId.jpg`)
                 const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
-                console.log(label + i + JSON.stringify(detections))
                 descriptions.push(detections.descriptor)
             }
             document.body.append(label+' Faces Loaded | ')
@@ -125,22 +137,13 @@ x.style.display = "block";
 x.style.display = "none";
 }
 } 
-const btn = document.getElementById("button1");
 
-btn.addEventListener("click", ()=>{
-    
-    if(btn.innerText === "Start face ID"){
-        btn.innerText = "Stop face ID";
-    }else{
-        btn.innerText= "Start Face ID";
-    }
 
-});
 
 </script>
 @section('scripts')
-<script defer src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
-<script defer src="{{ asset('js/faceScript.js') }}"></script>
-<script defer src="{{ asset('js/face-api.min.js') }}"></script>
-<script defer src="{{ asset('js/faceScript.js') }}"></script>
+<script  src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
+<script  src="{{ asset('js/faceScript.js') }}"></script>
+<script  src="{{ asset('js/face-api.min.js') }}"></script>
+
 @endsection
