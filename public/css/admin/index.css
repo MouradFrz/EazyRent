@@ -8,8 +8,13 @@ body {
 }
 
 .sidebar {
-  min-height: 100vh;
-  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+  padding-inline: 0;
+  background-color: rgb(88, 86, 214);
   flex-wrap: nowrap;
   position: -webkit-sticky;
   position: sticky;
@@ -30,8 +35,7 @@ body {
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 2px solid white;
-  padding: 4px;
+  border: 1px solid rgb(142, 142, 147);
 }
 .sidebar .navbar-brand .user-fullname {
   color: white;
@@ -50,11 +54,12 @@ body {
   color: white;
   transition: all 300ms linear;
 }
-.sidebar .nav > li a .active {
-  color: rgb(255, 68, 0);
+.sidebar .nav > li a:active, .sidebar .nav > li a .active {
+  color: rgb(0, 122, 255);
 }
 .sidebar .nav > li a:hover {
-  background-color: rgba(255, 255, 255, 0.075);
+  background-color: rgba(255, 255, 255, 0.125);
+  border-left: 5px solid rgb(0, 122, 255);
 }
 .sidebar .dropdown {
   width: 100%;
@@ -85,18 +90,6 @@ body {
 
 .main {
   padding: 0;
-}
-
-.page-title {
-  border-bottom: 1px solid gray;
-}
-
-.logout {
-  background-color: rgb(219, 219, 219);
-  padding: 4px 15px;
-  border-radius: 4px;
-  font-weight: 700;
-  color: black;
 }
 
 .show-on-hover {
@@ -142,6 +135,10 @@ body {
   left: 90%;
   cursor: default;
   background-color: transparent;
+}
+
+.navbar {
+  border-bottom: 0.5px solid rgb(142, 142, 147);
 }
 
 .joining-requests .container {

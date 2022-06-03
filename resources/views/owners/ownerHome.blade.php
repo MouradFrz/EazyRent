@@ -1,112 +1,100 @@
-{{-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>User Homepage</title>
-</head>
-<body>
-
-</body>
-</html>
-
- --}}
-
-
 @extends('layouts.workerLayout')
 @section('headTags')
-  <title>Owner - Homepage</title>
-  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/owner/index.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Owner - Homepage</title>
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<link rel="stylesheet" href="{{ asset('css/owner/index.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+  integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+  crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
 
 @section('content')
+@if (Auth::user()->agencyID)
+<div>
+  <div class="container">
+    <h1 class="my-3">{{ $Request->name }}</h1>
+    <div class="row ">
+      <div class="col mx-1 sticker">Branches count: {{ $branchCount }}</div>
+      <div class="col mx-1 sticker">Garages count: {{ $garageCount }}</div>
+      <div class="col mx-1 sticker">
+        <p>Employees count: {{ $secCount+$managerCount }}</p>
+        <p class="small">Secretaries count: {{ $secCount}}</p>
+        <p class="small">Garage managers count : {{ $managerCount }}</p>
+      </div>
+      <div class="col mx-1 sticker">Pick up locations count: {{ $pulCount }}</div>
+    </div>
+    <div style="width: 60%">
+      <h6>Nombre de reservation par branche</h6>
+      <canvas id="myChart"></canvas>
+    </div>
+    <div style="width: 60%">
+      <h6>Nombre de reservation par jours dans la derniere semaine</h6>
+      <canvas id="lineChart"></canvas>
+    </div>
+    <div style="width: 60%">
+      <h6>Argent gagne par chaque branche</h6>
+      <canvas id="mpb"></canvas>
+    </div>
+    <div>
+      <h6>Latest 5 reviews for my cars</h6>
+      <div class="reveiws " style="width: 40%">
 
- @if (Auth::user()->agencyID)
-     <div>
-       <div class="container">
-         <h1 class="my-3">{{ $Request->name }}</h1>
-         <div class="row ">
-           <div class="col mx-1 sticker">Branches count: {{ $branchCount }}</div>
-           <div class="col mx-1 sticker">Garages count: {{ $garageCount }}</div>
-           <div class="col mx-1 sticker"> <p>Employees count: {{ $secCount+$managerCount }}</p> 
-            <p class="small">Secretaries count: {{ $secCount}}</p>  
-            <p class="small">Garage managers count : {{ $managerCount }}</p>
+        @foreach ($reviews as $booking)
+        @if ($booking->state == "FINISHED")
+        <div class="review w-100 d-flex ">
+          <img src="{{ asset('images/users/faceIdImages/'. $booking->faceIdPath) }}" id="user-icon" alt="">
+          <div class="d-flex flex-column ms-3">
+            <p class="title">{{ $booking->firstName }} {{ $booking->lastName }}</p>
+            <div class="rating">
+              @for($c=1;$c<=5;$c++) @if($booking->vehiculeRating >= $c)
+                <i class="fa-solid fa-star" style="color:darkorange;font-size:0.8rem;"></i>
+                @else
+                <i class="fa-solid fa-star" style="font-size:0.8rem;"></i>
+                @endif
+                @endfor
+                <span class="text-muted">{{$booking->vehiculeRating}}/5</span>
             </div>
-           <div class="col mx-1 sticker">Pick up locations count: {{ $pulCount }}</div>
-         </div>
-        
-        
-         <div style="width: 60%">
-          <h6>Nombre de reservation par branche</h6>
-          <canvas  id="myChart"></canvas>
-        </div>
-        <div style="width: 60%">
-          <h6>Nombre de reservation par jours dans la derniere semaine</h6>
-          <canvas  id="lineChart"></canvas>
-        </div>
-        <div style="width: 60%">
-          <h6>Argent gagne par chaque branche</h6>
-          <canvas  id="mpb"></canvas>
-        </div>
-        <div>
-          <h6>Latest 5 reviews for my cars</h6>
-          <div class="reveiws " style="width: 40%">
-            
-            @foreach ($reviews as $booking)
-            @if ($booking->state == "FINISHED")
-            <div class="review w-100 d-flex ">
-                <img src="{{ asset('images/users/faceIdImages/'. $booking->faceIdPath) }}" id="user-icon" alt="">
-                <div class="d-flex flex-column ms-3">
-                    <p class="title">{{ $booking->firstName }} {{ $booking->lastName }}</p>
-                    <div class="rating">
-                        @for($c=1;$c<=5;$c++) @if($booking->vehiculeRating >= $c)
-                          <i class="fa-solid fa-star" style="color:darkorange;font-size:0.8rem;"></i>
-                          @else
-                          <i class="fa-solid fa-star" style="font-size:0.8rem;"></i>
-                          @endif
-                          @endfor
-                          <span class="text-muted">{{$booking->vehiculeRating}}/5</span>
-                    </div>
-                    <div >
-                        <p class="comment">{{ $booking->vehiculeComment }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ea soluta id ipsam libero voluptatem mollitia veniam recusandae voluptate temporibus quidem, aspernatur itaque reiciendis accusantium.</p>
-                    </div>
-                    <div>
-                       <p class="text-muted date">{{ $booking->commentDate }}</p> 
-                    </div>
-                </div>
+            <div>
+              <p class="comment">{{ $booking->vehiculeComment }} Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Iure ea soluta id ipsam libero voluptatem mollitia veniam recusandae voluptate temporibus quidem,
+                aspernatur itaque reiciendis accusantium.</p>
             </div>
-            @endif
-            @endforeach
-        </div>
-        </div>
-        <div style="width: 60%">
-          
-          <canvas id="pickUpLocations"></canvas>
-        </div>
-        <div class="mostRentedcars">
-          <h1>Most rented cars</h1>
-          @foreach ($mostRentedCars as $car)
-            <div class="cars">
-              <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
-              <p>{{ $car->brand }} {{ $car->model }}</p>
-              <p> Rating :{{ $car->rating }}</p>
-              <p>Bookings count : {{ $car->bookCount }}</p>
+            <div>
+              <p class="text-muted date">{{ $booking->commentDate }}</p>
             </div>
-          @endforeach
+          </div>
         </div>
-       </div>
-     </div>
+        @endif
+        @endforeach
+      </div>
+    </div>
+    <div style="width: 60%">
 
- @elseif (!is_null($Request))
-  @if($Request->state =="ON GOING")
- <div class="no-agency">
+      <canvas id="pickUpLocations"></canvas>
+    </div>
+    <div class="mostRentedcars">
+      <h1>Most rented cars</h1>
+      @foreach ($mostRentedCars as $car)
+      <div class="cars">
+        <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
+        <p>{{ $car->brand }} {{ $car->model }}</p>
+        <p> Rating :{{ $car->rating }}</p>
+        <p>Bookings count : {{ $car->bookCount }}</p>
+      </div>
+      @endforeach
+    </div>
+  </div>
+</div>
+
+@elseif (!is_null($Request))
+@if($Request->state =="ON GOING")
+<div class="no-agency">
   <div class="container d-flex align-items-center justify-content-center">
     <div class="alert" role="alert" style="border:2px dashed rgb(130, 179, 139);background-color:rgb(130, 179, 139)">
       <p> Your request is being processed by our administrators. Please comeback later</p>
-      <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
+      <a href="{{ route('owner.logout') }}"
+        onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning"
+        style="float:right"> Logout</a>
       <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
     </div>
   </div>
@@ -116,36 +104,37 @@
   <div class="container d-flex align-items-center justify-content-center">
     <div class="alert" role="alert" style="border:2px dashed rgb(179, 133, 130);background-color:rgb(179, 148, 130)">
       <p> Your request was refused because of invalid or missing informations.</p>
-      <a href="{{ route('owner.logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning" style="float:right"> Logout</a>
+      <a href="{{ route('owner.logout') }}"
+        onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning"
+        style="float:right"> Logout</a>
       <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
     </div>
   </div>
 </div>
 @endif
 
- @else
-  <div class="no-agency">
-    <div class="container d-flex align-items-center justify-content-center">
-      <div class="alert" role="alert">
-        <p>
-          It seem's that You don't have an agency yet! <br>
-          Click the button below to add your agency now!
-        </p>
-        <br>
-        <a class="btn btn-primary" href="{{ route('owner.createAgency') }}">
-          Add agency Now!
-        </a>
-      </div>
+@else
+<div class="no-agency">
+  <div class="container d-flex align-items-center justify-content-center">
+    <div class="alert" role="alert">
+      <p>
+        It seem's that You don't have an agency yet! <br>
+        Click the button below to add your agency now!
+      </p>
+      <br>
+      <a class="btn btn-primary" href="{{ route('owner.createAgency') }}">
+        Add agency Now!
+      </a>
     </div>
   </div>
- @endif
+</div>
+@endif
 
 @endsection
 
 @section('scripts')
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-
   var sites = {!! json_encode($branches, JSON_HEX_TAG) !!}
 
   const labels = [];
@@ -172,7 +161,7 @@
     type: 'doughnut',
     data: data,
     options: {
-      
+
     }
   };
   const myChart = new Chart(
@@ -251,7 +240,7 @@ const config2 = {
   type: 'doughnut',
   data: data2,
   options: {
-    
+
   }
 };
 const myChart2 = new Chart(
@@ -259,13 +248,13 @@ const myChart2 = new Chart(
   config2
 );
 </script>
-  
+
 
 
 
 
 <script>
-   var pickUpLocationsCount = {!! json_encode($pickUpLocationsCount, JSON_HEX_TAG) !!}
+  var pickUpLocationsCount = {!! json_encode($pickUpLocationsCount, JSON_HEX_TAG) !!}
   const labels3 = [];
 
   pickUpLocationsCount.forEach((e)=>{

@@ -7,8 +7,13 @@ body {
   position: relative;
 }
 .sidebar {
-  min-height: 100vh;
-  background-color: #222;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+  height: 100vh;
+  padding-inline: 0;
+  background-color: $indigo;
   flex-wrap: nowrap;
   position: sticky;
   z-index: 1;
@@ -26,8 +31,7 @@ body {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      border:2px solid white;
-      padding: 4px;
+      border: 1px solid $grey;
     }
     .user-fullname{
       color: white;
@@ -45,12 +49,12 @@ body {
       a {
         color: white;
         transition: all 300ms linear;
-        .active {
-          color: rgb(255, 68, 0);
+        &:active, .active {
+          color: $blue;
         }
         &:hover {
-          // color: rgb(255, 69, 0);
-          background-color: rgba(255, 255, 255, 0.075);
+          background-color: rgba($color: #FFF, $alpha: .125);
+          border-left: 5px solid $blue;
         }
       }
     }
@@ -84,16 +88,6 @@ body {
 }
 .main {
   padding: 0;
-}
-.page-title{
-  border-bottom: 1px solid gray;
-}
-.logout{
-  background-color: rgb(219, 219, 219);
-  padding: 4px 15px;
-  border-radius: 4px;
-  font-weight: 700;
-  color: black;
 }
 
 .show-on-hover {
@@ -136,4 +130,7 @@ body {
   left: 90%;
   cursor: default;
   background-color: transparent;
+}
+.navbar {
+  border-bottom: .5px solid $grey;
 }
