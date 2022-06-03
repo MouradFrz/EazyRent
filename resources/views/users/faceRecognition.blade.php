@@ -26,29 +26,35 @@
 </head>
 <body>
     <button id="button1" onclick="startFace()">Start face ID</button>
-    <p style="background-image:url('../images/dashboard/dashboard.jpeg')"></p>
-    <video id="videoInput" width="460" height="380" style="display: none" muted controls>
+    {{-- <video id="videoInput" width="460" height="380" style="display: none" muted controls> --}}
+        <video id="webCam" width="460" height="380" autoplay playsinlne >
+        <canvas id="canvas"></canvas>
 </body>
 </html>
 <script src="{{ asset('js/face-api.min.js') }}"></script>
+<script src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
 <script>
-    const video = document.getElementById('videoInput')
+    // const video = document.getElementById('videoInput')
+    const webCamElement = document.getElementById('webCam');
+    const canvasElement = document.getElementById('canvas');
+    const webcam = new Webcam(webCamElement,"user",canvasElement);
+    webcam.start();
 
 Promise.all([
     faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
     faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
     faceapi.nets.ssdMobilenetv1.loadFromUri('/models') //heavier/accurate version of tiny face detector
-]).then(start)
+]).then(startIt)
 
-function start() {
+function startIt() {
     document.body.append('Models Loaded')
     
-    navigator.getUserMedia(
-        { video:{} },
-        stream => video.srcObject = stream,
-        err => console.error(err)
-    )
-    console.log('video added')
+    // navigator.getUserMedia(
+    //     { video:{} },
+    //     stream => video.srcObject = stream,
+    //     err => console.error(err)
+    // )
+    
     recognizeFaces()
 }
 
@@ -59,18 +65,18 @@ async function recognizeFaces() {
     const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
 
 
-    video.addEventListener('play', async () => {
+    // video.addEventListener('play', async () => {
         console.log('Playing')
-        const canvas = faceapi.createCanvasFromMedia(video)
+        const canvas = faceapi.createCanvasFromMedia(webCamElement)
         document.body.append(canvas)
 
-        const displaySize = { width: video.width, height: video.height }
+        const displaySize = { width: webCamElement.width, height: webCamElement.height }
         faceapi.matchDimensions(canvas, displaySize)
 
         
 
         setInterval(async () => {
-            const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors()
+            const detections = await faceapi.detectAllFaces(webCamElement).withFaceLandmarks().withFaceDescriptors()
 
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
 
@@ -88,7 +94,7 @@ async function recognizeFaces() {
 
 
         
-    })
+//     })
 }
 
 
@@ -110,7 +116,7 @@ function loadLabeledImages() {
     )
 }
 function startFace() {
-var x = document.getElementById("videoInput");
+var x = document.getElementById("webCam");
 
 if (x.style.display === "none") {
 x.style.display = "block";
@@ -133,6 +139,8 @@ btn.addEventListener("click", ()=>{
 
 </script>
 @section('scripts')
+<script defer src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
+<script defer src="{{ asset('js/faceScript.js') }}"></script>
 <script defer src="{{ asset('js/face-api.min.js') }}"></script>
 <script defer src="{{ asset('js/faceScript.js') }}"></script>
 @endsection

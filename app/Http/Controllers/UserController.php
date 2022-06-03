@@ -79,17 +79,36 @@ class UserController extends Controller
 
   public function check(Request $request)
   {
-    $request->validate(
-      [
-        'username' => 'required|exists:users,username',
-        'password' => 'required|min:6'
-      ],
-      [
-        'username.exists' => 'Your account doesnt exist. Create an account then login'
-      ]
-    );
-    $creds = $request->only('username', 'password');
 
+    if (filter_var($request->username, FILTER_VALIDATE_EMAIL)) {
+      $request->validate(
+        [
+          'username' => 'required|exists:users,email',
+          'password' => 'required|min:6'
+        ],
+        [
+          'username.exists' => 'Your account doesnt exist. Create an account then login'
+        ]
+      );
+      $request->merge([
+        'email' => $request->username,
+    ]);
+      $creds = $request->only('email', 'password');
+    }else{
+      $request->validate(
+        [
+          'username' => 'required|exists:users,username',
+          'password' => 'required|min:6'
+        ],
+        [
+          'username.exists' => 'Your account doesnt exist. Create an account then login'
+        ]
+      );
+      $creds = $request->only('username', 'password');
+    }
+    
+    
+    // dd($creds);
     if (Auth::guard('web')->attempt($creds, $request->remember)) {
       $bans=AdminBan::where('bannedUsername',Auth::user()->username)->get();
       if(count($bans)!=0){
