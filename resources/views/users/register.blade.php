@@ -161,7 +161,7 @@
             <button class="custom-btn custom-btn-dark" id="next" onclick="event.preventDefault()" type="text">
               Next
             </button>
-            <input type="submit" class="custom-btn custom-btn-dark d-none" id="submitBtn" value="Sign up">
+            <input type="submit" class="custom-btn custom-btn-dark d-none" id="submit-button" value="Sign up">
           </div>
         </form>
       </div>
@@ -173,7 +173,7 @@
         const pages = document.querySelectorAll('.signupStep')
         const stepInc = document.querySelector('#next')
         const stepDec = document.querySelector('#prev')
-        const submitBtn = document.querySelector('#submitBtn')
+        const submitBtn = document.querySelector('#submit-button')
         let currentStep=0;
         stepDec.disabled=true;
         stepInc.addEventListener('click',()=>{
@@ -246,6 +246,7 @@
           }
           })
         }
+        start()
 
 // function imageSelected(e){
 //       var reader,files = e.target.files
