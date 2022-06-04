@@ -69,7 +69,11 @@
 
 @section('content')
 <div class="reservation details">
-  <div class="container">
+  <div class="container mt-2">
+    <a href="{{ route('secretary.getReservationRequests') }}" class="link link-no-decoration">
+      <i class="fa-solid fa-arrow-left"></i>
+      Go back
+    </a>
     @if (Session::get('fail'))
     <div class="alert alert-danger alert-dismissible fade show w-100" role="alert">
       <strong>{{ Session::get('fail') }}</strong>
@@ -155,15 +159,12 @@
     <div class="d-flex action">
       @if($booking->state=="REQUESTED")
       <form action="{{route('secretary.acceptBooking',$booking->bookingID)}}" method="POST" id="accept">@csrf</form>
-      <button class="btn btn-primary" onclick="document.querySelector('#accept').submit()">Accept booking
-        request</button>
-      <button class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#declineBooking">Decline
-        booking request</button>
+      <button class="custom-btn custom-btn-success" onclick="document.querySelector('#accept').submit()">Accept request</button>
+      <button class="custom-btn custom-btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#declineBooking">Decline Request</button>
 
       @elseif($booking->state=="DECLINED")
-      <p style="color: red;display:block">You declined this request </p><br>
+      <p class="danger">You declined this request </p><br>
       <p class="label">Decline reason:</p>
-
       <p class="value">{{ $booking->declineReason }}</p>
       @else
       <p>You accepted this request at {{ $booking->updated_at }}</p>
@@ -189,7 +190,7 @@
                 </span>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="btn btn-danger">decline booking</button>
+                <button type="submit" class="custom-btn custom-btn-danger">decline booking</button>
               </div>
             </form>
           </div>
