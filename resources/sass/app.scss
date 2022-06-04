@@ -20,6 +20,9 @@ p {
   line-height: 1.6;
   margin-bottom: 0;
 }
+// label {
+//   color: $grey;
+// }
 ul li, a {
   text-decoration: none;
   list-style-type: none;
@@ -153,4 +156,20 @@ a {
   text-align: center;
   font-size: 3.5rem;
   margin-bottom: 2.5rem;
+}
+
+.img-zoom-container {
+  position: relative;
+}
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+.img-zoom-result {
+  border: 1px solid $darkGrey;
+  width: 300px;
+  height: 300px;
 }

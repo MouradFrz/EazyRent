@@ -95,41 +95,6 @@
   font-weight: 500;
 }
 
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.container {
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-  margin: 20px auto;
-  max-width: 1000px;
-  background-color: white;
-  padding: 0;
-  box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
-  -webkit-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
-  -moz-box-shadow: 1px 5px 25px 0px rgba(117, 112, 112, 0.55);
-}
-
-@media (min-width: 768px) {
-  .container {
-    width: 750px;
-  }
-}
-@media (min-width: 992px) {
-  .container {
-    width: 970px;
-  }
-}
-@media (min-width: 1200px) {
-  .container {
-    width: 1170px;
-  }
-}
 .form-control-pog {
   height: 25px;
   width: 150px;
@@ -158,4 +123,41 @@
 .textmuted-pog {
   color: #6c757d;
   font-size: 13px;
+}
+
+.label {
+  font-weight: 600;
+  color: rgb(142, 142, 147);
+}
+
+.value {
+  color: #000;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.value::after {
+  content: "";
+  display: flex;
+  height: 0.5px;
+  width: 100%;
+  flex: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(199, 199, 201);
+}
+
+.id-card-image {
+  width: 300px;
+  height: 200px;
+  -o-object-fit: fill;
+     object-fit: fill;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.action {
+  margin-bottom: 4rem;
 }
