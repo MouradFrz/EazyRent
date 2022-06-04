@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{asset('css/app.css')}}">
-  <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/worker/worker.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   @yield('headTags')
 </head>
@@ -52,64 +52,64 @@
       @if(Auth::guard('admin')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
         <li class="nav-item active">
-          <a href="{{ route('admin.dashboard') }}" class="nav-link ">Dashboard</a>
+          <a href="{{ route('admin.dashboard') }}" class="nav-link "><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.joiningRequests') }}" class="nav-link ">Joining requests</a>
+          <a href="{{ route('admin.joiningRequests') }}" class="nav-link "><i class="fa-regular fa-rectangle-list"></i>Joining requests</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.getAgencies') }}" class="nav-link ">Agencies list</a>
+          <a href="{{ route('admin.getAgencies') }}" class="nav-link "><i class="fa-regular fa-warehouse"></i>Agencies list</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.usersList') }}" class="nav-link ">Users list</a>
+          <a href="{{ route('admin.usersList') }}" class="nav-link "><i class="fa-solid fa-users"></i>Users list</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('admin.loadBans') }}" class="nav-link ">Banned users</a>
+          <a href="{{ route('admin.loadBans') }}" class="nav-link "><i class="fa-solid fa-ban"></i>Banned users</a>
         </li>
       </ul>
       @endif
       @if(Auth::guard('owner')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
+        <li class="nav-item">
+          <a href="{{ route('owner.home') }}" class="nav-link active"><i class="fa-solid fa-chart-line"></i>Agency statistics</a>
+        </li>
         <li class="nav-item active">
-          <a href="{{ route('owner.home') }}" class="nav-link ">Agency statistics</a>
-        </li>
-        <li class="nav-item active">
-          <a href="{{ route('owner.showReclamations') }}" class="nav-link ">View client complaints</a>
+          <a href="{{ route('owner.showReclamations') }}" class="nav-link"><i class="fa-solid fa-comment"></i>Client complaints</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('owner.employeesList') }}" class="nav-link ">Employees management</a>
+          <a href="{{ route('owner.employeesList') }}" class="nav-link"><i class="fa-solid fa-users"></i>Employees management</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('owner.showBranches') }}" class="nav-link ">Branches management</a>
+          <a href="{{ route('owner.showBranches') }}" class="nav-link"><i class="fa-solid fa-code-branch"></i>Branches management</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('owner.showGarages') }}" class="nav-link ">Garages management</a>
+          <a href="{{ route('owner.showGarages') }}" class="nav-link"><i class="fa-solid fa-warehouse"></i>Garages management</a>
         </li>
       </ul>
       @endif
       @if(Auth::guard('garagist')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
-        <li class="nav-item active">
-          <a href="{{ route('garagist.vehicles') }}" class="nav-link ">Vehicle management</a>
+        <li class="nav-item">
+          <a href="{{ route('garagist.vehicles') }}" class="nav-link active"><i class="fa-solid fa-car-side"></i>Vehicle management</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('garagist.getReservations') }}" class="nav-link ">On going reservations</a>
+          <a href="{{ route('garagist.getReservations') }}" class="nav-link "><i class="fa-solid fa-rectangle-list"></i>On going reservations</a>
         </li>
       </ul>
       @endif
       @if(Auth::guard('secretary')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
-        <li class="nav-item active">
-          <a href="#" class="nav-link ">Dashboard</a>
+        <li class="nav-item">
+          <a href="#" class="nav-link active"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('secretary.getReservationRequests') }}" class="nav-link ">Reservation requests</a>
+          <a href="{{ route('secretary.getReservationRequests') }}" class="nav-link "><i class="fa-solid fa-rectangle-list"></i></i>reservation requests</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('secretary.showVehicules') }}" class="nav-link ">Vehicules management</a>
+          <a href="{{ route('secretary.showVehicules') }}" class="nav-link "><i class="fa-solid fa-car-side"></i>Vehicules management</a>
         </li>
         <li class="nav-item">
-          <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link ">Pick up locations</a>
+          <a href="{{route('secretary.getPickUpLocations')}}" class="nav-link "><i class="fa-solid fa-location-dot"></i>Pick up locations</a>
         </li>
       </ul>
       @endif
