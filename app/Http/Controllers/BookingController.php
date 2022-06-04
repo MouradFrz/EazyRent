@@ -34,7 +34,7 @@ class BookingController extends Controller
     $array = json_decode(json_encode($contractData), true);
     $pdf = PDF::loadView('users.contract', $array[0]);
     $pdf->save(public_path('contracts\contract_').$booking->bookingID.'.pdf');
-    // dd([0]->brand);
+ 
     $notif = new Notification();
     $notif->notifiedUsername = $booking->clientUsername;
     $notif->bookingID = $booking->bookingID;

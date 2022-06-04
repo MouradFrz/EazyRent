@@ -47,6 +47,7 @@
       color: #FFF;
       transition: all 250ms ease;
       padding-right: .125rem;
+      border-left: 0px solid $blue;
       &:hover, &.active {
         background-color: rgba($color: #fff, $alpha: 0.125);
         border-left: 5px solid $blue;

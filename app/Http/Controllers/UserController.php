@@ -211,7 +211,9 @@ class UserController extends Controller
     return redirect()->route('user.bookingDetails',$id)->with('declined','Contract declined.');
   }
 
-  public function loadNotifications(){
+  public function loadNotifications(Request $request){
+    if ($request->ajax()) {
     return Notification::where("notifiedUsername",Auth::user()->username)->get();
+    }
   }
 }

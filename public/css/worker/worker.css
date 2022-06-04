@@ -50,6 +50,7 @@
   color: #FFF;
   transition: all 250ms ease;
   padding-right: 0.125rem;
+  border-left: 0px solid rgb(0, 122, 255);
 }
 .sidebar .nav-item > .nav-link:hover, .sidebar .nav-item > .nav-link.active {
   background-color: rgba(255, 255, 255, 0.125);
