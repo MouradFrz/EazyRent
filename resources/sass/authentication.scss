@@ -10,7 +10,7 @@
     color: #fff;
     text-align: center;
     .content {
-      padding: 4rem 1rem;
+      padding: 0 1rem 2rem;
     }
     h2 {
       font-size: 2.5rem;
@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  padding-bottom: 2rem;
+  // padding-bottom: 2rem;
   .section-header {
     color: v.$indigo;
   }
@@ -61,15 +61,18 @@
       box-shadow: none;
       border: 0.5px solid #ccc;
     }
+    .hide{
+      display: none !important;
+    }
+    .active {
+      display: flex;
+    }
   }
   .authentication_options {
     text-align: center;
     .or {
       margin-block: 1rem;
-    }
-    p {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
+      text-align: center;
     }
   }
 }
@@ -150,22 +153,42 @@
   padding-inline: 1.7rem;
 }
 
-// .type-buttons {
-//   margin-bottom: 18px;
-//   & > button {
-//     background-color: white;
-//     color: black;
-//     border-bottom: 2px solid gray;
-//     border-bottom-left-radius: 0px;
-//     border-bottom-right-radius: 0px;
-//     margin: 0;
-//     transition: all 0.2s ease;
-//     &.active {
-//       border-bottom: 2px solid rgb(187, 190, 105);
-//       color: rgb(187, 190, 105);
-//     }
-//   }
-// }
+.worker-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-bottom: 1.125rem;
+  > button {
+    border-bottom: 2px solid v.$lightGrey;
+    border-radius: 0;
+    transition: all 300ms linear;
+    position: relative;
+    &:hover,
+    &:focus,
+    .active {
+      color: v.$blue !important;
+    }
+    &:hover::after,
+    &:focus::after {
+      content: "";
+      position: absolute;
+      top: 2.5rem;
+      left: 0;
+      height: 0;
+      width: 0;
+      z-index: 1;
+      border-bottom: 2px solid v.$blue;
+      animation: grow 300ms linear;
+      animation-fill-mode: forwards;
+    }
+    @keyframes grow {
+      100% {
+        width: 100%;
+      }
+    }
+  }
+}
 // .form-login-worker.active {
 //   display: flex !important;
 // }

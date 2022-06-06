@@ -29,7 +29,7 @@
     <div class="authentication_panel col-12 col-md-8">
       <h2 class="section-header">Join eazyrent</h2>
       <div class="content containter-fluid">
-        <form class="form-signup" action="{{ route('user.create') }}" method="POST"
+        <form class="form-authentication" action="{{ route('user.create') }}" method="POST"
           enctype="multipart/form-data">
           @csrf
           @if (Session::get('fail'))
@@ -148,13 +148,9 @@
             <div class="image-selector" id="image-selector-face" alt="" onclick="openFilePickerFace()"></div>
             <img onclick="openFilePickerFace()" class="image-preview" id="image-preview-face" alt="" />
             <span id="verification"></span>
-
-            {{-- <div class="d-flex justify-content-end ">
-              <input id="submit-button" type="submit" value="Sign up!" class="custom-btn custom-btn-dark" />
-            </div> --}}
             <p class="step-index">4/4</p>
           </div>
-          <div class="d-flex justify-content-between">
+          <div class="d-flex justify-content-between align-items-center">
             <button class="custom-btn custom-btn-dark" id="prev" onclick="event.preventDefault()" type="text">
               Previous
             </button>

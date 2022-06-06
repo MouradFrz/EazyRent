@@ -11,7 +11,7 @@
   text-align: center;
 }
 .authentication_welcome .content {
-  padding: 4rem 1rem;
+  padding: 0 1rem 2rem;
 }
 .authentication_welcome h2 {
   font-size: 2.5rem;
@@ -27,7 +27,6 @@
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  padding-bottom: 2rem;
 }
 .authentication_panel .section-header {
   color: rgb(88, 86, 214);
@@ -63,15 +62,18 @@
   box-shadow: none;
   border: 0.5px solid #ccc;
 }
+.authentication_panel .form-authentication .hide {
+  display: none !important;
+}
+.authentication_panel .form-authentication .active {
+  display: flex;
+}
 .authentication_panel .authentication_options {
   text-align: center;
 }
 .authentication_panel .authentication_options .or {
   margin-block: 1rem;
-}
-.authentication_panel .authentication_options p {
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .center {
@@ -155,4 +157,46 @@
 
 #next {
   padding-inline: 1.7rem;
+}
+
+.worker-type {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  margin-bottom: 1.125rem;
+}
+.worker-type > button {
+  border-bottom: 2px solid rgb(199, 199, 201);
+  border-radius: 0;
+  transition: all 300ms linear;
+  position: relative;
+}
+.worker-type > button:hover, .worker-type > button:focus,
+.worker-type > button .active {
+  color: rgb(0, 122, 255) !important;
+}
+.worker-type > button:hover::after, .worker-type > button:focus::after {
+  content: "";
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: 1;
+  border-bottom: 2px solid rgb(0, 122, 255);
+  -webkit-animation: grow 300ms linear;
+          animation: grow 300ms linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+@-webkit-keyframes grow {
+  100% {
+    width: 100%;
+  }
+}
+@keyframes grow {
+  100% {
+    width: 100%;
+  }
 }

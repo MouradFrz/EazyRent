@@ -22,7 +22,7 @@
         <a href="{{ route('user.register') }}" class="custom-btn">Sign Up</a>
       </div>
     </div>
-    <div class="authentication_panel col-12 col-md-8 center">
+    <div class="authentication_panel col-12 col-md-8">
       <h2 class="section-header">Log in to eazyrent</h2>
       <div class="content container-fluid">
         <form class="form-authentication" action="{{ route('user.check') }}" method="POST" enctype="multipart/form-data">
@@ -67,14 +67,14 @@
           </div>
         </form>
         <div class="authentication_options">
-          {{-- <p class="or">-Or-</p> --}}
-          <p >Forgot password? <a href="{{ route('password.email') }}" class="link">Click here </a></p>
-          <div class="d-flex justify-content-center">
+          <p class="or">-OR-</p>
+          <div class="d-flex justify-content-center mb-2">
             <a href="{{ route('user.loginWithGoogle') }}" class="google-login">
               <object data="{{asset('/images/icons/google-icon.svg')}}" width="24" height="24"></object>
               Login with Google
             </a>
           </div>
+          <p >Forgot password? <a href="{{ route('password.email') }}" class="link">Click here </a></p>
         </div>
       </div>
     </div>

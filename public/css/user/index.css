@@ -14,7 +14,7 @@
   font-size: 1.1rem;
 }
 .navbar .nav-link:hover, .navbar .nav-link:focus, .navbar .nav-link:active {
-  color: rgb(85, 190, 240) !important;
+  color: rgb(0, 122, 255) !important;
 }
 .navbar .nav-link:hover::after, .navbar .nav-link:focus::after {
   content: "";
