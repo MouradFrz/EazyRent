@@ -1,0 +1,152 @@
+@use "../variables" as v;
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  flex-wrap: wrap;
+  &_item {
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    padding: 1rem;
+    border: 0.5px solid v.$lightestGrey;
+    border-radius: 0.5rem;
+    box-shadow: v.$box-shadow;
+  }
+  .circle-chart {
+    max-height: 20rem;
+  }
+}
+.no-agency {
+  background-color: v.$lightestGrey;
+  height: 100%;
+  .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .alert {
+    padding: 2rem 2rem 1rem;
+    border-radius: 0.5rem;
+    background-color: v.$lightGrey;
+    border: 2px dashed v.$grey;
+    text-align: center;
+    p {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// .tag{
+//   font-weight: 600;
+//   margin: 0 !important;
+//   text-decoration: underline;
+// }
+// .value{
+//   color: rgb(98, 98, 98);
+// }
+
+.sticker {
+  min-width: 250px;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  color: white;
+  margin: 0.5rem;
+  transition: transform 300ms ease-in-out;
+  &_header {
+    text-align: center;
+    font-family: 700;
+    text-transform: uppercase;
+  }
+  &_content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  &_icon {
+    font-size: 2rem;
+    padding-left: 1rem;
+  }
+  &_details {
+    justify-self: flex-end;
+    text-align: left;
+    cursor: default;
+    font-size: 1rem;
+  }
+  &:hover {
+    transform: scale(1.025);
+  }
+  &:nth-child(1) {
+    background-color: rgb(206, 97, 97);
+  }
+  &:nth-child(2) {
+    background-color: rgb(131, 177, 103);
+  }
+  &:nth-child(3) {
+    background-color: rgb(184, 109, 223);
+  }
+  &:nth-child(4) {
+    background-color: rgb(79, 64, 137);
+  }
+  .small {
+    font-size: 0.8rem;
+    margin: 0;
+  }
+}
+.card {
+  padding: 0;
+  padding-block: 1rem;
+  margin: 1rem;
+  border: 1px solid v.$lightestGrey;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: v.$box-shadow;
+  .content {
+    padding-inline: 1rem;
+  }
+}
+.review {
+  .img {
+    display: flex;
+    justify-content: center;
+    margin-bottom: .5rem;
+    > img {
+      width: 5rem;
+      height: 5rem;
+      background-color: #fff;
+      object-fit: cover;
+      object-position: center center;
+      border: 1px solid v.$lightestGrey;
+      border-radius: 50%;
+      box-shadow: v.$box-shadow;
+      padding: .25rem;
+    }
+  }
+  .client-name {
+    font-weight: 500;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  .comment {
+    margin: 15px 0;
+  }
+  .date {
+    margin: 0;
+  }
+}
+.car {
+  min-width: 300px;
+  max-width: fit-content;
+  width: fit-content;
+  .img {
+    overflow: hidden;
+    margin-bottom: .5rem;
+    > img {
+      width: 100%;
+      height: 100%;
+      object-position: center center;
+    }
+  }
+}

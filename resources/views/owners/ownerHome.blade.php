@@ -13,57 +13,124 @@
   let agencyStats = document.querySelector('#agencyStats')
   agencyStats.classList.add('active')
 </script>
-<div>
+<div class="dashboard">
   <div class="container">
-    <h1 class="my-3">{{ $Request->name }}</h1>
-    <div class="row ">
-      <div class="col mx-1 sticker">Branches count: {{ $branchCount }}</div>
-      <div class="col mx-1 sticker">Garages count: {{ $garageCount }}</div>
-      <div class="col mx-1 sticker">
-        <p>Employees count: {{ $secCount+$managerCount }}</p>
-        <p class="small">Secretaries count: {{ $secCount}}</p>
-        <p class="small">Garage managers count : {{ $managerCount }}</p>
+    <h2 class="my-4">{{ $Request->name }}</h2>
+    <div class="stats">
+      <div class="stats_item" id="reservationsLastWeek">
+        <h6 class="stats_header">reservations in last week</h6>
+        <canvas id="lineChart"></canvas>
       </div>
-      <div class="col mx-1 sticker">Pick up locations count: {{ $pulCount }}</div>
+      <div class="stats_item" id="reseravtionsPerBranch">
+        <h6 class="stats_header">reservations per branch</h6>
+        <canvas id="myChart" class="circle-chart"></canvas>
+      </div>
+      <div class="stats_item" id="argentPerBranch">
+        <h6 class="stats_header">Argent gagne par chaque branche</h6>
+        <canvas id="mpb" class="circle-chart"></canvas>
+      </div>
+      <div class="stats_item">
+        <h6 class="stats_header">pick up locations</h6>
+        <canvas id="pickUpLocations"></canvas>
+      </div>
     </div>
-    <div style="width: 60%">
-      <h6>Nombre de reservation par branche</h6>
-      <canvas id="myChart"></canvas>
+    <div class="white-space"></div>
+    <div class="row stickers">
+      <div class="col sticker">
+        <h6 class="sticker_header">branches</h6>
+        <div class="sticker_content">
+          <div class="sticker_icon">
+            <i class="fa-solid fa-code-branch"></i>
+          </div>
+          <div class="sticker_details">
+            {{ $branchCount }} branches
+          </div>
+        </div>
+      </div>
+      <div class="col sticker">
+        <h6 class="sticker_header">garages</h6>
+        <div class="sticker_content">
+          <div class="sticker_icon">
+            <i class="fa-solid fa-warehouse"></i>
+          </div>
+          <div class="sticker_details">
+            {{ $garageCount }} garages
+          </div>
+        </div>
+      </div>
+      <div class="col sticker">
+        <h6 class="sticker_header">employees</h6>
+        <div class="sticker_content">
+          <div class="sticker_icon">
+            <i class="fa-solid fa-people-group"></i>
+          </div>
+          <div class="sticker_details">
+            {{ $secCount+$managerCount }} employee <br>
+            {{ $secCount}} secretary <br> {{ $managerCount }} Garage manager
+          </div>
+        </div>
+      </div>
+      <div class="col sticker">
+        <h6 class="sticker_header">pick up locations</h6>
+        <div class="sticker_content">
+          <div class="sticker_icon">
+            <i class="fa-solid fa-warehouse"></i>
+          </div>
+          <div class="sticker_details">
+            {{ $pulCount }} pick up location
+          </div>
+        </div>
+      </div>
     </div>
-    <div style="width: 60%">
-      <h6>Nombre de reservation par jours dans la derniere semaine</h6>
-      <canvas id="lineChart"></canvas>
+    <div class="white-space"></div>
+    <div class="mostRentedcars">
+      <h3>Most rented cars</h3>
+      <div class="cars row">
+        @foreach ($mostRentedCars as $car)
+        <div class="col car card">
+          <p class="text-center mb-2"><strong>{{ $car->brand }} {{ $car->model }}</strong></p>
+          <div class="img">
+            <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
+          </div>
+          <div class="content">
+            <p> <strong>Rating : </strong> {{ $car->rating }}</p>
+            <p> <strong>Bookings count : </strong>{{ $car->bookCount }}</p>
+          </div>
+        </div>
+        @endforeach
+      </div>
     </div>
-    <div style="width: 60%">
-      <h6>Argent gagne par chaque branche</h6>
-      <canvas id="mpb"></canvas>
-    </div>
-    <div>
-      <h6>Latest 5 reviews for my cars</h6>
-      <div class="reveiws " style="width: 40%">
-
+    <div class="white-space"></div>
+    <div class="reviews">
+      <h3>Latest 5 reviews for my cars</h3>
+      <div class="reveiws row">
         @foreach ($reviews as $booking)
         @if ($booking->state == "FINISHED")
-        <div class="review w-100 d-flex ">
-          <img src="{{ asset('images/users/faceIdImages/'. $booking->faceIdPath) }}" id="user-icon" alt="">
-          <div class="d-flex flex-column ms-3">
-            <p class="title">{{ $booking->firstName }} {{ $booking->lastName }}</p>
+        <div class="review card col-12 col-md-4">
+          <div class="img">
+            <img src="{{ asset('images/users/faceIdImages/'. $booking->faceIdPath) }}" id="user-icon"
+              alt="user image is not available">
+          </div>
+          <div class="content">
+            <p class="client-name">{{ $booking->firstName }} {{ $booking->lastName }}</p>
+            <div class="comment">
+              <p>{{ $booking->vehiculeComment }} Lorem ipsum dolor sit amet consectetur adipisicing
+                elit. Iure ea soluta id ipsam libero voluptatem mollitia veniam recusandae voluptate temporibus quidem,
+                aspernatur itaque reiciendis accusantium.</p>
+            </div>
             <div class="rating">
+              <strong>rating : </strong>
               @for($c=1;$c<=5;$c++) @if($booking->vehiculeRating >= $c)
                 <i class="fa-solid fa-star" style="color:darkorange;font-size:0.8rem;"></i>
                 @else
                 <i class="fa-solid fa-star" style="font-size:0.8rem;"></i>
                 @endif
                 @endfor
-                <span class="text-muted">{{$booking->vehiculeRating}}/5</span>
+                <span>{{$booking->vehiculeRating}}</span>
             </div>
-            <div>
-              <p class="comment">{{ $booking->vehiculeComment }} Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Iure ea soluta id ipsam libero voluptatem mollitia veniam recusandae voluptate temporibus quidem,
-                aspernatur itaque reiciendis accusantium.</p>
-            </div>
-            <div>
-              <p class="text-muted date">{{ $booking->commentDate }}</p>
+            <div class="date">
+              <strong>booking date : </strong>
+              <span>{{ $booking->commentDate }}</span>
             </div>
           </div>
         </div>
@@ -71,21 +138,7 @@
         @endforeach
       </div>
     </div>
-    <div style="width: 60%">
-
-      <canvas id="pickUpLocations"></canvas>
-    </div>
-    <div class="mostRentedcars">
-      <h1>Most rented cars</h1>
-      @foreach ($mostRentedCars as $car)
-      <div class="cars">
-        <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
-        <p>{{ $car->brand }} {{ $car->model }}</p>
-        <p> Rating :{{ $car->rating }}</p>
-        <p>Bookings count : {{ $car->bookCount }}</p>
-      </div>
-      @endforeach
-    </div>
+    <div class="white-space"></div>
   </div>
 </div>
 
@@ -118,14 +171,15 @@
 
 @else
 <div class="no-agency">
-  <div class="container d-flex align-items-center justify-content-center">
+  <div class="container">
     <div class="alert" role="alert">
       <p>
-        It seem's that You don't have an agency yet! <br>
+        It seem's that You don't have an agency yet!
+        <br>
         Click the button below to add your agency now!
       </p>
       <br>
-      <a class="btn btn-primary" href="{{ route('owner.createAgency') }}">
+      <a class="custom-btn" href="{{ route('owner.createAgency') }}">
         Add agency Now!
       </a>
     </div>
