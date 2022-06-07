@@ -34,7 +34,6 @@
         <form class="form-authentication" action="{{ route('owner.check') }}"
           method="POST">
           @csrf
-          <h1 class="title">owner</h1>
           <label for="">Username</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}" />
           <label for="">Password</label>
@@ -60,8 +59,6 @@
         <form class="form-authentication hide" action="{{ route('garagist.check') }}"
           method="POST">
           @csrf
-          <h1 class="title">Garagist</h1>
-          {{-- just for debugging --}}
           <label for="">Username</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}" />
           <label for="">Password</label>
@@ -81,13 +78,12 @@
           </div>
           @endif
           <div class="d-flex justify-content-center">
-            <input class="custom-btn custom-btn-dark" type="submit" value="Log in" class="custom-btn login-btn" />
+            <input class="custom-btn custom-btn-dark login-btn" type="submit" value="Log in" class="custom-btn login-btn" />
           </div>
         </form>
         <form class="form-authentication hide" action="{{ route('secretary.check') }}"
           method="POST">
           @csrf
-          <h1 class="title">secretary</h1>
           <label for="">Username</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}" />
           <label for="">Password</label>

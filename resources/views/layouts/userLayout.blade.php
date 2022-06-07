@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +10,6 @@
   <link href="{{ asset('css/user/index.css') }}" rel="stylesheet">
   @yield('head')
 </head>
-
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
@@ -83,10 +81,32 @@
   @yield('content')
   @yield('script')
   <script src="{{ asset('js/app.js') }}"></script>
+  <script>
+    let navLinks = document.querySelectorAll('.nav-link')
+    // console.log(navLinks)
+    navLinks.forEach((el) => {
+      // console.log(el)
+      el.addEventListener('click', () => {
+        navLinks.forEach((e) => e.classList.remove('active'))
+        el.classList.add('active')
+      })
+    })
+    // buttons.forEach((e,i)=>{
+    //   e.addEventListener('click',()=>{
+    //     buttons.forEach((el)=>{
+    //       el.classList.remove('active');
+    //     });
+    //     e.classList.add('active');
+    //     forms.forEach((el)=>{
+    //       el.classList.add('hide');
+    //     })
+    //     forms[i].classList.remove('hide');
+    //   })
+    // });
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>
     let list = document.querySelector('#notification-list')
-
     let newNotifCount = document.querySelector('#new-notification-count')
     let newNotifications = 0
     $.get(`http://localhost:8000/user/loadNotifications`,function(data){
@@ -119,9 +139,6 @@
       if(newNotifications!=0){
         newNotifCount.innerText = newNotifications
       }
-
-
-
       })
   </script>
 </body>

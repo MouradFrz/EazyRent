@@ -189,10 +189,10 @@
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
-.worker-type > button:hover, .worker-type > button:focus {
+.worker-type > button:hover {
   color: rgb(0, 122, 255) !important;
 }
-.worker-type > button:hover::after, .worker-type > button:focus::after {
+.worker-type > button:hover::after {
   content: "";
   position: absolute;
   top: 2.5rem;
