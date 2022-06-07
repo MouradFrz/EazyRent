@@ -8,6 +8,10 @@
 @endsection
 
 @section('content')
+<script>
+  let garages = document.querySelector('#garages')
+  garages.classList.add('active')
+</script>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -16,7 +20,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <p >Are you sure you want to delete this garage ? <br> <span style="color:red"> The garage manager that's currently managing this garage will be available for other garages of this branch. </span></p> 
+         <p >Are you sure you want to delete this garage ? <br> <span style="color:red"> The garage manager that's currently managing this garage will be available for other garages of this branch. </span></p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -34,7 +38,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <p >Choose the new garage manager for this garage</p> 
+         <p >Choose the new garage manager for this garage</p>
          <form action="{{ route('owner.changeManager') }}" id="changeForm" method="POST">@csrf
             <input type="text" style="display: none" name="garageID" value="{{ $garage->garageID }}">
                 <select name="manager" id="managersList" class="form-control">
@@ -73,7 +77,7 @@
                 <p class="value">{{ count($cars) }}</p>
                 <p class="tag">Capacity :</p>
                 <p class="value">{{ $garage->capacity }}</p>
-                
+
             </div>
             <div class="col-3">
                 <p class="tag">Manager:</p>
@@ -110,7 +114,7 @@
                     </tr>
                     @endforeach
                     </tbody>
-                
+
                 </table>
             </div>
 
@@ -119,7 +123,7 @@
                 Delete this garage
               </button>
         </div>
-       
+
     </div>
 @endsection
 

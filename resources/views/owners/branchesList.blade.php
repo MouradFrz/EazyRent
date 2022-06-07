@@ -5,6 +5,10 @@
 <link rel="stylesheet" href="{{ asset('css/owner/index.css') }}">
 @endsection
 @section('content')
+<script>
+  let branches = document.querySelector('#branches')
+  branches.classList.add('active')
+</script>
 <!-- Button trigger modal -->
 
 
@@ -46,7 +50,7 @@
       @endif
       <h2>Branches management</h2>
       <hr>
-      
+
       <div class="cards ">
           @if (count($branches)!=0)
           @foreach ($branches as $branche )
@@ -59,7 +63,7 @@
             </ul>
         </div>
           @endforeach
-          
+
           <button type="button" class="btn btn-primary" style="min-height:150px" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Add a new branch
           </button>
@@ -72,7 +76,7 @@
             Add a new branch
           </button>
           @endif
-          
+
       </div>
     </div>
   </div>

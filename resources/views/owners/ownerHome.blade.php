@@ -7,9 +7,12 @@
   integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
   crossorigin="anonymous" referrerpolicy="no-referrer" />
 @endsection
-
 @section('content')
 @if (Auth::user()->agencyID)
+<script>
+  let agencyStats = document.querySelector('#agencyStats')
+  agencyStats.classList.add('active')
+</script>
 <div>
   <div class="container">
     <h1 class="my-3">{{ $Request->name }}</h1>
@@ -169,12 +172,6 @@
     config
   );
 </script>
-
-
-
-
-
-
 <script>
   var reservationsPerDay = {!! json_encode($resPerDay, JSON_HEX_TAG) !!}
   var dates = {!! json_encode($dates, JSON_HEX_TAG) !!}
@@ -207,11 +204,6 @@ const lineChart = new Chart(
     config1
   );
 </script>
-
-
-
-
-
 <script>
   var mpb = {!! json_encode($moneyPerBranch, JSON_HEX_TAG) !!}
 
@@ -248,11 +240,6 @@ const myChart2 = new Chart(
   config2
 );
 </script>
-
-
-
-
-
 <script>
   var pickUpLocationsCount = {!! json_encode($pickUpLocationsCount, JSON_HEX_TAG) !!}
   const labels3 = [];
@@ -300,8 +287,6 @@ const config3 = {
     }
   },
 };
-
-
 const barChart = new Chart(
   document.getElementById('pickUpLocations'),
   config3

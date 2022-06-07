@@ -1,10 +1,9 @@
 @extends('layouts.workerLayout')
-
-
-
 @section('content')
-
-
+<script>
+  let employees = document.querySelector('#employees')
+  employees.classList.add('active')
+</script>
 <div class="modal fade" id="deleteSec" tabindex="-1" aria-labelledby="deleteSecLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -66,8 +65,8 @@
           @csrf
           <input type="text" name="username" style="display:none" class="form-control" id="secTransferHide">
           <select name="branche"  class="form-control" id="secBranchList">
-            
-          
+
+
           </select>
         </form>
       </div>
@@ -91,8 +90,8 @@
           @csrf
           <input type="text" name="username" style="display:none" class="form-control" id="garTransferHide">
           <select name="branche"  class="form-control" id="garBranchList">
-            
-          
+
+
           </select>
         </form>
       </div>
@@ -142,7 +141,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-                  
+
                   </table>
                   {{$list->links()}}
             </div>
@@ -174,7 +173,7 @@
                       </tr>
                       @endforeach
                     </tbody>
-                  
+
                   </table>
                   {{$list->links()}}
             </div>
@@ -208,7 +207,7 @@
 
 </script>
 <script>
-  
+
    function getSec(e){
       $.get(`getSecUsername/${e}`,function(data){
         document.querySelector('#secDeleteShow').value=`${data.firstName} ${data.lastName} (${data.username})`
@@ -233,7 +232,7 @@
           element.innerText=e.region;
           list.appendChild(element);
         });
-       
+
       })
     }
 
@@ -249,7 +248,7 @@
           element.innerText=e.region;
           list.appendChild(element);
         });
-       
+
       })
     }
 

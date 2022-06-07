@@ -3,6 +3,10 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
 @endsection
 @section('content')
+<script>
+  let clientComplaints = document.querySelector('#clientComplaints')
+  clientComplaints.classList.add('active')
+</script>
 <div class="joining-requests">
     <div class="container">
       <h2>Complaints</h2>
@@ -31,7 +35,7 @@
           </tr>
           @endforeach
         </tbody>
-      
+
       </table>
       {{$list->links()}}
     </div>

@@ -71,19 +71,19 @@
       @if(Auth::guard('owner')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
         <li class="nav-item">
-          <a href="{{ route('owner.home') }}" class="nav-link active"><i class="fa-solid fa-chart-line"></i>Agency statistics</a>
+          <a id="agencyStats" href="{{ route('owner.home') }}" class="nav-link"><i class="fa-solid fa-chart-line"></i>Agency statistics</a>
+        </li>
+        <li class="nav-item">
+          <a id="employees" href="{{ route('owner.employeesList') }}" class="nav-link"><i class="fa-solid fa-users"></i>Employees</a>
+        </li>
+        <li class="nav-item">
+          <a id="branches" href="{{ route('owner.showBranches') }}" class="nav-link"><i class="fa-solid fa-code-branch"></i>Branches</a>
+        </li>
+        <li class="nav-item">
+          <a id="garages" href="{{ route('owner.showGarages') }}" class="nav-link"><i class="fa-solid fa-warehouse"></i>Garages</a>
         </li>
         <li class="nav-item active">
-          <a href="{{ route('owner.showReclamations') }}" class="nav-link"><i class="fa-solid fa-comment"></i>Client complaints</a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('owner.employeesList') }}" class="nav-link"><i class="fa-solid fa-users"></i>Employees management</a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('owner.showBranches') }}" class="nav-link"><i class="fa-solid fa-code-branch"></i>Branches management</a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('owner.showGarages') }}" class="nav-link"><i class="fa-solid fa-warehouse"></i>Garages management</a>
+          <a id="clientComplaints" href="{{ route('owner.showReclamations') }}" class="nav-link"><i class="fa-solid fa-comment"></i>Client complaints</a>
         </li>
       </ul>
       @endif
@@ -188,12 +188,13 @@
     </div>
   </div>
   {{-- scripts --}}
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+  <script src="{{ asset('js/app.js') }}"></script>
+  {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
     integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
   </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-  </script>
+  </script> --}}
   @yield('scripts')
 </body>
 

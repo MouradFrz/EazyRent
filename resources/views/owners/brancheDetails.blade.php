@@ -2,6 +2,10 @@
 
 
 @section('content')
+<script>
+  let branches = document.querySelector('#branches')
+  branches.classList.add('active')
+</script>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -10,7 +14,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <p>Are you sure you want to delete this branch ? <br> Deleting the branch will DELETE all of its employees, and their accounts will no longer be functional</p> 
+         <p>Are you sure you want to delete this branch ? <br> Deleting the branch will DELETE all of its employees, and their accounts will no longer be functional</p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -60,7 +64,7 @@
                     </tr>
                     @endforeach
                     </tbody>
-                
+
                 </table>
             </div>
               {{$secretaries->links()}}
@@ -70,7 +74,7 @@
                 Delete this branch
               </button>
         </div>
-       
+
     </div>
 @endsection
 

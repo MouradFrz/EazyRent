@@ -1,5 +1,9 @@
 @extends('layouts.workerLayout')
 @section('content')
+<script>
+  let employees = document.querySelector('#employees')
+  employees.classList.add('active')
+</script>
     @if(Session::get('message'))
     <div class="alert alert-success w-100 " role="alert">
         {{ Session::get('message') }}
@@ -30,7 +34,7 @@
                 <p style="color:red">{{ $message }}</p>
                 @enderror
             </div>
-              
+
             </div>
             <div class="row">
                 <div class="col">
@@ -47,7 +51,7 @@
                     <p style="color:red">{{ $message }}</p>
                     @enderror
                 </div>
-              
+
             </div>
             <div class="row">
 
@@ -65,7 +69,7 @@
                     <p style="color:red">{{ $message }}</p>
                     @enderror
                 </div>
-               
+
             </div>
             <div class="row">
                 <div class="col">

@@ -91,18 +91,6 @@
         el.classList.add('active')
       })
     })
-    // buttons.forEach((e,i)=>{
-    //   e.addEventListener('click',()=>{
-    //     buttons.forEach((el)=>{
-    //       el.classList.remove('active');
-    //     });
-    //     e.classList.add('active');
-    //     forms.forEach((el)=>{
-    //       el.classList.add('hide');
-    //     })
-    //     forms[i].classList.remove('hide');
-    //   })
-    // });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script>

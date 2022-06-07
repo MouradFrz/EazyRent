@@ -6,6 +6,10 @@
 
 
 @section('content')
+<script>
+  let garages = document.querySelector('#garages')
+  garages.classList.add('active')
+</script>
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -28,7 +32,7 @@
             <select name="manager" class="form-control" id="managersList" >
                 <option value="">Choose a manager</option>
             </select>
-            
+
           </form>
         </div>
         <div class="modal-footer">
@@ -40,7 +44,7 @@
   </div>
     <div>
         <div class="container">
-          
+
             <h2 class="my-3">Garages management</h2>
             <hr>
             @if (Session::get('message'))
@@ -59,25 +63,25 @@
             </div>
             @enderror
             @error('manager')
-            <div class="alert alert-danger w-100 " role="alert">   
+            <div class="alert alert-danger w-100 " role="alert">
                 {{ $message }}
             </div>
             @enderror
             @error('branche')
                 <div class="alert alert-danger w-100 " role="alert">
-                
+
                     {{ $message }}
-                
+
             </div>
             @enderror
             @error('capacity')
                 <div class="alert alert-danger w-100 " role="alert">
-                
+
                     {{ $message }}
-                
+
             </div>
             @enderror
-            
+
 
        <div class="cards">
         @if (count($garages)!=0)
@@ -94,7 +98,7 @@
             </ul>
         </div>
           @endforeach
-          
+
           <button type="button" class="btn btn-primary" style="min-height:150px" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="fillForm()">
             Add a new garage
           </button>
@@ -107,8 +111,8 @@
         </div>
         </div>
 
-     
-          
+
+
     </div>
 @endsection
 
@@ -139,7 +143,7 @@
         let x = document.createElement('option')
         x.value=""
         x.innerText="Choose a manager"
-        
+
         data.forEach((e)=>{
           const element = document.createElement("option");
           element.value=e.username;
