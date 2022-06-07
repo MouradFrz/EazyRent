@@ -27,11 +27,11 @@
       <h2 class="section-header">Log in to eazyrent</h2>
       <div class="content container-fluid">
         <div class="worker-type">
-          <button class="custom-btn">Owner</button>
+          <button class="custom-btn active">Owner</button>
           <button class="custom-btn">Garage Manager</button>
           <button class="custom-btn">Secretary</button>
         </div>
-        <form class="form-authentication active" action="{{ route('owner.check') }}"
+        <form class="form-authentication" action="{{ route('owner.check') }}"
           method="POST">
           @csrf
           <h1 class="title">owner</h1>
@@ -60,7 +60,7 @@
         <form class="form-authentication hide" action="{{ route('garagist.check') }}"
           method="POST">
           @csrf
-          <h1 class="title">garagist</h1>
+          <h1 class="title">Garagist</h1>
           {{-- just for debugging --}}
           <label for="">Username</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}" />
@@ -68,7 +68,7 @@
           <input class="inputs" name="password" type="password" />
           <span>
             <input type="checkbox" name="rememberMe" value="remember me">
-            <label for="remember me" class="last">remember me</label>
+            <label for="remember me" class="last">Remember me</label>
           </span>
           @error('username')
           <div class="alert alert-danger w-100" role="alert">
@@ -87,7 +87,7 @@
         <form class="form-authentication hide" action="{{ route('secretary.check') }}"
           method="POST">
           @csrf
-          <h1 class="title">secretaty</h1>
+          <h1 class="title">secretary</h1>
           <label for="">Username</label>
           <input class="inputs" name="username" type="text" value="{{ old('username') }}" />
           <label for="">Password</label>
@@ -118,7 +118,7 @@
   </div>
   </div>
   <script>
-    let buttons = document.querySelectorAll('.worker-type')
+    let buttons = document.querySelectorAll('.worker-type>button')
     let forms = document.querySelectorAll('.form-authentication')
     console.log(forms)
     buttons.forEach((e,i)=>{
@@ -128,9 +128,9 @@
         });
         e.classList.add('active');
         forms.forEach((el)=>{
-          el.classList.remove('active');
+          el.classList.add('hide');
         })
-        forms[i].classList.add('active');
+        forms[i].classList.remove('hide');
       })
     });
   </script>

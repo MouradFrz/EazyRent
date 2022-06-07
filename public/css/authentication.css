@@ -172,8 +172,24 @@
   transition: all 300ms linear;
   position: relative;
 }
-.worker-type > button:hover, .worker-type > button:focus,
-.worker-type > button .active {
+.worker-type > button.active {
+  color: rgb(0, 122, 255) !important;
+}
+.worker-type > button.active::after {
+  content: "";
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  height: 0;
+  width: 0;
+  z-index: 1;
+  border-bottom: 2px solid rgb(0, 122, 255);
+  -webkit-animation: grow 300ms linear;
+          animation: grow 300ms linear;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+.worker-type > button:hover, .worker-type > button:focus {
   color: rgb(0, 122, 255) !important;
 }
 .worker-type > button:hover::after, .worker-type > button:focus::after {
