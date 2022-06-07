@@ -146,6 +146,7 @@
               @enderror
             </span>
             <div class="image-selector" id="image-selector-face" alt="" onclick="openFilePickerFace()"></div>
+            <span id="loading" style="display: none">Your image is loading</span>
             <img onclick="openFilePickerFace()" class="image-preview" id="image-preview-face" alt="" />
             <span id="verification"></span>
             <p class="step-index">4/4</p>
@@ -165,11 +166,12 @@
   </div>
   <script src="{{ asset('js/face-api.min.js') }}"></script>
   <script>
-    const imageUpload = document.getElementById('file-field-face')
+        const imageUpload = document.getElementById('file-field-face')
         const pages = document.querySelectorAll('.signupStep')
         const stepInc = document.querySelector('#next')
         const stepDec = document.querySelector('#prev')
         const submitBtn = document.querySelector('#submit-button')
+        const loading = document.querySelector('#loading')
         let currentStep=0;
         stepDec.disabled=true;
         stepInc.addEventListener('click',()=>{
@@ -223,14 +225,16 @@
             ]).then(start)
   function start(){
     const submitButton = document.querySelector('#submit-button');
+    
     submitButton.disabled = true
 
           imageUpload.addEventListener('change',async ()=>{
+          loading.style.display='block';
           const image = await faceapi.bufferToImage(imageUpload.files[0])
           const detections = await faceapi.detectAllFaces(image)
 
            const verification = document.querySelector('#verification');
-
+           loading.style.display='none';
           if(detections.length == 1){
               verification.textContent = "Your image is valid"
               verification.style.color="green"

@@ -116,9 +116,7 @@ Route::post('/reset-password', function (Request $request) {
 // users
 Route::prefix('user')->name('user.')->group(function () {
   Route::middleware(['guest:web', 'guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
-    Route::get('/', function () {
-      return redirect(route('user.login'));
-    });
+    Route::get('/', function () {return redirect(route('user.login'));});
     Route::view('/login', 'users.login')->name('login');
     Route::view('/register', 'users.register')->name('register');
     Route::post('/create', [UserController::class, 'create'])->name('create');

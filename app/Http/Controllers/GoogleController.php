@@ -13,7 +13,7 @@ class GoogleController extends Controller
         return Socialite::driver('google')->redirect();
     }
     public function callbackFromGoogle(){
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        $googleUser = Socialite::driver('google')->user();
 
         $isUser =  User::where('email',$googleUser->getEmail())->first();
 
