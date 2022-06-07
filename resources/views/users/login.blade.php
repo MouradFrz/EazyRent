@@ -14,7 +14,7 @@
 <body>
   <div class="authentication row">
     <div class="authentication_welcome col-12 col-md-4">
-      <div class="content align-self-start">
+      <div class="content">
         <object data="{{asset('images/icons/hi-authentication.svg')}}" width="300" height="300" defer loading="lazy"></object>
         <h2 class="section-heading">welcome back!</h2>
         <p>please enter your personal info to access to your account</p>

@@ -33,11 +33,14 @@
       }
     }
   }
-  .dropdown-menu {
+  @media(max-width:992px){
+      .notis-menu {
     right: 50%;
     left: auto;
     transform: translateX(50%);
   }
+  }
+
   .dropdown-item {
     transition: all 150ms ease-in-out;
     &:hover,
