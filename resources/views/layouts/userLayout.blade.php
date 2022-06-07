@@ -57,12 +57,12 @@
             </li>
           </ul>
 
-          <a class="dropdown-toggle" href="#" id="notificationsDropdown" style="position: relative" role="button" data-bs-toggle="dropdown"
+          <div class="dropdown-toggle  dropend" href="#" id="notificationsDropdown" style="position: relative" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             <span  class="new-notification-count" id="new-notification-count"></span>
-            <i class="fas fa-bell"></i>
-          </a>
-          <ul class="dropdown-menu abs" id="notification-list" aria-labelledby="notificationsDropdown">
+            <i class="fas fa-bell text-muted"></i>
+          </div>
+          <ul class="notis-menu dropdown-menu abs" id="notification-list" aria-labelledby="notificationsDropdown">
            {{-- <li><a href="" class="notification">wgrgwrhteheh</a></li> --}}
           </ul>
 

@@ -25,7 +25,7 @@
 .authentication_panel {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
 }
 .authentication_panel .section-header {
@@ -214,5 +214,27 @@
 @keyframes grow {
   100% {
     width: 100%;
+  }
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 9px solid;
+  border-color: #474bff rgba(0, 0, 0, 0);
+  -webkit-animation: spinner-0tkp9a 1s infinite;
+          animation: spinner-0tkp9a 1s infinite;
+}
+
+@-webkit-keyframes spinner-0tkp9a {
+  to {
+    transform: rotate(0.5turn);
+  }
+}
+
+@keyframes spinner-0tkp9a {
+  to {
+    transform: rotate(0.5turn);
   }
 }

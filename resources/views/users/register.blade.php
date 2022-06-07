@@ -17,7 +17,7 @@
 <body>
   <div class="authentication row">
     <div class="authentication_welcome col-12 col-md-4">
-      <div class="content align-self-start">
+      <div class="content">
         <object data="{{asset('images/icons/hi-authentication.svg')}}" width="300" height="300" defer
           loading="lazy"></object>
         <h2 class="section-heading">Welcome!</h2>
@@ -146,7 +146,7 @@
               @enderror
             </span>
             <div class="image-selector" id="image-selector-face" alt="" onclick="openFilePickerFace()"></div>
-            <span id="loading" style="display: none">Your image is loading</span>
+            <div class="spinner" id="loading" style="display: none"></div>
             <img onclick="openFilePickerFace()" class="image-preview" id="image-preview-face" alt="" />
             <span id="verification"></span>
             <p class="step-index">4/4</p>
@@ -229,12 +229,23 @@
     submitButton.disabled = true
 
           imageUpload.addEventListener('change',async ()=>{
+            document.querySelector('#image-preview-face').style.display='none';
+            document.querySelector('#image-selector-face').style.display="block";
+            document.querySelector('#verification').textContent=''
+            submitButton.disabled = true
+            const [file] = document.querySelector('#file-field-face').files
+            if (file) {
+              document.querySelector('#image-selector-face').style.display="none";
+              document.querySelector('#image-preview-face').style.display='block';
           loading.style.display='block';
           const image = await faceapi.bufferToImage(imageUpload.files[0])
           const detections = await faceapi.detectAllFaces(image)
 
            const verification = document.querySelector('#verification');
            loading.style.display='none';
+            document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
+            
+          
           if(detections.length == 1){
               verification.textContent = "Your image is valid"
               verification.style.color="green"
@@ -244,7 +255,7 @@
               verification.style.color="red"
               submitButton.disabled = true
           }
-          })
+          }})
         }
         start()
 
@@ -273,11 +284,7 @@
 }
 document.querySelector('#file-field-face').onchange = evt => {
 
-         const [file] = document.querySelector('#file-field-face').files
-          if (file) {
-            document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
-            document.querySelector('#image-selector-face').style.display="none";
-         }
+        
 }
 
 

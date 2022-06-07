@@ -51,9 +51,10 @@ ul li, a {
   background-color: rgba(255, 255, 255, .95);
   color: #000;
   padding: .5rem 1rem;
-  transition: 300ms all linear;
+  transition: 200ms all linear;
   border: none;
   border-radius: 1rem;
+  
   &:hover {
     background-color: rgba(255, 255, 255, .75);
     color: #000;

@@ -161,27 +161,27 @@
           </div>
         </div>
         <button class="custom-btn custom-btn-dark mt-4" onclick="event.preventDefault();" data-bs-toggle="modal"
-          data-bs-target="#confirm">confirm booking</button>
+          data-bs-target="#confirm">Confirm booking</button>
         <div class="modal fade" id="confirm" tabindex="-1" aria-labelledby="confirmLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="confirmLabel">Confirm choise</h5>
+                <h5 class="modal-title" id="confirmLabel">Confirm</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <p>are you sure you want to book <strong>{{$vehicule -> brand}} {{$vehicule -> model}}</strong>
+                <p>Are you sure you want to book <strong>{{$vehicule -> brand}} {{$vehicule -> model}}</strong>
                   for <strong>{{$days}} day @if($hours!=0) and {{$hours}} hour @endif </strong> start at
                   <strong>{{str_replace('T', ' ', session('pickUpString'))}} </strong>
                 </p>
                 </p>
-                <p>Total price: <strong>{{$price}} dzd</strong></p>
+                <p>Total price: <strong>{{$price}} DZD</strong></p>
               </div>
               <div class="modal-footer d-flex justify-content-between">
                 <button type="button" class="custom-btn custom-btn-secondary" data-bs-dismiss="modal"
-                  onclick="event.preventDefault();">cancel</button>
+                  onclick="event.preventDefault();">Cancel</button>
                 <button type="button" class="custom-btn custom-btn-success"
-                  onclick="document.getElementById('reservation-form').submit()">confirm my choise</button>
+                  onclick="document.getElementById('reservation-form').submit()">Confirm my choice</button>
               </div>
             </div>
           </div>

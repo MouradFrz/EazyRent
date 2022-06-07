@@ -28,8 +28,12 @@
                     <div>
                         @if($booking->state == "DECLINED")
                         <a href="{{ route('user.bookingDetails',$booking->bookingID) }}" class="btn btn-warning">View refuse reason</a>
-                        @elseif ($booking->state == "ACCEPTED")
+                        @elseif ($booking->state == "ACCEPTED" )
                         <a href="{{ route('user.bookingDetails',$booking->bookingID) }}" class="btn btn-success">Sign Contract</a>
+                        @elseif($booking->state == "SIGNED" && $booking->pickUpDate < now())
+                        <a href="{{ route('user.bookingDetails',$booking->bookingID) }}" class="btn btn-success">Simulation</a>
+                        @elseif($booking->state == "ON GOING" && $booking->dropOffDate < now())
+                        <a href="{{ route('user.bookingDetails',$booking->bookingID) }}" class="btn btn-danger">Vehicule needs to be returned</a>
                         @else
                         <a href="{{ route('user.bookingDetails',$booking->bookingID) }}" class="btn btn-primary">View details</a>
                         @endif
