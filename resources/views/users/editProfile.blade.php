@@ -2,19 +2,22 @@
 
 @section('content')
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Confirm change</h5>
-      </div>
-      <div class="modal-body">
-        <label for="">Enter your current password</label>
-        <input type="password" class="inputs" name="region" id="curpw">
-        <span id="errorspan" class="text-danger"></span>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="link" id="confirm">Confirm</button>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Confirm change</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+            <label for="">Enter your current password</label>
+            <input type="password" class="form-control" name="region" id="curpw">
+            <span id="errorspan" class="text-danger"></span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="link link-no-decoration link-danger" id="confirm">Confirm</button>
+        </div>
       </div>
     </div>
   </div>
@@ -36,10 +39,10 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Cancel</button>
-        <button type="button" class="link" id="crop">Change</button>
+        <div class="modal-footer">
+          <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="link link-no-decoration link-danger" id="crop">Change</button>
+        </div>
       </div>
     </div>
   </div>
