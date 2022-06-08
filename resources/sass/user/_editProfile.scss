@@ -1,13 +1,35 @@
-#profile-image {
-  width: 120px;
-  height: 120px;
+.profile-img {
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
-  object-fit: cover;
   transition: opacity 0.15s ease;
-  &:hover {
-    opacity: 0.5;
-    cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  > img {
+    border-radius: 50%;
+    object-fit: cover;
   }
+  &:hover {
+    opacity: .95;
+    cursor: pointer;
+    &::before {
+      content: "\f030";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: absolute;
+      padding: .5rem;
+      left: 0;
+      bottom: 0;
+      color: rgba(255, 255, 255, 0.9);
+      background-color: rgba($color: #000000, $alpha: .3);
+
+    }
+  }
+
 }
 #fullname {
   font-size: 1.2rem;

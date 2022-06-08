@@ -340,17 +340,37 @@ footer .footer-end p > span {
   margin-bottom: 2rem;
 }
 
-#profile-image {
-  width: 120px;
-  height: 120px;
+.profile-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  transition: opacity 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+.profile-img > img {
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
-  transition: opacity 0.15s ease;
 }
-#profile-image:hover {
-  opacity: 0.5;
+.profile-img:hover {
+  opacity: 0.95;
   cursor: pointer;
+}
+.profile-img:hover::before {
+  content: "\f030";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  padding: 0.5rem;
+  left: 0;
+  bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 #fullname {

@@ -64,12 +64,14 @@
       <div class="col-4  gx-1">
         <div>
           <div class="d-flex flex-column align-items-center justify-content-center">
-            @if(!is_null(Auth::user()->profilePath))
-            <img src="{{ asset('images/users/profile/'.Auth::user()->username.'_profile.png') }}" alt=""
-              class="image-selector-open" id="profile-image">
-            @else
-            <img src="{{ asset('images/download.png') }}" alt="" class="image-selector-open" id="profile-image">
-            @endif
+            <div class="profile-img">
+              @if(!is_null(Auth::user()->profilePath))
+              <img src="{{ asset('images/users/profile/'.Auth::user()->username.'_profile.png') }}" alt=""
+                class="image-selector-open" id="profile-image">
+              @else
+              <img src="{{ asset('images/download.png') }}" alt="" class="image-selector-open" id="profile-image">
+              @endif
+            </div>
             <input type="file" name="image" class="image" style="display: none" id="image-input">
             <strong class="username">{{ Auth::user()->username }}</strong>
             <p id="fullname">{{ Auth::user()->lastName }} {{ Auth::user()->firstName }}</p>
