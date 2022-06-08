@@ -1,0 +1,9 @@
+@use '../variables' as v;
+.add-employee {
+  .container {
+    margin-top: 1rem;
+  }
+  .section-header {
+    color: v.$indigo;
+  }
+}

@@ -39,6 +39,7 @@ class SecretaryController extends Controller
         }
       }
     public function logout(){
+        session()->flush();
         Auth::guard('secretary')->logout();
         return redirect()->route('workerLogin');
       }
@@ -84,11 +85,11 @@ class SecretaryController extends Controller
         'garageID.required' => 'Garage is required',
         'physicalState.required' => 'Garage is required',
       ]);
-    
+
       //vehiculeeeee
       $newCarName = $request->plateNb . '.' . $request->imagePath->extension();
       $request->imagePath->move(public_path('images/vehicules/imagePaths'), $newCarName);
-  
+
       $vehicule = new Vehicule();
       $vehicule->plateNb = $request->plateNb;
       $vehicule->brand = $request->brand;
@@ -117,7 +118,7 @@ class SecretaryController extends Controller
     {
       $bookings = Booking::orderBy('created_at','DESC')->get();
      $vehicules = Vehicule::join('garages','vehicules.garageID','=','garages.garageID')->where('brancheID',Auth::user()->brancheID)->get();
-     return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules,'bookings'=>$bookings]);   
+     return view('secretaries.secretaryVehicules',['vehicules'=>$vehicules,'bookings'=>$bookings]);
     }
 
       public function vehiculeDetails($id){
@@ -137,11 +138,11 @@ class SecretaryController extends Controller
 
         Vehicule::where('plateNb',$id)->delete();
         return redirect()->route('secretary.showVehicules')->with('alert','Vehicle deleted successfully');
-        
+
       }
       public function updateState($id){
 
-       
+
       $vehicule = Vehicule::where('plateNb',$id)->first();
           if($vehicule->availability==0){
 
@@ -155,14 +156,14 @@ class SecretaryController extends Controller
         }
         public function transferVehicle(Request $request,$id){
           Vehicule::find($id)->update(["garageID" => $request->garageID]);
-         
+
           // dd(Vehicule::find($id));
           return redirect()->route('secretary.vehiculeDetails',$id)->with("message","Vehicle succesfully transfered!");
         }
-        
 
-      
- 
+
+
+
 
   public function getReservationRequests(){
 
@@ -175,7 +176,7 @@ class SecretaryController extends Controller
       return redirect()->route('secretary.home');
     }
     $booking = Booking::join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('users','clientUsername','=','users.username')->where('bookingID',$id)->join('garages','vehicules.garageID','=','garages.garageID')->first();
-    
+
     $origin = new DateTime($booking->pickUpDate);
     $target = new DateTime($booking->dropOffDate);
     $interval = $origin->diff($target);
@@ -183,7 +184,7 @@ class SecretaryController extends Controller
     return view('secretaries.reservationDetails',['booking'=>$booking,'interval'=>$str]);
 
 
-    
+
     }
   public function addVehiculePage(){
     $garages = Garage::select(['garageID','address'])->where('garages.brancheID',Auth::user()->brancheID)->get();
@@ -193,13 +194,13 @@ class SecretaryController extends Controller
 
 
 
-  public function showProfile(){ 
+  public function showProfile(){
     return view('secretaries.editProfile');
 }
 
 
 public function editProfile(Request $request){
-    
+
     $request->validate([
         ($request->username==Auth::user()->username) ? : 'username'=>'unique:secretaries,username|min:4|alpha_num|max:15',
         'lastName'=>'required|alpha|max:25',
@@ -218,7 +219,7 @@ public function editProfile(Request $request){
         'phone.digits_between'=>'The number must be made of 10 digits',
     ]);
 
-    
+
     $secretary = Secretary::where('username',Auth::user()->username)->first();
     $secretary->username=$request->username;
     $secretary->firstName=$request->firstName;
@@ -265,7 +266,7 @@ public function banUser(Request $request){
   $ban->startDate=now();
   $date = date_create(now());
   date_add($date, date_interval_create_from_date_string($request->duration.' days'));
-  
+
   $ban->endDate=$date;
   $ban->reason=$request->reason;
   $ban->save();

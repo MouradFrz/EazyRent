@@ -106,8 +106,8 @@ class UserController extends Controller
       );
       $creds = $request->only('username', 'password');
     }
-    
-    
+
+
     // dd($creds);
     if (Auth::guard('web')->attempt($creds, $request->remember)) {
       $bans=AdminBan::where('bannedUsername',Auth::user()->username)->get();
@@ -126,6 +126,7 @@ class UserController extends Controller
   }
   public function logout()
   {
+    session()->flush();
     Auth::guard('web')->logout();
     return redirect()->route('user.login');
   }
@@ -167,22 +168,22 @@ class UserController extends Controller
       return redirect()->route('user.home');
     }
 
-    
+
     $contractData = DB::select('SELECT bookingID,payementMethod,pickUpDate,dropOffDate,users.firstName as userFirstName,users.lastName as userLastName
     , secretaries.firstName as secFirstName,secretaries.lastName as secLastName,
     address_address,vehiculePlateNb,model,brand,bookingPrice,pricePerHour,pricePerDay,agencies.name as agencyName,registeryNb
-    
+
     FROM bookings,vehicules,secretaries,agencies,pickuplocations,branches,users
-    where bookings.vehiculePlateNB = vehicules.plateNb 
-    AND bookings.clientUsername=users.username 
+    where bookings.vehiculePlateNB = vehicules.plateNb
+    AND bookings.clientUsername=users.username
     AND bookings.secretaryUsername=secretaries.username
     AND secretaries.brancheID = branches.brancheID
-    AND branches.agencyID = agencies.agencyID 
+    AND branches.agencyID = agencies.agencyID
     AND bookings.pickUpLocation = pickuplocations.id
     AND bookings.bookingID=:bookID;',['bookID'=>$id]);
 
     $array = json_decode(json_encode($contractData), true);
-    
+
     $array[0]['signature']=true;
     $pdf = PDF::loadView('users.contract', $array[0]);
     $pdf->save(public_path('contracts\contract_').$id.'.pdf');
@@ -195,7 +196,7 @@ class UserController extends Controller
     $booking->update(['state'=>'SIGNED']);
     return redirect()->route('user.bookingDetails',$id)->with('success','Contract Signed successfully.');
   }
-  
+
   public function declineContract(Request $request,$id){
     $booking = Booking::find($id);
     if($booking->clientUsername!=Auth::user()->username){
