@@ -183,7 +183,7 @@
         <i class="fa-brands fa-adversal"></i>
       </div>
     </div>
-    <p class="cta">you have a renting cars agency ? <a class="link">Join us &#62; </a></p>
+    <p class="cta">you have a renting cars agency ? <a class="link link-underline">Join us &#62; </a></p>
   </div>
   <div class="white-space"></div>
 </div>

@@ -55,6 +55,14 @@
   color: rgb(85, 190, 240);
   border-left: 5px solid rgb(85, 190, 240);
 }
+.navbar .dropdown-item-disabled {
+  color: rgb(142, 142, 147);
+}
+.navbar .dropdown-item-disabled:hover, .navbar .dropdown-item-disabled:active {
+  background-color: transparent;
+  color: rgb(142, 142, 147);
+  border-left: 0;
+}
 .navbar .danger {
   transition: all 150ms ease-in-out;
 }
@@ -223,11 +231,11 @@ footer .footer-end p > span {
 }
 
 .accepted {
-  border-left: 3px solid green;
+  border-left: 3px solid rgb(40, 205, 65);
 }
 
 .declined {
-  border-left: 3px solid red;
+  border-left: 3px solid rgb(255, 59, 48);
 }
 
 .abs {
@@ -235,7 +243,7 @@ footer .footer-end p > span {
 }
 
 .new-notification-count {
-  background: red;
+  background: rgb(255, 59, 48);
   position: absolute;
   top: 0;
   right: 0;
