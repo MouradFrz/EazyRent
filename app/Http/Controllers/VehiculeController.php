@@ -41,8 +41,8 @@ class VehiculeController extends Controller
       ->whereBetween('address_latitude', [$pickUpLat - .18, $pickUpLat + .18])
       ->whereBetween('address_longitude', [$pickUpLng - .18, $pickUpLng + .18])
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
-      ->distinct()
-      ->get();
+      ->groupBy('plateNb')
+      ->paginate(1);
     $dropOffDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T', ' ', $request->dropOffDate));
     $pickUpDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T', ' ', $request->pickUpDate));
 

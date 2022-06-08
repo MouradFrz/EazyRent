@@ -10,8 +10,7 @@
   <div class="container hero_content">
     <div class="search-panel">
       <h2>search a vehicle now!</h2>
-      <form action="{{route('user.viewOffers')}}" method="POST">
-        @csrf
+      <form action="{{route('user.viewOffers')}}" method="GET">
         <div class="row">
           <div class="col">
             <label for="">Pick-up location :</label>

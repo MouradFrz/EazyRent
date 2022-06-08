@@ -125,7 +125,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::any('/google/login', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
-    Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
+    Route::get('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
     Route::get('/offer/{plateNb}', [VehiculeController::class, 'viewOfferDetails'])->name('viewOfferDetails');
   });
   Route::middleware(['auth:web','verified', 'PreventBackHistory'])->group(function () {

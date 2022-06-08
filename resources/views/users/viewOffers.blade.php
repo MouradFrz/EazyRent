@@ -65,13 +65,15 @@
           </div>
           <a
             href="{{ route('user.viewOfferDetails', ['plateNb'=>$vehicule->plateNb]) }}"
-            class="custom-btn custom-btn-dark">view More
+            class="custom-btn custom-btn-dark">View More
           </a>
         </div>
       </div>
     </div>
     @endforeach
-    @endif
+    <div>{{ $vehicules->links('pagination::bootstrap-5') }}</div>
+    
   </div>
+  
 </div>
 @endsection
