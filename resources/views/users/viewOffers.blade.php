@@ -13,6 +13,10 @@
     </div>
   </div>
   <div class="container">
+    @if( count($vehicules) == 0)
+      <p class="text-center">there is no available vehicles</p>
+      <p class="text-center">change search values or try later</p>
+    @else
     @foreach ($vehicules as $vehicule)
     <div class="minimized-offer row">
       <div class="minimized-offer_media col-12 col-md-3">
@@ -67,6 +71,7 @@
       </div>
     </div>
     @endforeach
+    @endif
   </div>
 </div>
 @endsection

@@ -167,7 +167,6 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="confirmLabel">Confirm</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                 <p>Are you sure you want to book <strong>{{$vehicule -> brand}} {{$vehicule -> model}}</strong>
@@ -178,9 +177,9 @@
                 <p>Total price: <strong>{{$price}} DZD</strong></p>
               </div>
               <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="custom-btn custom-btn-secondary" data-bs-dismiss="modal"
+                <button type="button" class="link link-secondary" data-bs-dismiss="modal"
                   onclick="event.preventDefault();">Cancel</button>
-                <button type="button" class="custom-btn custom-btn-success"
+                <button type="button" class="link link-success"
                   onclick="document.getElementById('reservation-form').submit()">Confirm my choice</button>
               </div>
             </div>
