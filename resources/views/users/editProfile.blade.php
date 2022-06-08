@@ -307,6 +307,7 @@ $("#crop").click(function(){
 
 @endsection
 @section('head')
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <meta name="_token" content="{{ csrf_token() }}">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
