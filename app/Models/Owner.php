@@ -22,7 +22,7 @@ class Owner extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
-    protected $fillable = ['agencyID'];    /**
+    protected $fillable = ['agencyID','profilePath'];    /**
      * The attributes that should be cast.
      *
      * @var array<string, string>

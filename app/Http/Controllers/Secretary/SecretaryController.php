@@ -284,6 +284,21 @@ public function banUser(Request $request){
   return redirect()->route('secretary.history')->with('success','User banned successfully');
 }
 
+public function changeImage(Request $request)
+  {
+      $folderPath = public_path('images/secretary/profile');
+
+      $image_parts = explode(";base64,", $request->image);
+      $image_type_aux = explode("image/", $image_parts[0]);
+      $image_type = $image_type_aux[1];
+      $image_base64 = base64_decode($image_parts[1]);
+      $file = $folderPath . uniqid() . '.png';
+
+      file_put_contents('images/secretary/profile/'.Auth::user()->username."_profile.png", $image_base64);
+      Secretary::where('username',Auth::user()->username)->first()->update(['profilePath'=>Auth::user()->username."_profile.png"]);
+      return response()->json(['success'=>'success']);
+  }
+
 
 
 }

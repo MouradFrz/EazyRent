@@ -184,6 +184,7 @@ Route::prefix('owner')->name('owner.')->group(function () {
     Route::get('/garageDetails/{id}', [OwnerController::class, 'garageDetails'])->name('garageDetails');
     Route::post('/garage/{id}', [OwnerController::class, 'deleteGarage'])->name('deleteGarage');
     Route::post('/changeManager', [OwnerController::class, 'changeManager'])->name('changeManager');
+    Route::post('/changeImage',[OwnerController::class, 'changeImage'])->name('changeImage');
   });
 });
 
@@ -242,6 +243,7 @@ Route::prefix('secretary')->name('secretary.')->group(function () {
     Route::post('/setRating', [SecretaryController::class, 'setRating'])->name('setRating');
     Route::post('/banUser', [SecretaryController::class, 'banUser'])->name('banUser');
     Route::get('/testroute', [SecretaryController::class, 'test']);
+    Route::post('/changeImage',[SecretaryController::class, 'changeImage'])->name('changeImage');
   });
 });
 //garagists
@@ -261,5 +263,6 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
     Route::get('/manageVehicle/{id}', [GaragistController::class, 'manageVehicle'])->name('manageVehicle');
     Route::post('/set-condition/{id}', [GaragistController::class, 'setCondition'])->name('setCondition');
     Route::get('/reservation', [GaragistController::class, 'getReservations'])->name('getReservations');
+    Route::post('/changeImage',[GaragistController::class, 'changeImage'])->name('changeImage');
   });
 });

@@ -12,11 +12,12 @@
   padding-inline: 0;
   background-color: rgb(88, 86, 214);
   flex-wrap: nowrap;
-  position: -webkit-sticky;
-  position: sticky;
+  position: -webkit-sticky !important;
+  position: sticky !important;
   z-index: 1;
   top: 0;
   left: 0;
+  padding: 0 !important;
 }
 .sidebar .navbar-brand {
   margin: 2em 0 0 0;
