@@ -20,7 +20,7 @@ class BookingController extends Controller
 
     $contractData = DB::select('SELECT bookingID,payementMethod,pickUpDate,dropOffDate,users.firstName as userFirstName,users.lastName as userLastName
     , secretaries.firstName as secFirstName,secretaries.lastName as secLastName,
-    address_address,vehiculePlateNb,model,brand,bookingPrice,pricePerHour,pricePerDay,agencies.name as agencyName,registeryNb
+    address_address,vehiculePlateNb,model,year,color,plateNb,brand,bookingPrice,pricePerHour,pricePerDay,agencies.name as agencyName,registeryNb,logo
     
     FROM bookings,vehicules,secretaries,agencies,pickuplocations,branches,users
     where bookings.vehiculePlateNB = vehicules.plateNb 
