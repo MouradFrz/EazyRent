@@ -139,6 +139,10 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/signContract/{id}', [UserController::class, 'signContract'])->name('signContract');
     Route::post('/declineContract/{id}', [UserController::class, 'declineContract'])->name('declineContract');
     Route::get('/loadNotifications', [UserController::class, 'loadNotifications'])->name('loadNotifications');
+    Route::get('/editProfile',[UserController::class,'editProfile'])->name('editProfile');
+    Route::post('/editProfile',[UserController::class,'editProfilePost'])->name('editProfilePost');
+    Route::post('/checkPassword',[UserController::class,'checkPassword'])->name('checkPassword');
+    Route::post('/changeImage',[UserController::class, 'changeImage'])->name('changeImage');
   });
 });
 

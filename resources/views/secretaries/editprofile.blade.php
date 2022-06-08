@@ -150,13 +150,11 @@
                     @enderror
             </div>
         </div>
-        <div class="row m-3">
-         
+        <div class="row m-3">    
             <div class="col d-flex justify-content-end p-0 m-0 gx-5">
                 <button class="btn btn-primary" id="edit-btn">Edit</button>
                <button class="btn btn-success ms-3" type="submit" disabled id="save-btn">Save</button>
             </div>  
-
         </div>
       </form>
 

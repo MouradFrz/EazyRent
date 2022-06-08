@@ -1,0 +1,32 @@
+#profile-image{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    transition: opacity 0.15s ease;
+    &:hover{
+        opacity: 0.5;
+        cursor: pointer;
+    }
+}
+#fullname{
+    font-size: 1.2rem;
+    margin: 20px 0 0 0 ;
+}
+.editform{
+    margin: 0 140px;
+}
+img {
+    display: block;
+    max-width: 100%;
+  }
+  .preview {
+    overflow: hidden;
+    width: 160px; 
+    height: 160px;
+    margin: 10px;
+    border: 1px solid red;
+  }
+  .modal-lg{
+    max-width: 1000px !important;
+  }

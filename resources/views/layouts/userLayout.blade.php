@@ -13,7 +13,7 @@
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">EazyRent</a>
+      <a class="navbar-brand fw-bold" href="/">EazyRent</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -38,14 +38,19 @@
         </ul>
         @auth
         <div class="auth d-flex align-items-center dropdown">
-          <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon"
-            alt="{{Auth::user()->username}}">
+          {{-- <img src="{{ asset('images/users/faceIdImages/'. Auth::user()->faceIdPath) }}" id="user-icon"
+            alt="{{Auth::user()->username}}"> --}}
+            @if(!is_null(Auth::user()->profilePath))
+            <img src="{{ asset('images/users/profile/'.Auth::user()->username.'_profile.png') }}" alt=""  id="user-icon">
+            @else
+            <img src="{{ asset('images/download.png') }}" alt="" id="user-icon" >
+            @endif
           <a class="dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false">
             {{ Auth::user()->username }}
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item cs" href="#">Profil</a></li>
+            <li><a class="dropdown-item cs" href="{{ route('user.editProfile') }}">Profil</a></li>
             <li><a class="dropdown-item cs" href="{{ route('user.history') }}">Transaction history</a></li>
             <hr class="dropdown-divider">
             <li>

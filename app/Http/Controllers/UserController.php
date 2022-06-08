@@ -216,4 +216,65 @@ class UserController extends Controller
     return Notification::where("notifiedUsername",Auth::user()->username)->get();
     }
   }
+  public function editProfile(){
+    return view('users.editProfile');
+  }
+  public function checkPassword(Request $request){
+    if(Hash::check($request->password,Auth::user()->password)){
+      return response()->json(['success'=>true]);
+    }else{
+      return response()->json(['success'=>false]);
+    }
+  }
+  public function editProfilePost(Request $request){
+    $request->validate(
+      [
+        'lastName' => 'required|alpha|max:25',
+        'firstName' => 'required|alpha|max:25',
+        'birthDate' => 'required|date',
+        'address' => 'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+        ($request->email == Auth::user()->email) ?: 'email' => 'email|unique:users,email|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
+        ($request->phone == '') ?: 'phone' => ['digits:10', 'regex:/(05|06|07)[0-9]{8}/'],
+        ($request->password == '') ?: 'password' => 'min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+        'passwordConfirm' => 'same:password',
+      ],
+      [
+        'address.regex' => 'The address can only contain letters, numbers and spaces.',
+        'password.regex' => 'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
+        'phone.digits_between' => 'The number must be made of 10 digits',
+      ]
+    );
+
+    $owner = User::where('username', Auth::user()->username)->first();
+
+    $owner->firstName = $request->firstName;
+    $owner->lastName = $request->lastName;
+    $owner->birthDate = $request->birthDate;
+    $owner->address = $request->address;
+    $owner->email = $request->email;
+    if ($request->password != '') {
+      $owner->password = Hash::make($request->password);
+    }
+    if ($request->phone != '') {
+      $owner->phoneNumber = $request->phone;
+    }
+    $owner->save();
+
+    return redirect()->route('user.editProfile')->with('message', 'Settings updated successfully');
+  }
+
+  public function changeImage(Request $request)
+  {
+      $folderPath = public_path('images/users/profile');
+
+      $image_parts = explode(";base64,", $request->image);
+      $image_type_aux = explode("image/", $image_parts[0]);
+      $image_type = $image_type_aux[1];
+      $image_base64 = base64_decode($image_parts[1]);
+      $file = $folderPath . uniqid() . '.png';
+
+      file_put_contents('images/users/profile/'.Auth::user()->username."_profile.png", $image_base64);
+      User::find(Auth::user()->id)->update(['profilePath'=>Auth::user()->username."_profile.png"]);
+      return response()->json(['success'=>'success']);
+  }
 }
