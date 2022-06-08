@@ -5,11 +5,13 @@
   employees.classList.add('active')
 </script>
     @if(Session::get('message'))
-    <div class="alert alert-success w-100 " role="alert">
+    <div class="alert alert-success w-100 alert-dismissible fade show" role="alert">
         {{ Session::get('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     @endif
-
     <div class="create-agency mt-5">
         <div class="container">
           <h2>Add employee</h2>
@@ -54,7 +56,6 @@
 
             </div>
             <div class="row">
-
                 <div class="col">
                     <label for="First name" class="form-label">First name</label>
                     <input type="text" name="firstName" class="form-control" placeholder="First name" value="{{ old('firstName') }}" >
