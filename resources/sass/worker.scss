@@ -12,10 +12,11 @@
   padding-inline: 0;
   background-color: $indigo;
   flex-wrap: nowrap;
-  position: sticky;
+  position: sticky !important;
   z-index: 1;
   top: 0;
   left: 0;
+  padding: 0 !important;
   .navbar-brand {
     margin: 2em 0 0 0;
     font-size: 2rem;

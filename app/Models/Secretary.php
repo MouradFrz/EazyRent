@@ -21,7 +21,7 @@ class Secretary extends Authenticatable
         'password',
         'remember_token',
     ];
-
+    protected $fillable = ['profilePath'];
     /**
      * The attributes that should be cast.
      *

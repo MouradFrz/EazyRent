@@ -139,4 +139,18 @@ class GaragistController extends Controller
         $pickUpLocations = Booking::join('pickUpLocations', 'bookings.pickUpLocation', '=', 'pickUpLocations.id')->join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->where('garageID', $hasGarage[0]->garageID)->latest('bookings.created_at')->paginate(25);
         return view('garagists.ongoingBookings', compact('bookings','pickUpLocations'));
     }
+    public function changeImage(Request $request)
+  {
+      $folderPath = public_path('images/garagist/profile');
+
+      $image_parts = explode(";base64,", $request->image);
+      $image_type_aux = explode("image/", $image_parts[0]);
+      $image_type = $image_type_aux[1];
+      $image_base64 = base64_decode($image_parts[1]);
+      $file = $folderPath . uniqid() . '.png';
+
+      file_put_contents('images/garagist/profile/'.Auth::user()->username."_profile.png", $image_base64);
+      Garagist::where('username',Auth::user()->username)->first()->update(['profilePath'=>Auth::user()->username."_profile.png"]);
+      return response()->json(['success'=>'success']);
+  }
 }
