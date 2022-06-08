@@ -1,15 +1,16 @@
+@use '../variables' as v;
 .create-agency {
+  margin-top: 2rem;
   .container {
-    margin-top: 2rem;
-    hr {
-      margin-bottom: 2rem;
+    .section-header {
+      color: v.$indigo;
     }
     form {
       .row {
         margin-bottom: 1rem;
       }
       label {
-        font-weight: 500;
+        font-weight: 700;
       }
     }
   }
