@@ -206,8 +206,9 @@ footer .footer-end {
   padding-bottom: 2rem;
 }
 footer .footer-end p > span {
-  color: rgb(85, 190, 240);
+  color: rgb(0, 122, 255);
   text-transform: capitalize;
+  font-weight: 500;
 }
 
 .notification {
@@ -376,4 +377,11 @@ img {
 
 .modal-lg {
   max-width: 1000px !important;
+}
+
+.username {
+  font-weight: 700;
+}
+.username::before {
+  content: "@";
 }

@@ -38,6 +38,10 @@ a {
   list-style-type: none;
 }
 
+label {
+  font-weight: 500;
+}
+
 .inputs {
   width: 100%;
   padding: 0.375rem 1.5rem;
@@ -72,6 +76,7 @@ a {
   color: #000;
 }
 .custom-btn:disabled {
+  color: #FFF;
   background-color: rgb(199, 199, 201);
 }
 .custom-btn-dark {
@@ -119,30 +124,32 @@ a {
   background-color: transparent;
 }
 .link:hover {
-  color: rgba(0, 122, 255, 0.9);
+  color: rgba(0, 122, 255, 0.8);
+}
+.link-underline {
   text-decoration: underline;
 }
-.link-no-decoration:hover {
-  text-decoration: none;
+.link-underline:hover {
+  text-decoration: underline;
 }
 .link-secondary {
   color: rgb(142, 142, 147);
 }
 .link-secondary:hover {
-  color: rgba(142, 142, 147, 0.9);
+  color: rgba(142, 142, 147, 0.8);
 }
 .link-danger {
   color: red;
 }
 .link-danger:hover {
-  color: rgba(255, 59, 48, 0.9);
+  color: rgba(255, 59, 48, 0.8);
 }
 
 .modal-content {
-  border-radius: 1rem;
+  border-radius: 1rem !important;
 }
 .modal-header {
-  justify-content: center;
+  justify-content: center !important;
   border-bottom: 0;
   color: rgb(88, 86, 214);
   font-weight: 700;

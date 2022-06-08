@@ -206,8 +206,9 @@ footer {
     text-align: center;
     padding-bottom: 2rem;
     p > span {
-      color: $cyan;
+      color: $blue;
       text-transform: capitalize;
+      font-weight: 500;
     }
   }
 }
