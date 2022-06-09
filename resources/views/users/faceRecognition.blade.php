@@ -24,24 +24,31 @@
     </style>
     
 </head>
-<body>
-        {{-- <button id="button1" onclick="startFace()">Start face ID</button>
-        <video id="webCam" width="460" height="380" autoplay  >
-        <canvas id="canvas"></canvas> --}}
+<body style="background-image: url('{{ asset('/images/dashboard/dashboard.jpg')}}')">
+    <button id="button1"  onclick="startFace()">Start face ID</button>
+    <button id="button2" style="display: none ; margin-top:600px" onclick="restart()">Restart</button>
+   
+        <span id="verificationError"></span>
+      
         <div class="display-cover">
             <video id="webCam" width="460" height="380" autoplay></video>
             <canvas class="d-none"></canvas>
 </body>
 </html>
 <script src="{{ asset('js/face-api.min.js') }}"></script>
-
+<script src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
 <script>
-    // const video = document.getElementById('videoInput')
-    // const webCamElement = document.getElementById('webCam');
-    // const canvasElement = document.getElementById('canvas');
-    // const webcam = new Webcam(webCamElement,"user",canvasElement);
-    // webcam.start();
+    
     var video = document.querySelector("#webCam");
+    var btn1 = document.getElementById("button1");
+    var btn2 = document.getElementById("button2");
+    var error = document.getElementById("verificationError");
+    let countInvalid = 0;
+
+    
+    function startFace(){
+
+        btn1.style.display='none'
 
 if (navigator.mediaDevices.getUserMedia) {
   navigator.mediaDevices.getUserMedia({ video: true })
@@ -60,26 +67,18 @@ Promise.all([
 ]).then(startIt)
 
 function startIt() {
-    document.body.append('Models Loaded')
-    
-    // navigator.getUserMedia(
-    //     { video:{} },
-    //     stream => video.srcObject = stream,
-    //     err => console.error(err)
-    // )
-    
+    console.log('Models Loaded')
     recognizeFaces()
 }
-
+let resultat =[];
 async function recognizeFaces() {
 
     const labeledDescriptors = await loadLabeledImages()
     console.log(labeledDescriptors)
-    const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.7)
+    const faceMatcher = new faceapi.FaceMatcher(labeledDescriptors, 0.56)
 
 
-    // video.addEventListener('play', async () => {
-        console.log('Playing')
+    console.log(faceMatcher)
         const canvas = faceapi.createCanvasFromMedia(video)
         document.body.append(canvas)
 
@@ -87,28 +86,59 @@ async function recognizeFaces() {
         faceapi.matchDimensions(canvas, displaySize)
 
         
-
-        setInterval(async () => {
+        let counter = 0
+        const intero = setInterval(async () => {
             const detections = await faceapi.detectAllFaces(video).withFaceLandmarks().withFaceDescriptors()
 
             const resizedDetections = faceapi.resizeResults(detections, displaySize)
 
             canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height)
-
+            
             const results = resizedDetections.map((d) => {
                 return faceMatcher.findBestMatch(d.descriptor)
             })
+            
             results.forEach( (result, i) => {
+               
                 const box = resizedDetections[i].detection.box
                 const drawBox = new faceapi.draw.DrawBox(box, { label: result.toString() })
-                drawBox.draw(canvas)
+                resultat.push(results[0]._distance)
+                console.log(results[0]._distance)
+                
+                if(results[0]._distance <= 0.56 ) {
+                    counter++;
+                }
+                console.log(counter)
+
             })
-        }, 100)
+            
+            if(resultat.length == 10){
+                clearInterval(intero)
+                video.style.display='none'
+                console.log(resultat)
+                if(counter >= 7){
+                    error.textContent='Face Verified!'
+                    
+                }
+                else{
 
-
-        
-//     })
+                    error.textContent='Face not verified'
+                    countInvalid++;
+                    if(countInvalid == 3){
+                    error.textContent='Your face is not recognised, please contact the secretary for more information'
+                    }
+                    else{
+                        btn2.style.display='block'
+                    }
+                    
+                   
+                }                
+            }
+        }, 500)
+ 
 }
+
+
 
 
 function loadLabeledImages() {
@@ -117,25 +147,31 @@ function loadLabeledImages() {
     return Promise.all(
         labels.map(async (label)=>{
             const descriptions = []
-            for(let i=1; i<=2; i++) {
+            for(let i=1; i<=4; i++) {
                 const img = await faceapi.fetchImage(`../images/users/faceidImages/{!! Auth::user()->username !!}_faceId.jpg`)
                 const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
                 descriptions.push(detections.descriptor)
             }
-            document.body.append(label+' Faces Loaded | ')
+            console.log(label+' Faces Loaded | ')
             return new faceapi.LabeledFaceDescriptors(label, descriptions)
         })
     )
 }
-function startFace() {
-var x = document.getElementById("webCam");
+// function startFace() {
+// var x = document.getElementById("webCam");
 
-if (x.style.display === "none") {
-x.style.display = "block";
+// if (x.style.display === "none") {
+// x.style.display = "block";
 
-} else {
-x.style.display = "none";
+// } else {
+// x.style.display = "none";
+// }
+// } 
 }
+function restart() {
+    startFace()
+    video.style.display='block'
+    btn2.style.display='none'
 } 
 
 
