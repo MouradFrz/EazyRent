@@ -23,7 +23,7 @@ class User extends Authenticatable implements MustVerifyEmail,CanResetPassword
         'password',
         'remember_token',
     ];
-    protected $fillable = ['nbBan','google_id'];
+    protected $fillable = ['nbBan','google_id','profilePath'];
     /**
      * The attributes that should be cast.
      *

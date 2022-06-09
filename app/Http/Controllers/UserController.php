@@ -106,8 +106,8 @@ class UserController extends Controller
       );
       $creds = $request->only('username', 'password');
     }
-    
-    
+
+
     // dd($creds);
     if (Auth::guard('web')->attempt($creds, $request->remember)) {
       $bans=AdminBan::where('bannedUsername',Auth::user()->username)->get();
@@ -126,6 +126,7 @@ class UserController extends Controller
   }
   public function logout()
   {
+    session()->flush();
     Auth::guard('web')->logout();
     return redirect()->route('user.login');
   }
@@ -167,22 +168,22 @@ class UserController extends Controller
       return redirect()->route('user.home');
     }
 
-    
+
     $contractData = DB::select('SELECT bookingID,payementMethod,pickUpDate,dropOffDate,users.firstName as userFirstName,users.lastName as userLastName
     , secretaries.firstName as secFirstName,secretaries.lastName as secLastName,
-    address_address,vehiculePlateNb,model,brand,bookingPrice,pricePerHour,pricePerDay,agencies.name as agencyName,registeryNb
-    
+    address_address,vehiculePlateNb,model,year,color,plateNb,brand,bookingPrice,pricePerHour,pricePerDay,agencies.name as agencyName,registeryNb
+
     FROM bookings,vehicules,secretaries,agencies,pickuplocations,branches,users
-    where bookings.vehiculePlateNB = vehicules.plateNb 
-    AND bookings.clientUsername=users.username 
+    where bookings.vehiculePlateNB = vehicules.plateNb
+    AND bookings.clientUsername=users.username
     AND bookings.secretaryUsername=secretaries.username
     AND secretaries.brancheID = branches.brancheID
-    AND branches.agencyID = agencies.agencyID 
+    AND branches.agencyID = agencies.agencyID
     AND bookings.pickUpLocation = pickuplocations.id
     AND bookings.bookingID=:bookID;',['bookID'=>$id]);
 
     $array = json_decode(json_encode($contractData), true);
-    
+
     $array[0]['signature']=true;
     $pdf = PDF::loadView('users.contract', $array[0]);
     $pdf->save(public_path('contracts\contract_').$id.'.pdf');
@@ -195,7 +196,7 @@ class UserController extends Controller
     $booking->update(['state'=>'SIGNED']);
     return redirect()->route('user.bookingDetails',$id)->with('success','Contract Signed successfully.');
   }
-  
+
   public function declineContract(Request $request,$id){
     $booking = Booking::find($id);
     if($booking->clientUsername!=Auth::user()->username){
@@ -215,5 +216,66 @@ class UserController extends Controller
     if ($request->ajax()) {
     return Notification::where("notifiedUsername",Auth::user()->username)->get();
     }
+  }
+  public function editProfile(){
+    return view('users.editProfile');
+  }
+  public function checkPassword(Request $request){
+    if(Hash::check($request->password,Auth::user()->password)){
+      return response()->json(['success'=>true]);
+    }else{
+      return response()->json(['success'=>false]);
+    }
+  }
+  public function editProfilePost(Request $request){
+    $request->validate(
+      [
+        'lastName' => 'required|alpha|max:25',
+        'firstName' => 'required|alpha|max:25',
+        'birthDate' => 'required|date',
+        'address' => 'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+        ($request->email == Auth::user()->email) ?: 'email' => 'email|unique:users,email|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
+        ($request->phone == '') ?: 'phone' => ['digits:10', 'regex:/(05|06|07)[0-9]{8}/'],
+        ($request->password == '') ?: 'password' => 'min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+        'passwordConfirm' => 'same:password',
+      ],
+      [
+        'address.regex' => 'The address can only contain letters, numbers and spaces.',
+        'password.regex' => 'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
+        'phone.digits_between' => 'The number must be made of 10 digits',
+      ]
+    );
+
+    $owner = User::where('username', Auth::user()->username)->first();
+
+    $owner->firstName = $request->firstName;
+    $owner->lastName = $request->lastName;
+    $owner->birthDate = $request->birthDate;
+    $owner->address = $request->address;
+    $owner->email = $request->email;
+    if ($request->password != '') {
+      $owner->password = Hash::make($request->password);
+    }
+    if ($request->phone != '') {
+      $owner->phoneNumber = $request->phone;
+    }
+    $owner->save();
+
+    return redirect()->route('user.editProfile')->with('message', 'Settings updated successfully');
+  }
+
+  public function changeImage(Request $request)
+  {
+      $folderPath = public_path('images/users/profile');
+
+      $image_parts = explode(";base64,", $request->image);
+      $image_type_aux = explode("image/", $image_parts[0]);
+      $image_type = $image_type_aux[1];
+      $image_base64 = base64_decode($image_parts[1]);
+      $file = $folderPath . uniqid() . '.png';
+
+      file_put_contents('images/users/profile/'.Auth::user()->username."_profile.png", $image_base64);
+      User::find(Auth::user()->id)->update(['profilePath'=>Auth::user()->username."_profile.png"]);
+      return response()->json(['success'=>'success']);
   }
 }

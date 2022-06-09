@@ -49,6 +49,15 @@
       color: $cyan;
       border-left: 5px solid $cyan;
     }
+    &-disabled {
+      color: $grey;
+      &:hover,
+      &:active {
+        background-color: transparent;
+        color: $grey;
+        border-left: 0;
+      }
+    }
   }
   .danger {
     transition: all 150ms ease-in-out;
@@ -206,8 +215,9 @@ footer {
     text-align: center;
     padding-bottom: 2rem;
     p > span {
-      color: $cyan;
+      color: $blue;
       text-transform: capitalize;
+      font-weight: 500;
     }
   }
 }
@@ -222,16 +232,16 @@ footer {
   }
 }
 .accepted {
-  border-left: 3px solid green;
+  border-left: 3px solid $green;
 }
 .declined {
-  border-left: 3px solid red;
+  border-left: 3px solid $red;
 }
 .abs {
   transform: translateX(-55%);
 }
 .new-notification-count {
-  background: red;
+  background: $red;
   position: absolute;
   top: 0;
   right: 0;

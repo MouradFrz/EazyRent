@@ -150,17 +150,17 @@
      object-position: center center;
 }
 
-.create-agency .container {
+.create-agency {
   margin-top: 2rem;
 }
-.create-agency .container hr {
-  margin-bottom: 2rem;
+.create-agency .container .section-header {
+  color: rgb(88, 86, 214);
 }
 .create-agency .container form .row {
   margin-bottom: 1rem;
 }
 .create-agency .container form label {
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .card-custom {
@@ -219,4 +219,11 @@ img {
 
 .modal-lg {
   max-width: 1000px !important;
+}
+
+.add-employee .container {
+  margin-top: 1rem;
+}
+.add-employee .section-header {
+  color: rgb(88, 86, 214);
 }

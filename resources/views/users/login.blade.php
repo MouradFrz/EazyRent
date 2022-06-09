@@ -36,30 +36,35 @@
             <label for="remember me" class="last">remember me</label>
           </span>
           @error('username')
-          <div class="alert alert-danger w-100" role="alert">
+          <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
             {{ $message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @enderror
           @if (Session::get('fail'))
-          <div class="alert alert-danger w-100" role="alert">
+          <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
             {{ Session::get('fail') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
           @if (Session::get('status'))
-          <div class="alert alert-success w-100" role="alert">
+          <div class="alert alert-success w-100 alert-dismissible fade show" role="alert">
             {{ Session::get('status') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
           @if (Session::get('message'))
-          <div class="alert alert-danger w-100" role="alert">
+          <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
             {{ Session::get('message') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
           @if (Session::get('ban'))
-          <div class="alert alert-danger w-100" role="alert">
+          <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
             {{ Session::get('ban') }} <br>
             <span class="fw-bold"> Reason:</span> <br>
             {{ Session::get('reason') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
           </div>
           @endif
           <div class="d-flex justify-content-center">

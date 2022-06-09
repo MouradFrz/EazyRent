@@ -46,20 +46,20 @@ Route::prefix('email')->name('verification.')->group(function () {
     Route::get('/verify', function () {
       return view('users.verifyEmail');
     })->middleware('auth')->name('notice');
-    
-    
+
+
     Route::get('/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
       $request->fulfill();
       return redirect()->route('user.home');
     })->middleware(['auth', 'signed'])->name('verify');
-    
+
     Route::post('/verification-notification', function (Request $request) {
       $request->user()->sendEmailVerificationNotification();
-    
+
       return back()->with('message', 'Verification link sent!');
     })->middleware(['auth', 'throttle:6,1'])->name('send');
   });
-  
+
 });
 ////////////////////////////////////////////////////////////////////////////////
 //////// password reset routes
@@ -69,11 +69,10 @@ Route::get('/forgot-password', function () {
 
 Route::post('/forgot-password', function (Request $request) {
     $request->validate(['email' => 'required|email']);
- 
     $status = Password::sendResetLink(
         $request->only('email')
     );
- 
+
     return $status === Password::RESET_LINK_SENT
                 ? back()->with(['status' => __($status)])
                 : back()->withErrors(['email' => __($status)]);
@@ -90,9 +89,12 @@ Route::post('/reset-password', function (Request $request) {
   $request->validate([
       'token' => 'required',
       'email' => 'required|email',
-      'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed'
+      'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/|confirmed',
+      // don't remove this it works just for developing i wanna make it easy so we use the line above
+      // 'password' => ['required', Illuminate\Validation\Rules\Password::min(8)->mixedCase()->numbers()->uncompromised(),'confirmed'],
+      'password_confirmation' => 'required|same:password'
   ]);
-  
+
   $status = Password::reset(
       $request->only('email', 'password', 'password_confirmation', 'token'),
       function ($user, $password) {
@@ -125,8 +127,9 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::any('/google/login', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
-    Route::post('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
+    Route::get('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
     Route::get('/offer/{plateNb}', [VehiculeController::class, 'viewOfferDetails'])->name('viewOfferDetails');
+    Route::get('/filterVehicules',[VehiculeController::class,'filterVehicules'])->name('filterVehicules');
   });
   Route::middleware(['auth:web','verified', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');
@@ -139,6 +142,11 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/signContract/{id}', [UserController::class, 'signContract'])->name('signContract');
     Route::post('/declineContract/{id}', [UserController::class, 'declineContract'])->name('declineContract');
     Route::get('/loadNotifications', [UserController::class, 'loadNotifications'])->name('loadNotifications');
+    Route::get('/editProfile',[UserController::class,'editProfile'])->name('editProfile');
+    Route::post('/editProfile',[UserController::class,'editProfilePost'])->name('editProfilePost');
+    Route::post('/checkPassword',[UserController::class,'checkPassword'])->name('checkPassword');
+    Route::post('/changeImage',[UserController::class, 'changeImage'])->name('changeImage');
+   
   });
 });
 

@@ -34,8 +34,8 @@ class OwnerController extends Controller
                 (Select brancheID
                 from branches
                             where agencyID
-                            IN (SELECT agencyID 
-                  from owners 
+                            IN (SELECT agencyID
+                  from owners
                                 where owners.username = :owner)
                                 )
     group by garages.brancheID;", ['owner' => Auth::user()->username]);
@@ -52,8 +52,8 @@ class OwnerController extends Controller
               (Select brancheID
               from branches
                           where agencyID
-                          IN (SELECT agencyID 
-                from owners 
+                          IN (SELECT agencyID
+                from owners
                               where owners.username = :owner)
                               );", ['owner' => Auth::user()->username, 'date' => date('Y-m-d', (strtotime('-' . $i . ' day', strtotime($date)))) . '%']);
       $dates[$i] = date('Y-m-d', (strtotime('-' . $i . ' day', strtotime($date))));
@@ -67,15 +67,15 @@ class OwnerController extends Controller
                 (Select brancheID
                 from branches
                             where agencyID
-                            IN (SELECT agencyID 
-                  from owners 
+                            IN (SELECT agencyID
+                  from owners
                                 where owners.username = :owner)
                                 )
     group by garages.brancheID;", ['owner' => Auth::user()->username]);
 
-    $pickUpLocationsCount = DB::select("SELECT address_address,count(bookingID) as Co from bookings , pickuplocations 
-    where bookings.pickUpLocation = pickuplocations.id AND pickuplocations.brancheID IN 
-                                              (SELECT brancheID 
+    $pickUpLocationsCount = DB::select("SELECT address_address,count(bookingID) as Co from bookings , pickuplocations
+    where bookings.pickUpLocation = pickuplocations.id AND pickuplocations.brancheID IN
+                                              (SELECT brancheID
                                                                                         from branches
                                                                                         where branches.agencyID = :agency)
     group by pickUpLocation ;", ['agency' => Auth::user()->agencyID]);
@@ -90,36 +90,36 @@ class OwnerController extends Controller
     count(bookingID) as bookCount
  from
     bookings,
-    vehicules 
+    vehicules
  where
-    bookings.vehiculePlateNB = vehicules.plateNb 
-    AND vehiculePlateNb IN 
+    bookings.vehiculePlateNB = vehicules.plateNb
+    AND vehiculePlateNb IN
     (
        Select
-          plateNb 
+          plateNb
        from
-          vehicules 
+          vehicules
        where
-          garageID in 
+          garageID in
           (
              Select
-                garageID 
+                garageID
              from
-                garages 
+                garages
              where
-                brancheID in 
+                brancheID in
                 (
                    Select
-                      brancheID 
+                      brancheID
                    from
-                      branches 
+                      branches
                    where
                       agencyID = 39
                 )
           )
     )
  group by
-    vehiculePlateNb 
+    vehiculePlateNb
  order by
     count(bookingID) DESC
     limit 5 ;');
@@ -219,6 +219,7 @@ class OwnerController extends Controller
   }
   public function logout()
   {
+    session()->flush();
     Auth::guard('owner')->logout();
     return redirect()->route('workerLogin');
   }

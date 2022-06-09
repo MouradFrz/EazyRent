@@ -1,6 +1,6 @@
 .authentication {
   min-height: 100vh;
-  margin-inline: 0;
+  margin-inline: 0 !important;
 }
 .authentication_welcome {
   display: flex;
@@ -22,17 +22,12 @@
   margin-bottom: 1rem;
 }
 
-.authentication_panel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-}
 .authentication_panel .section-header {
   color: rgb(88, 86, 214);
 }
 .authentication_panel .content {
   width: 450px;
+  margin: 0 auto;
   border: 0.5px solid #ccc;
   border-radius: 2rem;
   padding: 2rem;

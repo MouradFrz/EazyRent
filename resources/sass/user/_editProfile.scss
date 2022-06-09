@@ -1,0 +1,60 @@
+.profile-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  transition: opacity 0.15s ease;
+  position: relative;
+  overflow: hidden;
+  > img {
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  &:hover {
+    opacity: .95;
+    cursor: pointer;
+    &::before {
+      content: "\f030";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      font-size: 1.2rem;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      position: absolute;
+      padding: .5rem;
+      left: 0;
+      bottom: 0;
+      color: rgba(255, 255, 255, 0.9);
+      background-color: rgba($color: #000000, $alpha: .3);
+
+    }
+  }
+
+}
+#fullname {
+  font-size: 1.2rem;
+  margin: 20px 0 0 0;
+}
+.editform {
+  margin: 0 140px;
+}
+img {
+  display: block;
+  max-width: 100%;
+}
+.preview {
+  overflow: hidden;
+  width: 160px;
+  height: 160px;
+  margin: 10px;
+  border: 1px solid red;
+}
+.modal-lg {
+  max-width: 1000px !important;
+}
+.username {
+  font-weight: 700;
+  &::before {
+    content: "@";
+  }
+}

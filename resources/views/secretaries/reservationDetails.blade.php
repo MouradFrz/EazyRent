@@ -2,6 +2,7 @@
 
 @section('headTags')
 <link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/css/magnify.min.css" integrity="sha512-wzhF4/lKJ2Nc8mKHNzoFP4JZsnTcBOUUBT+lWPcs07mz6lK3NpMH1NKCKDMarjaw8gcYnSBNjjllN4kVbKedbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 {{-- <script>
   function imageZoom(imgID, resultID) {
     var img, lens, result, cx, cy;
@@ -106,8 +107,9 @@
         <p class="value">{{$booking -> idCard}}</p>
         <p class="label">Identity card image:</p>
         {{-- <div class="img-zoom-container"> --}}
-          <img id="IdCardImage" class="id-card-image"
-            src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}" alt="{{$booking -> idCard}}">
+          <img id="IdCardImage" class="id-card-image zoom"
+            src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}"  data-magnify-src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}">
+   
           {{-- <div id="hoverResult" class="img-zoom-result d-none"></div>
         </div> --}}
       </div>
@@ -202,11 +204,15 @@
 @endsection
 
 @section('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/js/jquery.magnify.min.js" integrity="sha512-YKxHqn7D0M5knQJO2xKHZpCfZ+/Ta7qpEHgADN+AkY2U2Y4JJtlCEHzKWV5ZE87vZR3ipdzNJ4U/sfjIaoHMfw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
-  console.log(JSON.parse('@json($booking)'))
-</script>
-<script>
-  imageZoom("IdCardImage", "hoverResult");
-</script>
+  $(document).ready(function() {
+    $('.zoom').magnify({
+      magnifiedWidth:640,
+      magnifiedHeight:380,
+    });
+  });
+  </script>
 
 @endsection

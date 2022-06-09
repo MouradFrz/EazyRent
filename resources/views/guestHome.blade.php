@@ -4,14 +4,21 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
 <link rel="stylesheet"
   href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    @media screen and (min-width: 640px){
+.mapboxgl-ctrl-geocoder {
+  max-width:none !important
+;  }
+    }
+  </style>
 @endsection
 @section('content')
 <div class="hero">
   <div class="container hero_content">
     <div class="search-panel">
       <h2>search a vehicle now!</h2>
-      <form action="{{route('user.viewOffers')}}" method="POST">
-        @csrf
+      <form action="{{route('user.viewOffers')}}" method="GET">
         <div class="row">
           <div class="col">
             <label for="">Pick-up location :</label>
@@ -22,16 +29,22 @@
               <input type="text" id="pickUpLat" name="pickUpLat" />
             </div>
           </div>
-          <div class="col">
+          <div class="col"  style="display: none">
             <label for="">Pick up at :</label>
-            <input type="datetime-local" class="inputs" name="pickUpDate" min="{{now()}}" />
+            <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
             @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
           </div>
-          <div class="col">
+          <div class="col"  style="display: none">
             <label for="">Drop off at :</label>
-            <input type="datetime-local" class="inputs" name="dropOffDate" min="{{now()}}" />
+            <input type="datetime-local" class="inputs" style="display: none" name="dropOffDate" id="dropOffDate" min="{{now()}}"  />
+            
+          </div>
+          <div class="col">
+            <label for="">Select a date :</label>
+            <input type="date" name="" class='inputs' id="mydate" placeholder="Select date" onchange="fillFields()">
             @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
           </div>
+         
         </div>
         <div class="row">
           <div class="col-12 col-md-4">
@@ -183,54 +196,10 @@
         <i class="fa-brands fa-adversal"></i>
       </div>
     </div>
-    <p class="cta">you have a renting cars agency ? <a class="link">Join us &#62; </a></p>
+    <p class="cta">you have a renting cars agency ? <a class="link link-underline">Join us &#62; </a></p>
   </div>
   <div class="white-space"></div>
 </div>
-<footer id="contactUs">
-  <div class="container">
-    <div class="row">
-      <div class="col-12 col-md-6">
-        <h2 class="footer_header">EAZYRENT</h2>
-        <p>
-        EazyRent is a platform that makes renting your next vehicle a simple task in an easy, fast and
-        secure way.
-        <br>
-        Our goal is to gather agencies from all around the nation in one place.
-        <br>
-        To give you the best options with the least effort.
-        </p>
-      </div>
-      <div class="col-12 col-md-6">
-        <h2 class="footer_header">contact</h2>
-        <ul class="contact">
-          <li>
-            <i class="fa-solid fa-location-dot"></i>
-            <span>address</span>Constantine, Constantine, Algerie
-          </li>
-          <li>
-            <i class="fa-solid fa-phone"></i>
-            <span>phone number</span><br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +213 (0) 555 55 55 55 <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +213 (0) 666 66 66 66 <br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; +213 (0) 777 77 77 77 <br>
-          </li>
-          <li>
-            <i class="fa-solid fa-envelope"></i>
-            <span>email</span>contact@eazyrent.com
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer-end">
-    <div class="container">
-      <hr>
-      <p>by <span>hacene barboucha, mourad yaou, oussama foura</span></p>
-      <p>All rights reserved Copyright &copy; 2022</p>
-    </div>
-  </div>
-</footer>
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js">
 </script>
@@ -244,6 +213,36 @@
     }else{
       driverAge.style.display = "none";
     }
+  }
+</script>
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr('#mydate', {
+    enableTime:true,
+    minDate: new Date().fp_incr(1),
+    maxDate: new Date().fp_incr(15) ,
+    mode: "range",
+    theme:"airbnb",
+    
+  });
+
+  function fillFields(){
+    const pickUpDate = document.querySelector('#pickUpDate')
+    const dropOffDate = document.querySelector('#dropOffDate')
+    const myDate = document.querySelector('#mydate')
+    const array = myDate.value.split(" to ")
+    pickUpDate.value=""
+    dropOffDate.value=""
+    if(array.length==2){
+    pickUpDate.value=array[0].replace(' ','T')
+    dropOffDate.value=array[1].replace(' ','T')
+
+    }
+    
+   
+    
+    
   }
 </script>
 <script>
@@ -304,7 +303,7 @@
   //   pickUpLng.innerText = '';
   //   pickUpLat.innerText = '';
   // });
-  document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
+  // document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
 @endsection

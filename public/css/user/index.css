@@ -55,6 +55,14 @@
   color: rgb(85, 190, 240);
   border-left: 5px solid rgb(85, 190, 240);
 }
+.navbar .dropdown-item-disabled {
+  color: rgb(142, 142, 147);
+}
+.navbar .dropdown-item-disabled:hover, .navbar .dropdown-item-disabled:active {
+  background-color: transparent;
+  color: rgb(142, 142, 147);
+  border-left: 0;
+}
 .navbar .danger {
   transition: all 150ms ease-in-out;
 }
@@ -206,8 +214,9 @@ footer .footer-end {
   padding-bottom: 2rem;
 }
 footer .footer-end p > span {
-  color: rgb(85, 190, 240);
+  color: rgb(0, 122, 255);
   text-transform: capitalize;
+  font-weight: 500;
 }
 
 .notification {
@@ -222,11 +231,11 @@ footer .footer-end p > span {
 }
 
 .accepted {
-  border-left: 3px solid green;
+  border-left: 3px solid rgb(40, 205, 65);
 }
 
 .declined {
-  border-left: 3px solid red;
+  border-left: 3px solid rgb(255, 59, 48);
 }
 
 .abs {
@@ -234,7 +243,7 @@ footer .footer-end p > span {
 }
 
 .new-notification-count {
-  background: red;
+  background: rgb(255, 59, 48);
   position: absolute;
   top: 0;
   right: 0;
@@ -321,6 +330,15 @@ footer .footer-end p > span {
   color: darkGrey;
 }
 
+.filter {
+  border: 1px solid lightGrey;
+  padding: 40px 20px;
+}
+
+.wrapper {
+  gap: 10px;
+}
+
 .offer_media {
   margin-bottom: 1rem;
 }
@@ -337,4 +355,94 @@ footer .footer-end p > span {
 }
 .offer_rent {
   margin-bottom: 2rem;
+}
+
+.profile-img {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  transition: opacity 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+.profile-img > img {
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.profile-img:hover {
+  opacity: 0.95;
+  cursor: pointer;
+}
+.profile-img:hover::before {
+  content: "\f030";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  padding: 0.5rem;
+  left: 0;
+  bottom: 0;
+  color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+#fullname {
+  font-size: 1.2rem;
+  margin: 20px 0 0 0;
+}
+
+.editform {
+  margin: 0 140px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.preview {
+  overflow: hidden;
+  width: 160px;
+  height: 160px;
+  margin: 10px;
+  border: 1px solid red;
+}
+
+.modal-lg {
+  max-width: 1000px !important;
+}
+
+.username {
+  font-weight: 700;
+}
+.username::before {
+  content: "@";
+}
+
+.resset-password .content {
+  width: 450px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.resset-password .success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(40, 205, 65, 0.6);
+  font-size: 5rem;
+  margin: 1rem;
+}
+.resset-password h1 {
+  font-weight: 500;
+  color: rgb(88, 86, 214);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.resset-password-form {
+  display: flex;
+  flex-direction: column;
 }
