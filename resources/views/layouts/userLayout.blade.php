@@ -11,7 +11,6 @@
   <link href="{{ asset('css/user/index.css') }}" rel="stylesheet">
   @yield('head')
 </head>
-
 <body>
   <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
     <div class="container">

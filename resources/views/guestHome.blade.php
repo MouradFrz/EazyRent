@@ -67,6 +67,46 @@
   </div>
   </form>
 </div>
+<div id="howToBook"class="booking-progress">
+  <div class="white-space"></div>
+  <div class="container">
+    <h2 class="section-header">how to rent a vehicle</h2>
+    <div id="progress">
+      <div id="progress-bar"></div>
+      <ul id="progress-num">
+        <li class="step active">1</li>
+        <li class="step">2</li>
+        <li class="step">3</li>
+        <li class="step">4</li>
+        <li class="step">5</li>
+      </ul>
+    </div>
+    <div class="content">
+      <div>
+        <h4>search for a vehicle</h4>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+      </div>
+      <div>
+        <h4>choose an offer</h4>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+      </div>
+      <div>
+        <h4>book a vehicule</h4>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+      </div>
+      <div>
+        <h4>confirm you identity</h4>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+      </div>
+      <div>
+        <h4>drive your car!</h4>
+        <p>Lorem ipsum dolor sit amet consectetur.</p>
+      </div>
+    </div>
+  </div>
+  <div class="white-space"></div>
+</div>
+</div>
 <div id="whoUs" class="who-us">
   <div class="white-space"></div>
   <div class="container">

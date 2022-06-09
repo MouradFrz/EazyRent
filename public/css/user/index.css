@@ -50,7 +50,6 @@
 .navbar .dropdown-menu {
   right: 0;
   left: auto;
-  max-width: 5rem;
 }
 .navbar .dropdown-item {
   white-space: normal;
@@ -93,6 +92,65 @@
   -o-object-position: center;
      object-position: center;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
+}
+
+.booking-progress .content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+}
+.booking-progress .content > div {
+  flex: 1;
+  text-align: center;
+}
+.booking-progress #progress {
+  position: relative;
+  margin-bottom: 30px;
+}
+.booking-progress #progress-bar {
+  position: absolute;
+  background: lightseagreen;
+  height: 5px;
+  width: 0%;
+  top: 50%;
+  left: 0;
+}
+.booking-progress #progress-num {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: space-around;
+}
+.booking-progress #progress-num::before {
+  content: "";
+  background-color: rgb(88, 86, 214);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 5px;
+  width: 80%;
+  z-index: -1;
+}
+.booking-progress #progress-num .step {
+  width: 5rem;
+  height: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 5px solid rgb(88, 86, 214);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: 500;
+  background-color: #fff;
+  position: relative;
+  z-index: 1;
+}
+.booking-progress #progress-num .step.active {
+  border-color: rgb(88, 86, 214);
+  background-color: rgb(88, 86, 214);
+  color: #fff;
 }
 
 .hero {
