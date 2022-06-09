@@ -1,3 +1,26 @@
+<?php
+require_once __DIR__ .'/../../../vendor/autoload.php';
+\Stripe\Stripe::setApiKey('sk_test_VePHdqKTYQjKNInc7u56JBrQ');
+$session = \Stripe\Checkout\Session::create([
+    'line_items' => [[
+      'price_data' => [
+        'currency' => 'usd',
+        'product_data' => [
+          'name' => 'T-shirt',
+        ],
+        'unit_amount' => 2000,
+      ],
+      'quantity' => 1,
+    ]],
+    'mode' => 'payment',
+    'success_url' => 'https://example.com/success',
+    'cancel_url' => 'https://example.com/cancel',
+  ]);
+
+  
+?>
+
+
 @extends('layouts.userLayout')
 @section('content')
 <div class="offer">
@@ -177,10 +200,10 @@
                 <p>Total price: <strong>{{$price}} DZD</strong></p>
               </div>
               <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="link link-secondary" data-bs-dismiss="modal"
-                  onclick="event.preventDefault();">Cancel</button>
-                <button type="button" class="link link-success"
-                  onclick="document.getElementById('reservation-form').submit()">Confirm my choice</button>
+                <button type="button" class="custom-btn custom-btn-secondary" data-bs-dismiss="modal"
+                  onclick="event.preventDefault();">cancel</button>
+                <button type="submit" id="confirm" class="custom-btn custom-btn-success"
+                  onclick="document.getElementById('reservation-form').submit()">confirm my choice</button>
               </div>
             </div>
           </div>
@@ -200,4 +223,14 @@
 </div>
 @endsection
 @section('script')
+<script>
+const stripe = Stripe('pk_test_51L6nDbHsX0BypY7bu92FsSNXMH5jqDOTEgvGBgtX5rIS4lNLMAVD1xDhp513l7XQlftLijcTJkODjR5O3LQJFfQP00eiVXCuBU') 
+const btn = getElementById("confirm")
+btn.addEventListener('click',function(e){
+  e.preventDefault();
+  stripe.redirectToCheckout({
+    sessionId:" <?php echo $session->id  ?> "
+  })
+})
+</script>
 @endsection
