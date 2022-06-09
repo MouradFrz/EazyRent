@@ -11,6 +11,7 @@
     <p class="text-center">
       {{ Session::get('status') }}
     </p>
+    <a href="/" class="link"><i class="fa-solid fa-arrow-left"></i> back to home</a>
     @else
     <p class="mb-4 mt-4">Enter the email address associated with your account and we'll send you a link to reset your password</p>
     <form action="{{ route('password.request') }}" method="post" enctype="multipart/form-data" class="form resset-password-form">

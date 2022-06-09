@@ -2,7 +2,7 @@
 @section('content')
 <div class="offer">
   <div class="container">
-    <form action="{{route('user.viewOffers')}}" method="POST" id="goBack">
+    <form action="{{route('user.viewOffers')}}" method="GET" id="goBack">
       @csrf
       <div class="d-none">
         <input type="text" name="pickUpLng" value="{{session('pickUpLng')}}" />
@@ -10,7 +10,7 @@
         <input type="datetime-local" name="pickUpDate" value="{{session('pickUpString')}}" />
         <input type="datetime-local" name="dropOffDate" value="{{session('dropOffString')}}" />
       </div>
-      <a type="submit" onclick="document.getElementById('goBack').submit()" class="link link_no_decoration"><i
+      <a type="submit" onclick="document.getElementById('goBack').submit()" class="link"><i
           class="fa-solid fa-arrow-left"></i> Go back</a>
     </form>
     @if (Session::get('fail'))
@@ -191,7 +191,7 @@
     @else
     <div class="offer_rent">
       <strong>you have to log in before booking a vehicule
-        <a href="{{ route('user.login') }}" id="log-in" class="link">log in now!</a>
+        <a href="{{ route('user.login') }}" id="log-in" class="link link-underline">log in now!</a>
       </strong>
     </div>
     @endif
