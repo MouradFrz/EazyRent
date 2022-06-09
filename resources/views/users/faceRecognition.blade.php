@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <meta name="_token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
@@ -18,7 +19,8 @@
             align-items: center;
             flex-direction: column;
         }
-        .btn-place{
+
+        .btn-place {
             display: flex;
             width: 100%;
             align-items: center;
@@ -26,6 +28,7 @@
             justify-content: center;
             height: 300px;
         }
+
         canvas {
             position: absolute;
         }
@@ -35,13 +38,16 @@
 
 <body style="background-image: url('{{ asset('/images/dashboard/dashboard.jpg') }}');background-size:cover">
     <div class="btn-place">
-    <button id="button1" class="custom-btn custom-btn-dark" style="cursor: pointer;" onclick="startFace()">Start face ID</button>
-    <button id="button2"  class="custom-btn custom-btn-dark" style="cursor: pointer;display: none ;" onclick="restart()">Restart</button>
-    <div class="alert m-5 " id="verificationError"  role="alert">
-  
+        <button id="button1" class="custom-btn custom-btn-dark" style="cursor: pointer;" onclick="startFace()">Start face
+            ID</button>
+        <button id="button2" class="custom-btn custom-btn-dark" style="cursor: pointer;display: none ;"
+            onclick="restart()">Restart</button>
+        <div class="alert m-5 " id="verificationError" role="alert">
+
+        </div>
+        <a href="{{ route('user.home') }}" id="home" class="custom-btn custom-btn-dark" style="display: none">Back to homepage</a>
     </div>
-    </div>  
-    
+
 
     <div class="display-cover">
         <video id="webCam" width="460" height="380" autoplay></video>
@@ -50,17 +56,21 @@
 </body>
 
 </html>
+
 <script src="{{ asset('js/face-api.min.js') }}"></script>
 <script src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script>
     var video = document.querySelector("#webCam");
     var canvas = document.querySelector("#canvas");
     var btn1 = document.getElementById("button1");
     var btn2 = document.getElementById("button2");
     var error = document.getElementById("verificationError");
+    var home = document.getElementById("home");
     let countInvalid = 0;
-
-
+    let bookingID = '{!! $bookingID !!}';
+    console.log(bookingID)
     function startFace() {
         btn1.style.display = 'none'
         if (navigator.mediaDevices.getUserMedia) {
@@ -75,16 +85,17 @@
                 });
         }
         error.classList.remove('alert-danger')
-                        error.classList.remove('alert-success')
-                        error.classList.add('alert-secondary')
-                        error.textContent = 'Loading...'
+        error.classList.remove('alert-success')
+        error.classList.add('alert-secondary')
+        error.textContent = 'Loading...'
         Promise.all([
             faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
             faceapi.nets.faceLandmark68Net.loadFromUri('/models'),
             faceapi.nets.ssdMobilenetv1.loadFromUri('/models') //heavier/accurate version of tiny face detector
         ]).then(startIt)
+
         function startIt() {
-          
+
             recognizeFaces()
         }
         let resultat = [];
@@ -147,7 +158,19 @@
                         error.classList.remove('alert-secondary')
                         error.classList.remove('alert-danger')
                         error.classList.add('alert-success')
-                        error.textContent = 'Face recognized!'
+                        error.textContent = 'Face recognized! Your car is unlocked. Have a fun ride'
+                        $.ajax({
+                                type: "POST",
+                                dataType: "json",
+                                url: "http://localhost:8000/user/setGoing",
+                                data: {
+                                    '_token': $('meta[name="_token"]').attr('content'),
+                                    'bookingID': bookingID
+                                },
+                                success: function(data) {
+                                    home.style.display='block'
+                                }
+                            });
                     } else {
                         error.classList.remove('alert-secondary')
                         error.classList.remove('alert-succes')
@@ -160,6 +183,19 @@
                             error.classList.add('alert-danger')
                             error.textContent =
                                 'Your face is not recognised, please contact the secretary for more information'
+                                $.ajax({
+                                type: "POST",
+                                dataType: "json",
+                                url: "http://localhost:8000/user/setFailed",
+                                data: {
+                                    '_token': $('meta[name="_token"]').attr('content'),
+                                    'bookingID': bookingID
+                                },
+                                success: function(data) {
+                                    home.style.display='block'
+                                }
+                            });
+                           
                         } else {
                             btn2.style.display = 'block'
                         }
@@ -167,6 +203,7 @@
                 }
             }, 500)
         }
+
         function loadLabeledImages() {
             const labels = ['{!! Auth::user()->firstName !!} {!! Auth::user()->lastName !!} '] // for WebCam
             return Promise.all(
@@ -174,7 +211,7 @@
                     const descriptions = []
                     for (let i = 1; i <= 4; i++) {
                         const img = await faceapi.fetchImage(
-                            `../images/users/faceidImages/{!! Auth::user()->username !!}_faceId.jpg`)
+                            `../../images/users/faceidImages/{!! Auth::user()->username !!}_faceId.jpg`)
                         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks()
                             .withFaceDescriptor()
                         descriptions.push(detections.descriptor)
@@ -196,4 +233,5 @@
     <script src="https://unpkg.com/webcam-easy@1.0.5/dist/webcam-easy.min.js"></script>
     <script src="{{ asset('js/faceScript.js') }}"></script>
     <script src="{{ asset('js/face-api.min.js') }}"></script>
+    
 @endsection

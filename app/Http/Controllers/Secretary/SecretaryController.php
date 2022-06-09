@@ -168,7 +168,8 @@ class SecretaryController extends Controller
   public function getReservationRequests(){
 
     $bookings = Booking::join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('garages','vehicules.garageID','=','garages.garageID')->join('users','clientUsername','=','users.username')->where('garages.brancheID',Auth::user()->brancheID)->where('state','REQUESTED')->latest('bookings.created_at')->paginate(25);
-    return view('secretaries.reservationRequests',['bookings'=>$bookings]);
+    $fails = Booking::join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('garages','vehicules.garageID','=','garages.garageID')->join('users','clientUsername','=','users.username')->where('state','FAILED')->where('failedSeen',false)->where('secretaryUsername',Auth::user()->username)->get();
+    return view('secretaries.reservationRequests',['bookings'=>$bookings,'fails'=>$fails]);
   }
   public function reservationDetails($id){
     $test=Booking::where('bookingID',$id)->first();
@@ -299,7 +300,10 @@ public function changeImage(Request $request)
       Secretary::where('username',Auth::user()->username)->first()->update(['profilePath'=>Auth::user()->username."_profile.png"]);
       return response()->json(['success'=>'success']);
   }
-
+  public function setSeen(Request $request){
+    Booking::find($request->bookingID)->update(["failedSeen"=>true]);
+    return response()->json(['Succes'=>'Changed successfully']);
+  }
 
 
 }

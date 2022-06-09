@@ -1,21 +1,21 @@
 <?php
-require_once __DIR__ .'/../../../vendor/autoload.php';
-\Stripe\Stripe::setApiKey('sk_test_VePHdqKTYQjKNInc7u56JBrQ');
-$session = \Stripe\Checkout\Session::create([
-    'line_items' => [[
-      'price_data' => [
-        'currency' => 'usd',
-        'product_data' => [
-          'name' => 'T-shirt',
-        ],
-        'unit_amount' => 2000,
-      ],
-      'quantity' => 1,
-    ]],
-    'mode' => 'payment',
-    'success_url' => 'https://example.com/success',
-    'cancel_url' => 'https://example.com/cancel',
-  ]);
+// require_once __DIR__ .'/../../../vendor/autoload.php';
+// \Stripe\Stripe::setApiKey('sk_test_VePHdqKTYQjKNInc7u56JBrQ');
+// $session = \Stripe\Checkout\Session::create([
+//     'line_items' => [[
+//       'price_data' => [
+//         'currency' => 'usd',
+//         'product_data' => [
+//           'name' => 'T-shirt',
+//         ],
+//         'unit_amount' => 2000,
+//       ],
+//       'quantity' => 1,
+//     ]],
+//     'mode' => 'payment',
+//     'success_url' => 'https://example.com/success',
+//     'cancel_url' => 'https://example.com/cancel',
+//   ]);
 
   
 ?>
@@ -224,13 +224,13 @@ $session = \Stripe\Checkout\Session::create([
 @endsection
 @section('script')
 <script>
-const stripe = Stripe('pk_test_51L6nDbHsX0BypY7bu92FsSNXMH5jqDOTEgvGBgtX5rIS4lNLMAVD1xDhp513l7XQlftLijcTJkODjR5O3LQJFfQP00eiVXCuBU') 
-const btn = getElementById("confirm")
-btn.addEventListener('click',function(e){
-  e.preventDefault();
-  stripe.redirectToCheckout({
-    sessionId:" <?php echo $session->id  ?> "
-  })
-})
+// const stripe = Stripe('pk_test_51L6nDbHsX0BypY7bu92FsSNXMH5jqDOTEgvGBgtX5rIS4lNLMAVD1xDhp513l7XQlftLijcTJkODjR5O3LQJFfQP00eiVXCuBU') 
+// const btn = getElementById("confirm")
+// btn.addEventListener('click',function(e){
+//   e.preventDefault();
+//   stripe.redirectToCheckout({
+//     sessionId:" "
+//   })
+// })
 </script>
 @endsection
