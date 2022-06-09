@@ -1,9 +1,24 @@
 @use "../variables" as *;
+// @import "../node_modules/bootstrap/scss/variables";
+// @import "../node_modules/bootstrap/scss/mixins";
 // NAVBAR
 .navbar {
   min-height: 4rem;
   background-color: rgba(255, 255, 255, 0.95);
   backdrop-filter: saturate(180%) blur(20px);
+  // .navbar-toggler {
+  //   color: $grey;
+  //   border: 0;
+  //   transition: all 200ms ease-in-out;
+  //   .collapsed:active {
+  //     border: 0 !important;
+  //   }
+  // }
+  // .navbar-collapse .show {
+  //   .nav-item {
+  //     text-align: center;
+  //   }
+  // }
   .nav-link {
     transition: all 300ms linear;
     position: relative;
@@ -12,7 +27,7 @@
       color: $blue !important;
       border-bottom: 2px solid $blue;
     }
-    &:hover{
+    &:hover {
       color: $blue !important;
       &::after {
         content: "";
@@ -33,16 +48,22 @@
       }
     }
   }
-  @media(max-width:992px){
-      .notis-menu {
-    right: 50%;
+  @media (max-width: 992px) {
+    .notis-menu {
+      right: 50%;
+      left: auto;
+      transform: translateX(50%);
+    }
+  }
+  .dropdown-menu {
+    right: 0;
     left: auto;
-    transform: translateX(50%);
+    max-width: 5rem;
   }
-  }
-
   .dropdown-item {
+    white-space: normal;
     transition: all 150ms ease-in-out;
+    font-size: 1rem;
     &:hover,
     &:active {
       background-color: transparent;
@@ -69,6 +90,9 @@
     }
   }
   .auth {
+    display: flex;
+    align-items: center;
+    justify-self: left;
     gap: 10px;
     > img {
       width: 2rem;

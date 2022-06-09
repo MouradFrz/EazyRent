@@ -7,9 +7,9 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <style>
     @media screen and (min-width: 640px){
-.mapboxgl-ctrl-geocoder {
-  max-width:none !important
-;  }
+      .mapboxgl-ctrl-geocoder {
+      max-width:none !important;
+      }
     }
   </style>
 @endsection
@@ -37,14 +37,14 @@
           <div class="col"  style="display: none">
             <label for="">Drop off at :</label>
             <input type="datetime-local" class="inputs" style="display: none" name="dropOffDate" id="dropOffDate" min="{{now()}}"  />
-            
+
           </div>
           <div class="col">
             <label for="">Select a date :</label>
             <input type="date" name="" class='inputs' id="mydate" placeholder="Select date" onchange="fillFields()">
             @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
           </div>
-         
+
         </div>
         <div class="row">
           <div class="col-12 col-md-4">
@@ -224,7 +224,7 @@
     maxDate: new Date().fp_incr(15) ,
     mode: "range",
     theme:"airbnb",
-    
+
   });
 
   function fillFields(){
@@ -239,10 +239,10 @@
     dropOffDate.value=array[1].replace(' ','T')
 
     }
-    
-   
-    
-    
+
+
+
+
   }
 </script>
 <script>

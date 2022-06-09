@@ -47,8 +47,15 @@
     transform: translateX(50%);
   }
 }
+.navbar .dropdown-menu {
+  right: 0;
+  left: auto;
+  max-width: 5rem;
+}
 .navbar .dropdown-item {
+  white-space: normal;
   transition: all 150ms ease-in-out;
+  font-size: 1rem;
 }
 .navbar .dropdown-item:hover, .navbar .dropdown-item:active {
   background-color: transparent;
@@ -72,6 +79,9 @@
   border-left: 5px solid rgb(255, 59, 48);
 }
 .navbar .auth {
+  display: flex;
+  align-items: center;
+  justify-self: left;
   gap: 10px;
 }
 .navbar .auth > img {
