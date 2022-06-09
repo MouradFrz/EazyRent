@@ -330,6 +330,15 @@ footer .footer-end p > span {
   color: darkGrey;
 }
 
+.filter {
+  border: 1px solid lightGrey;
+  padding: 40px 20px;
+}
+
+.wrapper {
+  gap: 10px;
+}
+
 .offer_media {
   margin-bottom: 1rem;
 }

@@ -129,6 +129,7 @@ Route::prefix('user')->name('user.')->group(function () {
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::get('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
     Route::get('/offer/{plateNb}', [VehiculeController::class, 'viewOfferDetails'])->name('viewOfferDetails');
+    Route::get('/filterVehicules',[VehiculeController::class,'filterVehicules'])->name('filterVehicules');
   });
   Route::middleware(['auth:web','verified', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');
@@ -145,6 +146,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/editProfile',[UserController::class,'editProfilePost'])->name('editProfilePost');
     Route::post('/checkPassword',[UserController::class,'checkPassword'])->name('checkPassword');
     Route::post('/changeImage',[UserController::class, 'changeImage'])->name('changeImage');
+   
   });
 });
 
