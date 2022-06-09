@@ -278,4 +278,18 @@ class UserController extends Controller
       User::find(Auth::user()->id)->update(['profilePath'=>Auth::user()->username."_profile.png"]);
       return response()->json(['success'=>'success']);
   }
+  public function checkFace($id){
+    if(Booking::find($id)->state!="SIGNED"){
+      return redirect()->route('user.home');
+    }
+    return view('users.faceRecognition',['bookingID'=>$id]);
+  }
+  public function setGoing(Request $request){
+    Booking::find($request->bookingID)->update(['state'=>"ON GOING"]);
+    return response()->json(['Succes'=>'Changed successfully']);
+  }
+  public function setFailed(Request $request){
+    Booking::find($request->bookingID)->update(['state'=>"FAILED","failedSeen"=>false,"failedDate"=>now()]);
+    return response()->json(['Succes'=>'Changed successfully']);
+  }
 }

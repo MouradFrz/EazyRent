@@ -135,7 +135,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/book', [VehiculeController::class, 'book'])->name('book');
-    Route::view('/checkFace', 'users.faceRecognition')->name('checkFace');
+    Route::get('/checkFace/{id}', [UserController::class, 'checkFace'])->name('checkFace');
     Route::get('/history', [UserController::class, 'getHistory'])->name('history');
     Route::get('/booking-details/{id}', [UserController::class, 'getBookingDetails'])->name('bookingDetails');
     Route::get('/download/{id}', [UserController::class, 'downloadPdf'])->name('downloadPdf');
@@ -146,7 +146,8 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/editProfile',[UserController::class,'editProfilePost'])->name('editProfilePost');
     Route::post('/checkPassword',[UserController::class,'checkPassword'])->name('checkPassword');
     Route::post('/changeImage',[UserController::class, 'changeImage'])->name('changeImage');
-   
+    Route::post('/setGoing',[UserController::class,'setGoing'])->name('setGoing');
+    Route::post('/setFailed',[UserController::class,'setFailed'])->name('setFailed');
   });
 });
 
@@ -252,6 +253,7 @@ Route::prefix('secretary')->name('secretary.')->group(function () {
     Route::post('/banUser', [SecretaryController::class, 'banUser'])->name('banUser');
     Route::get('/testroute', [SecretaryController::class, 'test']);
     Route::post('/changeImage',[SecretaryController::class, 'changeImage'])->name('changeImage');
+    Route::post('/setSeen',[SecretaryController::class, 'setSeen'])->name('setSeen');
   });
 });
 //garagists
