@@ -38,18 +38,27 @@ a {
   list-style-type: none;
 }
 
-label {
-  font-weight: 500;
+.form {
+  display: flex;
+  flex-direction: column;
 }
-
-.inputs {
+.form .label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.form .inputs {
   width: 100%;
+  margin-bottom: 0.5rem;
   padding: 0.375rem 1.5rem;
   border-radius: 0.375rem;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   box-shadow: none;
   border: 0.5px solid #ccc;
 }
-.inputs:focus {
+.form .inputs[type=checkbox] {
+  margin-right: 0.25rem;
+}
+.form .inputs:focus {
   border-color: #ddd;
 }
 
@@ -76,7 +85,7 @@ label {
   color: #000;
 }
 .custom-btn:disabled {
-  color: #FFF;
+  color: #fff;
   background-color: rgb(199, 199, 201);
 }
 .custom-btn-dark {
@@ -190,8 +199,8 @@ label {
 }
 
 .table-striped .odd {
-  --bs-table-striped-bg: #FFF;
-  background-color: #FFF !important;
+  --bs-table-striped-bg: #fff;
+  background-color: #fff !important;
 }
 .table-striped .even {
   background-color: rgba(229, 229, 234, 0.4);

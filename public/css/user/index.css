@@ -413,3 +413,19 @@ img {
 .username::before {
   content: "@";
 }
+
+.resset-password .content {
+  width: 450px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+.resset-password h1 {
+  font-weight: 500;
+  color: rgb(88, 86, 214);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.resset-password-form {
+  display: flex;
+  flex-direction: column;
+}
