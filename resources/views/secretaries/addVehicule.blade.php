@@ -1,8 +1,6 @@
 @extends('layouts.workerLayout')
 @section('content')
 
-
-
     <div class="add-vehicule mt-5">
         <div class="container">
           @if(Session::get('message'))
@@ -23,7 +21,6 @@
                   <option value="Motorcycle">Motorcycle</option>
                   <option value="Bus"> Bus or Mini-bus</option>
                   <option value="Truck">Truck</option>
-
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('category')
@@ -40,7 +37,6 @@
                   <option value="Comfort">Comfort</option>
                   <option value="Space">Space</option>
                   <option value="Premium">Premium</option>
-
                 </select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('type')
@@ -76,14 +72,26 @@
 
             </div>
                 <div class="col">
-                  <label for="year" class="form-label">year</label>
+                  <label for="year" class="form-label">Year</label>
                   <input type="number" min="1970" max="2022" step="1" value="2022"name="year" class="form-control" placeholder="year">
 
                 </div>
 
                 <div class="col">
                     <label for="color" class="form-label">Color</label>
-                    <input type="text" name="color" class="form-control" placeholder="Color" value="{{ old('color') }}">
+                    <select class="form-control" name="color" id="">
+                      <option value="">Any</option>
+                      <option value="Green">Green</option>
+                      <option value="Blue">Blue</option>
+                      <option value="Red">Red</option>
+                      <option value="Yellow">Yellow</option>
+                      <option value="Orange">Orange</option>
+                      <option value="White">White</option>
+                      <option value="Purple">Purple</option>
+                      <option value="Black">Black</option>
+                      <option value="Grey">Grey</option>
+                    </select>
+                    
                     <span class="text-danger" style="font-size:0.8rem">
                       @error('color')
                         {{ $message }}
@@ -125,8 +133,8 @@
                 <label for="gearType" class="form-label">gear type</label>
                 <Select name="gearType" id="" class="form-control" >
                   <option value="">Choose a type of gear</option>
-                  <option value="manual">Manual</option>
-                  <option value="automatic">Automatic</option>
+                  <option value="Manual">Manual</option>
+                  <option value="Mutomatic">Automatic</option>
                 </Select>
                 <span class="text-danger" style="font-size:0.8rem">
                   @error('gearType')

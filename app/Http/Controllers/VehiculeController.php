@@ -31,6 +31,7 @@ class VehiculeController extends Controller
         'dropOffDate.required' => 'Please enter a valid range of dates.',
       ]
     );
+  
     $pickUpLat = $request->pickUpLat;
     $pickUpLng = $request->pickUpLng;
 
@@ -38,15 +39,14 @@ class VehiculeController extends Controller
     $vehicules = Vehicule::where('availability', 1)
       ->join('garages', 'vehicules.garageID', '=', 'garages.garageID')
       ->join('pickuplocations', 'garages.brancheID', '=', 'pickuplocations.brancheID')
-      ->where('model','LIKE',($request->model) ? $request->model : '%' )
+      ->where('brand','LIKE',($request->make) ? $request->model : '%' )
       ->whereBetween('address_latitude', [$pickUpLat - .18, $pickUpLat + .18])
       ->whereBetween('address_longitude', [$pickUpLng - .18, $pickUpLng + .18])
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
       ->groupBy('plateNb')
       
-      ->paginate(1)
+      ->paginate(8)
       ->appends(request()->query());
-      // dd($vehicules);
       
     $dropOffDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T', ' ', $request->dropOffDate));
     $pickUpDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T', ' ', $request->pickUpDate));
@@ -58,6 +58,31 @@ class VehiculeController extends Controller
     ]);
 
     return view('users.viewOffers')->with(['vehicules' => $vehicules]);
+  }
+  public function filterVehicules(Request $request){
+    $vehicules = Vehicule::where('availability', 1)
+      ->join('garages', 'vehicules.garageID', '=', 'garages.garageID')
+      ->join('pickuplocations', 'garages.brancheID', '=', 'pickuplocations.brancheID')
+      ->where('brand','LIKE',($request->make) ? $request->make : '%' )
+      ->where('model','LIKE',($request->model) ? $request->model : '%' )
+      ->where('type','LIKE',($request->type) ? $request->type : '%' )
+      ->where('category','LIKE',($request->category) ? $request->category : '%' )
+      ->where('color','LIKE',($request->color) ? $request->color : '%' )
+      ->where('year','LIKE',($request->year) ? $request->year : '%' )
+      ->where('gearType','LIKE',($request->gear) ? $request->gear : '%' )
+      ->where('gearType','LIKE',($request->gear) ? $request->gear : '%' )
+      ->where('pricePerDay','>=',($request->minDay) ? $request->minDay : 0 )
+      ->where('pricePerDay','<=',($request->maxDay) ? $request->maxDay : 9999999999 )
+      ->where('pricePerHour','>=',($request->minHour) ? $request->minHour : 0 )
+      ->where('pricePerHour','<=',($request->maxHour) ? $request->maxHour : 9999999999 )
+      ->whereBetween('address_latitude', [session()->get('pickUpLat') - .18, session()->get('pickUpLat') + .18])
+      ->whereBetween('address_longitude', [session()->get('pickUpLng') - .18, session()->get('pickUpLng') + .18])
+      ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
+      ->groupBy('plateNb')
+      ->paginate(8)
+      ->appends(request()->query());
+      // dd($vehicules);
+      return view('users.viewOffers')->with(['vehicules' => $vehicules]);
   }
   public function viewOfferDetails($plateNb)
   {
