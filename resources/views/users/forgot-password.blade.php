@@ -6,9 +6,12 @@
 <div class="resset-password">
   <div class="content">
     <h1 class="text-center">EazyRent</h1>
-    <h3 class="text-center">resert your passowrd</h3>
+    <h3 class="text-center">password resset</h3>
     @if (Session::get('status'))
-    <p class="text-center">
+    <div class="success-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+    <p class="text-center text-success">
       {{ Session::get('status') }}
     </p>
     <a href="/" class="link"><i class="fa-solid fa-arrow-left"></i> back to home</a>

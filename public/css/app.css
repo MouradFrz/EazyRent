@@ -38,15 +38,21 @@ a {
   list-style-type: none;
 }
 
+.text-success {
+  color: rgb(40, 205, 65);
+}
+
 .form {
   display: flex;
   flex-direction: column;
 }
-.form .label {
+
+.label {
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
-.form .inputs {
+
+.inputs {
   width: 100%;
   margin-bottom: 0.5rem;
   padding: 0.375rem 1.5rem;
@@ -55,10 +61,10 @@ a {
   box-shadow: none;
   border: 0.5px solid #ccc;
 }
-.form .inputs[type=checkbox] {
+.inputs[type=checkbox] {
   margin-right: 0.25rem;
 }
-.form .inputs:focus {
+.inputs:focus {
   border-color: #ddd;
 }
 

@@ -33,30 +33,32 @@ a {
   text-decoration: none;
   list-style-type: none;
 }
+.text-success {
+  color: $green;
+}
 .form {
   display: flex;
   flex-direction: column;
-  .label {
-    font-weight: 500;
-    margin-bottom: 0.25rem;
+}
+.label {
+  font-weight: 500;
+  margin-bottom: 0.25rem;
+}
+.inputs {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  padding: 0.375rem 1.5rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
+  box-shadow: none;
+  border: 0.5px solid #ccc;
+  &[type="checkbox"] {
+    margin-right: 0.25rem;
   }
-  .inputs {
-    width: 100%;
-    margin-bottom: 0.5rem;
-    padding: 0.375rem 1.5rem;
-    border-radius: 0.375rem;
-    box-shadow: 0 0 10px 2px rgb(0 0 0 / 10%);
-    box-shadow: none;
-    border: 0.5px solid #ccc;
-    &[type="checkbox"] {
-      margin-right: 0.25rem;
-    }
-    &:focus {
-      border-color: #ddd;
-    }
+  &:focus {
+    border-color: #ddd;
   }
 }
-
 .danger {
   color: $red;
   &:hover,

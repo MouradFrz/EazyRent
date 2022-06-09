@@ -26,7 +26,7 @@ class UserController extends Controller
         'lastName' => 'required|alpha|max:25',
         'firstName' => 'required|alpha|max:25',
         'birthDate' => 'required|date',
-        'address' => 'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
+        'add  ' => 'required|regex:/(^[a-zA-Z0-9 ]+$)+/',
         'email' => 'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
         ($request->phone == '') ?: 'phone' => ['digits:10', 'regex:/(05|06|07)[0-9]{8}/'],
         'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',

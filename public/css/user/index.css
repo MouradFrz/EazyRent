@@ -419,6 +419,14 @@ img {
   margin: 0 auto;
   padding: 2rem 1rem;
 }
+.resset-password .success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(40, 205, 65, 0.6);
+  font-size: 5rem;
+  margin: 1rem;
+}
 .resset-password h1 {
   font-weight: 500;
   color: rgb(88, 86, 214);
