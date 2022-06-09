@@ -24,10 +24,11 @@ class VehiculeController extends Controller
         'dropOffDate' => 'required|date|after:pickUpDate',
       ],
       [
-        'pickUpLng.required' => 'Please choose one of the suggested options',
+        'pickUpLng.required' => 'Please choose one of the suggested options.',
         'pickUpLat.required' => '',
-        'pickUpDate.after' => 'Date invalid',
-        'dropOffDate.after' => 'Date invalid',
+        'pickUpDate.after' => 'Date invalid.',
+        'dropOffDate.after' => 'Invalide dates.',
+        'dropOffDate.required' => 'Please enter a valid range of dates.',
       ]
     );
     $pickUpLat = $request->pickUpLat;

@@ -4,13 +4,22 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
 <link rel="stylesheet"
   href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <style>
+    @media screen and (min-width: 640px){
+.mapboxgl-ctrl-geocoder {
+  max-width:none !important
+;  }
+    }
+  </style>
 @endsection
 @section('content')
 <div class="hero">
   <div class="container hero_content">
     <div class="search-panel">
       <h2>search a vehicle now!</h2>
-      <form action="{{route('user.viewOffers')}}" method="GET">
+      <form action="{{route('user.viewOffers')}}" method="POST">
+        @csrf
         <div class="row">
           <div class="col">
             <label for="">Pick-up location :</label>
@@ -21,16 +30,22 @@
               <input type="text" id="pickUpLat" name="pickUpLat" />
             </div>
           </div>
-          <div class="col">
+          <div class="col"  style="display: none">
             <label for="">Pick up at :</label>
-            <input type="datetime-local" class="inputs" name="pickUpDate" min="{{now()}}" />
+            <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
             @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
           </div>
-          <div class="col">
+          <div class="col"  style="display: none">
             <label for="">Drop off at :</label>
-            <input type="datetime-local" class="inputs" name="dropOffDate" min="{{now()}}" />
+            <input type="datetime-local" class="inputs" style="display: none" name="dropOffDate" id="dropOffDate" min="{{now()}}"  />
+            
+          </div>
+          <div class="col">
+            <label for="">Select a date :</label>
+            <input type="date" name="" class='inputs' id="mydate" placeholder="Select date" onchange="fillFields()">
             @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
           </div>
+         
         </div>
         <div class="row">
           <div class="col-12 col-md-4">
@@ -201,6 +216,36 @@
     }
   }
 </script>
+<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script>
+  flatpickr('#mydate', {
+    enableTime:true,
+    minDate: new Date().fp_incr(1),
+    maxDate: new Date().fp_incr(15) ,
+    mode: "range",
+    theme:"airbnb",
+    
+  });
+
+  function fillFields(){
+    const pickUpDate = document.querySelector('#pickUpDate')
+    const dropOffDate = document.querySelector('#dropOffDate')
+    const myDate = document.querySelector('#mydate')
+    const array = myDate.value.split(" to ")
+    pickUpDate.value=""
+    dropOffDate.value=""
+    if(array.length==2){
+    pickUpDate.value=array[0].replace(' ','T')
+    dropOffDate.value=array[1].replace(' ','T')
+
+    }
+    
+   
+    
+    
+  }
+</script>
 <script>
   const ACCES_TOKEN = 'pk.eyJ1IjoiaGFjZW5iYXJiIiwiYSI6ImNsM2JoajQyejA3Z3YzaXFxbWZrZnJjM2gifQ.qAJQWOvoq02yHZ-DlED--Q';
   mapboxgl.accessToken = ACCES_TOKEN;
@@ -259,7 +304,7 @@
   //   pickUpLng.innerText = '';
   //   pickUpLat.innerText = '';
   // });
-  document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
+  // document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
 @endsection
