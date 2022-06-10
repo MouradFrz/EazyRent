@@ -88,9 +88,13 @@ class GaragistController extends Controller
   public function home()
   {
     $hasGarage = Garage::join('garagemanagers', 'garageManagerUsername', '=', 'garagemanagers.username')->where('username', Auth::user()->username)->get();
-    // dd($hasGarage);
-    return view('garagists.garagistHome', ['hasGarage' => $hasGarage]);
-  }
+    if(count($hasGarage)==0){
+      return view('garagists.garagistHome');
+    }else{
+      return redirect()->route('garagist.getReservations');
+    }
+    }
+   
 
   public function showVehicles()
   {

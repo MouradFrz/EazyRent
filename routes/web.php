@@ -208,7 +208,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/check', [AdminController::class, 'check'])->name('check');
   });
   Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function () {
-    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::get('/dashboard',  function(){return redirect()->route('admin.joiningRequests');})->name('dashboard');
     Route::view('/joining-requests', 'admin.joiningRequests')->name('joiningRequests');
     Route::get('/joining-request', [AgencyController::class, 'getJoiningRequests'])->name('joiningRequests');
     Route::post('/accept-agency/{id}', [AgencyController::class, 'acceptAgency'])->name('acceptAgency');
@@ -232,7 +232,7 @@ Route::prefix('secretary')->name('secretary.')->group(function () {
     Route::post('/check', [SecretaryController::class, 'check'])->name('check');
   });
   Route::middleware(['auth:secretary', 'PreventBackHistory'])->group(function () {
-    Route::view('/home', 'secretaries.secretaryHome')->name('home');
+    Route::get('/home', function(){return redirect()->route('secretary.getReservationRequests');})->name('home');
     Route::get('/vehicles', [SecretaryController::class, 'showVehicules'])->name('showVehicules');
     Route::get('/editProfile', [SecretaryController::class, 'showProfile'])->name('showProfile');
     Route::post('/editProfile', [SecretaryController::class, 'editProfile'])->name('editProfile');

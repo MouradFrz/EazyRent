@@ -78,10 +78,10 @@
             </div>
             @if (Auth::guard('admin')->check())
                 <ul class="nav flex-column align-items-center justify-content-center">
-                    <li class="nav-item active">
+                    {{-- <li class="nav-item active">
                         <a href="{{ route('admin.dashboard') }}" class="nav-link "><i
                                 class="fa-solid fa-gauge-high"></i>Dashboard</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="{{ route('admin.joiningRequests') }}" class="nav-link "><i
                                 class="fa-regular fa-rectangle-list"></i>Joining requests</a>
