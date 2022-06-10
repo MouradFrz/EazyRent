@@ -13,9 +13,43 @@
 @endsection
 
 @section('content')
+<div class="modal fade" id="complaintModal" tabindex="-1" aria-labelledby="complaintLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Sending a complaint</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>This complaint will be sent to the agency's owner</p>
+          <form action="{{ route('user.sendComplaint') }}" method="POST" id="complaint">
+            @csrf
+            <input type="text" id="agencyID" style="display: none" name="agencyID">
+            <input type="text" id="bookingID" style="display: none" name="bookingID">
+            <select name="type" id="">
+                <option value="Bad Behavior">Bad behavior</option>
+                <option value="Missed appointement">Missed appointement</option>
+                <option value="Bad vehicule state">Bad vehicule state</option>
+            </select>
+            <label for="">Message:</label>
+            <textarea name="message" style="resize: none;height:300px" class="inputs"></textarea>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" onclick="document.querySelector('#complaint').submit()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <div>
         <div class="container content">
             <h2>My bookings</h2>
+            @if (Session::get("message"))
+            <div class="alert alert-success w-100 " role="alert">
+              {{ Session::get('message') }}
+          </div>
+            @endif
             @if (count($bookings) != 0)
                 <table class="table table-striped table-hover ">
                     <thead>
@@ -48,7 +82,7 @@
                                 class="bg-secondary p-1 rounded  fw-bold" style="display: inline" @endif>
                                         {{ $booking->state }}</p>
                                 </td>
-                                <td>{{ $booking->created_at }}</td>
+                                <td>{{ $booking->created_at }}  </td>
                                 <td>
                                     @if ($booking->state == 'DECLINED')
                                         <a href="{{ route('user.bookingDetails', $booking->bookingID) }}"
@@ -63,8 +97,13 @@
                                         <a href="{{ route('user.bookingDetails', $booking->bookingID) }}"
                                             class="btn btn-danger btn-sm">Vehicule needs to be returned</a>
                                     @elseif ($booking->state == 'FINISHED')
-                                        <a href="" class="btn btn-primary btn-sm">Vehicule reveiw</a>
-                                        <a href="" class="btn btn-primary btn-sm">Agency reveiw</a>
+                                        <button href="" class="btn btn-primary btn-sm">Vehicule reveiw</button>
+                                        <button href="" class="btn btn-primary btn-sm">Agency reveiw</button>
+                                        @if(!isset($booking->complaintID))
+                                        <button class="btn btn-primary btn-sm complaintBtns" data-bookingid="{{ $booking->bookingID }}" data-agencyid="{{ $booking->agencyID }}" data-bs-toggle="modal" data-bs-target="#complaintModal">Send complaint</button>
+                                        @else
+                                        <button class="btn btn-secondary btn-sm" disabled>Complaint Sent</button>
+                                        @endif
                                         <a href="{{ route('user.bookingDetails', $booking->bookingID) }}"
                                             class="btn btn-primary btn-sm">View details</a>
                                     @else
@@ -87,4 +126,16 @@
 @endsection
 
 @section('script')
+<script>
+    const agencyID = document.querySelector('#agencyID')
+    const bookingID = document.querySelector('#bookingID')
+    const complaintBtns = document.querySelectorAll('.complaintBtns')
+    complaintBtns.forEach((e)=>{
+        e.addEventListener('click',()=>{
+            agencyID.value =e.dataset.agencyid
+            bookingID.value=e.dataset.bookingid
+        })
+    })
+
+</script>
 @endsection

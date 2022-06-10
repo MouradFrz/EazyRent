@@ -148,6 +148,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/changeImage',[UserController::class, 'changeImage'])->name('changeImage');
     Route::post('/setGoing',[UserController::class,'setGoing'])->name('setGoing');
     Route::post('/setFailed',[UserController::class,'setFailed'])->name('setFailed');
+    Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
   });
 });
 

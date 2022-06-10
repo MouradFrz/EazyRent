@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\AdminBan;
 use App\Models\Booking;
+use App\Models\Complaint;
 use App\Models\Notification;
+use App\Models\Owner;
 use Illuminate\Http\Request;
 use App\Models\User;
 
@@ -137,7 +139,7 @@ class UserController extends Controller
   }
 
   public function getHistory(){
-    $bookings = Booking::where('clientUsername',Auth::user()->username)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->get();
+    $bookings = Booking::where('clientUsername',Auth::user()->username)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.brancheID','=','branches.brancheID')->get();
     return view('users.history',[
       'bookings'=>$bookings,
     ]);
@@ -291,5 +293,17 @@ class UserController extends Controller
   public function setFailed(Request $request){
     Booking::find($request->bookingID)->update(['state'=>"FAILED","failedSeen"=>false,"failedDate"=>now()]);
     return response()->json(['Succes'=>'Changed successfully']);
+  }
+  public function sendComplaint(Request $request){
+    $complaint = new Complaint();
+    $username = Owner::where('agencyID',$request->agencyID)->first()->username;
+    $complaint->problemType = $request->type;
+    $complaint->message = $request->message;
+    $complaint->sender = Auth::user()->username;
+    $complaint->recepient=$username;
+    $complaint->save();
+    Booking::find($request->bookingID)->update(['complaintID'=>$complaint->id]);
+
+    return redirect()->route('user.history')->with('message','Your complaint has been send');
   }
 }
