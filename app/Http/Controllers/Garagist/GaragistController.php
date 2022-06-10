@@ -154,4 +154,8 @@ class GaragistController extends Controller
     Garagist::where('username', Auth::user()->username)->first()->update(['profilePath' => Auth::user()->username . "_profile.png"]);
     return response()->json(['success' => 'success']);
   }
+  public function validateReturn(Request $request){
+    Booking::find($request->bookingID)->update(['state'=>'FINISHED']);
+    return redirect()->route('garagist.getReservations')->with('message','Vehicule return successfully validated!');
+  }
 }

@@ -274,5 +274,6 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
     Route::post('/set-condition/{id}', [GaragistController::class, 'setCondition'])->name('setCondition');
     Route::get('/reservation', [GaragistController::class, 'getReservations'])->name('getReservations');
     Route::post('/changeImage',[GaragistController::class, 'changeImage'])->name('changeImage');
+    Route::post('/validateReturn',[GaragistController::class, 'validateReturn'])->name('validateReturn');
   });
 });
