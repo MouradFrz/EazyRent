@@ -32,7 +32,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#howToRent">how to rent</a>
+            <a class="nav-link" href="#howToRent">How to Rent</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#whoUs">Who are we</a>
@@ -41,10 +41,10 @@
             <a class="nav-link" href="#testimonials">Testimonials</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#ourPartners">Our partners</a>
+            <a class="nav-link" href="#ourPartners">Our Partners</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contactUs">Contact us</a>
+            <a class="nav-link" href="#contactUs">Contact Us</a>
           </li>
         </ul>
       </div>

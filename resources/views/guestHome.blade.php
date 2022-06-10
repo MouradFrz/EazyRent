@@ -248,15 +248,14 @@
     }
   }
   let progressSteps = document.querySelectorAll('#progress-num>.step');
-  let stepContent = document.querySelectorAll('.progress_content>.step_content');
+  let stepsContent = document.querySelectorAll('.progress_content>.step_content');
   progressSteps.forEach(step => {
     step.addEventListener('click', () => {
       progressSteps.forEach(el => el.classList.remove('active'));
-      stepContent.forEach(el => el.classList.remove('active'))
+      stepsContent.forEach(el => el.classList.remove('active'))
       step.classList.add('active');
-      stepContent[progressSteps[step.value].value].classList.add('active');
-      // console.log(stepContent[progressSteps[step.value].value])
-      })
+      stepsContent[progressSteps[step.value].value].classList.add('active');
+    })
   });
 </script>
 <script>

@@ -8,8 +8,6 @@
   <title>Sign up</title>
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-  {{--
-  <link rel="stylesheet" href="{{ asset('css/register.css') }}"> --}}
   <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" rel="stylesheet" defer>
 </head>
@@ -221,7 +219,7 @@
             ]).then(start)
   function start(){
     const submitButton = document.querySelector('#submit-button');
-    
+
     submitButton.disabled = true
 
           imageUpload.addEventListener('change',async ()=>{
@@ -240,8 +238,8 @@
            const verification = document.querySelector('#verification');
            loading.style.display='none';
             document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
-            
-          
+
+
           if(detections.length == 1){
               verification.textContent = "Your image is valid"
               verification.style.color="green"
@@ -280,7 +278,7 @@
 }
 document.querySelector('#file-field-face').onchange = evt => {
 
-        
+
 }
 
 
