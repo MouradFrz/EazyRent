@@ -106,12 +106,9 @@
         <p class="label">Identity card number</p>
         <p class="value">{{$booking -> idCard}}</p>
         <p class="label">Identity card image:</p>
-        {{-- <div class="img-zoom-container"> --}}
           <img id="IdCardImage" class="id-card-image zoom"
             src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}"  data-magnify-src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}">
-   
-          {{-- <div id="hoverResult" class="img-zoom-result d-none"></div>
-        </div> --}}
+
       </div>
       <div class="col">
         <h3>contact info</h3>
@@ -176,15 +173,15 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="declineBookingLabel">decline booking request</h5>
+              <h5 class="modal-title" id="declineBookingLabel">Decline booking request</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('secretary.declineBooking', $booking->bookingID )}}" method="post">
               @csrf
               <div class="modal-body">
-                <label for="decline-reason" class="form-label">decline reason</label>
+                <label for="decline-reason" class="form-label">Decline reason</label>
                 <input type="text" name="declineReason" class="form-control">
-                <div class="form-text">this step cannot be reversed</div>
+                <div class="form-text">This step cannot be reversed</div>
                 <span class="text-danger">
                   @error('declineReason')
                   {{ $message }}
@@ -192,7 +189,7 @@
                 </span>
               </div>
               <div class="modal-footer">
-                <button type="submit" class="custom-btn custom-btn-danger">decline booking</button>
+                <button type="submit" class="custom-btn custom-btn-danger">Decline booking</button>
               </div>
             </form>
           </div>
