@@ -148,6 +148,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/changeImage',[UserController::class, 'changeImage'])->name('changeImage');
     Route::post('/setGoing',[UserController::class,'setGoing'])->name('setGoing');
     Route::post('/setFailed',[UserController::class,'setFailed'])->name('setFailed');
+    Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
   });
 });
 
@@ -207,7 +208,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/check', [AdminController::class, 'check'])->name('check');
   });
   Route::middleware(['auth:admin', 'PreventBackHistory'])->group(function () {
-    Route::view('/dashboard', 'admin.dashboard')->name('dashboard');
+    Route::get('/dashboard',  function(){return redirect()->route('admin.joiningRequests');})->name('dashboard');
     Route::view('/joining-requests', 'admin.joiningRequests')->name('joiningRequests');
     Route::get('/joining-request', [AgencyController::class, 'getJoiningRequests'])->name('joiningRequests');
     Route::post('/accept-agency/{id}', [AgencyController::class, 'acceptAgency'])->name('acceptAgency');
@@ -231,7 +232,7 @@ Route::prefix('secretary')->name('secretary.')->group(function () {
     Route::post('/check', [SecretaryController::class, 'check'])->name('check');
   });
   Route::middleware(['auth:secretary', 'PreventBackHistory'])->group(function () {
-    Route::view('/home', 'secretaries.secretaryHome')->name('home');
+    Route::get('/home', function(){return redirect()->route('secretary.getReservationRequests');})->name('home');
     Route::get('/vehicles', [SecretaryController::class, 'showVehicules'])->name('showVehicules');
     Route::get('/editProfile', [SecretaryController::class, 'showProfile'])->name('showProfile');
     Route::post('/editProfile', [SecretaryController::class, 'editProfile'])->name('editProfile');
@@ -274,5 +275,6 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
     Route::post('/set-condition/{id}', [GaragistController::class, 'setCondition'])->name('setCondition');
     Route::get('/reservation', [GaragistController::class, 'getReservations'])->name('getReservations');
     Route::post('/changeImage',[GaragistController::class, 'changeImage'])->name('changeImage');
+    Route::post('/validateReturn',[GaragistController::class, 'validateReturn'])->name('validateReturn');
   });
 });

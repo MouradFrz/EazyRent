@@ -88,9 +88,13 @@ class GaragistController extends Controller
   public function home()
   {
     $hasGarage = Garage::join('garagemanagers', 'garageManagerUsername', '=', 'garagemanagers.username')->where('username', Auth::user()->username)->get();
-    // dd($hasGarage);
-    return view('garagists.garagistHome', ['hasGarage' => $hasGarage]);
-  }
+    if(count($hasGarage)==0){
+      return view('garagists.garagistHome');
+    }else{
+      return redirect()->route('garagist.getReservations');
+    }
+    }
+   
 
   public function showVehicles()
   {
@@ -153,5 +157,9 @@ class GaragistController extends Controller
     file_put_contents('images/garagist/profile/' . Auth::user()->username . "_profile.png", $image_base64);
     Garagist::where('username', Auth::user()->username)->first()->update(['profilePath' => Auth::user()->username . "_profile.png"]);
     return response()->json(['success' => 'success']);
+  }
+  public function validateReturn(Request $request){
+    Booking::find($request->bookingID)->update(['state'=>'FINISHED']);
+    return redirect()->route('garagist.getReservations')->with('message','Vehicule return successfully validated!');
   }
 }
