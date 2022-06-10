@@ -20,8 +20,8 @@
       <h2>search a vehicle now!</h2>
       <form action="{{route('user.viewOffers')}}" method="GET">
         <div class="row">
-          <div class="col">
-            <label for="">Pick-up location :</label>
+          <div class="col-12 col-md-6">
+            <label for="" class="label">Pick-up location :</label>
             <div id="pickUpLocation"></div>
             @error('pickUpLng')<span class="danger">{{$message}}</span>@enderror
             <div class="d-none">
@@ -29,22 +29,16 @@
               <input type="text" id="pickUpLat" name="pickUpLat" />
             </div>
           </div>
-          <div class="col"  style="display: none">
-            <label for="">Pick up at :</label>
-            <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
-            @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
-          </div>
-          <div class="col"  style="display: none">
-            <label for="">Drop off at :</label>
-            <input type="datetime-local" class="inputs" style="display: none" name="dropOffDate" id="dropOffDate" min="{{now()}}"  />
-
-          </div>
-          <div class="col">
-            <label for="">Select a date :</label>
+          <div class="col-12 col-md-6">
+            <label for="date" class="label">Select a date : </label>
             <input type="date" name="" class='inputs' id="mydate" placeholder="Select date" onchange="fillFields()">
             @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
           </div>
-
+          <div class="col d-none">
+            <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
+            <input type="datetime-local" class="inputs"name="dropOffDate" id="dropOffDate" min="{{now()}}"  />
+            @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
+          </div>
         </div>
         <div class="row">
           <div class="col-12 col-md-4">
@@ -67,44 +61,43 @@
   </div>
   </form>
 </div>
-<div id="howToBook"class="booking-progress">
+<div id="howToRent"class="booking-progress">
   <div class="white-space"></div>
   <div class="container">
     <h2 class="section-header">how to rent a vehicle</h2>
     <div id="progress">
-      <div id="progress-bar"></div>
+      {{-- <div id="progress-bar"></div> --}}
       <ul id="progress-num">
-        <li class="step active">1</li>
-        <li class="step">2</li>
-        <li class="step">3</li>
-        <li class="step">4</li>
-        <li class="step">5</li>
+        <li class="step active" value="0">1</li>
+        <li class="step" value="1">2</li>
+        <li class="step" value="2">3</li>
+        <li class="step" value="3">4</li>
+        <li class="step" value="4">5</li>
       </ul>
     </div>
-    <div class="content">
-      <div>
+    <div  class="progress_content">
+      <div class="step_content active">
         <h4>search for a vehicle</h4>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
-      <div>
+      <div class="step_content">
         <h4>choose an offer</h4>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
-      <div>
+      <div class="step_content">
         <h4>book a vehicule</h4>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
-      <div>
+      <div class="step_content">
         <h4>confirm you identity</h4>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
-      <div>
+      <div class="step_content">
         <h4>drive your car!</h4>
         <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
     </div>
-  </div>
-  <div class="white-space"></div>
+  </div>>
 </div>
 </div>
 <div id="whoUs" class="who-us">
@@ -236,7 +229,7 @@
         <i class="fa-brands fa-adversal"></i>
       </div>
     </div>
-    <p class="cta">you have a renting cars agency ? <a class="link link-underline">Join us &#62; </a></p>
+    <p class="cta">you have a renting cars agency ? <a class="link link-underline" href="{{route('owner.register')}}">Join us &#62; </a></p>
   </div>
   <div class="white-space"></div>
 </div>
@@ -254,6 +247,17 @@
       driverAge.style.display = "none";
     }
   }
+  let progressSteps = document.querySelectorAll('#progress-num>.step');
+  let stepContent = document.querySelectorAll('.progress_content>.step_content');
+  progressSteps.forEach(step => {
+    step.addEventListener('click', () => {
+      progressSteps.forEach(el => el.classList.remove('active'));
+      stepContent.forEach(el => el.classList.remove('active'))
+      step.classList.add('active');
+      stepContent[progressSteps[step.value].value].classList.add('active');
+      // console.log(stepContent[progressSteps[step.value].value])
+      })
+  });
 </script>
 <script>
   function fillFields(){
@@ -303,6 +307,8 @@
     pickUpLng.innerText = '';
     pickUpLat.innerText = '';
   });
+  let mapboxInput = document.querySelector('.mapboxgl-ctrl-geocoder--input');
+  mapboxInput.classList.add('inputs');
   // ----------------------------------------------
   // const dropOffGeocoder = new MapboxGeocoder({
   //   accessToken: mapboxgl.accessToken,

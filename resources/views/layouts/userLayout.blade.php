@@ -32,6 +32,9 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="#howToRent">how to rent</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="#whoUs">Who are we</a>
           </li>
           <li class="nav-item">
