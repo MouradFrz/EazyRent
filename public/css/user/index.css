@@ -524,3 +524,31 @@ img {
   display: flex;
   flex-direction: column;
 }
+
+.booking {
+  min-height: 60vh;
+}
+.booking .content {
+  width: 450px;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid rgb(199, 199, 201);
+  border-radius: 2rem;
+  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+}
+.booking .response-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+.booking .response-icon-requested {
+  color: rgb(199, 199, 201);
+}
+.booking .response-icon-success {
+  color: rgba(40, 205, 65, 0.8);
+}
+.booking .response-icon-fail {
+  color: rgba(255, 59, 48, 0.8);
+}

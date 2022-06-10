@@ -48,6 +48,7 @@ a {
 }
 
 .label {
+  text-transform: capitalize;
   font-weight: 500;
   margin-bottom: 0.25rem;
 }
