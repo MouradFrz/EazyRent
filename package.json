@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "face-api.js": "^0.20.0",
+        "flatpickr": "^4.6.13",
         "jquery": "^3.6.0"
     }
 }

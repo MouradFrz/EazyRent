@@ -255,18 +255,7 @@
     }
   }
 </script>
-<link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/dark.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <script>
-  flatpickr('#mydate', {
-    enableTime:true,
-    minDate: new Date().fp_incr(1),
-    maxDate: new Date().fp_incr(15) ,
-    mode: "range",
-    theme:"airbnb",
-
-  });
-
   function fillFields(){
     const pickUpDate = document.querySelector('#pickUpDate')
     const dropOffDate = document.querySelector('#dropOffDate')
@@ -275,14 +264,9 @@
     pickUpDate.value=""
     dropOffDate.value=""
     if(array.length==2){
-    pickUpDate.value=array[0].replace(' ','T')
-    dropOffDate.value=array[1].replace(' ','T')
-
+      pickUpDate.value=array[0].replace(' ','T')
+      dropOffDate.value=array[1].replace(' ','T')
     }
-
-
-
-
   }
 </script>
 <script>
