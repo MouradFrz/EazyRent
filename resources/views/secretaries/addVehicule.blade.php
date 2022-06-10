@@ -268,7 +268,7 @@
   {
     "id": 0,
     "brand": "Dacia",
-    "models": ["Logan", "Dandero", "Fandero Stepway", "Duster", "Lodgy"]
+    "models": ["Logan", "Sandero", "Stepway", "Duster", "Lodgy"]
   },
   {
     "id": 1,
@@ -294,22 +294,26 @@
     "models": [
       "i10",
       "i20",
+      "i30",
+      "i40",
+      "i45",
       "Elantra",
       "Creta",
       "Tucson",
       "Santa fe",
-      "i 40 crdi bva"
+      "i 40 crdi bva",
+      "Accent",
     ]
   },
   {
     "id": 4,
     "brand": "Seat",
-    "models": ["Ibiza", "Leon", "Arona", "Ateca"]
+    "models": ["Ibiza", "Leon", "Arona", "Ateca","Toledo"]
   },
   {
     "id": 5,
     "brand": "Skoda",
-    "models": ["Fabia", "Rapid", "Octavia"]
+    "models": ["Fabia", "Rapid", "Octavia","Scala","Superb","Yeti"]
   },
   {
     "id": 6,
@@ -330,7 +334,7 @@
   {
     "id": 7,
     "brand": "Peugeot",
-    "models": ["207", "207+", "208", "308", "Expert", "3008"]
+    "models": ["107","206","207", "207+", "208","306","307","308","406","407","Expert", "3008","Boxer","406"]
   },
   {
     "id": 8,
@@ -345,22 +349,67 @@
   {
     "id": 10,
     "brand": "Audi",
-    "models": ["a6"]
+    "models": ["a6","A1","A2","A3","A4","A5","A6","A7","A8"]
   },
   {
     "id": 11,
     "brand": "Mercedes-Benz",
-    "models": ["Classe v", "Classe a"]
+    "models": ["Classe v", "Classe A","Classe G","Marco Polo","Classe M","Classe S","Viano"]
   },
   {
     "id": 12,
     "brand": "Porshe",
-    "models": ["Classe v", "Classe a"]
+    "models": ["Classe A", "Classe A"]
   },
   {
     "id": 13,
     "brand": "Bmw",
     "models": ["Serie 02", "Serie 03", "x2 xdrive20d"]
+  },
+  {
+    "id": 14,
+    "brand": "Cherry",
+    "models": ["QQ","M11","Karry","J1"]
+  },
+  {
+    "id": 15,
+    "brand": "Chevrolet",
+    "models": ["Aveo","Apache","Beat","Beretta","Camaro","Cruze","El Camino","Swift","Master"]
+  },
+  {
+    "id": 16,
+    "brand": "Citroen",
+    "models": ["Berlingo","C1","C2","C3","Camaro","Cruze","El Camino","Swift","Master"]
+  },
+  {
+    "id": 17,
+    "brand": "Ford",
+    "models": ["Escape","Fiesta","Fiesta ST","Focus","Focus ST ","Focus RS","GT","Mustang"]
+  },
+  {
+    "id": 18,
+    "brand": "Jeep",
+    "models": ["Commando","Compass","Liberty","Gladiator","Patriot","Renegade"]
+  },
+  {
+    "id": 19,
+    "brand": "Land Rover",
+    "models": ["Range Rover","Evoque","Sport","Freelander","Series"]
+  },
+  {
+    "id": 20,
+    "brand": "Maruti",
+    "models": ["Alto","1000","800"]
+  },
+  {
+    "id": 21,
+    "brand": "Mazda",
+    "models": ["R100","1000","1300","R360"]
+  },
+  {
+    "id": 22,
+    "brand": "Nissan",
+    "models": ["Micra","X Trail","Navara","Sunny","NT400"]
   }
 ]
 
