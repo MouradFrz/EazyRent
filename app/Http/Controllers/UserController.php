@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminBan;
+use App\Models\Agency;
 use App\Models\Booking;
+use App\Models\Branche;
 use App\Models\Complaint;
 use App\Models\Notification;
 use App\Models\Owner;
+use App\Models\Secretary;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Vehicule;
@@ -321,15 +324,32 @@ class UserController extends Controller
     }
     $booking->vehiculeRating = $request->rating;
     $booking->vehiculeComment = $request->comment;
+    $booking->commentDate=now();
     $booking->save();
     $count = Booking::where('vehiculePlateNB',$booking->vehiculePlateNB)->whereNotNull('vehiculeRating')->count();
 
    
     $vehicule->rating = ($vehicule->rating + $request->rating )/$count;
     $vehicule->save();
-    
-    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
 
+    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
+  }
+  public function rateAgency(Request $request){
+    $request->validate([
+      'rating'=>'required|between:0,5'
+    ]);
+    
+    $booking = Booking::find($request->bookingID);
+    $agencyID = Agency::join('branches','agencies.agencyID','=','branches.agencyID')->join('secretaries','branches.brancheID','=','secretaries.brancheID')->first()->agencyID;
+    
+    $agency = Agency::find($agencyID);
+
+    $booking->clientRatesSecretary = $request->rating;
+    $booking->save();
+    $count = Booking::whereIn('secretaryUsername',Secretary::whereIn('brancheID',Branche::where('agencyID',$agencyID)->select(['brancheID'])->get()->toArray())->select(['username'])->get()->toArray())->whereNotNull('clientRatesSecretary')->count();
+    $agency->rating = ($agency->rating + $request->rating) / $count;
+    $agency->save();
+    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
   }
 
 }

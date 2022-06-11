@@ -150,6 +150,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/setFailed',[UserController::class,'setFailed'])->name('setFailed');
     Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
     Route::post('/rateVehicle',[UserController::class,'rateVehicle'])->name('rateVehicle');
+    Route::post('/rateAgency',[UserController::class,'rateAgency'])->name('rateAgency');
   });
 });
 

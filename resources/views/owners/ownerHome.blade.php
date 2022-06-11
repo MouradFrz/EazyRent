@@ -117,7 +117,7 @@
               <p>{{ $booking->vehiculeComment }}.</p>
             </div>
             <div class="rating">
-              <strong>rating : </strong>
+              <strong>Rating : </strong>
               @for($c=1;$c<=5;$c++) @if($booking->vehiculeRating >= $c)
                 <i class="fa-solid fa-star" style="color:darkorange;font-size:0.8rem;"></i>
                 @else
@@ -127,7 +127,7 @@
                 <span>{{$booking->vehiculeRating}}</span>
             </div>
             <div class="date">
-              <strong>booking date : </strong>
+              <strong>Booking date : </strong>
               <span>{{ $booking->commentDate }}</span>
             </div>
           </div>
