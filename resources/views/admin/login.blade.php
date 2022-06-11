@@ -32,7 +32,7 @@
         </div>
         @endif
         <div class="d-flex justify-content-center mt-2 mb-4">
-          <button type="submit" class="custom-btn custom-btn-dark">Sign in</button>
+          <button type="submit" class="custom-btn custom-btn-dark">Log in</button>
         </div>
       </form>
       <hr>

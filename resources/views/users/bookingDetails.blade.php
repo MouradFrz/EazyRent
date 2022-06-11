@@ -108,7 +108,7 @@
         <div class="response-icon response-icon-fail">
           <i class="fa-solid fa-circle-check"></i>
         </div>
-        <strong class="d-block  text-center mb-4 danger">This booking has been refused by the agency</strong>
+        <strong class="d-block text-center mb-4 danger">This booking has been refused by the agency</strong>
         <h4>decline reason :</h4>
         <p class="mb-4">
           {{ $booking->declineReason }}
@@ -118,7 +118,7 @@
     </div>
     <div class="white-space"></div>
     @else
-    <h1>Contract</h1>
+    <h1>bookin contract</h1>
     <div class="d-flex justify-content-center">
       <canvas id="the-canvas" style="border: 1px solid #CCC; max-width:100%"></canvas>
     </div>

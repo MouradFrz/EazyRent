@@ -97,7 +97,7 @@
         <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
     </div>
-  </div>>
+  </div>
 </div>
 </div>
 <div id="whoUs" class="who-us">
@@ -229,7 +229,9 @@
         <i class="fa-brands fa-adversal"></i>
       </div>
     </div>
+    @guest
     <p class="cta">you have a renting cars agency ? <a class="link link-underline" href="{{route('owner.register')}}">Join us &#62; </a></p>
+    @endguest
   </div>
   <div class="white-space"></div>
 </div>
