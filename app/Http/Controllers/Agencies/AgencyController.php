@@ -73,6 +73,7 @@ class AgencyController extends Controller
   public function getJoiningRequests()
   {
     $joiningRequests = AgencyRequest::where('state', 'ON GOING')->latest()->paginate(25);
+    // dd($joiningRequests);
     return view('admin.joiningRequests', ['joiningRequests' => $joiningRequests]);
   }
   public function getAgencies()

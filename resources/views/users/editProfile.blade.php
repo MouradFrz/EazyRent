@@ -90,6 +90,10 @@
                 <p class="text-center">4.5/5</p>
               </div>
             </div>
+            @if (is_null(Auth::user()->faceIdPath))
+              <a href="{{ route('user.activateAccount') }}" class="custom-btn custom-btn-dark">Activate your account</a>
+            @endif
+            
           </div>
         </div>
       </div>

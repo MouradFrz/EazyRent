@@ -105,7 +105,9 @@ class VehiculeController extends Controller
   }
   public function book(Request $request)
   {
-
+    if(is_null(Auth::user()->faceIdPath)){
+      return redirect()->route('user.activateAccount');
+    }
     $request->validate([
       'pickUpLocation' => 'required',
       'dropOffLocation' => 'required',
