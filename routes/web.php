@@ -149,6 +149,8 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/setGoing',[UserController::class,'setGoing'])->name('setGoing');
     Route::post('/setFailed',[UserController::class,'setFailed'])->name('setFailed');
     Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
+    Route::post('/rateVehicle',[UserController::class,'rateVehicle'])->name('rateVehicle');
+    Route::post('/rateAgency',[UserController::class,'rateAgency'])->name('rateAgency');
   });
 });
 
@@ -278,3 +280,5 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
     Route::post('/validateReturn',[GaragistController::class, 'validateReturn'])->name('validateReturn');
   });
 });
+
+Route::any('{x}',function(){return "PAge doesnt exist";});
