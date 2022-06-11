@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 
 use function PHPUnit\Framework\isNull;
 
@@ -351,5 +352,29 @@ class UserController extends Controller
     $agency->save();
     return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
   }
+  public function activateAccount(Request $request){
+    if(!is_null(Auth::user()->faceIdPath)){
+      return redirect()->route('user.home');
+    }
+    return view('users.activateAccount');
+  }
 
+  public function upload(Request $request){
+     
+    $img = $request->image;
+    $folderPath = "images/users/faceIdImages/"; //path location
+    
+    $image_parts = explode(";base64,", $img);
+    $image_type_aux = explode("image/", $image_parts[0]);
+    $image_type = $image_type_aux[1];
+    $image_base64 = base64_decode($image_parts[1]);
+   
+    $file = $folderPath . Auth::user()->username.'_'.$request->counter.'.'.$image_type;
+    file_put_contents($file, $image_base64);
+    return response()->json(['succes'=>'success']);
+  }
+  public function setActive(){
+    User::find(Auth::user()->id)->update(['faceIdPath'=>true]);
+    return response()->json(['succes'=>'success']);
+  }
 }

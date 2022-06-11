@@ -126,15 +126,15 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/google', [GoogleController::class, 'loginWithGoogle'])->name('loginWithGoogle');
     Route::any('/google/login', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
   });
-  Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
+  Route::middleware(['guest:owner', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::get('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
     Route::get('/offer/{plateNb}', [VehiculeController::class, 'viewOfferDetails'])->name('viewOfferDetails');
     Route::get('/filterVehicules',[VehiculeController::class,'filterVehicules'])->name('filterVehicules');
   });
-  Route::middleware(['auth:web','verified', 'PreventBackHistory'])->group(function () {
+  Route::middleware(['auth:web', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::post('/book', [VehiculeController::class, 'book'])->name('book');
+    Route::post('/book', [VehiculeController::class, 'book'])->middleware('verified')->name('book');
     Route::get('/checkFace/{id}', [UserController::class, 'checkFace'])->name('checkFace');
     Route::get('/history', [UserController::class, 'getHistory'])->name('history');
     Route::get('/booking-details/{id}', [UserController::class, 'getBookingDetails'])->name('bookingDetails');
@@ -151,6 +151,9 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
     Route::post('/rateVehicle',[UserController::class,'rateVehicle'])->name('rateVehicle');
     Route::post('/rateAgency',[UserController::class,'rateAgency'])->name('rateAgency');
+    Route::get('/activate-account',[UserController::class,'activateAccount'])->name('activateAccount');
+    Route::post('/upload',[UserController::class,'upload'])->name('upload');
+    Route::post('/setActive',[UserController::class,'setActive'])->name('setActive');
   });
 });
 

@@ -153,25 +153,16 @@
                                         @else
                                         <button class="btn btn-secondary btn-sm" disabled >Already Rated : {{ $booking->vehiculeRating }}</button>
                                         @endif
-                                        
-
                                         @if (!isset($booking->clientRatesSecretary))
                                         <button  class="btn btn-primary btn-sm agencyRatingBtns" data-bookingid="{{ $booking->bookingID }}" data-bs-toggle="modal" data-bs-target="#agencyModal" >Agency reveiw</button>
                                         @else
                                         <button  class="btn btn-secondary btn-sm" disabled>Agency Rated : {{ $booking->clientRatesSecretary }}</button>
                                         @endif
-                                        
-
-
-
                                         @if(!isset($booking->complaintID))
                                         <button class="btn btn-primary btn-sm complaintBtns" data-bookingid="{{ $booking->bookingID }}" data-agencyid="{{ $booking->agencyID }}" data-bs-toggle="modal" data-bs-target="#complaintModal">Send complaint</button>
                                         @else
                                         <button class="btn btn-secondary btn-sm" disabled>Complaint Sent</button>
                                         @endif
-
-
-
                                         <a href="{{ route('user.bookingDetails', $booking->bookingID) }}"
                                             class="btn btn-primary btn-sm">View details</a>
                                     @else
