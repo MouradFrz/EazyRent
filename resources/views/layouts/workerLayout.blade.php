@@ -226,9 +226,9 @@
       @endif
     </aside>
     <div class="main col-8 col-md-9 col-xl-10">
-      <div class="navbar">
+      <div class="navbar sticky-top">
         <div class="container">
-          <h1 class="navbar-brand">EAZYRENT</h1>
+          <a class="navbar-brand" href="/">EazyRent</a>
         </div>
       </div>
       @yield('content')
