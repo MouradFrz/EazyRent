@@ -47,6 +47,17 @@
     transform: translateX(50%);
   }
 }
+.navbar .navbar-collapse.show .nav-link {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 500;
+}
+.navbar .navbar-collapse.show .nav-link:hover::after {
+  border: 0;
+  -webkit-animation: none;
+          animation: none;
+}
 .navbar .dropdown-menu {
   right: 0;
   left: auto;

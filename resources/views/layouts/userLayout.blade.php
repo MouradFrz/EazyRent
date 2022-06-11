@@ -17,8 +17,8 @@
       <div>
         @if((Illuminate\Support\Facades\Route::current()->getName() === 'user.home') ||
         (Illuminate\Support\Facades\Route::current()->getName() === 'guestHome'))
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button id="navbar-toggler"class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="box-shadow: none;padding:.5rem;margin-right:.5rem;border:0;">
           <span class="navbar-toggler-icon"></span>
         </button>
         @endif
@@ -140,14 +140,16 @@
   <script src="{{ asset('js/app.js') }}"></script>
   <script>
     let navLinks = document.querySelectorAll('.nav-link')
-    // console.log(navLinks)
+    let navbarCollapse = document.querySelector('.navbar-collapse')
     navLinks.forEach((el) => {
-      // console.log(el)
       el.addEventListener('click', () => {
         navLinks.forEach((e) => e.classList.remove('active'))
+        navbarCollapse.classList.remove('show')
         el.classList.add('active')
       })
     })
+    let navbar = document.querySelector('.navbar')
+    
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"
     integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g=="
