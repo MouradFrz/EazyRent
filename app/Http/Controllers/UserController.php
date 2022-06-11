@@ -9,11 +9,13 @@ use App\Models\Notification;
 use App\Models\Owner;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\Vehicule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\DB;
+
+use function PHPUnit\Framework\isNull;
 
 class UserController extends Controller
 {
@@ -306,4 +308,28 @@ class UserController extends Controller
 
     return redirect()->route('user.history')->with('message','Your complaint has been send');
   }
+  public function rateVehicle(Request $request){
+    $request->validate([
+      'rating'=>'required|between:0,5'
+    ]);
+    $booking = Booking::find($request->bookingID);
+    $vehicule = Vehicule::find($booking->vehiculePlateNB);
+    // dd($vehicule);
+    
+    if($booking->clientUsername != Auth::user()->username || !is_null($booking->vehiculeRating)){
+      return "You are not allowed to do this action";
+    }
+    $booking->vehiculeRating = $request->rating;
+    $booking->vehiculeComment = $request->comment;
+    $booking->save();
+    $count = Booking::where('vehiculePlateNB',$booking->vehiculePlateNB)->whereNotNull('vehiculeRating')->count();
+
+   
+    $vehicule->rating = ($vehicule->rating + $request->rating )/$count;
+    $vehicule->save();
+    
+    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
+
+  }
+
 }

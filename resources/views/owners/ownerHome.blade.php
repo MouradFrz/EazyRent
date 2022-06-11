@@ -114,9 +114,7 @@
           <div class="content">
             <p class="client-name">{{ $booking->firstName }} {{ $booking->lastName }}</p>
             <div class="comment">
-              <p>{{ $booking->vehiculeComment }} Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Iure ea soluta id ipsam libero voluptatem mollitia veniam recusandae voluptate temporibus quidem,
-                aspernatur itaque reiciendis accusantium.</p>
+              <p>{{ $booking->vehiculeComment }}.</p>
             </div>
             <div class="rating">
               <strong>rating : </strong>

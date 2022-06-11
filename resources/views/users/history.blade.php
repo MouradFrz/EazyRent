@@ -42,6 +42,31 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="vehicleModal" tabindex="-1" aria-labelledby="vehicleLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Rating a vehicle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          
+          <form action="{{ route('user.rateVehicle') }}" method="POST" id="vehicle">
+            @csrf
+            <label for="">Rating (/5)</label>
+            <input type="number" min="0" max="5" step="0.5" name="rating" class="inputs">
+            <input type="text" id="vehicleRatingBookingID" style="display: none" name="bookingID">
+            <label for="">Comment:</label>
+            <textarea name="comment" style="resize: none;height:200px" class="inputs"></textarea>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-success" onclick="document.querySelector('#vehicle').submit()">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>
     <div>
         <div class="container content">
             <h2>My bookings</h2>
@@ -97,7 +122,12 @@
                                         <a href="{{ route('user.bookingDetails', $booking->bookingID) }}"
                                             class="btn btn-danger btn-sm">Vehicule needs to be returned</a>
                                     @elseif ($booking->state == 'FINISHED')
-                                        <button href="" class="btn btn-primary btn-sm">Vehicule reveiw</button>
+                                        @if (!isset($booking->vehiculeRating))
+                                        <button href="" class="btn btn-primary btn-sm vehiculeRatingBtns" data-bs-toggle="modal" data-bs-target="#vehicleModal" data-bookingid="{{ $booking->bookingID }}" >Vehicule reveiw</button>
+                                        @else
+                                        <button href="" class="btn btn-secondary btn-sm" disabled >Already Rated : {{ $booking->vehiculeRating }}</button>
+                                        @endif
+                                        
                                         <button href="" class="btn btn-primary btn-sm">Agency reveiw</button>
                                         @if(!isset($booking->complaintID))
                                         <button class="btn btn-primary btn-sm complaintBtns" data-bookingid="{{ $booking->bookingID }}" data-agencyid="{{ $booking->agencyID }}" data-bs-toggle="modal" data-bs-target="#complaintModal">Send complaint</button>
@@ -129,11 +159,19 @@
 <script>
     const agencyID = document.querySelector('#agencyID')
     const bookingID = document.querySelector('#bookingID')
+    const vehicleRatingBookingID = document.querySelector('#vehicleRatingBookingID')
     const complaintBtns = document.querySelectorAll('.complaintBtns')
+    const vehiculeRatingBtns = document.querySelectorAll('.vehiculeRatingBtns')
     complaintBtns.forEach((e)=>{
         e.addEventListener('click',()=>{
             agencyID.value =e.dataset.agencyid
             bookingID.value=e.dataset.bookingid
+        })
+    })
+    vehiculeRatingBtns.forEach((e)=>{
+        e.addEventListener('click',()=>{
+            vehicleRatingBookingID.value = e.dataset.bookingid
+            console.log(e.dataset.bookingid)
         })
     })
 
