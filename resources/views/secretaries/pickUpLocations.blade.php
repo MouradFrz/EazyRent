@@ -21,6 +21,10 @@
 
 @endsection
 @section('content')
+<script>
+  let pickUpLocations = document.querySelector('#pickUpLocations')
+  pickUpLocations.classList.add('active')
+</script>
 <div class="pick-up-locations">
   <div class="container">
     @if (Session::get('fail'))
@@ -34,7 +38,7 @@
       {{ $message }}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    
+
     @enderror
     @if (Session::get('success'))
     <div class="alert alert-success alert-dismissible fade show w-100 " role="alert">
@@ -181,7 +185,7 @@
       // .then(response => response.json())
       // .then(data => info.appendChild(document.createTextNode(data.features[0].place_name)))
       // .then(data => document.getElementById('address_address').value = info.textContent);
-    } 
+    }
 
     // marker.on('dragstart', markeAdrress())
     marker.on('dragend', () => {

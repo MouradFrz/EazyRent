@@ -5,15 +5,19 @@
 <link rel="stylesheet" href="{{ asset('css/secretary/index.css') }}">
 @endsection
 @section('content')
+<script>
+  let vehicles = document.querySelector('#vehicles')
+  vehicles.classList.add('active')
+</script>
 @if (Session::get('alert'))
-    
+
 {{  Session::get('alert')}}
-    
+
 @endif
 @if (Session::get('message'))
-    
+
 {{  Session::get('message')}}
-    
+
 @endif
 <!-- Button trigger modal -->
 <div class="modal fade" id="transferModal" tabindex="-1" aria-labelledby="transferModalLabel" aria-hidden="true">
@@ -24,14 +28,14 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <p>Chose the garage you want to transfer the vehicule to</p> 
+         <p>Chose the garage you want to transfer the vehicule to</p>
          <form action="{{ route('secretary.transferVehicle',$vehicule->plateNb) }}" id="transferForm" method="POST">@csrf
             <select name="garageID" id="" class="form-control">
                 @foreach ($garages as $garage)
                 @if ($garage->garageID!=$vehicule->garageID)
                 <option value="{{ $garage->garageID }}"> {{ $garage->address }}</option>
                 @endif
-                    
+
                 @endforeach
             </select>
             </form>
@@ -39,7 +43,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-danger" onclick="document.querySelector('#transferForm').submit()">Confirm</button>
-            
+
           </div>
       </div>
     </div>
@@ -52,7 +56,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <p>Are you sure you want to delete this vehicle ? </p> 
+         <p>Are you sure you want to delete this vehicle ? </p>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -79,7 +83,7 @@
     </div>
   </div>
 <div class="container">
-    
+
     <div class="row m-0">
         <div class="col-lg-7 pb-5 pe-lg-5">
             <div class="row">
@@ -119,8 +123,8 @@
                 <div class="col-12 px-4">
                     <div class="d-flex align-items-end mt-4 mb-2">
                         <p class="h4 m-0"><span class="pe-1">{{ $vehicule->model }}</span><span class="pe-1">{{ $vehicule->brand }}</span>
-                        <p class="h4 m-0"><span class="pe-1">{{ $vehicule->availability }}</span>    
-                        
+                        <p class="h4 m-0"><span class="pe-1">{{ $vehicule->availability }}</span>
+
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted-pog">Price per Hour</p>
@@ -147,8 +151,8 @@
                         <p class="fs-14 fw-bold"><span class="fas fa-dollar-sign pe-1"></span>
                             {{ $vehicule->physicalState }}</p>
                     </div>
-                 
-                    
+
+
                 </div>
                 <div class="col-12 px-0">
                     <div class="row bg-light m-0">
@@ -171,14 +175,14 @@
                                     <input class="form-control" type="text" value="{{ $vehicule->addedBy }}"
                                         placeholder="Name" disabled>
                                 </span>
-                                
+
                             </div>
                             <div class="d-flex flex-column">
                                 @if (!is_null($latestBooking))
-                                    
-                                
+
+
                                     @if ($latestBooking->state=='REQUESTED' || $latestBooking->state=='ACCEPTED' || $latestBooking->state=='SIGNED' || $latestBooking->state=='ON GOING')
-                                        
+
                                         @if ($vehicule->availability)
                                         <button type="button" class="btn btn-warning my-3" disabled data-bs-toggle="modal" data-bs-target="#exampleModal2">Set unavailable</button>
                                         @else
@@ -205,7 +209,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>

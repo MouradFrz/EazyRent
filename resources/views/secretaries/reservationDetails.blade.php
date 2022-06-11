@@ -69,6 +69,10 @@
 @endsection
 
 @section('content')
+<script>
+  let reservations = document.querySelector('#reservations')
+  reservations.classList.add('active')
+</script>
 <div class="reservation details">
   <div class="container mt-2">
     <a href="{{ route('secretary.getReservationRequests') }}" class="link link-no-decoration">

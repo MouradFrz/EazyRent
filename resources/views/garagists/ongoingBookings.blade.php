@@ -6,6 +6,10 @@
 @endsection
 
 @section('content')
+<script>
+  let bookings = document.querySelector('#bookings')
+  bookings.classList.add('active')
+</script>
 <div class="modal fade" id="validate" tabindex="-1" aria-labelledby="ValidateLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -48,10 +52,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  
+
                    @foreach ($bookings as $index => $element)
                   <tr>
-                    
+
                     <td>{{ $element->model }} {{ $element->brand }}</td>
                     <td>{{ $element->vehiculePlateNB }}</td>
                     <td>{{ $element->firstName }} {{ $element->lastName }}</td>
@@ -106,7 +110,7 @@
                   </tr>
                   @endforeach
                 </tbody>
-              
+
               </table>
               {{$bookings->links()}}
         </div>

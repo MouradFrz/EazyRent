@@ -19,13 +19,12 @@
 @extends('layouts.workerLayout')
 @section('headTags')
 <title>Owner - add agency</title>
-<link rel="stylesheet" href="{{ asset('css/app.css') }}"> 
+<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('css/owner/index.css') }}"
 @section('content')
-
- @if (Auth::user()->agencyID)
-     <p> there's a probleme you should not be able to see this view</p>
- @else
+@if (Auth::user()->agencyID)
+<p>there's a probleme you should not be able to see this view</p>
+@else
   <div class="create-agency">
     <div class="container">
       <h2>add agency</h2>

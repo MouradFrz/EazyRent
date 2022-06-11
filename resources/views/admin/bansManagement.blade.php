@@ -8,6 +8,10 @@
 
 
 @section('content')
+<script>
+  let bannedUsers = document.querySelector('#bannedUsers')
+  bannedUsers.classList.add('active')
+</script>
 <div class="modal fade" id="banUser" tabindex="-1" aria-labelledby="banUserLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -138,7 +142,7 @@ const fields = document.querySelectorAll(".usernamefield");
 
 banbtns.forEach((e)=>{
     e.addEventListener('click',()=>{
-        
+
         fields[0].value=e.dataset.un
         fields[1].value=e.dataset.fullname
         })
@@ -150,7 +154,7 @@ const unfields = document.querySelectorAll(".unban-usernamefield");
 
 unbanbtns.forEach((e)=>{
     e.addEventListener('click',()=>{
-        
+
         unfields[0].value=e.dataset.un
         unfields[1].value=e.dataset.fullname
         })
