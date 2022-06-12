@@ -95,7 +95,7 @@
     </div>
   </nav>
   @yield('content')
-  <footer id="contactUs">
+  <footer id="contactUs" class="header">
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-6">
@@ -199,6 +199,27 @@
       }
       })
   </script>
+<script>
+  const headers = document.querySelectorAll(".header");
+const lines = document.querySelectorAll(".nav-link");
+console.log(headers)
+window.addEventListener("scroll", show);
+const trig = window.innerHeight / 0.95;
+show();
+
+function show() {
+	headers.forEach((e, i) => {
+		const bot = e.getBoundingClientRect().bottom;
+		if (bot < trig) {
+			lines.forEach(h => {
+				h.classList.remove("active");
+			});
+			lines[i].classList.add("active");
+		}
+	}
+	)
+}
+</script>
 </body>
 
 </html>

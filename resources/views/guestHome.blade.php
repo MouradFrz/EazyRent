@@ -15,7 +15,7 @@
 @endsection
 @section('content')
 <div class="hero">
-  <div class="container hero_content">
+  <div class="container hero_content header">
     <div class="search-panel">
       <h2>search a vehicle now!</h2>
       <form action="{{route('user.viewOffers')}}" method="GET">
@@ -61,7 +61,7 @@
   </div>
   </form>
 </div>
-<div id="howToRent"class="booking-progress">
+<div id="howToRent"class="booking-progress header">
   <div class="white-space"></div>
   <div class="container">
     <h2 class="section-header">how to rent a vehicle</h2>
@@ -100,7 +100,7 @@
   </div>
 </div>
 </div>
-<div id="whoUs" class="who-us">
+<div id="whoUs" class="who-us header">
   <div class="white-space"></div>
   <div class="container">
     <h2 class="section-header">what is EAZYRENT ?</h2>
@@ -123,7 +123,7 @@
   </div>
   <div class="white-space"></div>
 </div>
-<div id="testimonials" class="testimonials">
+<div id="testimonials" class="testimonials header">
   <div class="white-space"></div>
   <h2 class="section-header">what people say about us ?</h2>
   <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
@@ -187,9 +187,9 @@
   </div>
   <div class="white-space"></div>
 </div>
-<div id="ourPartners" class="our-partners">
+<div id="ourPartners" class="our-partners header">
   <div class="white-space"></div>
-  <h2 class="section-header">companies who trus us</h2>
+  <h2 class="section-header">Companies who trust us</h2>
   <div class="container">
     <div class="row brands">
       <div class="brand col-4 col-md-3 col-lg-2">
@@ -337,4 +337,5 @@
   // document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
+
 @endsection
