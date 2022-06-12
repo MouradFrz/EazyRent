@@ -601,3 +601,55 @@ img {
 .booking .response-icon-fail {
   color: rgba(255, 59, 48, 0.8);
 }
+
+.no-bookings {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.no-bookings_media {
+  font-size: 4rem;
+  color: rgb(97, 97, 101);
+}
+.no-bookings_content {
+  text-align: center;
+  font-weight: 500;
+}
+
+.history {
+  padding-top: 2rem;
+  min-height: 80vh;
+}
+.history_table {
+  text-align: center;
+}
+.history_table thead {
+  background-color: rgba(88, 86, 214, 0.8);
+  color: #FFF;
+  text-transform: uppercase;
+  text-decoration: underline;
+  cursor: default;
+}
+.history_actions > a, .history_actions button {
+  margin-inline: 0.5rem;
+}
+.history_actions .link-secondary:hover {
+  color: rgb(142, 142, 147);
+}
+.history .booking-state {
+  font-weight: 500;
+}
+.history .booking-state.REQUESTED, .history .booking-state.GOING {
+  color: rgb(0, 122, 255);
+}
+.history .booking-state.DECLINED color, .history .booking-state.CANCELED color {
+  color: rgb(255, 59, 48);
+}
+.history .booking-state.ACCEPTED, .history .booking-state.FINISHED {
+  color: rgb(88, 86, 214);
+}
+.history .booking-state.SIGNED {
+  color: rgb(255, 204, 0);
+}
