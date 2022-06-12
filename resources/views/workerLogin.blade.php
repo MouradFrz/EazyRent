@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/authentication.css') }}">
 </head>
-
 <body>
   <div class="authentication row">
     <div class="authentication_welcome col-12 col-md-4">
@@ -20,7 +18,9 @@
         <h2 class="section-heading">welcome back!</h2>
         <p>please enter your personal info to access to your account</p>
         <p>Want to add your agency?</p>
-        <a href="{{ route('owner.register') }}" class="custom-btn">Sign Up</a>
+        <div class="d-flex justify-content-center">
+          <a href="{{ route('owner.register') }}" class="custom-btn">Sign Up</a>
+        </div>
       </div>
     </div>
     <div class="authentication_panel col-12 col-md-8">

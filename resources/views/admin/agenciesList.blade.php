@@ -12,7 +12,7 @@
 </script>
 <div class="agencies-list">
   <div class="container">
-    <h2>agencies list</h2>
+    <h2 class="mb-4">agencies list</h2>
     @if (Session::get('fail'))
     <div class="alert alert-danger w-100 alert-dismissible fade show" role="alert">
       {{ Session::get('fail') }}

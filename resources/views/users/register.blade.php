@@ -21,7 +21,9 @@
         <h2 class="section-heading">Welcome!</h2>
         <p>Please enter your personal info to join us</p>
         <p>You already have an account? </p>
-        <a href="{{ route('user.login') }}" class="custom-btn">Log in</a>
+        <div class="d-flex justify-content-center">
+          <a href="{{ route('user.login') }}" class="custom-btn">Log in</a>
+        </div>
       </div>
     </div>
     <div class="authentication_panel col-12 col-md-8">
@@ -218,7 +220,7 @@
             faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
             ]).then(start)
   function start(){
-    const submitButton = document.querySelector('#submit-button'); 
+    const submitButton = document.querySelector('#submit-button');
 
     submitButton.disabled = true
 

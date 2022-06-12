@@ -12,7 +12,7 @@
 </script>
 <div class="users-list">
   <div class="container">
-    <h2>Users list</h2>
+    <h2 class="nb-4">Users list</h2>
     <table class="table table-striped" id="usersList">
       <thead>
         <tr>

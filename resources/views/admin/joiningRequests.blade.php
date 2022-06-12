@@ -12,7 +12,7 @@
 </script>
 <div class="joining-requests">
   <div class="container">
-    <h2>joining Requests</h2>
+    <h2 class="mb-4">joining Requests</h2>
     <table class="table table-striped" id="joiningRequestsTable">
       <thead>
         <tr>

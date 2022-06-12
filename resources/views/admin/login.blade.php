@@ -31,12 +31,10 @@
           {{ Session::get('fail') }}
         </div>
         @endif
-        <div class="d-flex justify-content-center mt-2 mb-4">
+        <div class="d-flex justify-content-center mt-2">
           <button type="submit" class="custom-btn custom-btn-dark">Log in</button>
         </div>
       </form>
-      <hr>
-      <p>forger password? <a href="" class="link link-underline">click here</a></p>
     </div>
   </div>
 </body>
