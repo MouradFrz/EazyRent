@@ -70,7 +70,7 @@
     var home = document.getElementById("home");
     let countInvalid = 0;
     let bookingID = '{!! $bookingID !!}';
-    console.log(bookingID)
+  
     function startFace() {
         btn1.style.display = 'none'
         if (navigator.mediaDevices.getUserMedia) {
@@ -209,9 +209,9 @@
             return Promise.all(
                 labels.map(async (label) => {
                     const descriptions = []
-                    for (let i = 1; i <= 4; i++) {
+                    for (let i = 1; i <= 5; i++) {
                         const img = await faceapi.fetchImage(
-                            `../../images/users/faceidImages/{!! Auth::user()->username !!}_faceId.jpg`)
+                            `../../images/users/faceidImages/{!! Auth::user()->username !!}_${i}.jpeg`)
                         const detections = await faceapi.detectSingleFace(img).withFaceLandmarks()
                             .withFaceDescriptor()
                         descriptions.push(detections.descriptor)
@@ -222,7 +222,6 @@
             )
         }
     }
-
     function restart() {
         startFace()
         video.style.display = 'block'

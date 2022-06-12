@@ -2,9 +2,13 @@
 <link rel="stylesheet" href="{{ asset('css/garagist/index.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 @section('headTags')
-    
+
 @endsection
 @section('content')
+<script>
+  let garages = document.querySelector('#garages')
+  garages.classList.add('active')
+</script>
 <div class="modal fade" id="condition" tabindex="-1" aria-labelledby="conditionModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -13,7 +17,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-         <p>Chose a condition from the list below</p> 
+         <p>Chose a condition from the list below</p>
          <form action="{{ route('garagist.setCondition',$vehicule->plateNb) }}" id="conditionForm" method="POST">@csrf
             <select name="condition" id="" class="form-control">
                 <option value="Excellent">Excellent</option>
@@ -29,7 +33,7 @@
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             <button type="button" class="btn btn-success" onclick="document.querySelector('#conditionForm').submit()">Confirm</button>
-            
+
           </div>
       </div>
     </div>
@@ -86,8 +90,8 @@
                 <div class="col-12 px-4">
                     <div class="d-flex align-items-end mt-4 mb-2">
                         <p class="h4 m-0"><span class="pe-1">{{ $vehicule->model }}</span><span class="pe-1">{{ $vehicule->brand }}</span>
-                           
-                        
+
+
                     </div>
                     <div class="d-flex justify-content-between mb-2">
                         <p class="textmuted-pog">Price per Hour</p>
@@ -109,8 +113,8 @@
                         <p class="textmuted-pog">Air cooling</p>
                         <p class="fs-14 fw-bold"></span>{{ $vehicule->airCooling }}</p>
                     </div>
-                 
-                    
+
+
                 </div>
                 <div class="col-12 px-0">
                     <div class="row bg-light m-0">
@@ -133,14 +137,14 @@
                                     <input class="form-control" type="text" value="{{ $vehicule->addedBy }}"
                                         placeholder="Name" disabled>
                                 </span>
-                                
+
                             </div>
                             <div class="d-flex flex-column">
                                 <hr>
                                 <div class="d-flex justify-content-between mb-2">
                                     <p class="textmuted-pog">Condition</p>
                                     <p class="fs-14 fw-bold">{{ $vehicule->physicalState }}</p>
-                                    
+
                                 </div>
                                 <div class="d-flex justify-content-between mb-2 flex-column">
                                     <p class="textmuted-pog d-block fw-bold">Note:</p>
@@ -150,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
@@ -177,7 +181,7 @@
                     <p class="comment">{{ $booking->vehiculeComment }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ea soluta id ipsam libero voluptatem mollitia veniam recusandae voluptate temporibus quidem, aspernatur itaque reiciendis accusantium.</p>
                 </div>
                 <div>
-                   <p class="text-muted date">{{ $booking->commentDate }}</p> 
+                   <p class="text-muted date">{{ $booking->commentDate }}</p>
                 </div>
             </div>
         </div>

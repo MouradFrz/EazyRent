@@ -6,6 +6,10 @@
 <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
 @endsection
 @section('content')
+<script>
+  let users = document.querySelector('#users')
+  users.classList.add('users')
+</script>
 <div class="users-list">
   <div class="container">
     <h2>Users list</h2>

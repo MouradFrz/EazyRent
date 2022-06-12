@@ -47,6 +47,17 @@
     transform: translateX(50%);
   }
 }
+.navbar .navbar-collapse.show .nav-link {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-weight: 500;
+}
+.navbar .navbar-collapse.show .nav-link:hover::after {
+  border: 0;
+  -webkit-animation: none;
+          animation: none;
+}
 .navbar .dropdown-menu {
   right: 0;
   left: auto;
@@ -332,30 +343,47 @@ footer .footer-end p > span {
 }
 
 .view-offers_hero {
-  position: relative;
-  height: 60vh;
-  background-color: #EEE;
-  background-image: url(/images/view-offers_hero.jpg?737ee8d2a967f1561e85d4658cb06bc0);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-blend-mode: darken;
-  background-position: center center;
-  color: white;
-  margin-bottom: 4rem;
+  padding-top: 4rem;
+  background-color: rgb(88, 86, 214);
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
-.view-offers_hero .container {
-  height: inherit;
+.view-offers_hero .section-header {
+  color: #fff;
+}
+.view-offers_hero .booking-progress {
+  width: 75%;
+  padding: 1rem;
+  margin: 4rem auto;
+  background-color: #fff;
+  border-radius: 1rem;
+}
+.view-offers_hero .booking-progress #progress-num .step {
+  width: 3rem;
+  height: 3rem;
+  border-width: 3px;
+  cursor: default;
+}
+.view-offers_hero .booking-progress #progress-num::before {
   z-index: 1;
 }
-.view-offers_hero_content {
-  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+.view-offers .no-vehicles {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.view-offers .no-vehicles_media {
+  font-size: 4rem;
+  color: rgb(97, 97, 101);
+}
+.view-offers .no-vehicles_content {
   text-align: center;
-}
-.view-offers_hero_content h1 {
-  margin: 2rem 0;
-}
-.view-offers_hero_content h2 {
-  color: #51ecec;
+  font-weight: 500;
 }
 .view-offers .minimized-offer {
   border: 1px solid lightGrey;
@@ -388,8 +416,23 @@ footer .footer-end p > span {
   font-size: 1rem;
   line-height: 1;
 }
-.view-offers .minimized-offer_content .prop > ul > li > i {
+.view-offers .minimized-offer_props {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding-left: 0;
+  color: rgb(142, 142, 147);
+}
+.view-offers .minimized-offer_props .prop {
+  font-size: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 0.5rem;
+  white-space: nowrap;
   color: rgb(97, 97, 101);
+}
+.view-offers .minimized-offer_props .prop > i {
+  color: rgb(88, 86, 214);
 }
 .view-offers .minimized-offer .rating {
   margin: 10px 0;
@@ -407,14 +450,20 @@ footer .footer-end p > span {
   font-size: 1.5em;
   color: darkGrey;
 }
-
-.filter {
+.view-offers .offers-filter {
+  height: 100%;
+  padding: 2rem 1rem;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #FFf;
   border: 1px solid lightGrey;
-  padding: 40px 20px;
+  border-radius: 0.5rem;
+}
+.view-offers .offers-filter_title {
+  text-align: center;
 }
 
 .wrapper {
-  gap: 10px;
+  gap: 1rem;
 }
 
 .offer_media {
@@ -551,4 +600,56 @@ img {
 }
 .booking .response-icon-fail {
   color: rgba(255, 59, 48, 0.8);
+}
+
+.no-bookings {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.no-bookings_media {
+  font-size: 4rem;
+  color: rgb(97, 97, 101);
+}
+.no-bookings_content {
+  text-align: center;
+  font-weight: 500;
+}
+
+.history {
+  padding-top: 2rem;
+  min-height: 80vh;
+}
+.history_table {
+  text-align: center;
+}
+.history_table thead {
+  background-color: rgba(88, 86, 214, 0.8);
+  color: #FFF;
+  text-transform: uppercase;
+  text-decoration: underline;
+  cursor: default;
+}
+.history_actions > a, .history_actions button {
+  margin-inline: 0.5rem;
+}
+.history_actions .link-secondary:hover {
+  color: rgb(142, 142, 147);
+}
+.history .booking-state {
+  font-weight: 500;
+}
+.history .booking-state.REQUESTED, .history .booking-state.GOING {
+  color: rgb(0, 122, 255);
+}
+.history .booking-state.DECLINED color, .history .booking-state.CANCELED color {
+  color: rgb(255, 59, 48);
+}
+.history .booking-state.ACCEPTED, .history .booking-state.FINISHED {
+  color: rgb(88, 86, 214);
+}
+.history .booking-state.SIGNED {
+  color: rgb(255, 204, 0);
 }

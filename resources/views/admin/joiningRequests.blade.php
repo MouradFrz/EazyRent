@@ -6,10 +6,14 @@
 <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
 @endsection
 @section('content')
+<script>
+  let joiningRequests = document.querySelector('#joiningRequests')
+  joiningRequests.classList.add('active')
+</script>
 <div class="joining-requests">
   <div class="container">
     <h2>joining Requests</h2>
-    <table class="table table-striped" id="joiningRequests">
+    <table class="table table-striped" id="joiningRequestsTable">
       <thead>
         <tr>
           <th scope="col">ID</th>
@@ -21,6 +25,7 @@
           <th>Action</th>
         </tr>
       </thead>
+
       <tbody>
         @foreach ($joiningRequests as $jr)
         <tr>
@@ -55,10 +60,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
 <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script>
-//   $(document).ready( function () {
-//     $('#joiningRequests').DataTable();
-// } );
-let table = new DataTable('#joiningRequests');
+let table = new DataTable('#joiningRequestsTable');
 </script>
 @endsection
 

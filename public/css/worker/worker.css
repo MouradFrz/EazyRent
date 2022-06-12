@@ -94,6 +94,17 @@
   background-color: rgba(0, 0, 0, 0.075);
 }
 
+.navbar {
+  min-height: 3rem;
+  background-color: rgb(88, 86, 214);
+  margin-bottom: 2rem;
+}
+.navbar-brand {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #FFF;
+}
+
 .main {
   padding: 0;
 }
@@ -141,8 +152,4 @@
   left: 90%;
   cursor: default;
   background-color: transparent;
-}
-
-.navbar {
-  border-bottom: 0.5px solid rgb(142, 142, 147);
 }

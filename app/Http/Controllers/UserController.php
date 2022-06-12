@@ -3,17 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\AdminBan;
+use App\Models\Agency;
 use App\Models\Booking;
+use App\Models\Branche;
 use App\Models\Complaint;
 use App\Models\Notification;
 use App\Models\Owner;
+use App\Models\Secretary;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use App\Models\Vehicule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
+use function PHPUnit\Framework\isNull;
 
 class UserController extends Controller
 {
@@ -305,5 +311,70 @@ class UserController extends Controller
     Booking::find($request->bookingID)->update(['complaintID'=>$complaint->id]);
 
     return redirect()->route('user.history')->with('message','Your complaint has been send');
+  }
+  public function rateVehicle(Request $request){
+    $request->validate([
+      'rating'=>'required|between:0,5'
+    ]);
+    $booking = Booking::find($request->bookingID);
+    $vehicule = Vehicule::find($booking->vehiculePlateNB);
+    // dd($vehicule);
+    
+    if($booking->clientUsername != Auth::user()->username || !is_null($booking->vehiculeRating)){
+      return "You are not allowed to do this action";
+    }
+    $booking->vehiculeRating = $request->rating;
+    $booking->vehiculeComment = $request->comment;
+    $booking->commentDate=now();
+    $booking->save();
+    $count = Booking::where('vehiculePlateNB',$booking->vehiculePlateNB)->whereNotNull('vehiculeRating')->count();
+
+   
+    $vehicule->rating = ($vehicule->rating + $request->rating )/$count;
+    $vehicule->save();
+
+    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
+  }
+  public function rateAgency(Request $request){
+    $request->validate([
+      'rating'=>'required|between:0,5'
+    ]);
+    
+    $booking = Booking::find($request->bookingID);
+    $agencyID = Agency::join('branches','agencies.agencyID','=','branches.agencyID')->join('secretaries','branches.brancheID','=','secretaries.brancheID')->first()->agencyID;
+    
+    $agency = Agency::find($agencyID);
+
+    $booking->clientRatesSecretary = $request->rating;
+    $booking->save();
+    $count = Booking::whereIn('secretaryUsername',Secretary::whereIn('brancheID',Branche::where('agencyID',$agencyID)->select(['brancheID'])->get()->toArray())->select(['username'])->get()->toArray())->whereNotNull('clientRatesSecretary')->count();
+    $agency->rating = ($agency->rating + $request->rating) / $count;
+    $agency->save();
+    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
+  }
+  public function activateAccount(Request $request){
+    if(!is_null(Auth::user()->faceIdPath)){
+      return redirect()->route('user.home');
+    }
+    return view('users.activateAccount');
+  }
+
+  public function upload(Request $request){
+     
+    $img = $request->image;
+    $folderPath = "images/users/faceIdImages/"; //path location
+    
+    $image_parts = explode(";base64,", $img);
+    $image_type_aux = explode("image/", $image_parts[0]);
+    $image_type = $image_type_aux[1];
+    $image_base64 = base64_decode($image_parts[1]);
+   
+    $file = $folderPath . Auth::user()->username.'_'.$request->counter.'.'.$image_type;
+    file_put_contents($file, $image_base64);
+    return response()->json(['succes'=>'success']);
+  }
+  public function setActive(){
+    User::find(Auth::user()->id)->update(['faceIdPath'=>true]);
+    return response()->json(['succes'=>'success']);
   }
 }

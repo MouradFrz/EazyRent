@@ -1,26 +1,49 @@
-@use '../variables' as *;
-.view-offers{
+@use "../variables" as *;
+.view-offers {
   &_hero {
-    .container {height: inherit;z-index: 1;}
-    position: relative;
-    height: 60vh;
-    background-color: #EEE;
-    background-image: url( '../../../public/images/view-offers_hero.jpg' );
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-blend-mode: darken;
-    background-position: center center;
-    color: white;
-    margin-bottom: 4rem;
+    padding-top: 4rem;
+    background-color: $indigo;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    .section-header {
+      color: #fff;
+    }
+    .booking-progress {
+      width: 75%;
+      padding: 1rem;
+      margin: 4rem auto;
+      background-color: #fff;
+      border-radius: 1rem;
+      #progress-num {
+        .step {
+          width: 3rem;
+          height: 3rem;
+          border-width: 3px;
+          cursor: default;
+        }
+        &::before {
+          z-index: 1;
+        }
+      }
+    }
+  }
+  .no-vehicles {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    // background-color: $lightestGrey;
+    &_media {
+      font-size: 4rem;
+      color: $darkGrey;
+    }
     &_content {
-      box-shadow: $box-shadow;
       text-align: center;
-      h1 {
-        margin: 2rem 0;
-      }
-      h2 {
-        color:#51ecec
-      }
+      font-weight: 500;
     }
   }
   .minimized-offer {
@@ -40,7 +63,7 @@
     }
     &_content {
       padding: 1rem 2rem;
-      .head{
+      .head {
         margin-bottom: 3rem;
         .price {
           text-align: right;
@@ -50,9 +73,23 @@
           }
         }
       }
-
-      .prop > ul > li > i {
+    }
+    &_props {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      flex-wrap: wrap;
+      padding-left: 0;
+      color: $grey;
+      .prop {
+        font-size: 1rem;
+        padding-right: 1rem;
+        margin-bottom: .5rem;
+        white-space: nowrap;
         color: $darkGrey;
+        > i {
+          color: $indigo;
+        }
       }
     }
     .rating {
@@ -72,11 +109,19 @@
       }
     }
   }
+  .offers-filter {
+    height: 100%;
+    padding: 2rem 1rem;
+    background-color: rgba($color: #000000, $alpha: 0.9);
+    color: #FFf;
+    border: 1px solid lightGrey;
+    border-radius: .5rem;
+    &_title {
+      text-align: center;
+    }
+  }
 }
-.filter{
-  border: 1px solid lightGrey;
-  padding: 40px 20px;
-}
-.wrapper{
-  gap: 10px;
+
+.wrapper {
+  gap: 1rem;
 }

@@ -94,7 +94,7 @@ class GaragistController extends Controller
       return redirect()->route('garagist.getReservations');
     }
     }
-   
+
 
   public function showVehicles()
   {
@@ -140,8 +140,8 @@ class GaragistController extends Controller
     if (count($hasGarage) == 0) {
       return redirect()->route('garagist.home');
     }
-    $bookings = Booking::join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->join('users', 'bookings.clientUsername', '=', 'users.username')->join('pickUpLocations', 'bookings.dropOffLocation', '=', 'pickUpLocations.id')->where('bookings.state', 'ON GOING')->where('garageID', $hasGarage[0]->garageID)->latest('bookings.created_at')->paginate(25);
-    $pickUpLocations = Booking::join('pickUpLocations', 'bookings.pickUpLocation', '=', 'pickUpLocations.id')->join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->where('garageID', $hasGarage[0]->garageID)->latest('bookings.created_at')->paginate(25);
+    $bookings = Booking::join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->join('users', 'bookings.clientUsername', '=', 'users.username')->join('pickuplocations', 'bookings.dropOffLocation', '=', 'pickuplocations.id')->where('bookings.state', 'ON GOING')->where('garageID', $hasGarage[0]->garageID)->latest('bookings.created_at')->paginate(25);
+    $pickUpLocations = Booking::join('pickuplocations', 'bookings.pickUpLocation', '=', 'pickuplocations.id')->join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->where('garageID', $hasGarage[0]->garageID)->latest('bookings.created_at')->paginate(25);
     return view('garagists.ongoingBookings', compact('bookings', 'pickUpLocations'));
   }
   public function changeImage(Request $request)

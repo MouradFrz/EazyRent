@@ -92,10 +92,19 @@
     }
   }
 }
+.navbar {
+  min-height: 3rem;
+  background-color: $indigo;
+  margin-bottom: 2rem;
+  &-brand {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #FFF;
+  }
+}
 .main {
   padding: 0;
 }
-
 .show-on-hover {
   display: none;
   position: absolute;
@@ -136,7 +145,4 @@
   left: 90%;
   cursor: default;
   background-color: transparent;
-}
-.navbar {
-  border-bottom: 0.5px solid $grey;
 }
