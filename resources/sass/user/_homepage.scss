@@ -5,6 +5,16 @@
   min-height: 4rem;
   background-color: rgba(255, 255, 255, 0.9) !important;
   backdrop-filter: saturate(180%) blur(20px);
+  abbr {
+    text-decoration: none;
+  }
+  &-brand {
+    font-size: 1.4rem;
+    font-weight: 700;
+    >span {
+      color: $indigo;
+    }
+  }
   .nav-link {
     transition: all 300ms linear;
     position: relative;
@@ -62,8 +72,8 @@
     &:hover,
     &:active {
       background-color: transparent;
-      color: $cyan;
-      border-left: 5px solid $cyan;
+      color: $blue;
+      border-left: 5px solid $blue;
     }
     &-disabled {
       color: $grey;

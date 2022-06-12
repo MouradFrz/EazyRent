@@ -11,17 +11,21 @@
   @yield('head')
 </head>
 <body>
-  <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar sticky-top navbar-expand-lg navbar-light">
     <div class="container">
-      <div>
+      <div class="d-flex align-items-center">
         @if((Illuminate\Support\Facades\Route::current()->getName() === 'user.home') ||
         (Illuminate\Support\Facades\Route::current()->getName() === 'guestHome'))
         <button id="navbar-toggler"class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" style="box-shadow: none;padding:.5rem;margin-right:.5rem;border:0;">
           <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="#"><span>Eazy</span>Rent</a>
+        @else
+        <abbr title="back to home">
+          <a class="navbar-brand" href="/"><span>Eazy</span>Rent</a>
+        </abbr>
         @endif
-        <a class="navbar-brand fw-bold" href="/">EazyRent</a>
       </div>
       @if((Illuminate\Support\Facades\Route::current()->getName() === 'user.home') ||
       (Illuminate\Support\Facades\Route::current()->getName() === 'guestHome'))

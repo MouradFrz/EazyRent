@@ -6,17 +6,15 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">Confirm change</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-
-            <label for="">Enter your current password</label>
-            <input type="password" class="form-control" name="region" id="curpw">
-            <span id="errorspan" class="text-danger"></span>
+          <label for="" class="label">Enter your current password</label>
+          <input type="password" class="inputs" name="region" id="curpw">
+          <span id="errorspan" class="text-danger"></span>
         </div>
         <div class="modal-footer">
-          <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="link link-no-decoration link-danger" id="confirm">Confirm</button>
+          <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="link" id="confirm">Confirm</button>
         </div>
       </div>
     </div>
@@ -40,8 +38,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="link link-no-decoration link-danger" id="crop">Change</button>
+          <button type="button" class="link link-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="link" id="crop">change immage</button>
         </div>
       </div>
     </div>
@@ -93,7 +91,6 @@
             @if (is_null(Auth::user()->faceIdPath))
               <a href="{{ route('user.activateAccount') }}" class="custom-btn custom-btn-dark">Activate your account</a>
             @endif
-            
           </div>
         </div>
       </div>
