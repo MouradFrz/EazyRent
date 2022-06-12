@@ -1,4 +1,7 @@
 @extends('layouts.workerLayout')
+@section('headTags')
+<link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
+@endsection
 
 @section('content')
 <div class="modal fade" id="sendRating" tabindex="-1" aria-labelledby="sendRatingLabel" aria-hidden="true">
@@ -59,7 +62,7 @@
         {{ Session::get('success') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
-     
+
       @endif
         <h2 class="my-3">History</h2>
         <hr>
@@ -76,12 +79,12 @@
               </tr>
             </thead>
             <tbody>
-             
+
                @foreach ($bookings as $element)
-               
+
               <tr>
                 <td style="position: relative"><p class="fullname">{{ $element->firstName }} {{ $element->lastName }}</p>
-                <div class="dropmenu"> 
+                <div class="dropmenu">
                   <div class="drop-align">
                     @if(is_null($element->secretaryRatesClient))
                   <button class="btn btn-primary btn-sm ratingbtn"  data-bs-toggle="modal" data-bs-target="#sendRating" data-resID="{{ $element->bookingID }}" data-fullname="{{ $element->firstName }} {{ $element->lastName }}">Rate this user</button>
@@ -91,7 +94,7 @@
                   @if(count($secbans)!=0)
                     @foreach ($secbans as $ban)
                     @if($ban->bannedClient==$element->username)
-                        @if($ban->endDate>now())  
+                        @if($ban->endDate>now())
                             <button class="btn btn-danger btn-sm" disabled>Banned</button>
                             @break
                         @endif
@@ -122,7 +125,7 @@
                   @foreach ($secbans as $ban)
                   @if($ban->bannedClient==$element->username)
                       @if ($ban->endDate>now())
-                        YES 
+                        YES
                         @break
                       @else
                       NO
@@ -133,17 +136,17 @@
                 @else
                 NO
                   @endif
-                  
+
                 </td>
-                <td><a href="{{ route('secretary.reservationDetails',$element->bookingID) }}">View details</a></td>       
+                <td><a href="{{ route('secretary.reservationDetails',$element->bookingID) }}">View details</a></td>
               </tr>
               @endforeach
             </tbody>
-          
+
           </table>
           {{$bookings->links()}}
     </div>
-  
+
 </div>
 
 @endsection

@@ -1,4 +1,7 @@
 @extends('layouts.workerLayout')
+@section('headTags')
+<link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
+@endsection
 @section('content')
 <script>
   let vehicles = document.querySelector('#vehicles')

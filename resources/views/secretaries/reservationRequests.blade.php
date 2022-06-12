@@ -1,8 +1,6 @@
 @extends('layouts.workerLayout')
-
 @section('headTags')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
-<meta name="_token" content="{{ csrf_token() }}">
+<link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
 @endsection
 
 @section('content')

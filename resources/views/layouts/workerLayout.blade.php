@@ -11,6 +11,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
     integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnify/2.3.3/css/magnify.min.css"
+    integrity="sha512-wzhF4/lKJ2Nc8mKHNzoFP4JZsnTcBOUUBT+lWPcs07mz6lK3NpMH1NKCKDMarjaw8gcYnSBNjjllN4kVbKedbw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+  <meta name="_token" content="{{ csrf_token() }}">
   @yield('headTags')
 </head>
 
@@ -79,10 +84,11 @@
       @if (Auth::guard('admin')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
         {{-- <li class="nav-item">
-          <a href="{{ route('admin.dashboard') }}" id="dashboard" class="nav-link "><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
+          <a href="{{ route('admin.dashboard') }}" id="dashboard" class="nav-link "><i
+              class="fa-solid fa-gauge-high"></i>Dashboard</a>
         </li> --}}
         <li class="nav-item">
-          <a href="{{ route('admin.joiningRequests') }}" id="joiningRequests"  class="nav-link">
+          <a href="{{ route('admin.joiningRequests') }}" id="joiningRequests" class="nav-link">
             <i class="fa-regular fa-rectangle-list"></i>
             Joining requests
           </a>
@@ -134,8 +140,9 @@
       @if (Auth::guard('garagist')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
         <li class="nav-item">
-          <a href="{{ route('garagist.vehicles') }}" id="vehicles" class="nav-link"><i class="fa-solid fa-car-side"></i>Vehicles
-            </a>
+          <a href="{{ route('garagist.vehicles') }}" id="vehicles" class="nav-link"><i
+              class="fa-solid fa-car-side"></i>Vehicles
+          </a>
         </li>
         <li class="nav-item">
           <a href="{{ route('garagist.getReservations') }}" id="bookings" class="nav-link "><i
@@ -145,9 +152,9 @@
       @endif
       @if (Auth::guard('secretary')->check())
       <ul class="nav flex-column align-items-center justify-content-center">
-        <li class="nav-item">
+        {{-- <li class="nav-item">
           <a href="/" id="dashboard" class="nav-link"><i class="fa-solid fa-gauge-high"></i>Dashboard</a>
-        </li>
+        </li> --}}
         <li class="nav-item">
           <a href="{{ route('secretary.getReservationRequests') }}" id="reservations" class="nav-link "><i
               class="fa-solid fa-rectangle-list"></i>Reservation Requests</a>
@@ -226,9 +233,9 @@
       @endif
     </aside>
     <div class="main col-8 col-md-9 col-xl-10">
-      <div class="navbar sticky-top">
+      <div class="navbar navbar-dark sticky-top ">
         <div class="container">
-          <a class="navbar-brand" href="/">EazyRent</a>
+          <a class="navbar-brand" href="#">EazyRent</a>
         </div>
       </div>
       @yield('content')
@@ -236,12 +243,6 @@
   </div>
   {{-- scripts --}}
   <script src="{{ asset('js/app.js') }}"></script>
-  {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-  </script> --}}
   @yield('scripts')
 </body>
 

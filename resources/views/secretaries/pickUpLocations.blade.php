@@ -1,9 +1,8 @@
 @extends('layouts.workerLayout')
 
 @section('headTags')
-<title>secretary - pick up locations</title>
+<title>pick up locations</title>
 <link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
-
 {{-- MAP BOX --}}
 
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js'></script>
