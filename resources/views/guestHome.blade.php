@@ -40,8 +40,8 @@
             @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
           </div>
         </div>
-        <div class="row">
-          <div class="col-12 col-md-4">
+        {{-- <div class="row"> --}}
+          {{-- <div class="col-12 col-md-4">
             <input type="checkbox" name="PermenentDriverLicence" checked />
             <span>Driver has a permanent Driver Licence</span>
           </div>
@@ -52,11 +52,11 @@
               <label class="driverAge">Driver's age :</label>
               <input type="number" name="driverAge" driverAge" style="margin-left: 16px" min="18" max="25" value="25" />
             </div>
-          </div>
-          <div class="col-12 col-md-4">
+          </div> --}}
+          <div class="d-flex justify-content-center">
             <button type="submit" class="custom-btn custom-btn-dark"><i class="fa-solid fa-magnifying-glass" style="font-size: .95rem;margin-right:.75rem"></i>Search</button>
           </div>
-        </div>
+        {{-- </div> --}}
     </div>
   </div>
   </form>
