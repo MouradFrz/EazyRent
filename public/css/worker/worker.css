@@ -109,6 +109,19 @@
   padding: 0;
 }
 
+footer {
+  color: #FFF;
+  background-color: rgb(47, 47, 49);
+  font-weight: 300;
+  text-align: center;
+  padding-block: 2rem;
+}
+footer p > span {
+  color: rgb(0, 122, 255);
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
 .show-on-hover {
   display: none;
   position: absolute;

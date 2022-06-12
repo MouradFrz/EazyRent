@@ -309,7 +309,7 @@ footer .contact li > i {
 footer .footer-end {
   background-color: rgb(47, 47, 49);
   text-align: center;
-  padding-bottom: 2rem;
+  padding-block: 2rem;
 }
 footer .footer-end p > span {
   color: rgb(0, 122, 255);

@@ -133,7 +133,6 @@
     </div>
     <div class="footer-end">
       <div class="container">
-        <hr>
         <p>by <span>hacene barboucha, mourad yaou, oussama foura</span></p>
         <p>All rights reserved Copyright &copy; 2022</p>
       </div>

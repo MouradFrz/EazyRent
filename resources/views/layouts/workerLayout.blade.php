@@ -233,12 +233,18 @@
       @endif
     </aside>
     <div class="main col-8 col-md-9 col-xl-10">
-      <div class="navbar navbar-dark sticky-top ">
+      <div class="navbar navbar-dark sticky-top">
         <div class="container">
           <a class="navbar-brand" href="#">EazyRent</a>
         </div>
       </div>
       @yield('content')
+      <footer>
+        <div class="container">
+          <p>by <span>hacene barboucha, mourad yaou, oussama foura</span></p>
+          <p>All rights reserved Copyright &copy; 2022</p>
+        </div>
+      </footer>
     </div>
   </div>
   {{-- scripts --}}

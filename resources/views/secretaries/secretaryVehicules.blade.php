@@ -36,7 +36,7 @@
             @if ($booking->state == 'REQUESTED' || $booking->state == 'ACCEPTED' || $booking->state == 'SIGNED' ||
             $booking->state == 'ON GOING')
             @if ($vehicule->availability)
-            <button type="button" class="custom-btn custom-btn-danger my-3" disabled>Set
+            <button type="button" class="custom-btn custom-btn-dark my-3" disabled>Set
               unavailable</button>
             @else
             <button type="button" class="custom-btn custom-btn-success my-3" disabled>Set
@@ -46,7 +46,7 @@
 
             @else
             @if ($vehicule->availability)
-            <button type="button" class="custom-btn custom-btn-danger my-3"
+            <button type="button" class="custom-btn custom-btn-dark my-3"
               onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
               unavailable</button>
             @else
@@ -59,7 +59,7 @@
             @else
             @if ($loop->index == count($bookings) - 1)
             @if ($vehicule->availability)
-            <button type="button" class="custom-btn custom-btn-danger my-3"
+            <button type="button" class="custom-btn custom-btn-dark my-3"
               onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
               unavailable</button>
             @else
@@ -76,7 +76,7 @@
             @endforeach
             @else
             @if ($vehicule->availability)
-            <button type="button" class="custom-btn custom-btn-danger my-3"
+            <button type="button" class="custom-btn custom-btn-dark my-3"
               onclick="document.querySelector('#form{{ $vehicule->plateNb }}').submit()">Set
               unavailable</button>
             @else
