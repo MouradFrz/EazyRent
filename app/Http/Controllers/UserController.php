@@ -377,4 +377,42 @@ class UserController extends Controller
     User::find(Auth::user()->id)->update(['faceIdPath'=>true]);
     return response()->json(['succes'=>'success']);
   }
+  public function sessionSetting(Request $request){
+    session([
+      'pickUpLocation' => $request->pickUpLocation, 'dropOffLocation' => $request->dropOffLocation]);
+      return response()->json(['result'=>'success']);
+  }
+  public function paymentSuccess(){
+    if(is_null(Auth::user()->faceIdPath)){
+      return redirect()->route('user.activateAccount');
+    }
+    $vehicule = Vehicule::find(session('vehiculePlateNb'));
+    if ($vehicule->availability == false) {
+      return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')])->with('fail', 'vehicle is not available');
+    }
+
+    $booking = new Booking;
+    $booking->created_at = now();
+    // REQUESTED ACCEPTED REFUSED SIGNED CANCELED ON GOING FINISHED
+    $booking->state = 'REQUESTED';
+    // by default it's false secretary will update this when the client pay the booking
+    $booking->isPaid = true;
+    // 'HAND BY HAND' 'ONLINE'
+    $booking->payementMethod = 'ONLINE';
+    $booking->pickUpLocation = session('pickUpLocation');
+    $booking->dropOffLocation = session('dropOffLocation');
+
+    $booking->pickUpDate = session('pickUpString');
+    $booking->dropOffDate = session('dropOffString');
+
+    $booking->clientUsername = Auth::user()->username;
+    $booking->vehiculePlateNB = session('vehiculePlateNb');
+    $diff = session('dropOffDate')->diff(session('pickUpDate'));
+    $days =  $diff->days;
+    $hours = $diff->h;
+    $price = $vehicule->pricePerHour * $hours + $vehicule->pricePerDay * $days;
+    $booking->bookingPrice = $price;
+    $save = $booking->save();
+    return view('users.paymentSuccess');
+  }
 }

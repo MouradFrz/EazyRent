@@ -173,14 +173,15 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
     // Route::get('/payment', [PaymentController::class, 'Stripe']);
     // Route::post('/payment', [PaymentController::class, 'paymentPost'])->name('paymentPost');
-    Route::view('/paymentSuccess', 'users.paymentSuccess')->name('success');
+    Route::get('/paymentSuccess', [UserController::class,'paymentSuccess'])->name('success');
     // Route::view('/paymentFail', 'users.paymentFail')->name('fail');
     Route::post('/rateVehicle',[UserController::class,'rateVehicle'])->name('rateVehicle');
     Route::post('/rateAgency',[UserController::class,'rateAgency'])->name('rateAgency');
     Route::get('/activate-account',[UserController::class,'activateAccount'])->name('activateAccount');
     Route::post('/upload',[UserController::class,'upload'])->name('upload');
     Route::post('/setActive',[UserController::class,'setActive'])->name('setActive');
-  });
+    Route::post('/sessionSetting',[UserController::class,'sessionSetting'])->name('sessionSetting');
+    });
 });
 
 //owners
