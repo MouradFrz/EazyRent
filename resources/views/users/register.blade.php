@@ -218,7 +218,7 @@
             faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
             ]).then(start)
   function start(){
-    const submitButton = document.querySelector('#submit-button');
+    const submitButton = document.querySelector('#submit-button'); 
 
     submitButton.disabled = true
 

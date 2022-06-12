@@ -36,7 +36,7 @@
 
 </head>
 
-<body style="background-image: url('{{ asset('/images/dashboard/dashboard.jpg') }}');background-size:cover">
+<body style="background-image: url('{{ asset('/images/dashboard/dashboard.jpg') }}');background-size:cover;">
     <div class="btn-place">
         <button id="button1" class="custom-btn custom-btn-dark" style="cursor: pointer;" onclick="startFace()">Start face
             ID</button>
@@ -137,7 +137,7 @@
                         error.classList.remove('alert-secondary')
                         error.classList.remove('alert-danger')
                         error.classList.add('alert-success')
-                        error.textContent = 'Recognizing...'
+                        // error.textContent = 'Recognizing...'
 
                         if (results[0]._distance <= 0.56) {
                             counter++;

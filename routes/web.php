@@ -8,6 +8,7 @@ use App\Http\Controllers\Secretary\SecretaryController;
 use App\Http\Controllers\Garagist\GaragistController;
 use App\Http\Controllers\Agencies\AgencyController;
 use App\Http\Controllers\VehiculeController;
+use App\Http\Controllers\PaymentController;
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\GoogleController;
@@ -19,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Str;
+use App\Models\Payment;
 
 /*
 |--------------------------------------------------------------------------
@@ -125,11 +127,31 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/check', [UserController::class, 'check'])->name('check');
     Route::get('/google', [GoogleController::class, 'loginWithGoogle'])->name('loginWithGoogle');
     Route::any('/google/login', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
+    
+   
   });
   Route::middleware(['guest:owner', 'guest:admin', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::get('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
     Route::get('/offer/{plateNb}', [VehiculeController::class, 'viewOfferDetails'])->name('viewOfferDetails');
     Route::get('/filterVehicules',[VehiculeController::class,'filterVehicules'])->name('filterVehicules');
+    
+    
+  
+    // Route::post('webhook',function(Request $request){
+    //   if($request->type==='charge.succeeded'){
+    //     try{
+    //       Payment::create([
+    //         'stripe_id'=> $request->data['object']['id'],
+    //         'amount'=> $request->data['object']['amount'],
+    //         'email'=> $request->data['object']['billing_details']['email'],
+    //         'name'=> $request->data['object']['billing_details']['name'],
+    //       ]);
+    //     }catch(\Exception $e){
+    //       return $e->getMessage();
+    //     }
+    //   }
+    // });
+   
   });
   Route::middleware(['auth:web','verified', 'PreventBackHistory'])->group(function () {
     Route::view('/home', 'guestHome')->name('home');
@@ -149,6 +171,10 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/setGoing',[UserController::class,'setGoing'])->name('setGoing');
     Route::post('/setFailed',[UserController::class,'setFailed'])->name('setFailed');
     Route::post('/sendComplaint',[UserController::class,'sendComplaint'])->name('sendComplaint');
+    // Route::get('/payment', [PaymentController::class, 'Stripe']);
+    // Route::post('/payment', [PaymentController::class, 'paymentPost'])->name('paymentPost');
+    Route::view('/paymentSuccess', 'users.paymentSuccess')->name('success');
+    // Route::view('/paymentFail', 'users.paymentFail')->name('fail');
   });
 });
 

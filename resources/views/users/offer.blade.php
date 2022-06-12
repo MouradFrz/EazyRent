@@ -1,21 +1,27 @@
 <?php
-// require_once __DIR__ .'/../../../vendor/autoload.php';
-// \Stripe\Stripe::setApiKey('sk_test_VePHdqKTYQjKNInc7u56JBrQ');
-// $session = \Stripe\Checkout\Session::create([
-//     'line_items' => [[
-//       'price_data' => [
-//         'currency' => 'usd',
-//         'product_data' => [
-//           'name' => 'T-shirt',
-//         ],
-//         'unit_amount' => 2000,
-//       ],
-//       'quantity' => 1,
-//     ]],
-//     'mode' => 'payment',
-//     'success_url' => 'https://example.com/success',
-//     'cancel_url' => 'https://example.com/cancel',
-//   ]);
+require_once __DIR__ .'/../../../vendor/autoload.php';
+\Stripe\Stripe::setApiKey('sk_test_51L8rxjHbJPfz83Tb1ldNZieYWxz5ytL9fAmRHCP1EDynMVTRukSh2aA8MCZVyC1mwKEqJJvUlqlRkEa1tUFps9MV00aAnzC4Ba');
+$diff = session('dropOffDate')->diff(session('pickUpDate'));
+$days =  $diff->days;
+$hours = $diff->h;
+$session = \Stripe\Checkout\Session::create([
+    'line_items' => [[
+      'price_data' => [
+        'currency' => 'dzd',
+        'product_data' => [
+          'name' => $vehicule->brand." ".$vehicule->model,
+         
+        ],
+        
+        'unit_amount' => $price = ($vehicule -> pricePerHour * $hours + $vehicule -> pricePerDay * $days)*100,
+      ],
+      'quantity' => 1,
+    ]],
+    'mode' => 'payment',
+    'success_url' => route('user.success'),
+    // 'success_url' => 'https://example.com/success',
+    'cancel_url' => 'https://example.com/cancel',
+  ]);
 
   
 ?>
@@ -88,7 +94,11 @@
             </tr>
             <tr>
               <th scope="row">air cooling : </th>
-              <td>{{$vehicule -> airCooling}}</td>
+              <td> @if ($vehicule->airCooling)
+                Available
+            @else
+                Not available
+            @endif</td>
             </tr>
             <tr>
               <th scope="row">rating : </th>
@@ -165,7 +175,7 @@
           <div class="col">
             <label for="pickUpLocation" class="form-group">pick up at</label>
             <select id="pickUpLocation" name="pickUpLocation" class="form-select" aria-label="pickUpLocation">
-              <option selected value="">sellect a pick up location</option>
+              <option selected value="">Select a pick up location</option>
               @foreach ($pickUpLocations as $address)
               <option value="{{$address -> id}}">{{$address -> address_address}}</option>
               @endforeach
@@ -175,12 +185,20 @@
           <div class="col">
             <label for="dropOffLocation" class="form-group">drop off at</label>
             <select id="dropOffLocation" name="dropOffLocation" class="form-select" aria-label="dropOffLocation">
-              <option selected value="">sellect a drop off location</option>
+              <option selected value="">Select a drop off location</option>
               @foreach ($pickUpLocations as $address)
               <option value="{{$address -> id}}">{{$address -> address_address}}</option>
               @endforeach
             </select>
             @error('dropOffLocation')<span style="color: red">{{$message}}</span>@enderror
+          </div>
+          <div class="col">
+            <label for="paymentMethod" class="form-group">Payment methodt</label>
+            <select id="paymentmethod" name="paymentmethod" class="form-select" aria-label="paymentmethod">
+              <option selected value="">Select a payment method</option>
+              <option selected value="">Credit Card</option>
+              <option selected value="">Hand to hand</option>
+            </select>  
           </div>
         </div>
         <button class="custom-btn custom-btn-dark mt-4" onclick="event.preventDefault();" data-bs-toggle="modal"
@@ -200,10 +218,13 @@
                 <p>Total price: <strong>{{$price}} DZD</strong></p>
               </div>
               <div class="modal-footer d-flex justify-content-between">
-                <button type="button" class="custom-btn custom-btn-secondary" data-bs-dismiss="modal"
+               
+                <button type="button" class="link" data-bs-dismiss="modal"
                   onclick="event.preventDefault();">cancel</button>
-                <button type="submit" id="confirm" class="custom-btn custom-btn-success"
-                  onclick="document.getElementById('reservation-form').submit()">confirm my choice</button>
+                {{-- <button type="submit" id="confirm" class="custom-btn custom-btn-success"
+                  onclick="document.getElementById('reservation-form').submit()">confirm my choice</button> --}}
+                  <button type="button"  id="confirm" class="link"
+                 >confirm my choice</button>
               </div>
             </div>
           </div>
@@ -223,14 +244,16 @@
 </div>
 @endsection
 @section('script')
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-// const stripe = Stripe('pk_test_51L6nDbHsX0BypY7bu92FsSNXMH5jqDOTEgvGBgtX5rIS4lNLMAVD1xDhp513l7XQlftLijcTJkODjR5O3LQJFfQP00eiVXCuBU') 
-// const btn = getElementById("confirm")
-// btn.addEventListener('click',function(e){
-//   e.preventDefault();
-//   stripe.redirectToCheckout({
-//     sessionId:" "
-//   })
-// })
+const stripe = Stripe('pk_test_51L8rxjHbJPfz83TboH5Dcf6f9n7LvM960HfNw1gqPkrfY388bJOJZMReLzU9mtoRzUPiwDhVINjtZbNQVrPQrVV700jGkd9wYs') 
+const btn = document.getElementById("confirm")
+btn.addEventListener('click',function(e){
+  e.preventDefault();
+  stripe.redirectToCheckout({
+    sessionId:"<?php echo $session->id ?>"
+   
+  })
+})
 </script>
 @endsection
