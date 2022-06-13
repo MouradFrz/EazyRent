@@ -21,8 +21,8 @@
         <strong class="exclamation">This operation can not be undone</strong>
       </div>
       <div class="modal-footer">
-        <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="link link-no-decoration link-danger"
+        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="link link-danger"
           onclick="document.querySelector('#secDeleteForm').submit()">Confirm</button>
       </div>
     </div>
@@ -46,8 +46,8 @@
         <strong class="exclamation">This operation can not be undone</strong>
       </div>
       <div class="modal-footer">
-        <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="link link-no-decoration link-danger"
+        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="link link-danger"
           onclick="document.querySelector('#garDeleteForm').submit()">Confirm</button>
       </div>
     </div>
@@ -72,8 +72,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="link link-no-decoration link-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="link link-no-decoration"
+        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="link"
           onclick="document.querySelector('#secTransferForm').submit()">Confirm</button>
       </div>
     </div>
@@ -99,8 +99,8 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="link link-secondary link-no-decoration" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="link link-no-decoration"
+        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="link"
           onclick="document.querySelector('#garTransferForm').submit()">Confirm</button>
       </div>
     </div>
@@ -109,14 +109,14 @@
 <div>
   <div class="container">
     <div class="d-flex justify-content-between align-items-center mt-4">
-      <h2 class="my-3">Employees management</h2>
+      <h2 class="title">Employees management</h2>
       <div>
         <a href="{{ route('owner.addEmployee') }}" class="custom-btn custom-btn-success" >
           Add a new employee
         </a>
       </div>
     </div>
-    <h3>Secretaries</h3>
+    <h3 class="title">Secretaries</h3>
     @if (Session::get('message'))
     <div class="alert alert-success w-100" role="alert">
       {{ Session::get('message') }}
@@ -154,7 +154,7 @@
       {{$list->links()}}
     </div>
     <div class="white-space white-space-sm"></div>
-    <h3>garage managers</h3>
+    <h3 class="title">garage managers</h3>
     <div>
       <table class="table table-striped" id="garlist">
         <thead>

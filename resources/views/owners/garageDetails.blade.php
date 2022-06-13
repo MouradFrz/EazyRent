@@ -23,8 +23,8 @@
          <p >Are you sure you want to delete this garage ? <br> <span style="color:red"> The garage manager that's currently managing this garage will be available for other garages of this branch. </span></p>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-danger" onclick="document.querySelector('#deleteForm').submit()">Confirm</button>
+            <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="link link-danger" onclick="document.querySelector('#deleteForm').submit()">Confirm</button>
             <form action="{{ route('owner.deleteGarage', $garage->garageID ) }}" id="deleteForm" method="POST">@csrf</form>
           </div>
       </div>
@@ -50,19 +50,19 @@
         </form>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="document.querySelector('#changeForm').submit()">Confirm</button>
+            <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="link" onclick="document.querySelector('#changeForm').submit()">Confirm</button>
           </div>
       </div>
     </div>
   </div>
     <div>
         <div class="container">
-            <h2 class="my-3">Garage details</h2>
-            <hr>
+            <h2 class="title">Garage details</h2>
             @if (Session::get('message'))
-            <div class="alert alert-success w-100 " role="alert">
+            <div class="alert alert-success w-100 alert-dismissible fade show" role="alert">
                 {{ Session::get('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
               </div>
             @endif
             <div class="row">
@@ -114,26 +114,19 @@
                     </tr>
                     @endforeach
                     </tbody>
-
                 </table>
             </div>
-
-              <button  class="btn btn-primary my-3" style="float: right" data-bs-toggle="modal" data-bs-target="#changeManager" >Change garage manager</button>
-              <button type="button" class="btn btn-danger my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
+              <button  class="link link-secondary" data-bs-toggle="modal" data-bs-target="#changeManager" >Change garage manager</button>
+              <button type="button" class="link link-danger my-3"  data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Delete this garage
               </button>
         </div>
-
     </div>
 @endsection
 
 
 @section('scripts')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js" integrity="sha512-n/4gHW3atM3QqRcbCn6ewmpxcLAHGaDjpEBu4xZd47N0W2oQ+6q7oc3PXstrJYXcbNU1OHdQ1T7pAP+gi5Yu8g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
 <script>
-     let sectable = new DataTable('#carlist');
-
+    let sectable = new DataTable('#carlist');
 </script>
 @endsection
