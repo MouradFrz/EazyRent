@@ -16,16 +16,6 @@
 @section('content')
 <div class="hero">
   <div class="container hero_content header">
-    @auth
-    @if (is_null(Auth::user()->email_verified_at))
-    <div class="alert alert-warning" style="transform: translateY(40px)">
-      <p>Your email is not verified. You need to verify your email before booking a vehicle.</p> 
-      <a href="{{ route('verification.notice') }}">Verify my email</a>
-    </div>
-    @endif
-    @endauth
-   
-   
     <div class="search-panel" id="search-form">
       <h2>search a vehicle now!</h2>
       <form action="{{route('user.viewOffers')}}" method="GET" id="">

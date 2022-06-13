@@ -243,3 +243,18 @@ a {
   font-size: 3.5rem;
   margin-bottom: 2.5rem;
 }
+
+.email-alert {
+  width: 100%;
+  margin: 0;
+  padding: 1rem 0;
+  background-color: rgb(47, 47, 49);
+  color: #FFF;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 4rem;
+  z-index: 5;
+}
+.email-alert > a {
+  font-weight: 700;
+}

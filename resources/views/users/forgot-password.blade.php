@@ -1,12 +1,13 @@
 @extends('layouts.userLayout')
 @section('head')
+<title>forget password</title>
 @endsection
 @section('content')
 <div class="white-space"></div>
 <div class="resset-password">
   <div class="content">
     <h1 class="text-center">EazyRent</h1>
-    <h3 class="text-center">Reset your passowrd</h3>
+    <h3 class="text-center">reset your passowrd</h3>
     @if (Session::get('status'))
     <div class="success-icon">
       <i class="fa-solid fa-circle-check"></i>
@@ -14,10 +15,12 @@
     <p class="text-center text-success">
       {{ Session::get('status') }}
     </p>
-    <a href="/" class="link"><i class="fa-solid fa-arrow-left"></i> Go back home</a>
+    <a href="/" class="link mt-4"><i class="fa-solid fa-arrow-left"></i> Go back home</a>
     @else
-    <p class="mb-4 mt-4">Enter the email address associated with your account and we'll send you a link to reset your password</p>
-    <form action="{{ route('password.request') }}" method="post" enctype="multipart/form-data" class="form resset-password-form">
+    <p class="mb-4 mt-4">Enter the email address associated with your account and we'll send you a link to reset your
+      password</p>
+    <form action="{{ route('password.request') }}" method="post" enctype="multipart/form-data"
+      class="form resset-password-form">
       @csrf
       <label for="email" class="label">Email</label>
       <input type="text" name="email" class="inputs">

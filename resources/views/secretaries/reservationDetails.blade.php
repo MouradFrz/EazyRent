@@ -1,6 +1,7 @@
 @extends('layouts.workerLayout')
 
 @section('headTags')
+<title>booking details</title>
 <link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
 @endsection
 

@@ -94,6 +94,16 @@
     </div>
     </div>
   </nav>
+  @auth
+  @if (is_null(Auth::user()->email_verified_at) and (Illuminate\Support\Facades\Route::current()->getName() !== 'verification.notice'))
+  <div class="m-0 email-alert">
+    <div class="container">
+      Your email is not verified, You have to verify your email before booking a vehicle
+      <a href="{{ route('verification.notice') }}" class="link link-underline">Verify my email</a>
+    </div>
+  </div>
+  @endif
+  @endauth
   @yield('content')
   <footer id="contactUs" class="header section">
     <div class="container">
