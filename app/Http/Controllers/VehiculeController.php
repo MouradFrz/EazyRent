@@ -39,7 +39,6 @@ class VehiculeController extends Controller
     $vehicules = Vehicule::where('availability', 1)
       ->join('garages', 'vehicules.garageID', '=', 'garages.garageID')
       ->join('pickuplocations', 'garages.brancheID', '=', 'pickuplocations.brancheID')
-      ->where('brand','LIKE',($request->make) ? $request->model : '%' )
       ->whereBetween('address_latitude', [$pickUpLat - .18, $pickUpLat + .18])
       ->whereBetween('address_longitude', [$pickUpLng - .18, $pickUpLng + .18])
       ->select(['plateNb', 'brand', 'model', 'type', 'color', 'year', 'fuel', 'gearType', 'doorsNb', 'horsePower', 'airCooling', 'physicalState', 'rating', 'category', 'pricePerHour', 'pricePerDay', 'vehicules.garageID', 'imagePath'])
@@ -47,7 +46,7 @@ class VehiculeController extends Controller
       
       ->paginate(8)
       ->appends(request()->query());
-      
+      // dd($vehicules);
     $dropOffDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T', ' ', $request->dropOffDate));
     $pickUpDate = DateTime::createFromFormat('Y-m-j H:i', str_replace('T', ' ', $request->pickUpDate));
 

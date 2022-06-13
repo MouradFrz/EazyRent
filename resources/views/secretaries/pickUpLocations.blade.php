@@ -169,7 +169,7 @@
     }).setLngLat(center)
       .addTo(map)
     marker.setPitchAlignment('map');
-    marker.color('#007aff')
+    // marker.color('#007aff')
     map.on('dblclick',(e) => {
       marker.setLngLat(e.lngLat)
       markeAdrress()
