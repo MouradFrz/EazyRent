@@ -1,10 +1,5 @@
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
 .stats_item {
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: #fff;
@@ -18,24 +13,20 @@
 }
 
 .no-agency {
-  background-color: rgb(229, 229, 234);
-  height: 100%;
-}
-.no-agency .container {
-  height: 100%;
+  min-height: 80vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.no-agency .alert {
-  padding: 2rem 2rem 1rem;
+.no-agency .message {
+  padding: 2rem 1rem;
+  border: 1px solid rgb(229, 229, 234);
   border-radius: 0.5rem;
-  background-color: rgb(199, 199, 201);
-  border: 2px dashed rgb(142, 142, 147);
+  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
   text-align: center;
 }
-.no-agency .alert p {
-  font-size: 1.5rem;
+.no-agency .message p {
+  font-size: 1.2rem;
 }
 
 .sticker {
@@ -87,6 +78,7 @@
 }
 
 .card {
+  height: 100%;
   padding: 0;
   padding-block: 1rem;
   margin: 1rem;

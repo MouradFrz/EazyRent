@@ -15,23 +15,31 @@
 </script>
 <div class="dashboard">
   <div class="container">
-    <h2 class="my-4">{{ $Request->name }}</h2>
-    <div class="stats">
-      <div class="stats_item" id="reservationsLastWeek">
-        <h6 class="stats_header">reservations in last week</h6>
-        <canvas id="lineChart"></canvas>
+    <h2 class="title">{{ $Request->name }}</h2>
+    <div class="stats row g-4">
+      <div class="col-12 col-lg-6">
+        <div class="stats_item" id="reservationsLastWeek">
+          <h6 class="stats_header">reservations in last week</h6>
+          <canvas id="lineChart"></canvas>
+        </div>
       </div>
-      <div class="stats_item" id="reseravtionsPerBranch">
-        <h6 class="stats_header">reservations per branch</h6>
-        <canvas id="myChart" class="circle-chart"></canvas>
+      <div class="col-12 col-lg-6">
+        <div class="stats_item" id="reseravtionsPerBranch">
+          <h6 class="stats_header">reservations per branch</h6>
+          <canvas id="myChart" class="circle-chart"></canvas>
+        </div>
       </div>
-      <div class="stats_item" id="argentPerBranch">
-        <h6 class="stats_header">Argent gagne par chaque branche</h6>
-        <canvas id="mpb" class="circle-chart"></canvas>
+      <div class="col-12 col-lg-6">
+        <div class="stats_item" id="argentPerBranch">
+          <h6 class="stats_header">Argent gagne par chaque branche</h6>
+          <canvas id="mpb" class="circle-chart"></canvas>
+        </div>
       </div>
-      <div class="stats_item">
-        <h6 class="stats_header">pick up locations</h6>
-        <canvas id="pickUpLocations"></canvas>
+      <div class="col-12 col-lg-6">
+        <div class="stats_item">
+          <h6 class="stats_header">pick up locations</h6>
+          <canvas id="pickUpLocations"></canvas>
+        </div>
       </div>
     </div>
     <div class="white-space"></div>
@@ -86,18 +94,20 @@
     <div class="mostRentedcars">
       <h3>Most rented cars</h3>
       <div class="cars row">
-        @foreach ($mostRentedCars as $car)
-        <div class="col car card">
-          <p class="text-center mb-2"><strong>{{ $car->brand }} {{ $car->model }}</strong></p>
-          <div class="img">
-            <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
+        <div class="col-6 col-md-6 col-xxl-4">
+          @foreach ($mostRentedCars as $car)
+          <div class="car card">
+            <p class="text-center mb-2"><strong>{{ $car->brand }} {{ $car->model }}</strong></p>
+            <div class="img">
+              <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
+            </div>
+            <div class="content">
+              <p> <strong>Rating : </strong> {{ $car->rating }}</p>
+              <p> <strong>Bookings count : </strong>{{ $car->bookCount }}</p>
+            </div>
           </div>
-          <div class="content">
-            <p> <strong>Rating : </strong> {{ $car->rating }}</p>
-            <p> <strong>Bookings count : </strong>{{ $car->bookCount }}</p>
-          </div>
+          @endforeach
         </div>
-        @endforeach
       </div>
     </div>
     <div class="white-space"></div>
@@ -143,44 +153,43 @@
 @elseif (!is_null($Request))
 @if($Request->state =="ON GOING")
 <div class="no-agency">
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="alert" role="alert" style="border:2px dashed rgb(130, 179, 139);background-color:rgb(130, 179, 139)">
-      <p> Your request is being processed by our administrators. Please comeback later</p>
+  <div class="message">
+    <p> Your request is being processed by our administrators. Please comeback later</p>
+    <div class="d-flex justify-content-center mt-4 ">
       <a href="{{ route('owner.logout') }}"
-        onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning"
-        style="float:right"> Logout</a>
+        onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+        class="custom-btn custom-btn-dark" style="float:right"> Logout</a>
       <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
     </div>
   </div>
 </div>
 @elseif($Request->state =="REFUSED")
 <div class="no-agency">
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="alert" role="alert" style="border:2px dashed rgb(179, 133, 130);background-color:rgb(179, 148, 130)">
-      <p> Your request was refused because of invalid or missing informations.</p>
+  <div class="message">
+    <p> Your request was refused because of invalid or missing informations.</p>
+    <div class="d-flex justify-content-center mt-4 ">
       <a href="{{ route('owner.logout') }}"
-        onclick="event.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-warning"
-        style="float:right"> Logout</a>
+        onclick="event.preventDefault();document.getElementById('logout-form').submit();"
+        class="custom-btn custom-btn-dark" style="float:right"> Logout</a>
       <form action="{{ route('owner.logout') }}" id="logout-form" method="post" style="display: none">@csrf</form>
     </div>
   </div>
 </div>
 @endif
-
 @else
 <div class="no-agency">
-  <div class="container">
-    <div class="alert" role="alert">
-      <p>
-        It seem's that You don't have an agency yet!
-        <br>
-        Click the button below to add your agency now!
-      </p>
+  <div class="message">
+    <p>
+      You don't have an agency yet!
       <br>
-      <a class="custom-btn" href="{{ route('owner.createAgency') }}">
+      Click the button below to add your agency
+    </p>
+    <div class="d-flex justify-content-center mt-4 ">
+      <a class="custom-btn custom-btn-success" href="{{ route('owner.createAgency') }}" style="margin: 0 auto">
         Add agency Now!
       </a>
     </div>
+
   </div>
 </div>
 @endif
