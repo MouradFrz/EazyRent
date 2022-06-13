@@ -64,7 +64,7 @@
           aria-expanded="false">
           {{ Auth::user()->username }}
         </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <ul class="dropdown-menu" id="user-dropdown" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="{{ route('user.editProfile') }}">Profil</a></li>
           <li><a class="dropdown-item" href="{{ route('user.history') }}">Transaction history</a></li>
           <hr class="dropdown-divider">
@@ -222,6 +222,16 @@ function show() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js" integrity="sha512-v8B8T8l8JiiJRGomPd2k+bPS98RWBLGChFMJbK1hmHiDHYq0EjdQl20LyWeIs+MGRLTWBycJGEGAjKkEtd7w5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   gsap.from('footer',{duration:1,ease:"power1.inOut",y:100,opacity:0,scrollTrigger:{trigger:'footer'}});
+</script>
+<script>
+   const dropdowns = document.querySelectorAll('.dropdown-menu')
+   const toggler = document.querySelector('#navbar-toggler')
+
+   toggler.addEventListener('click',()=>{
+    dropdowns.forEach((e)=>{
+      e.classList.toggle('down')
+    })
+   })
 </script>
 </body>
 
