@@ -67,6 +67,20 @@
 .sidebar .nav-item > .nav-link > i {
   margin-right: 0.5rem;
 }
+.sidebar .nav-item > .nav-link.child::before {
+  content: "\f111";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.5rem;
+  margin-inline: 1rem;
+}
+.sidebar .nav-item > .nav-link.child.non-functional {
+  cursor: default;
+}
+.sidebar .nav-item > .nav-link.child.non-functional:hover:not(.active) {
+  background-color: transparent;
+  border-left: 0;
+}
 .sidebar .dropdown {
   width: 100%;
   margin-bottom: 2rem;

@@ -144,6 +144,12 @@ a {
       text-decoration: underline;
     }
   }
+  &-success {
+    color: $indigo;
+    &:hover {
+      color: rgba($color: $indigo, $alpha: 0.8);
+    }
+  }
   &-secondary {
     color: $grey;
     &:hover {
@@ -151,7 +157,7 @@ a {
     }
   }
   &-danger {
-    color: red;
+    color: $red;
     &:hover {
       color: rgba($color: $red, $alpha: 0.8);
     }

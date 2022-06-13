@@ -11,9 +11,9 @@
   let vehicles = document.querySelector('#vehicles')
   vehicles.classList.add('active')
 </script>
-<div class="cars">
+<div class="cars" style="min-height: 80vh">
   <div class="container">
-    <h2 class="title">Vehicles list</h2>
+    <h2 class="title">vehicles list</h2>
     <div class="row gx-3 gy-3">
       @if (count($vehicules) != 0)
       @foreach ($vehicules as $vehicule)

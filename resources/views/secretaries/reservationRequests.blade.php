@@ -9,17 +9,21 @@
     let reservations = document.querySelector('#reservations')
     reservations.classList.add('active')
   </script>
-  <div class="container">
+  <div class="container" style="min-height: 80vh">
     @foreach ($fails as $fail)
-    <div class="alert alert-warning w-100 alert-dismissible fade show m-2 " role="alert">
+    <div class="alert alert-warning w-100 alert-dismissible fade show m-2" role="alert">
       <p>There was a failed attempt to unlock the car {{ $fail->brand }} {{ $fail->model }}
         ({{ $fail->plateNb }}), rented by {{ $fail->firstName }}
         {{ $fail->lastName }} at {{ $fail->failedDate }}.</p>
       <a class="text-decoration-underline seen" style="cursor: pointer" data-bs-dismiss="alert"
-        data-bookingid="{{ $fail->bookingID }}">Set as seen</a>
+        data-bookingid="{{ $fail->bookingID }}">Set as seen
+      </a>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </div>
     @endforeach
-    <h2>Reservation requests</h2>
+    <h2 class="title">Reservation requests</h2>
     <table class="table table-striped" id="restable">
       <thead>
         <tr>
@@ -50,11 +54,6 @@
 </div>
 @endsection
 @section('scripts')
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
-  integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
-<script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script>
   let restable = new DataTable('#restable');
       let seens = document.querySelectorAll('.seen')

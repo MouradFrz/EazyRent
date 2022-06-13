@@ -161,7 +161,13 @@
         </li>
         <li class="nav-item">
           <a href="{{ route('secretary.showVehicules') }}" id="vehicles" class="nav-link "><i
-              class="fa-solid fa-car-side"></i>Vehicues</a>
+              class="fa-solid fa-car-side"></i>Vehicles</a>
+        </li>
+        <li class="nav-item">
+          <a href="{{ route('secretary.addVehicule') }}" class="nav-link child" id="addVehicleNav">Add Vehicle</a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link child non-functional" id="vehiculeDetailsNav">Vehicule Details</a>
         </li>
         <li class="nav-item">
           <a href="{{ route('secretary.getPickUpLocations') }}" id="pickUpLocations" class="nav-link"><i
@@ -249,6 +255,11 @@
   </div>
   {{-- scripts --}}
   <script src="{{ asset('js/app.js') }}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+    integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.12.0/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"
+    integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
   @yield('scripts')
 </body>
 

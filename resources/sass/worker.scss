@@ -63,6 +63,22 @@
       > i {
         margin-right: .5rem;
       }
+      &.child {
+        &::before {
+          content: '\f111';
+          font-family: "Font Awesome 6 Free";
+          font-weight: 900;
+          font-size: .5rem;
+          margin-inline: 1rem;
+        }
+        &.non-functional {
+          cursor: default;
+          &:hover:not(.active) {
+            background-color: transparent;
+            border-left: 0;
+          }
+        }
+      }
     }
   }
   .dropdown {

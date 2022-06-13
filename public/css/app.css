@@ -156,6 +156,12 @@ a {
 .link-underline:hover {
   text-decoration: underline;
 }
+.link-success {
+  color: rgb(88, 86, 214);
+}
+.link-success:hover {
+  color: rgba(88, 86, 214, 0.8);
+}
 .link-secondary {
   color: rgb(142, 142, 147);
 }
@@ -163,7 +169,7 @@ a {
   color: rgba(142, 142, 147, 0.8);
 }
 .link-danger {
-  color: red;
+  color: rgb(255, 59, 48);
 }
 .link-danger:hover {
   color: rgba(255, 59, 48, 0.8);

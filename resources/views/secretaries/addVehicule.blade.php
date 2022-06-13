@@ -4,8 +4,8 @@
 @endsection
 @section('content')
 <script>
-  let vehicles = document.querySelector('#vehicles')
-  vehicles.classList.add('active')
+  let addVehicleNav = document.querySelector('#addVehicleNav')
+  addVehicleNav.classList.add('active')
 </script>
 <div class="add-vehicule mt-5">
   <div class="container">
@@ -14,14 +14,16 @@
       {{Session::get('message')}}
     </div>
     @endif
-    <h2>Add a vehicle</h2>
-    <hr>
+    <h2 class="title">Add a vehicle</h2>
     <form method="POST" action="{{route('secretary.addVehiculePost')}}" enctype="multipart/form-data">
       @csrf
+      <div class="d-flex aling-items-center justify-content-end">
+        <button type="submit" class="custom-btn custom-btn-success">Add Vehicule</button>
+      </div>
       <div class="row">
         <div class="col">
           <label for="category" class="form-label">Category</label>
-          <select type="text" name="category" class="form-control">
+          <select type="text" name="category" class="inputs">
             <option value="">Choose a category</option>
             <option value="Car">Car</option>
             <option value="Motorcycle">Motorcycle</option>
@@ -33,11 +35,10 @@
             {{ $message }}
             @enderror
           </span>
-
         </div>
         <div class="col">
           <label for="type" class="form-label">Type</label>
-          <select type="text" name="type" class="form-control">
+          <select type="text" name="type" class="inputs">
             <option value="">Choose a type</option>
             <option value="Classic">Classic</option>
             <option value="Comfort">Comfort</option>
@@ -53,9 +54,8 @@
         </div>
         <div class="col">
           <label for="brand" class="form-label">Brand</label>
-          <Select name="brand" id="brand" class="form-control" onchange="loadModels()">
+          <Select name="brand" id="brand" class="inputs" onchange="loadModels()">
             <option value="">Select a brand</option>
-
           </Select>
           @error('brand')
           {{ $message }}
@@ -66,9 +66,8 @@
       <div class="row">
         <div class="col">
           <label for="model" class="form-label">Model</label>
-          <Select name="model" id="model" class="form-control">
+          <Select name="model" id="model" class="inputs">
             <option value="">Choose a model</option>
-
           </Select>
           <span class="text-danger" style="font-size:0.8rem">
             @error('model')
@@ -79,14 +78,12 @@
         </div>
         <div class="col">
           <label for="year" class="form-label">Year</label>
-          <input type="number" min="1970" max="2022" step="1" value="2022" name="year" class="form-control"
+          <input type="number" min="1970" max="2022" step="1" value="2022" name="year" class="inputs"
             placeholder="year">
-
         </div>
-
         <div class="col">
           <label for="color" class="form-label">Color</label>
-          <select class="form-control" name="color" id="">
+          <select class="inputs" name="color" id="">
             <option value="">Any</option>
             <option value="Green">Green</option>
             <option value="Blue">Blue</option>
@@ -98,7 +95,6 @@
             <option value="Black">Black</option>
             <option value="Grey">Grey</option>
           </select>
-
           <span class="text-danger" style="font-size:0.8rem">
             @error('color')
             {{ $message }}
@@ -111,7 +107,7 @@
       <div class="row">
         <div class="col">
           <label for="plateNb" class="form-label">Plate Number</label>
-          <input type="text" maxlength="10" name="plateNb" class="form-control" placeholder="Plate number"
+          <input type="text" maxlength="10" name="plateNb" class="inputs" placeholder="Plate number"
             onkeypress="return isNumber(event)" value="{{ old('plateNb') }}">
           <span class="text-danger" style="font-size:0.8rem">
             @error('plateNb')
@@ -122,7 +118,7 @@
         </div>
         <div class="col">
           <label for="fuel" class="form-label">Fuel</label>
-          <Select name="fuel" id="" class="form-control">
+          <Select name="fuel" id="" class="inputs">
             <option value="">Choose a type of fuel</option>
             <option value="Sans-Plomb">Sans-plomb</option>
             <option value="Mazot">Mazot</option>
@@ -139,7 +135,7 @@
         </div>
         <div class="col">
           <label for="gearType" class="form-label">gear type</label>
-          <Select name="gearType" id="" class="form-control">
+          <Select name="gearType" id="" class="inputs">
             <option value="">Choose a type of gear</option>
             <option value="Manual">Manual</option>
             <option value="Mutomatic">Automatic</option>
@@ -149,14 +145,12 @@
             {{ $message }}
             @enderror
           </span>
-
         </div>
-
       </div>
       <div class="row">
         <div class="col">
           <label for="doorsNb" class="form-label">Doors number</label>
-          <Select name="doorsNb" id="" class="form-control">
+          <Select name="doorsNb" id="" class="inputs">
             <option value="">Choose the number of doors</option>
             <option value="2">2</option>
             <option value="4">4</option>
@@ -170,7 +164,7 @@
         </div>
         <div class="col">
           <label for="horsePower" class="form-label">Horse power</label>
-          <input type="text" maxlength="4" name="horsePower" class="form-control" placeholder="Horse power"
+          <input type="text" maxlength="4" name="horsePower" class="inputs" placeholder="Horse power"
             value="{{ old('horsePower') }}">
           <span class="text-danger" style="font-size:0.8rem">
             @error('horsePower')
@@ -190,7 +184,7 @@
       <div class="row">
         <div class="col">
           <label for="pricePerHour" class="form-label">Price Per Hour (DZD)</label>
-          <input type="text" name="pricePerHour" maxlength="4" class="form-control" placeholder="Price per hour"
+          <input type="text" name="pricePerHour" maxlength="4" class="inputs" placeholder="Price per hour"
             onkeypress="return isNumber(event)" value="{{ old('pricePerHour') }}">
           <span class="text-danger" style="font-size:0.8rem">
             @error('pricePerHour')
@@ -201,7 +195,7 @@
         </div>
         <div class="col">
           <label for="pricePerDay" class="form-label">Price Per Day (DZD)</label>
-          <input type="text" name="pricePerDay" maxlength="4" class="form-control" placeholder="Price per day"
+          <input type="text" name="pricePerDay" maxlength="4" class="inputs" placeholder="Price per day"
             onkeypress="return isNumber(event)" value="{{ old('pricePerDay') }}">
           <span class="text-danger" style="font-size:0.8rem">
             @error('pricePerDay')
@@ -212,10 +206,13 @@
         </div>
         <div class="col">
           <label for="physicalState" class="form-label">Physical state</label>
-          <Select name="physicalState" id="" class="form-control">
+          <Select name="physicalState" id="" class="inputs">
             <option value="">Current vehicle state</option>
-            <option value="mliha">mliha</option>
-            <option value="ma mlihach">ma mlihach</option>
+            <option value="super">super</option>
+            <option value="good">good</option>
+            <option value="medium">medium</option>
+            <option value="low">low</option>
+            <option value="very low">very low</option>
           </Select>
           <span class="text-danger" style="font-size:0.8rem">
             @error('physicalState')
@@ -229,7 +226,7 @@
       <div class="row">
         <div class="col-4">
           <label for="garageID" class="form-label">Garage</label>
-          <Select name="garageID" id="" class="form-control">
+          <Select name="garageID" id="" class="inputs">
             <option value="">Choose a garage</option>
             @foreach ($garages as $garage)
             <option value="{{ $garage->garageID }}">{{ $garage->address }}</option>
@@ -250,13 +247,8 @@
             {{ $message }}
             @enderror
           </span>
-
         </div>
-
       </div>
-
-      <button type="submit" class="btn my-3 btn-primary">Add Vehicule</button>
-
     </form>
   </div>
 </div>
