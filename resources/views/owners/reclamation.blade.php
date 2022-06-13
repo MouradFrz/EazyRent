@@ -1,15 +1,15 @@
 @extends('layouts.workerLayout')
 @section('headTags')
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
+<title>Complaints</title>
 @endsection
 @section('content')
 <script>
   let clientComplaints = document.querySelector('#clientComplaints')
   clientComplaints.classList.add('active')
 </script>
-<div class="joining-requests">
+<div class="joining-requests" style="min-height: 80vh">
     <div class="container">
-      <h2>Complaints</h2>
+      <h2 class="title">Complaints</h2>
       <table class="table table-striped" id="complaints">
         <thead>
           <tr>

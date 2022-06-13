@@ -81,11 +81,8 @@
 @endsection
 
 @section('headTags')
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
-{{--
-<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}"> --}}
+<title>Branch Details</title>
 <link rel="stylesheet" href="{{ asset('css/owner/index.css') }}">
-<link rel="stylesheet" href="https://cdn.datatables.net/1.12.0/css/jquery.dataTables.css">
 @endsection
 @section('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"

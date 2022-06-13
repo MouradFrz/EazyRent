@@ -1,10 +1,8 @@
 @extends('layouts.workerLayout')
 @section('headTags')
+<title>Garages</title>
 <link rel="stylesheet" href="{{ asset('css/owner/index.css') }}">
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @endsection
-
-
 @section('content')
 <script>
   let garages = document.querySelector('#garages')

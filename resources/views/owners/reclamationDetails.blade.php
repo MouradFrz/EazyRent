@@ -11,7 +11,7 @@
       {{ Session::get('message') }}
     </div>
     @endif
-    <h2 class="my-2">Complaint details</h2>
+    <h2 class="title">Complaint details</h2>
     <hr>
     <form action="{{ route('owner.answerReclamation', $reclamation->id ) }}" method="post">
       @csrf
@@ -40,5 +40,5 @@
 <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
 <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 @section('headTags')
-
+<title>Complaint Details</title>
 @endsection
