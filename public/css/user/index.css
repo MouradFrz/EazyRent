@@ -351,6 +351,14 @@ footer .footer-end p > span {
   font-size: 0.7rem;
 }
 
+#notification-list.down {
+  left: 70%;
+}
+
+#user-dropdown.down {
+  left: -5%;
+}
+
 .view-offers_hero {
   padding-top: 4rem;
   background-color: rgb(88, 86, 214);
