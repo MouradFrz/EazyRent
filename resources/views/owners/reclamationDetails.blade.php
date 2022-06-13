@@ -27,10 +27,10 @@
       <p class="tag">Your message:</p>
       @if(is_null($reclamation->response))
       <textarea name="response" id=""></textarea>
-      <button type="submit" class="btn btn-success mt-3">Send</button>
+      <button type="submit" class="custom-btn custom-btn-dark  mt-3">Send</button>
       @else
       <textarea name="response" id="" disabled>{{ $reclamation->response }}</textarea>
-      <button disabled class="btn btn-warning mt-3">Already sent</button>
+      <button disabled class="custom-btn custom-btn-dark  mt-3">Already sent</button>
       @endif
 
     </form>

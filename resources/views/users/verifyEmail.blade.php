@@ -16,11 +16,12 @@
       {{ Session::get('message') }}
     </p>
     <a href="/" class="link mt-4"><i class="fa-solid fa-arrow-left"></i> Go back home</a>
-    @endif
+   @else
     <p class="mt-4">please click the button bellow to send a verification email</p>
     <form action="{{ route('verification.send') }}" method="post"> @csrf
       <button type="submit" class="mt-4 custom-btn custom-btn-success" style="margin: 0 auto">Send a verification email</button>
     </form>
+    @endif
   </div>
 </div>
 <div class="white-space"></div>

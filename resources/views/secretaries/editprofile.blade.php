@@ -1,7 +1,5 @@
 @extends('layouts.workerLayout')
-@section('headTags')
-<link rel="stylesheet" href="{{asset('css/secretary/index.css')}}">
-@endsection
+
 
 @section('content')
 @if(Session::get('message'))
@@ -32,8 +30,8 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="crop">Change</button>
+          <button type="button" class="link link-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="link" id="crop">Change</button>
         </div>
       </div>
     </div>

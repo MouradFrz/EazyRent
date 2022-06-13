@@ -195,7 +195,7 @@
         </div>
         <div class="col">
           <label for="pricePerDay" class="form-label">Price Per Day (DZD)</label>
-          <input type="text" name="pricePerDay" maxlength="4" class="inputs" placeholder="Price per day"
+          <input type="text" name="pricePerDay" maxlength="5" class="inputs" placeholder="Price per day"
             onkeypress="return isNumber(event)" value="{{ old('pricePerDay') }}">
           <span class="text-danger" style="font-size:0.8rem">
             @error('pricePerDay')
@@ -208,11 +208,11 @@
           <label for="physicalState" class="form-label">Physical state</label>
           <Select name="physicalState" id="" class="inputs">
             <option value="">Current vehicle state</option>
-            <option value="super">super</option>
-            <option value="good">good</option>
-            <option value="medium">medium</option>
-            <option value="low">low</option>
-            <option value="very low">very low</option>
+            <option value="Super">Super</option>
+            <option value="Good">Good</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+            <option value="Very low">Very low</option>
           </Select>
           <span class="text-danger" style="font-size:0.8rem">
             @error('physicalState')

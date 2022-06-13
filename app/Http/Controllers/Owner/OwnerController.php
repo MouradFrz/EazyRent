@@ -114,7 +114,7 @@ class OwnerController extends Controller
                    from
                       branches
                    where
-                      agencyID = 39
+                      agencyID = :agency
                 )
           )
     )
@@ -122,7 +122,7 @@ class OwnerController extends Controller
     vehiculePlateNb
  order by
     count(bookingID) DESC
-    limit 5 ;');
+    limit 5 ;', ['agency' => Auth::user()->agencyID]);
   // dd($mostRentedCars);
 
 
