@@ -16,9 +16,16 @@
 @section('content')
 <div class="hero">
   <div class="container hero_content header">
-    <div class="search-panel">
+    @if (is_null(Auth::user()->email_verified_at))
+    <div class="alert alert-warning" style="transform: translateY(40px)">
+      <p>Your email is not verified. You need to verify your email before booking a vehicle.</p> 
+      <a href="{{ route('verification.notice') }}">Verify my email</a>
+    </div>
+    @endif
+   
+    <div class="search-panel" id="search-form">
       <h2>search a vehicle now!</h2>
-      <form action="{{route('user.viewOffers')}}" method="GET">
+      <form action="{{route('user.viewOffers')}}" method="GET" id="">
         <div class="row">
           <div class="col-12 col-md-6">
             <label for="" class="label">Pick-up location :</label>
@@ -61,7 +68,7 @@
   </div>
   </form>
 </div>
-<div id="howToRent"class="booking-progress header">
+<div id="howToRent"class="booking-progress header section">
   <div class="white-space"></div>
   <div class="container">
     <h2 class="section-header">how to rent a vehicle</h2>
@@ -100,7 +107,7 @@
   </div>
 </div>
 </div>
-<div id="whoUs" class="who-us header">
+<div id="whoUs" class="who-us header section">
   <div class="white-space"></div>
   <div class="container">
     <h2 class="section-header">what is EAZYRENT ?</h2>
@@ -123,7 +130,7 @@
   </div>
   <div class="white-space"></div>
 </div>
-<div id="testimonials" class="testimonials header">
+<div id="testimonials" class="testimonials header section">
   <div class="white-space"></div>
   <h2 class="section-header">what people say about us ?</h2>
   <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
@@ -187,7 +194,7 @@
   </div>
   <div class="white-space"></div>
 </div>
-<div id="ourPartners" class="our-partners header">
+<div id="ourPartners" class="our-partners header section">
   <div class="white-space"></div>
   <h2 class="section-header">Companies who trust us</h2>
   <div class="container">
@@ -238,17 +245,18 @@
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js">
 </script>
+<script c></script>
 <script>
   let driverAge = document.getElementById('driverAge')
   let driverAgeCheckBox = document.getElementById('driverAgeCheckBox')
-  driverAge.style.display = "none"
-  function toggleDriverAge() {
-    if(driverAge.style.display === "none") {
-      driverAge.style.display = "block";
-    }else{
-      driverAge.style.display = "none";
-    }
-  }
+  // driverAge.style.display = "none"
+  // function toggleDriverAge() {
+  //   if(driverAge.style.display === "none") {
+  //     driverAge.style.display = "block";
+  //   }else{
+  //     driverAge.style.display = "none";
+  //   }
+  // }
   let progressSteps = document.querySelectorAll('#progress-num>.step');
   let stepsContent = document.querySelectorAll('.progress_content>.step_content');
   progressSteps.forEach(step => {
@@ -337,5 +345,14 @@
   // document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js" integrity="sha512-v8B8T8l8JiiJRGomPd2k+bPS98RWBLGChFMJbK1hmHiDHYq0EjdQl20LyWeIs+MGRLTWBycJGEGAjKkEtd7w5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  // gsap.from("#search-form",{duration:1.5,y:100,opacity:0})
+  const sections = document.querySelectorAll(".section");
+  sections.forEach(e => {
+    gsap.from(e,{duration:1.4,ease:"power1.inOut",y:100,opacity:0,scrollTrigger:{trigger:e}});
+});
+gsap.from('#search-form',{duration:0.8,ease:"power1.inOut",y:-100,opacity:0,scrollTrigger:{trigger:'#search-form'}});
+</script>
 @endsection

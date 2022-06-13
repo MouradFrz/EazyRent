@@ -95,7 +95,7 @@
     </div>
   </nav>
   @yield('content')
-  <footer id="contactUs" class="header">
+  <footer id="contactUs" class="header section">
     <div class="container">
       <div class="row">
         <div class="col-12 col-md-6">
@@ -201,7 +201,6 @@
 <script>
   const headers = document.querySelectorAll(".header");
 const lines = document.querySelectorAll(".nav-link");
-console.log(headers)
 window.addEventListener("scroll", show);
 const trig = window.innerHeight / 0.95;
 show();
@@ -218,6 +217,11 @@ function show() {
 	}
 	)
 }
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js" integrity="sha512-v8B8T8l8JiiJRGomPd2k+bPS98RWBLGChFMJbK1hmHiDHYq0EjdQl20LyWeIs+MGRLTWBycJGEGAjKkEtd7w5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+  gsap.from('footer',{duration:1,ease:"power1.inOut",y:100,opacity:0,scrollTrigger:{trigger:'footer'}});
 </script>
 </body>
 

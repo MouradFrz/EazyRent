@@ -26,6 +26,7 @@
     "dependencies": {
         "face-api.js": "^0.20.0",
         "flatpickr": "^4.6.13",
+        "gsap": "^3.10.4",
         "jquery": "^3.6.0"
     }
 }
