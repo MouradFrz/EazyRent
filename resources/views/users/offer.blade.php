@@ -44,7 +44,7 @@ $session = \Stripe\Checkout\Session::create([
                         <strong>{{ str_replace('T', ' ', session('pickUpString')) }} </strong>
                     </p>
                     </p>
-                    <p>Total price: <strong>{{ $price }} DZD</strong></p>
+                    <p>Total price: <strong>{{ $price/100 }} DZD</strong></p>
                 </div>
                 <div class="modal-footer d-flex justify-content-between">
 
@@ -239,8 +239,9 @@ $session = \Stripe\Checkout\Session::create([
                                     <select id="paymentmethod" name="paymentmethod" class="form-select"
                                         aria-label="paymentmethod">
                                         <option selected value="1">Hand to hand</option>
+                                        @if (!is_null(Auth::user()->email_verified_at) && !is_null(Auth::user()->faceIdPath) )
                                         <option value="2">Credit Card</option>
-
+                                        @endif
                                     </select>
                                 </div>
                             </div>

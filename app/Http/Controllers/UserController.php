@@ -42,7 +42,7 @@ class UserController extends Controller
         'passwordConfirm' => 'required|same:password',
         'idCard' => 'required|digits_between:18,18|numeric',
         'idCardImage' => 'required|mimes:jpg,jpeg,png|max:5048',
-        'faceIdImage' => 'required|mimes:jpg,jpeg,png|max:5048'
+        // 'faceIdImage' => 'required|mimes:jpg,jpeg,png|max:5048'
       ],
       [
         'idCard.required' => 'The identity card number is required.',
@@ -51,7 +51,7 @@ class UserController extends Controller
         'password.regex' => 'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
         // 'password.Password' => 'The password you entered is weak,<br>make sure your password containe at least 8 carecters : at least 1 uppercase letter,1 lowercase letter, 1 number. ',
         'idCardImage.required' => 'The identity card image is required.',
-        'faceIdImage.required' => 'The face image is required for the face recognition when picking a car up.',
+        // 'faceIdImage.required' => 'The face image is required for the face recognition when picking a car up.',
         'phone.digits_between' => 'The number must be made of 10 digits',
       ]
     );
@@ -59,8 +59,8 @@ class UserController extends Controller
     $newImageName = $request->username . '.' . $request->idCardImage->extension();
     $request->idCardImage->move(public_path('images/users/idCardImages'), $newImageName);
 
-    $faceIdImage = $request->username . '_faceId' . '.' . $request->faceIdImage->extension();
-    $request->faceIdImage->move(public_path('images/users/faceIdImages'), $faceIdImage);
+    // $faceIdImage = $request->username . '_faceId' . '.' . $request->faceIdImage->extension();
+    // $request->faceIdImage->move(public_path('images/users/faceIdImages'), $faceIdImage);
 
 
     $user = new User();
@@ -74,7 +74,7 @@ class UserController extends Controller
     $user->email = $request->email;
     $user->phoneNumber = $request->phone;
     $user->idCardPath = $newImageName;
-    $user->faceIdPath = $faceIdImage;
+    $user->faceIdPath = null;
 
     $save = $user->save();
 

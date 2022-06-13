@@ -71,7 +71,7 @@
               {{ $message }}
               @enderror
             </span>
-            <p class="step-index">1/4</p>
+            <p class="step-index">1/3</p>
           </div>
           <div class="form-authentication signupStep hide">
             <label for="username">Username</label>
@@ -113,7 +113,7 @@
                 @enderror
               </span>
             </div>
-            <p class="step-index">2/4</p>
+            <p class="step-index">2/3</p>
           </div>
           <div class="form-authentication signupStep hide">
             <label for="identity card number"> Identity card number</label>
@@ -134,9 +134,9 @@
             </span>
             <div class="image-selector" alt="" onclick="openFilePicker()"></div>
             <img onclick="openFilePicker()" class="image-preview" alt="" />
-            <p class="step-index">3/4</p>
+            <p class="step-index">3/3</p>
           </div>
-          <div class="form-authentication signupStep hide">
+          {{-- <div class="form-authentication signupStep hide">
             <label for="">Upload an image where your face is clearly visible</label>
             <input class="inputs file-input" type="file" accept="image/*" name="faceIdImage" style="display: none"
               id="file-field-face" />
@@ -150,7 +150,7 @@
             <img onclick="openFilePickerFace()" class="image-preview" id="image-preview-face" alt="" />
             <span id="verification"></span>
             <p class="step-index">4/4</p>
-          </div>
+          </div> --}}
           <div class="d-flex justify-content-between align-items-center">
             <button class="custom-btn custom-btn-dark" id="prev" onclick="event.preventDefault()" type="text">
               Previous
@@ -181,7 +181,7 @@
           });
           pages[currentStep].classList.remove("hide");
 
-          if(currentStep==3){
+          if(currentStep==2){
             stepInc.disabled=true;
             stepInc.classList.add('d-none')
             submitBtn.classList.remove('d-none')
@@ -200,7 +200,7 @@
           if(currentStep==0){
             stepDec.disabled=true;
           }
-          if(currentStep==2){
+          if(currentStep==1){
             stepInc.disabled=false;
             stepInc.classList.remove('d-none')
             submitBtn.classList.add('d-none')
@@ -215,59 +215,59 @@
             }
             return true;
             }
-            const models_uri = ""
- Promise.all([
-            faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
-            ]).then(start)
-  function start(){
-    const submitButton = document.querySelector('#submit-button');
+//             const models_uri = ""
+//  Promise.all([
+//             faceapi.nets.ssdMobilenetv1.loadFromUri('/models')
+//             ]).then(start)
+//   function start(){
+//     const submitButton = document.querySelector('#submit-button');
 
-    submitButton.disabled = true
+//     submitButton.disabled = true
 
-          imageUpload.addEventListener('change',async ()=>{
-            document.querySelector('#image-preview-face').style.display='none';
-            document.querySelector('#image-selector-face').style.display="block";
-            document.querySelector('#verification').textContent=''
-            submitButton.disabled = true
-            const [file] = document.querySelector('#file-field-face').files
-            if (file) {
-              document.querySelector('#image-selector-face').style.display="none";
-              document.querySelector('#image-preview-face').style.display='block';
-          loading.style.display='block';
-          const image = await faceapi.bufferToImage(imageUpload.files[0])
-          const detections = await faceapi.detectAllFaces(image)
+//           imageUpload.addEventListener('change',async ()=>{
+//             document.querySelector('#image-preview-face').style.display='none';
+//             document.querySelector('#image-selector-face').style.display="block";
+//             document.querySelector('#verification').textContent=''
+//             submitButton.disabled = true
+//             const [file] = document.querySelector('#file-field-face').files
+//             if (file) {
+//               document.querySelector('#image-selector-face').style.display="none";
+//               document.querySelector('#image-preview-face').style.display='block';
+//           loading.style.display='block';
+//           const image = await faceapi.bufferToImage(imageUpload.files[0])
+//           const detections = await faceapi.detectAllFaces(image)
 
-           const verification = document.querySelector('#verification');
-           loading.style.display='none';
-            document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
+//            const verification = document.querySelector('#verification');
+//            loading.style.display='none';
+//             document.querySelector('#image-preview-face').src = URL.createObjectURL(file)
 
 
-          if(detections.length == 1){
-              verification.textContent = "Your image is valid"
-              verification.style.color="green"
-              submitButton.disabled = false
-          }else{
-            verification.textContent = "Your image invalid, please choose a more clear picture"
-              verification.style.color="red"
-              submitButton.disabled = true
-          }
-          }})
-        }
-        start()
+//           if(detections.length == 1){
+//               verification.textContent = "Your image is valid"
+//               verification.style.color="green"
+//               submitButton.disabled = false
+//           }else{
+//             verification.textContent = "Your image invalid, please choose a more clear picture"
+//               verification.style.color="red"
+//               submitButton.disabled = true
+//           }
+//           }})
+//         }
+//         start()
 
-// function imageSelected(e){
-//       var reader,files = e.target.files
-//       if(files.length ===0){
-//         console.log('empty')
-//       }
-//       console.log("executed")
-//       reader = new FileReader()
+function imageSelected(e){
+      var reader,files = e.target.files
+      if(files.length ===0){
+        console.log('empty')
+      }
+      console.log("executed")
+      reader = new FileReader()
 
-//       reader.onload = (e)=>{
-//         this.user.idCardImage=e.target.result
-//       }
-//       reader.readAsDataURL(files[0]);
-//     }
+      reader.onload = (e)=>{
+        this.user.idCardImage=e.target.result
+      }
+      reader.readAsDataURL(files[0]);
+    }
 
 
       document.querySelector('#file-field').onchange = evt => {
@@ -278,19 +278,19 @@
             document.querySelector('.image-selector').style.display="none";
          }
 }
-document.querySelector('#file-field-face').onchange = evt => {
+// document.querySelector('#file-field-face').onchange = evt => {
 
 
-}
+// }
 
 
     function openFilePicker(){
       document.getElementById("file-field").click()
     }
-    function openFilePickerFace(){
-      document.getElementById("file-field-face").click()
-    }
-  </script>
+    // function openFilePickerFace(){
+    //   document.getElementById("file-field-face").click()
+    // }
+   </script>
   {{-- <script src="https://unpkg.com/vue@3"></script>
   <script>
     Vue.createApp({
