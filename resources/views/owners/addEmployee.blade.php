@@ -15,14 +15,12 @@
     @if(Session::get('message'))
     <div class="alert alert-success w-100 alert-dismissible fade show" role="alert">
         {{ Session::get('message') }}
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <div class="add-employee">
         <div class="container">
-          <h2 class="section-header">add an employee</h2>
+          <h2 class="title">add an employee</h2>
           <form method="POST" action="{{route('owner.addEmployeePost')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">

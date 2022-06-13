@@ -30,13 +30,13 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" onclick="document.querySelector('#form').submit()">Confirm</button>
+        <button type="button" class="link link-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="link" onclick="document.querySelector('#form').submit()">Confirm</button>
       </div>
     </div>
   </div>
 </div>
-<div class="joining-requests">
+<div class="joining-requests" style="min-height: 80vh">
     <div class="container">
       @if(Session::get('alert'))
       <div class="alert alert-danger w-100" role="alert">
@@ -48,9 +48,7 @@
       {{ Session::get('message') }}
       </div>
       @endif
-      <h2>Branches management</h2>
-      <hr>
-
+      <h2 class="title">branches management</h2>
       <div class="cards ">
           @if (count($branches)!=0)
           @foreach ($branches as $branche )
