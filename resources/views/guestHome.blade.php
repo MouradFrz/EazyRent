@@ -78,23 +78,18 @@
     <div  class="progress_content">
       <div class="step_content active">
         <h4>search for a vehicle</h4>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
       <div class="step_content">
         <h4>choose an offer</h4>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
       <div class="step_content">
         <h4>book a vehicule</h4>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
       <div class="step_content">
         <h4>confirm you identity</h4>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
       <div class="step_content">
         <h4>drive your car!</h4>
-        <p>Lorem ipsum dolor sit amet consectetur.</p>
       </div>
     </div>
   </div>

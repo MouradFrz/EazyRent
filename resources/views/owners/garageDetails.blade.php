@@ -125,8 +125,6 @@
   </div>
 </div>
 @endsection
-
-
 @section('scripts')
 <script>
   let sectable = new DataTable('#carlist');

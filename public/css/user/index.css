@@ -168,6 +168,11 @@
   font-weight: 500;
   transform: scale(1.05);
 }
+@media (max-width: 992px) {
+  .booking-progress .step_content > h4 {
+    font-size: 1rem;
+  }
+}
 .booking-progress #progress {
   position: relative;
   margin-bottom: 30px;
@@ -212,6 +217,13 @@
   z-index: 1;
   cursor: pointer;
   transition: all 200ms ease-in;
+}
+@media (max-width: 922px) {
+  .booking-progress #progress-num .step {
+    width: 3rem;
+    height: 3rem;
+    border: 2px solid rgb(88, 86, 214);
+  }
 }
 .booking-progress #progress-num .step.active {
   border-color: rgb(88, 86, 214);

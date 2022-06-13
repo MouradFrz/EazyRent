@@ -7,7 +7,6 @@
 <div class="create-agency" style="min-height: 80vh">
   <div class="container">
     <h2 class="title">add agency</h2>
-    <hr>
     <form method="POST" action="{{route('owner.createAgencyPost')}}" enctype="multipart/form-data">
       @csrf
       <div class="row">
