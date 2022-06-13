@@ -1,15 +1,23 @@
 @import url(https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Work+Sans:wght@800&display=swap);
-.pick-up-locations {
-  padding-top: 2rem;
-}
-.pick-up-locations .card {
-  padding: 1rem 0.5rem;
-  border-radius: 0.5rem;
-  border: 2px solid #888;
+.pick-up-locations .add-pul {
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgb(229, 229, 234);
+  border-radius: 0.5rem;
+}
+.pick-up-locations .add-pul_media {
+  color: rgb(0, 122, 255);
+  font-size: 4rem;
+}
+.pick-up-locations .pul {
+  height: 100%;
+  padding: 2rem 1rem;
+  border: 1px solid rgb(229, 229, 234);
+  border-radius: 0.5rem;
 }
 .pick-up-locations .map-area {
   width: 100%;
@@ -142,6 +150,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 1rem;
   border: 1px solid rgb(229, 229, 234);
 }
 .add-car_media {

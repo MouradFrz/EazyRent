@@ -164,7 +164,7 @@
               class="fa-solid fa-car-side"></i>Vehicles</a>
         </li>
         <li class="nav-item">
-          <a href="{{ route('secretary.addVehicule') }}" class="nav-link child" id="addVehicleNav">Add Vehicle</a>
+          <a href="{{ route('secretary.addVehicule') }}" class="nav-link child" id="addVehicleNav">Add a Vechicle</a>
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link child non-functional" id="vehiculeDetailsNav">Vehicule Details</a>

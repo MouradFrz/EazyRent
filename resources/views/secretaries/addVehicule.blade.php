@@ -18,7 +18,7 @@
     <form method="POST" action="{{route('secretary.addVehiculePost')}}" enctype="multipart/form-data">
       @csrf
       <div class="d-flex aling-items-center justify-content-end">
-        <button type="submit" class="custom-btn custom-btn-success">Add Vehicule</button>
+        <button type="submit" class="custom-btn custom-btn-success">Add a Vechicle</button>
       </div>
       <div class="row">
         <div class="col">

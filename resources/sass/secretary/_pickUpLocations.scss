@@ -1,14 +1,24 @@
 @use "../variables" as *;
 .pick-up-locations {
-  padding-top: 2rem;
-  .card {
-    padding: 1rem 0.5rem;
-    border-radius: 0.5rem;
-    border: 2px solid #888;
+  .add-pul {
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
+    padding: 1rem;
+    border: 1px solid $lightestGrey;
+    border-radius: .5rem;
+    &_media {
+      color: $blue;
+      font-size: 4rem;
+    }
+  }
+  .pul {
+    height: 100%;
+    padding: 2rem 1rem;
+    border: 1px solid $lightestGrey;
+    border-radius: .5rem;
   }
   // #mapId {
   //   canvas {
@@ -55,7 +65,7 @@
 .fullname.show{
   text-decoration: underline;
   font-weight: bold;
-  
+
 }
 // .auth:hover > .dropmenu {
 //   display: block;
