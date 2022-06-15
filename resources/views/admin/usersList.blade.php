@@ -10,7 +10,7 @@
   let users = document.querySelector('#users')
   users.classList.add('users')
 </script>
-<div class="users-list">
+<div class="users-list" style="min-height: 80vh">
   <div class="container">
     <h2 class="nb-4">Users list</h2>
     <table class="table table-striped" id="usersList">

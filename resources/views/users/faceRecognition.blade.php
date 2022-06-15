@@ -139,7 +139,7 @@
                         error.classList.add('alert-success')
                         // error.textContent = 'Recognizing...'
 
-                        if (results[0]._distance <= 0.56) {
+                        if (results[0]._distance <= 0.5) {
                             counter++;
                         }
                         console.log(counter)

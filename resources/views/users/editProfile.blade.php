@@ -78,7 +78,7 @@
             <p id="fullname">{{ Auth::user()->lastName }} {{ Auth::user()->firstName }}</p>
             <strong>Identity card number:</strong>
             <h6 class="text-muted">{{ Auth::user()->idCard }}</h6>
-            <div class="d-flex justify-content-evenly w-75">
+            {{-- <div class="d-flex justify-content-evenly w-75">
               <div>
                 <strong>Bookings:</strong>
                 <p class="text-center">2</p>
@@ -87,7 +87,7 @@
                 <strong>Rating:</strong>
                 <p class="text-center">4.5/5</p>
               </div>
-            </div>
+            </div> --}}
             @if (is_null(Auth::user()->faceIdPath))
               <a href="{{ route('user.activateAccount') }}" class="custom-btn custom-btn-dark">Activate your account</a>
             @endif

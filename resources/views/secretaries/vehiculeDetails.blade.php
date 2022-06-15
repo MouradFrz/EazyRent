@@ -27,7 +27,8 @@
       <div class="modal-body">
         <p>Chose the garage you want to transfer the vehicule to</p>
         <form action="{{ route('secretary.transferVehicle',$vehicule->plateNb) }}" id="transferForm" method="POST">@csrf
-            <option value="">choose a garage</option>
+          <select name="garageID" id="" class="inputs">
+            <option value="">Choose a garage</option>
             @foreach ($garages as $garage)
             @if ($garage->garageID!=$vehicule->garageID)
             <option value="{{ $garage->garageID }}"> {{ $garage->address }}</option>

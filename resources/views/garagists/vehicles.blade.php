@@ -12,7 +12,7 @@
   let vehicles = document.querySelector('#vehicles')
   vehicles.classList.add('active')
 </script>
-<div>
+<div style="min-height: 80vh">
   <div class="container">
     <h2 class="my-3">Vehicle management</h2>
     <hr>

@@ -55,7 +55,7 @@
     </div>
   </div>
 </div>
-<div>
+<div style="min-height: 80vh">
     <div class="container">
       @if (Session::get('success'))
       <div class="alert alert-success alert-dismissible fade show w-100" role="alert">

@@ -10,7 +10,7 @@
   let joiningRequests = document.querySelector('#joiningRequests')
   joiningRequests.classList.add('active')
 </script>
-<div class="joining-requests">
+<div class="joining-requests" style="min-height: 80vh">
   <div class="container">
     <h2 class="mb-4">joining Requests</h2>
     <table class="table table-striped" id="joiningRequestsTable">

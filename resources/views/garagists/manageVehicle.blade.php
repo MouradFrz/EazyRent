@@ -38,7 +38,7 @@
       </div>
     </div>
   </div>
-<div>
+<div style="min-height:80vh ">
 <div class="container">
     @if (Session::get('message'))
     <div class="alert alert-success w-100 " role="alert">

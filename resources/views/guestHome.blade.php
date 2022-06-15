@@ -17,7 +17,7 @@
 <div class="hero">
   <div class="container hero_content header">
     <div class="search-panel" id="search-form">
-      <h2>search a vehicle now!</h2>
+      <h2>search a vehicle</h2>
       <form action="{{route('user.viewOffers')}}" method="GET" id="">
         <div class="row">
           <div class="col-12 col-md-6">
@@ -101,8 +101,8 @@
     <h2 class="section-header">what is EAZYRENT ?</h2>
     <div class="row">
       <div class="col-12 col-md-6">
-        <div class="d-flex justify-content-center align-items-center">
-          <object data="{{asset('images/who-us.svg')}}" width="250" height="250"></object>
+        <div class="d-flex justify-content-center align-items-center" id="object">
+          <object data="{{asset('images/who-us.svg')}}" width="250" height="250" ></object>
         </div>
       </div>
       <div class="col-12 col-md-6">
@@ -118,10 +118,10 @@
   </div>
   <div class="white-space"></div>
 </div>
-<div id="testimonials" class="testimonials header section">
+<div id="testimonials" class="testimonials header ">
   <div class="white-space"></div>
-  <h2 class="section-header">what people say about us ?</h2>
-  <div id="carouselExampleIndicators" class="carousel slide w-100" data-bs-ride="carousel">
+  <h2 class="section-header section">what people say about us ?</h2>
+  <div id="carouselExampleIndicators" class="carousel slide w-100 section" data-bs-ride="carousel">
     <div class="container content">
       {{-- carousel indecators ma7boch ybano n7ithom --}}
       <div class="carousel-inner">
@@ -339,8 +339,9 @@
   // gsap.from("#search-form",{duration:1.5,y:100,opacity:0})
   const sections = document.querySelectorAll(".section");
   sections.forEach(e => {
-    gsap.from(e,{duration:1.4,ease:"power1.inOut",y:100,opacity:0,scrollTrigger:{trigger:e}});
+    gsap.from(e,{duration:1.4,ease:"power4.inOut",y:100,opacity:0,scrollTrigger:{trigger:e}});
 });
-gsap.from('#search-form',{duration:0.8,ease:"power1.inOut",y:-100,opacity:0,scrollTrigger:{trigger:'#search-form'}});
+gsap.from('#object',{duration:1.4,ease:"power4.inOut",x:-400,opacity:0,scrollTrigger:{trigger:'#object'}});
+gsap.from('#search-form',{duration:0.8,ease:"power4.inOut",y:-100,opacity:0,scrollTrigger:{trigger:'#search-form'}});
 </script>
 @endsection

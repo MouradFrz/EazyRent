@@ -31,7 +31,7 @@
     </div>
   </div>
 </div>
-    <div>
+    <div style="min-height: 80vh">
         <div class="container">
             <h2 class="my-3">On going reservations</h2>
             @if (Session::get("message"))

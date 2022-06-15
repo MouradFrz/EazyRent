@@ -311,4 +311,4 @@ Route::prefix('garagist')->name('garagist.')->group(function () {
   });
 });
 
-Route::any('{x}',function(){return "PAge doesnt exist";});
+// Route::any('{x}',function(){return "PAge doesnt exist";});

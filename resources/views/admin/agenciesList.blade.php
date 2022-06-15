@@ -10,7 +10,7 @@
   let agencies = document.querySelector('#agencies')
   agencies.classList.add('active')
 </script>
-<div class="agencies-list">
+<div class="agencies-list" style="min-height: 80vh">
   <div class="container">
     <h2 class="mb-4">agencies list</h2>
     @if (Session::get('fail'))

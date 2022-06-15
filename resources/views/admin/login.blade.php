@@ -9,6 +9,11 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   <link rel="stylesheet" href="{{ asset('css/admin/index.css') }}">
+  <style>
+    body {
+  overflow: hidden;
+}
+  </style>
 </head>
 <body>
   <div class="admin-login">

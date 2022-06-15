@@ -106,9 +106,6 @@
             <input class="custom-btn custom-btn-dark login-btn" type="submit" value="Log in"/>
           </div>
         </form>
-        <p>
-          forget your password? <a href="" class="link">click here</a>
-        </p>
       </div>
     </div>
   </div>
