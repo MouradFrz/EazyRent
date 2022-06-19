@@ -116,33 +116,64 @@
 }
 
 .hero {
-  background-color: #eee;
-  background-image: url(/images/home-hero-md.jpg?524de2ebafcc68661cf398867af9a30c);
-  width: 100%;
   height: calc(101vh - 4rem);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  border-radius: 0 0 5rem 5rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero > .container {
+  height: 100%;
+}
+.hero .row {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.hero_media {
+  height: 100%;
   position: relative;
 }
-.hero_content .search-panel {
+.hero_media > img {
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.9);
-  top: 70%;
-  left: 50%;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  padding: 1rem 3rem;
-  border-radius: 1rem;
-  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+  right: 0;
+  top: 55%;
+  transform: translateY(-50%) scale(1.6);
+  z-index: -2;
+}
+@media (max-width: 992px) {
+  .hero_media {
+    display: none;
+  }
+}
+.hero_content {
+  display: flex;
+  flex-direction: column;
+}
+@media (max-width: 992px) {
+  .hero_content h1 {
+    text-align: center;
+  }
+  .hero_content .search-panel {
+    margin: 0 auto;
+  }
+}
+.hero_content h1 {
+  margin-bottom: 2rem;
+  font-size: 4rem;
+  color: rgb(88, 86, 214);
+}
+@media (max-width: 992px) {
+  .hero_content h1 {
+    font-size: 2.5rem;
+  }
+}
+.hero_content .search-panel {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-bottom: 1rem;
 }
 .hero_content .search-panel .row {
   margin-bottom: 1rem;
-}
-.hero_content .search-panel h2 {
-  text-align: center;
-  margin-bottom: 2rem;
 }
 .hero_content .search-panel .mapboxgl-ctrl-geocoder {
   width: 100%;
@@ -212,7 +243,7 @@
   border-radius: 50%;
   font-size: 1.5rem;
   font-weight: 500;
-  background-color: #FFF;
+  background-color: #fff;
   position: relative;
   z-index: 1;
   cursor: pointer;

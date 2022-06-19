@@ -62,6 +62,9 @@ a {
   &:focus {
     border-color: #ddd;
   }
+  &:active, &:focus {
+    border: .5px solid $lightestGrey;
+  }
 }
 .danger {
   color: $red;

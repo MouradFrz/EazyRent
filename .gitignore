@@ -1,11 +1,14 @@
-/node_modules
-/public/hot
-/public/storage
-/public/css/*
-/public/js/*
-/storage/*.key
-/vendor
-/public/images/users/faceIdImages
+node_modules/
+public/hot/
+public/storage
+public/css/
+public/js/
+public/images/users/
+public/images/owners/
+public/images/garagiste/
+storage/*.key
+vendor
+public/images/users/faceIdImages
 # /public/images/users/idCardImages
 .env
 .env.backup
@@ -17,7 +20,5 @@ yarn-error.log
 /.idea
 /.vscode
 .editorconfig
-public/images/users/idCardImages/user.png
-public/images/users/idCardImages/user.jpg
-public/images/users/idCardImages/mourad99.png
-public/images/users/idCardImages/edon999.png
+
+

@@ -73,6 +73,9 @@ a {
 .inputs:focus {
   border-color: #ddd;
 }
+.inputs:active, .inputs:focus {
+  border: 0.5px solid rgb(229, 229, 234);
+}
 
 .danger {
   color: rgb(255, 59, 48);

@@ -11,7 +11,7 @@
   &-brand {
     font-size: 1.4rem;
     font-weight: 700;
-    >span {
+    > span {
       color: $indigo;
     }
   }
@@ -51,13 +51,13 @@
       transform: translateX(50%);
     }
   }
-  .navbar-collapse.show  {
+  .navbar-collapse.show {
     .nav-link {
       width: fit-content;
       font-weight: 500;
       &:hover::after {
         border: 0;
-        animation:none;
+        animation: none;
       }
     }
   }
@@ -112,34 +112,56 @@
 
 // HERO
 .hero {
-  background-color: #eee;
-  background-image: url("../../../public/images/home-hero-md.jpg");
-  width: 100%;
   height: calc(101vh - 4rem); // 101vh - navbar height
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: top;
-  border-radius: 0 0 5rem 5rem;
   position: relative;
+  overflow: hidden;
+  > .container {
+    height: 100%;
+  }
+  .row {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &_media {
+    height: 100%;
+    position: relative;
+    > img {
+      position: absolute;
+      right: 0;
+      top: 55%;
+      transform: translateY(-50%) scale(1.6);
+      z-index: -2;
+    }
+    @media (max-width: 992px) {
+      display: none;
+    }
+  }
   &_content {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 992px) {
+      h1 {
+        text-align: center;
+      }
+      .search-panel {
+        margin: 0 auto;
+      }
+    }
+    h1 {
+      margin-bottom: 2rem;
+      font-size: 4rem;
+      color: $indigo;
+      @media (max-width: 992px) {
+        font-size: 2.5rem;
+      }
+    }
     .search-panel {
+      width: fit-content;
+      margin-bottom: 1rem;
       .row {
         margin-bottom: 1rem;
       }
-      h2 {
-        text-align: center;
-        margin-bottom: 2rem;
-      }
-      position: absolute;
-      background-color: rgba($color: #fff, $alpha: 0.9);
-      top: 70%;
-      left: 50%;
-      z-index: 1;
-      transform: translate(-50%, -50%);
-      padding: 1rem 3rem;
-      border-radius: 1rem;
-      // width: 70vw;
-      box-shadow: $box-shadow;
       .mapboxgl-ctrl-geocoder {
         width: 100%;
         box-shadow: none;
@@ -158,10 +180,10 @@
     flex-wrap: nowrap;
     color: $grey;
   }
-  .step_content{
+  .step_content {
     flex: 1;
     text-align: center;
-    padding-inline: .5rem;
+    padding-inline: 0.5rem;
     transition: all 100ms ease-in;
     &.active {
       color: $indigo;
@@ -169,7 +191,7 @@
       transform: scale(1.05);
     }
     > h4 {
-      @media (max-width:992px) {
+      @media (max-width: 992px) {
         font-size: 1rem;
       }
     }
@@ -213,12 +235,12 @@
     border-radius: 50%;
     font-size: 1.5rem;
     font-weight: 500;
-    background-color: #FFF;
+    background-color: #fff;
     position: relative;
     z-index: 1;
     cursor: pointer;
     transition: all 200ms ease-in;
-    @media (max-width:922px) {
+    @media (max-width: 922px) {
       width: 3rem;
       height: 3rem;
       border: 2px solid $indigo;
@@ -362,9 +384,9 @@ footer {
   font-size: 0.7rem;
 }
 
-#notification-list.down{
+#notification-list.down {
   left: 70%;
 }
-#user-dropdown.down{
+#user-dropdown.down {
   left: -5%;
 }

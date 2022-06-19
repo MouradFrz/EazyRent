@@ -4,23 +4,23 @@
 <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
 <link rel="stylesheet"
   href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <style>
-    @media screen and (min-width: 640px){
-      .mapboxgl-ctrl-geocoder {
-      max-width:none !important;
-      }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<style>
+  @media screen and (min-width: 640px) {
+    .mapboxgl-ctrl-geocoder {
+      max-width: none !important;
     }
-  </style>
+  }
+</style>
 @endsection
 @section('content')
 <div class="hero">
-  <div class="container hero_content header">
-    <div class="search-panel" id="search-form">
-      <h2>search a vehicle</h2>
-      <form action="{{route('user.viewOffers')}}" method="GET" id="">
-        <div class="row">
-          <div class="col-12 col-md-6">
+  <div class="container">
+    <div class="row">
+      <div class="hero_content header col-12 col-lg-6">
+        <h1>search for a vehicle</h1>
+        <div class="search-panel" id="search-form">
+          <form action="{{route('user.viewOffers')}}" method="GET" id="">
             <label for="" class="label">Pick-up location :</label>
             <div id="pickUpLocation"></div>
             @error('pickUpLng')<span class="danger">{{$message}}</span>@enderror
@@ -28,40 +28,26 @@
               <input type="text" id="pickUpLng" name="pickUpLng" />
               <input type="text" id="pickUpLat" name="pickUpLat" />
             </div>
-          </div>
-          <div class="col-12 col-md-6">
             <label for="date" class="label">Select a date : </label>
             <input type="date" name="" class='inputs' id="mydate" placeholder="Select date" onchange="fillFields()">
             @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
-          </div>
-          <div class="col d-none">
-            <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
-            <input type="datetime-local" class="inputs"name="dropOffDate" id="dropOffDate" min="{{now()}}"  />
-            @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
-          </div>
-        </div>
-        {{-- <div class="row"> --}}
-          {{-- <div class="col-12 col-md-4">
-            <input type="checkbox" name="PermenentDriverLicence" checked />
-            <span>Driver has a permanent Driver Licence</span>
-          </div>
-          <div class="col-12 col-md-4">
-            <input type="checkbox" id="driverAgeCheckBox" onclick="toggleDriverAge()" name="minAge" />
-            <span>Driver age is less than 25</span>
-            <div id="driverAge">
-              <label class="driverAge">Driver's age :</label>
-              <input type="number" name="driverAge" driverAge" style="margin-left: 16px" min="18" max="25" value="25" />
+            <div class="d-none">
+              <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
+              <input type="datetime-local" class="inputs" name="dropOffDate" id="dropOffDate" min="{{now()}}" />
+              @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
             </div>
-          </div> --}}
-          <div class="d-flex justify-content-center">
-            <button type="submit" class="custom-btn custom-btn-dark"><i class="fa-solid fa-magnifying-glass" style="font-size: .95rem;margin-right:.75rem"></i>Search</button>
-          </div>
-        {{-- </div> --}}
+            <button type="submit" class="custom-btn custom-btn-dark mt-4"><i class="fa-solid fa-magnifying-glass"
+                style="font-size: .95rem;margin-right:.75rem"></i>Search</button>
+          </form>
+        </div>
+      </div>
+      <div class="hero_media col-12 col-lg-6" id="heroMedia">
+        <img src="{{asset('images/home-hero-car-3.png')}}" alt="car">
+      </div>
     </div>
   </div>
-  </form>
 </div>
-<div id="howToRent"class="booking-progress header section">
+<div id="howToRent" class="booking-progress header section">
   <div class="white-space"></div>
   <div class="container">
     <h2 class="section-header">how to rent a vehicle</h2>
@@ -75,7 +61,7 @@
         <li class="step" value="4">5</li>
       </ul>
     </div>
-    <div  class="progress_content">
+    <div class="progress_content">
       <div class="step_content active">
         <h4>search for a vehicle</h4>
       </div>
@@ -102,7 +88,7 @@
     <div class="row">
       <div class="col-12 col-md-6">
         <div class="d-flex justify-content-center align-items-center" id="object">
-          <object data="{{asset('images/who-us.svg')}}" width="250" height="250" ></object>
+          <object data="{{asset('images/who-us.svg')}}" width="250" height="250"></object>
         </div>
       </div>
       <div class="col-12 col-md-6">
@@ -225,7 +211,8 @@
       </div>
     </div>
     @guest
-    <p class="cta">you have a renting cars agency ? <a class="link link-underline" href="{{route('owner.register')}}">Join us &#62; </a></p>
+    <p class="cta">you have a renting cars agency ? <a class="link link-underline"
+        href="{{route('owner.register')}}">Join us &#62; </a></p>
     @endguest
   </div>
   <div class="white-space"></div>
@@ -233,18 +220,7 @@
 {{-- <script src="{{ asset('js/app.js') }}"></script> --}}
 <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js">
 </script>
-<script c></script>
 <script>
-  let driverAge = document.getElementById('driverAge')
-  let driverAgeCheckBox = document.getElementById('driverAgeCheckBox')
-  // driverAge.style.display = "none"
-  // function toggleDriverAge() {
-  //   if(driverAge.style.display === "none") {
-  //     driverAge.style.display = "block";
-  //   }else{
-  //     driverAge.style.display = "none";
-  //   }
-  // }
   let progressSteps = document.querySelectorAll('#progress-num>.step');
   let stepsContent = document.querySelectorAll('.progress_content>.step_content');
   progressSteps.forEach(step => {
@@ -333,8 +309,12 @@
   // document.querySelector('[name="pickUpDate"]').valueAsDateTime = new Date()
 
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js" integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js" integrity="sha512-v8B8T8l8JiiJRGomPd2k+bPS98RWBLGChFMJbK1hmHiDHYq0EjdQl20LyWeIs+MGRLTWBycJGEGAjKkEtd7w5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"
+  integrity="sha512-VEBjfxWUOyzl0bAwh4gdLEaQyDYPvLrZql3pw1ifgb6fhEvZl9iDDehwHZ+dsMzA0Jfww8Xt7COSZuJ/slxc4Q=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/ScrollTrigger.min.js"
+  integrity="sha512-v8B8T8l8JiiJRGomPd2k+bPS98RWBLGChFMJbK1hmHiDHYq0EjdQl20LyWeIs+MGRLTWBycJGEGAjKkEtd7w5Q=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
   // gsap.from("#search-form",{duration:1.5,y:100,opacity:0})
   const sections = document.querySelectorAll(".section");
@@ -342,6 +322,7 @@
     gsap.from(e,{duration:1.4,ease:"power4.inOut",y:100,opacity:0,scrollTrigger:{trigger:e}});
 });
 gsap.from('#object',{duration:1.4,ease:"power4.inOut",x:-400,opacity:0,scrollTrigger:{trigger:'#object'}});
-gsap.from('#search-form',{duration:0.8,ease:"power4.inOut",y:-100,opacity:0,scrollTrigger:{trigger:'#search-form'}});
+gsap.from('#heroMedia',{duration:1.8,ease:"power4.inOut",x:400,opacity:0});
+// gsap.from('#search-form',{duration:0.8,ease:"power4.inOut",y:-100,opacity:0,scrollTrigger:{trigger:'#search-form'}});
 </script>
 @endsection
