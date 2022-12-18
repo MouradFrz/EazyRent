@@ -156,28 +156,6 @@
 
 @section('script')
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
-{{-- <script>
-  let booking = {!! json_encode($booking, JSON_HEX_TAG) !!}
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-        pdfjsLib.getDocument(`/contracts/contract_${booking.bookingID}.pdf`).promise.then(doc=>{
-            doc.getPage(1).then(page=>{
-
-                let canvas = document.querySelector('#myCanvas')
-                let context = canvas.getContext("2d")
-
-                let viewport = page.getViewport()
-                console.log(page)
-                canvas.width = viewport.width;
-                canvas.height = viewport.height;
-
-                page.render({
-                    canvasContext : context,
-                    viewport
-                })
-            })
-        })
-</script> --}}
-
 <script>
   let booking = {!! json_encode($booking, JSON_HEX_TAG) !!}
 var url = `/contracts/contract_${booking.bookingID}.pdf`;
@@ -202,7 +180,6 @@ loadingTask.promise.then(function(pdf) {
     };
     var renderTask = page.render(renderContext);
     renderTask.promise.then(function () {
-      console.log('Page rendered');
     });
 });
 }, function (reason) {

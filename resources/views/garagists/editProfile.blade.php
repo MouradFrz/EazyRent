@@ -251,7 +251,7 @@
                           type: "POST",
                           dataType: "json",
                           url: "changeImage",
-                          data: {'_token': $('meta[name="_token"]').attr('content'), 'image': base64data},
+                          data: {'image': base64data},
                           success: function(data){
                               $modal.modal('hide');
                               document.querySelector('#alert').style.display="block"

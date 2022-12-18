@@ -48,20 +48,15 @@ Route::prefix('email')->name('verification.')->group(function () {
     Route::get('/verify', function () {
       return view('users.verifyEmail');
     })->middleware('auth')->name('notice');
-
-
     Route::get('/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
       $request->fulfill();
       return redirect()->route('user.home');
     })->middleware(['auth', 'signed'])->name('verify');
-
     Route::post('/verification-notification', function (Request $request) {
       $request->user()->sendEmailVerificationNotification();
-
       return back()->with('message', 'Verification link sent!');
     })->middleware(['auth', 'throttle:6,1'])->name('send');
   });
-
 });
 ////////////////////////////////////////////////////////////////////////////////
 //////// password reset routes
