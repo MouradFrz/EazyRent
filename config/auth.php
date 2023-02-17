@@ -17,6 +17,14 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
     ],
+    'owner' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Owner::class,
+    ],
+    'admin' => [
+        'driver' => 'eloquent',
+        'model' => App\Models\Admin::class,
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -39,6 +47,22 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'owner' => [
+            'driver' => 'session',
+            'provider' => 'owners',
+        ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ],
+        'secretary' => [
+            'driver' => 'session',
+            'provider' => 'secretaries',
+        ],
+        'garagist' => [
+            'driver' => 'session',
+            'provider' => 'garagists',
         ],
     ],
 
@@ -63,6 +87,22 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\User::class,
+        ],
+        'owners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Owner::class,
+        ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
+        'secretaries' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Secretary::class,
+        ],
+        'garagists' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Garagist::class,
         ],
 
         // 'users' => [
@@ -93,7 +133,33 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table' => 'password_reset_tokens',
+            'table' => 'password_reset',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'owners' => [
+            'provider' => 'owners',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admins' => [
+            'provider' => 'admins',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+            // 'driver' => 'eloquet',
+            // 'model' => 'App\Models\Admin::class'
+        ],
+        'secretaries' => [
+            'provider' => 'secretaries',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'garagists' => [
+            'provider' => 'garagists',
+            'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,
         ],
