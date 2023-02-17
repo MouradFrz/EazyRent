@@ -1,0 +1,244 @@
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Work+Sans:wght@800&display=swap);
+.pick-up-locations .add-pul {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgb(229, 229, 234);
+  border-radius: 0.5rem;
+}
+.pick-up-locations .add-pul_media {
+  color: rgb(0, 122, 255);
+  font-size: 4rem;
+}
+.pick-up-locations .pul {
+  height: 100%;
+  padding: 2rem 1rem;
+  border: 1px solid rgb(229, 229, 234);
+  border-radius: 0.5rem;
+}
+.pick-up-locations .map-area {
+  width: 100%;
+  height: 100%;
+}
+
+.dropmenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 100;
+  background-color: #eee !important;
+  box-shadow: 0px 1.5px 1.9px rgba(0, 0, 0, 0.05), 0px 3.5px 4.3px rgba(0, 0, 0, 0.063), 0px 6.3px 7.7px rgba(0, 0, 0, 0.071), 0px 10.4px 12.8px rgba(0, 0, 0, 0.076), 0px 17.2px 21.2px rgba(0, 0, 0, 0.077), 0px 30.1px 37px rgba(0, 0, 0, 0.072), 0px 65px 80px rgba(0, 0, 0, 0.059);
+  border-radius: 5px;
+}
+.dropmenu .drop-align {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 10px;
+  margin: 10px;
+}
+.dropmenu .drop-align button {
+  width: 150px;
+}
+
+.show {
+  display: block;
+}
+
+.fullname.show {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.fullname {
+  cursor: pointer;
+  display: inline;
+  position: relative;
+}
+.fullname .username:hover {
+  text-decoration: underline !important;
+}
+
+.no-agency {
+  background-color: #BBB;
+  height: 100%;
+}
+.no-agency .container {
+  height: 100%;
+}
+.no-agency .alert {
+  padding: 2rem 2rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #BBB;
+  border: 2px dashed #888;
+  text-align: center;
+}
+.no-agency .alert p {
+  font-size: 1.5rem;
+}
+
+.tag {
+  font-weight: 600;
+  margin: 0 !important;
+  text-decoration: underline;
+}
+
+.value {
+  color: rgb(98, 98, 98);
+}
+
+.add-vehicule .container {
+  margin-top: 2rem;
+}
+.add-vehicule .container hr {
+  margin-bottom: 2rem;
+}
+.add-vehicule .container form .row {
+  margin-bottom: 1rem;
+}
+.add-vehicule .container form label {
+  font-weight: 500;
+}
+
+.car {
+  height: 100%;
+  border: 1px solid rgb(229, 229, 234);
+}
+.car_media {
+  padding: 0 !important;
+  aspect-ratio: 16/9;
+  position: relative;
+  overflow: hidden;
+}
+.car_media > a > img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: fit;
+     object-fit: fit;
+  -o-object-position: center center;
+     object-position: center center;
+  transition: all 200ms ease-in-out;
+}
+.car_media:hover {
+  opacity: 0.95;
+  cursor: pointer;
+}
+.car_media:hover::after {
+  content: "View More";
+  font-size: 1.2rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  padding: 0.5rem;
+  left: 0;
+  bottom: 0;
+  color: #FFF;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+.car_content {
+  padding: 1rem;
+}
+
+.add-car {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgb(229, 229, 234);
+}
+.add-car_media {
+  color: rgb(0, 122, 255);
+  font-size: 5rem;
+}
+
+.form-control-pog {
+  height: 25px;
+  width: 150px;
+  border: none;
+  border-radius: 0;
+  font-weight: 800;
+  padding: 0 0 5px 0;
+  background-color: transparent;
+  box-shadow: none;
+  outline: none;
+  border-bottom: 2px solid #ccc;
+  margin: 0;
+  font-size: 14px;
+}
+
+.form-control-pog:focus {
+  box-shadow: none;
+  border-bottom: 2px solid #ccc;
+  background-color: transparent;
+}
+
+.text-muted-pog {
+  font-size: 10px;
+}
+
+.textmuted-pog {
+  color: #6c757d;
+  font-size: 13px;
+}
+
+.label {
+  font-weight: 600;
+  color: rgb(142, 142, 147);
+}
+
+.value {
+  color: #000;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: text;
+}
+.value::after {
+  content: "";
+  display: flex;
+  height: 0.5px;
+  width: 100%;
+  flex: 1;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: rgb(199, 199, 201);
+}
+
+.id-card-image {
+  width: 300px;
+  height: 200px;
+  -o-object-fit: fill;
+     object-fit: fill;
+  -o-object-position: center center;
+     object-position: center center;
+}
+
+.action {
+  margin-bottom: 4rem;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.preview {
+  overflow: hidden;
+  width: 160px;
+  height: 160px;
+  margin: 10px;
+  border: 1px solid red;
+}
+
+.modal-lg {
+  max-width: 1000px !important;
+}
