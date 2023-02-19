@@ -15,7 +15,7 @@ use App\Models\User;
 use App\Models\Vehicule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 
@@ -53,7 +53,7 @@ class UserController extends Controller
     );
 
     $newImageName = $request->username . '.' . $request->idCardImage->extension();
-    $url = Self::storeImage($request->idCardImage,"Images/users/idCardImages/",$newImageName);
+    $url = Self::storeImage($request->idCardImage, "Images/users/idCardImages/", $newImageName);
 
     $user = new User();
     $user->username = $request->username;
@@ -162,8 +162,18 @@ class UserController extends Controller
     if ($booking->clientUsername != Auth::user()->username) {
       return redirect()->route('user.home');
     }
-    $path = public_path('contracts\contract_') . $id . '.pdf';
+    // $path = public_path('contracts\contract_') . $id . '.pdf';
+    $path = $booking->contractUrl;
     return response()->download($path);
+  }
+  public function storeFile($image, $path, $nameWithExtension)
+  {
+    $expiresAt = new \DateTime('01/01/2100');
+    $uploadedfile = fopen($image, 'r');
+    app('firebase.storage')->getBucket()->upload($uploadedfile, ['name' => "$path$nameWithExtension"]);
+    // "Testing/other_image.png
+    $url = app('firebase.storage')->getBucket()->object("$path$nameWithExtension")->signedUrl($expiresAt);
+    return $url;
   }
   public function signContract(Request $request, $id)
   {
@@ -189,15 +199,15 @@ class UserController extends Controller
     $array = json_decode(json_encode($contractData), true);
 
     $array[0]['signature'] = true;
-    $pdf = PDF::loadView('users.contract', $array[0]);
-    $pdf->save(public_path('contracts\contract_') . $id . '.pdf');
-
-
+    $pdf = Pdf::loadView('users.contract', $array[0]);
+    $path = public_path('../storage/app/public/') . $booking->bookingID . '.pdf';
+    $pdf->save($path);
+    $contractUrl = Self::storeFile($path, "Contracts/", $booking->bookingID . '.pdf');
     $request->validate([
       'password' => 'required|current_password:web',
       'valid' => 'accepted'
     ]);
-    $booking->update(['state' => 'SIGNED']);
+    $booking->update(['state' => 'SIGNED', 'contractUrl' => $contractUrl]);
     return redirect()->route('user.bookingDetails', $id)->with('success', 'Contract Signed successfully.');
   }
 
@@ -279,8 +289,8 @@ class UserController extends Controller
     $image_type_aux = explode("image/", $image_parts[0]);
     $image_type = $image_type_aux[1];
     $image_base64 = base64_decode($image_parts[1]);
-    $file = uniqid() .".". $image_type;
-    $url = Self::storeImage($request->image,"Images/users/profile/",$file);
+    $file = uniqid() . "." . $image_type;
+    $url = Self::storeImage($request->image, "Images/users/profile/", $file);
     User::find(Auth::user()->id)->update(['profilePath' => $url]);
     return response()->json(['success' => 'success']);
   }

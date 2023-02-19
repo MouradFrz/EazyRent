@@ -26,7 +26,7 @@ class BookingController extends Controller
     $booking->secretaryUsername = Auth::user()->username;
     $booking->state = 'ACCEPTED';
     $booking->updated_at = now();
-    $save = $booking->save();
+
 
     $contractData = DB::select('SELECT bookingID,payementMethod,pickUpDate,dropOffDate,users.firstName as userFirstName,users.lastName as userLastName
     , secretaries.firstName as secFirstName,secretaries.lastName as secLastName,
@@ -43,9 +43,11 @@ class BookingController extends Controller
 
     $array = json_decode(json_encode($contractData), true);
     $pdf = Pdf::loadView('users.contract', $array[0]);
-    $pdf->save(public_path('../storage/app/public/').$booking->bookingID.'.pdf');
-    // Storage::
-    // Self::storeFile($pdf,"Contracts/",$booking->bookingID.'.pdf');
+    $path=public_path('../storage/app/public/').$booking->bookingID.'.pdf';
+    $pdf->save($path);
+    $contractUrl = Self::storeFile($path,"Contracts/",$booking->bookingID.'.pdf');
+    $booking->contractUrl = $contractUrl;
+    $save = $booking->save();
     $notif = new Notification();
     $notif->notifiedUsername = $booking->clientUsername;
     $notif->bookingID = $booking->bookingID;
