@@ -32,8 +32,8 @@
             <input type="date" name="" class='inputs' id="mydate" placeholder="Select date" onchange="fillFields()">
             @error('dropOffDate')<span class="danger">{{$message}}</span>@enderror
             <div class="d-none">
-              <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate" min="{{now()}}" />
-              <input type="datetime-local" class="inputs" name="dropOffDate" id="dropOffDate" min="{{now()}}" />
+              <input type="datetime-local" class="inputs" name="pickUpDate" id="pickUpDate"  />
+              <input type="datetime-local" class="inputs" name="dropOffDate" id="dropOffDate"  />
               @error('pickUpDate')<span class="danger">{{$message}}</span>@enderror
             </div>
             <button type="submit" class="custom-btn custom-btn-dark mt-4"><i class="fa-solid fa-magnifying-glass"
