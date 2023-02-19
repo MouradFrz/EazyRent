@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
-use Barryvdh\DomPDF\Facade\PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -42,7 +42,7 @@ class BookingController extends Controller
     AND bookings.bookingID=:bookID;',['bookID'=>$booking->bookingID]);
 
     $array = json_decode(json_encode($contractData), true);
-    $pdf = PDF::loadView('users.contract', $array[0]);
+    $pdf = Pdf::loadView('users.contract', $array[0]);
     $pdf->save(public_path('../storage/app/public/').$booking->bookingID.'.pdf');
     // Storage::
     // Self::storeFile($pdf,"Contracts/",$booking->bookingID.'.pdf');
