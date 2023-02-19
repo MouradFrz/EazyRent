@@ -122,8 +122,6 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post('/check', [UserController::class, 'check'])->name('check');
     Route::get('/google', [GoogleController::class, 'loginWithGoogle'])->name('loginWithGoogle');
     Route::any('/google/login', [GoogleController::class, 'callbackFromGoogle'])->name('callback');
-    
-   
   });
   Route::middleware(['guest:owner', 'guest:secretary', 'guest:garagist', 'PreventBackHistory'])->group(function () {
     Route::get('/viewOffers', [VehiculeController::class, 'searchVehicules'])->name('viewOffers');
@@ -135,7 +133,7 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::post("/store-image",[UserController::class,'storeImage'])->name("storeImage");
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
-    Route::post('/book', [VehiculeController::class, 'book'])->middleware('verified')->name('book');
+    Route::post('/book', [VehiculeController::class, 'book'])->name('book');
     Route::get('/checkFace/{id}', [UserController::class, 'checkFace'])->name('checkFace');
     Route::get('/history', [UserController::class, 'getHistory'])->name('history');
     Route::get('/booking-details/{id}', [UserController::class, 'getBookingDetails'])->name('bookingDetails');

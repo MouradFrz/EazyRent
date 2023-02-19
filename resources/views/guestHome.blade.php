@@ -20,7 +20,7 @@
       <div class="hero_content header col-12 col-lg-6">
         <h1>search for a vehicle</h1>
         <div class="search-panel" id="search-form">
-          <form action="{{route('user.viewOffers')}}" method="GET" id="">
+          <form action="{{route('user.viewOffers')}}" method="GET">
             <label for="" class="label">Pick-up location :</label>
             <div id="pickUpLocation"></div>
             @error('pickUpLng')<span class="danger">{{$message}}</span>@enderror

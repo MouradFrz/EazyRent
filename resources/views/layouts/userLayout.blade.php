@@ -94,7 +94,7 @@
     </div>
     </div>
   </nav>
-  @auth
+  {{-- @auth
   @if (is_null(Auth::user()->email_verified_at) and (Illuminate\Support\Facades\Route::current()->getName() !== 'verification.notice'))
   <div class="m-0 email-alert">
     <div class="container">
@@ -103,7 +103,7 @@
     </div>
   </div>
   @endif
-  @endauth
+  @endauth --}}
   @yield('content')
   <footer id="contactUs" class="header section">
     <div class="container">
