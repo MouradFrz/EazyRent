@@ -30,14 +30,14 @@
       <div class="navbar-brand d-flex flex-column align-items-center auth">
         @if (Auth::guard('owner')->check())
         @if (!is_null(Auth::user()->profilePath))
-        <img src="{{ asset('images/owners/profile/' . Auth::user()->username) . '_profile.png' }}" alt="">
+        <img src="{{ Auth::user()->profilePath }}" alt="">
         @else
         <img src="{{ asset('images/download.png') }}" alt="">
         @endif
         @endif
         @if (Auth::guard('secretary')->check())
         @if (!is_null(Auth::user()->profilePath))
-        <img src="{{ asset('images/secretary/profile/' . Auth::user()->username) . '_profile.png' }}" alt="">
+        <img src="{{ Auth::user()->profilePath }}" alt="">
         @else
         <img src="{{ asset('images/download.png') }}" alt="">
         @endif
@@ -51,7 +51,7 @@
         @endif
         @if (Auth::guard('garagist')->check())
         @if (!is_null(Auth::user()->profilePath))
-        <img src="{{ asset('images/garagist/profile/' . Auth::user()->username) . '_profile.png' }}" alt="">
+        <img src="{{ Auth::user()->profilePath }}" alt="">
         @else
         <img src="{{ asset('images/download.png') }}" alt="">
         @endif

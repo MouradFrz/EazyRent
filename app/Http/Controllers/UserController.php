@@ -38,30 +38,22 @@ class UserController extends Controller
         'email' => 'required|email|unique:users,email,|unique:admins,email|unique:garagemanagers,email|unique:secretaries,email|unique:owners,email',
         ($request->phone == '') ?: 'phone' => ['digits:10', 'regex:/(05|06|07)[0-9]{8}/'],
         'password' => 'required|min:6|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
-        // 'password' => ['required', Password::min(8)->mixedCase()->numbers()->uncompromised()],
         'passwordConfirm' => 'required|same:password',
         'idCard' => 'required|digits_between:18,18|numeric',
         'idCardImage' => 'required|mimes:jpg,jpeg,png|max:5048',
-        // 'faceIdImage' => 'required|mimes:jpg,jpeg,png|max:5048'
       ],
       [
         'idCard.required' => 'The identity card number is required.',
         'idCard.digits_between' => 'The identity card number has to be 18 number long.',
         'address.regex' => 'The address can only contain letters, numbers and spaces.',
         'password.regex' => 'The password must contain at least 1 uppercase letter,1 lowercase letter and 1 number.',
-        // 'password.Password' => 'The password you entered is weak,<br>make sure your password containe at least 8 carecters : at least 1 uppercase letter,1 lowercase letter, 1 number. ',
         'idCardImage.required' => 'The identity card image is required.',
-        // 'faceIdImage.required' => 'The face image is required for the face recognition when picking a car up.',
         'phone.digits_between' => 'The number must be made of 10 digits',
       ]
     );
 
     $newImageName = $request->username . '.' . $request->idCardImage->extension();
-    $request->idCardImage->move(public_path('images/users/idCardImages'), $newImageName);
-
-    // $faceIdImage = $request->username . '_faceId' . '.' . $request->faceIdImage->extension();
-    // $request->faceIdImage->move(public_path('images/users/faceIdImages'), $faceIdImage);
-
+    $url = Self::storeImage($request->idCardImage,"Images/users/idCardImages/",$newImageName);
 
     $user = new User();
     $user->username = $request->username;
@@ -73,7 +65,7 @@ class UserController extends Controller
     $user->idCard = $request->idCard;
     $user->email = $request->email;
     $user->phoneNumber = $request->phone;
-    $user->idCardPath = $newImageName;
+    $user->idCardPath = $url;
     $user->faceIdPath = null;
 
     $save = $user->save();
@@ -100,9 +92,9 @@ class UserController extends Controller
       );
       $request->merge([
         'email' => $request->username,
-    ]);
+      ]);
       $creds = $request->only('email', 'password');
-    }else{
+    } else {
       $request->validate(
         [
           'username' => 'required|exists:users,username',
@@ -118,14 +110,14 @@ class UserController extends Controller
 
     // dd($creds);
     if (Auth::guard('web')->attempt($creds, $request->remember)) {
-      $bans=AdminBan::where('bannedUsername',Auth::user()->username)->get();
-      if(count($bans)!=0){
+      $bans = AdminBan::where('bannedUsername', Auth::user()->username)->get();
+      if (count($bans) != 0) {
         Auth::guard('web')->logout();
-        return redirect()->route('user.login')->with('ban','You have been banned from the website.')->with('reason',$bans[0]->reason);
+        return redirect()->route('user.login')->with('ban', 'You have been banned from the website.')->with('reason', $bans[0]->reason);
       }
-      if(session()->has('vehiculePlateNb')) {
+      if (session()->has('vehiculePlateNb')) {
         session()->regenerate();
-        return redirect()->route('user.viewOfferDetails', ['plateNb'=>session('vehiculePlateNb')]);
+        return redirect()->route('user.viewOfferDetails', ['plateNb' => session('vehiculePlateNb')]);
       }
       return redirect()->route('user.home');
     } else {
@@ -144,35 +136,39 @@ class UserController extends Controller
     return view('admin.usersList', ['users' => $users]);
   }
 
-  public function getHistory(){
-    $bookings = Booking::where('clientUsername',Auth::user()->username)->join('vehicules','bookings.vehiculePlateNb','=','vehicules.plateNb')->join('garages','vehicules.garageID','=','garages.garageID')->join('branches','garages.brancheID','=','branches.brancheID')->get();
-    return view('users.history',[
-      'bookings'=>$bookings,
+  public function getHistory()
+  {
+    $bookings = Booking::where('clientUsername', Auth::user()->username)->join('vehicules', 'bookings.vehiculePlateNb', '=', 'vehicules.plateNb')->join('garages', 'vehicules.garageID', '=', 'garages.garageID')->join('branches', 'garages.brancheID', '=', 'branches.brancheID')->get();
+    return view('users.history', [
+      'bookings' => $bookings,
     ]);
   }
 
-  public function getBookingDetails($id){
+  public function getBookingDetails($id)
+  {
     $booking = Booking::find($id);
 
-    Notification::where('bookingID',$id)->update(['read_at'=>now()]);
-    if($booking->clientUsername!=Auth::user()->username){
+    Notification::where('bookingID', $id)->update(['read_at' => now()]);
+    if ($booking->clientUsername != Auth::user()->username) {
       return redirect()->route('user.home');
     }
 
-    return view('users.bookingDetails',['booking'=>$booking]);
+    return view('users.bookingDetails', ['booking' => $booking]);
   }
 
-  public function downloadPdf($id){
+  public function downloadPdf($id)
+  {
     $booking = Booking::find($id);
-    if($booking->clientUsername!=Auth::user()->username){
+    if ($booking->clientUsername != Auth::user()->username) {
       return redirect()->route('user.home');
     }
-    $path = public_path('contracts\contract_').$id.'.pdf';
+    $path = public_path('contracts\contract_') . $id . '.pdf';
     return response()->download($path);
   }
-  public function signContract(Request $request,$id){
+  public function signContract(Request $request, $id)
+  {
     $booking = Booking::find($id);
-    if($booking->clientUsername!=Auth::user()->username){
+    if ($booking->clientUsername != Auth::user()->username) {
       return redirect()->route('user.home');
     }
 
@@ -188,54 +184,59 @@ class UserController extends Controller
     AND secretaries.brancheID = branches.brancheID
     AND branches.agencyID = agencies.agencyID
     AND bookings.pickUpLocation = pickuplocations.id
-    AND bookings.bookingID=:bookID;',['bookID'=>$id]);
+    AND bookings.bookingID=:bookID;', ['bookID' => $id]);
 
     $array = json_decode(json_encode($contractData), true);
 
-    $array[0]['signature']=true;
+    $array[0]['signature'] = true;
     $pdf = PDF::loadView('users.contract', $array[0]);
-    $pdf->save(public_path('contracts\contract_').$id.'.pdf');
+    $pdf->save(public_path('contracts\contract_') . $id . '.pdf');
 
 
     $request->validate([
-      'password'=>'required|current_password:web',
-      'valid'=>'accepted'
+      'password' => 'required|current_password:web',
+      'valid' => 'accepted'
     ]);
-    $booking->update(['state'=>'SIGNED']);
-    return redirect()->route('user.bookingDetails',$id)->with('success','Contract Signed successfully.');
+    $booking->update(['state' => 'SIGNED']);
+    return redirect()->route('user.bookingDetails', $id)->with('success', 'Contract Signed successfully.');
   }
 
-  public function declineContract(Request $request,$id){
+  public function declineContract(Request $request, $id)
+  {
     $booking = Booking::find($id);
-    if($booking->clientUsername!=Auth::user()->username){
+    if ($booking->clientUsername != Auth::user()->username) {
       return redirect()->route('user.home');
     }
 
 
     $request->validate([
-      'password'=>'required|current_password:web',
-      'valid'=>'accepted'
+      'password' => 'required|current_password:web',
+      'valid' => 'accepted'
     ]);
-    $booking->update(['state'=>'CANCELED']);
-    return redirect()->route('user.bookingDetails',$id)->with('declined','Contract declined.');
+    $booking->update(['state' => 'CANCELED']);
+    return redirect()->route('user.bookingDetails', $id)->with('declined', 'Contract declined.');
   }
 
-  public function loadNotifications(Request $request){
+  public function loadNotifications(Request $request)
+  {
     if ($request->ajax()) {
-    return Notification::where("notifiedUsername",Auth::user()->username)->get();
+      return Notification::where("notifiedUsername", Auth::user()->username)->get();
     }
   }
-  public function editProfile(){
+  public function editProfile()
+  {
     return view('users.editProfile');
   }
-  public function checkPassword(Request $request){
-    if(Hash::check($request->password,Auth::user()->password)){
-      return response()->json(['success'=>true]);
-    }else{
-      return response()->json(['success'=>false]);
+  public function checkPassword(Request $request)
+  {
+    if (Hash::check($request->password, Auth::user()->password)) {
+      return response()->json(['success' => true]);
+    } else {
+      return response()->json(['success' => false]);
     }
   }
-  public function editProfilePost(Request $request){
+  public function editProfilePost(Request $request)
+  {
     $request->validate(
       [
         'lastName' => 'required|alpha|max:25',
@@ -274,116 +275,125 @@ class UserController extends Controller
 
   public function changeImage(Request $request)
   {
-      $folderPath = public_path('images/users/profile');
-
-      $image_parts = explode(";base64,", $request->image);
-      $image_type_aux = explode("image/", $image_parts[0]);
-      $image_type = $image_type_aux[1];
-      $image_base64 = base64_decode($image_parts[1]);
-      $file = $folderPath . uniqid() . '.png';
-
-      file_put_contents('images/users/profile/'.Auth::user()->username."_profile.png", $image_base64);
-      User::find(Auth::user()->id)->update(['profilePath'=>Auth::user()->username."_profile.png"]);
-      return response()->json(['success'=>'success']);
+    $image_parts = explode(";base64,", $request->image);
+    $image_type_aux = explode("image/", $image_parts[0]);
+    $image_type = $image_type_aux[1];
+    $image_base64 = base64_decode($image_parts[1]);
+    $file = uniqid() .".". $image_type;
+    $url = Self::storeImage($request->image,"Images/users/profile/",$file);
+    User::find(Auth::user()->id)->update(['profilePath' => $url]);
+    return response()->json(['success' => 'success']);
   }
-  public function checkFace($id){
-    if(Booking::find($id)->state!="SIGNED"){
+  public function checkFace($id)
+  {
+    if (Booking::find($id)->state != "SIGNED") {
       return redirect()->route('user.home');
     }
-    return view('users.faceRecognition',['bookingID'=>$id]);
+    return view('users.faceRecognition', ['bookingID' => $id]);
   }
-  public function setGoing(Request $request){
-    Booking::find($request->bookingID)->update(['state'=>"ON GOING"]);
-    return response()->json(['Succes'=>'Changed successfully']);
+  public function setGoing(Request $request)
+  {
+    Booking::find($request->bookingID)->update(['state' => "ON GOING"]);
+    return response()->json(['Succes' => 'Changed successfully']);
   }
-  public function setFailed(Request $request){
-    Booking::find($request->bookingID)->update(['state'=>"FAILED","failedSeen"=>false,"failedDate"=>now()]);
-    return response()->json(['Succes'=>'Changed successfully']);
+  public function setFailed(Request $request)
+  {
+    Booking::find($request->bookingID)->update(['state' => "FAILED", "failedSeen" => false, "failedDate" => now()]);
+    return response()->json(['Succes' => 'Changed successfully']);
   }
-  public function sendComplaint(Request $request){
+  public function sendComplaint(Request $request)
+  {
     $complaint = new Complaint();
-    $username = Owner::where('agencyID',$request->agencyID)->first()->username;
+    $username = Owner::where('agencyID', $request->agencyID)->first()->username;
     $complaint->problemType = $request->type;
     $complaint->message = $request->message;
     $complaint->sender = Auth::user()->username;
-    $complaint->recepient=$username;
+    $complaint->recepient = $username;
     $complaint->save();
-    Booking::find($request->bookingID)->update(['complaintID'=>$complaint->id]);
+    Booking::find($request->bookingID)->update(['complaintID' => $complaint->id]);
 
-    return redirect()->route('user.history')->with('message','Your complaint has been send');
+    return redirect()->route('user.history')->with('message', 'Your complaint has been send');
   }
-  public function rateVehicle(Request $request){
+  public function rateVehicle(Request $request)
+  {
     $request->validate([
-      'rating'=>'required|between:0,5'
+      'rating' => 'required|between:0,5'
     ]);
     $booking = Booking::find($request->bookingID);
     $vehicule = Vehicule::find($booking->vehiculePlateNB);
     // dd($vehicule);
-    
-    if($booking->clientUsername != Auth::user()->username || !is_null($booking->vehiculeRating)){
+
+    if ($booking->clientUsername != Auth::user()->username || !is_null($booking->vehiculeRating)) {
       return "You are not allowed to do this action";
     }
     $booking->vehiculeRating = $request->rating;
     $booking->vehiculeComment = $request->comment;
-    $booking->commentDate=now();
+    $booking->commentDate = now();
     $booking->save();
-    $count = Booking::where('vehiculePlateNB',$booking->vehiculePlateNB)->whereNotNull('vehiculeRating')->count();
+    $count = Booking::where('vehiculePlateNB', $booking->vehiculePlateNB)->whereNotNull('vehiculeRating')->count();
 
-   
-    $vehicule->rating = ($vehicule->rating + $request->rating )/$count;
+
+    $vehicule->rating = ($vehicule->rating + $request->rating) / $count;
     $vehicule->save();
 
-    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
+    return redirect()->route('user.history')->with('message', "Thanks for your feedback!");
   }
-  public function rateAgency(Request $request){
+  public function rateAgency(Request $request)
+  {
     $request->validate([
-      'rating'=>'required|between:0,5'
+      'rating' => 'required|between:0,5'
     ]);
-    
+
     $booking = Booking::find($request->bookingID);
-    $agencyID = Agency::join('branches','agencies.agencyID','=','branches.agencyID')->join('secretaries','branches.brancheID','=','secretaries.brancheID')->first()->agencyID;
-    
+    $agencyID = Agency::join('branches', 'agencies.agencyID', '=', 'branches.agencyID')->join('secretaries', 'branches.brancheID', '=', 'secretaries.brancheID')->first()->agencyID;
+
     $agency = Agency::find($agencyID);
 
     $booking->clientRatesSecretary = $request->rating;
     $booking->save();
-    $count = Booking::whereIn('secretaryUsername',Secretary::whereIn('brancheID',Branche::where('agencyID',$agencyID)->select(['brancheID'])->get()->toArray())->select(['username'])->get()->toArray())->whereNotNull('clientRatesSecretary')->count();
+    $count = Booking::whereIn('secretaryUsername', Secretary::whereIn('brancheID', Branche::where('agencyID', $agencyID)->select(['brancheID'])->get()->toArray())->select(['username'])->get()->toArray())->whereNotNull('clientRatesSecretary')->count();
     $agency->rating = ($agency->rating + $request->rating) / $count;
     $agency->save();
-    return redirect()->route('user.history')->with('message',"Thanks for your feedback!");
+    return redirect()->route('user.history')->with('message', "Thanks for your feedback!");
   }
-  public function activateAccount(Request $request){
-    if(!is_null(Auth::user()->faceIdPath)){
+  public function activateAccount(Request $request)
+  {
+    if (!is_null(Auth::user()->faceIdPath)) {
       return redirect()->route('user.home');
     }
     return view('users.activateAccount');
   }
 
-  public function upload(Request $request){
-     
+  public function upload(Request $request)
+  {
+
     $img = $request->image;
     $folderPath = "images/users/faceIdImages/"; //path location
-    
+
     $image_parts = explode(";base64,", $img);
     $image_type_aux = explode("image/", $image_parts[0]);
     $image_type = $image_type_aux[1];
     $image_base64 = base64_decode($image_parts[1]);
-   
-    $file = $folderPath . Auth::user()->username.'_'.$request->counter.'.'.$image_type;
+
+    $file = $folderPath . Auth::user()->username . '_' . $request->counter . '.' . $image_type;
     file_put_contents($file, $image_base64);
-    return response()->json(['succes'=>'success']);
+    return response()->json(['succes' => 'success']);
   }
-  public function setActive(){
-    User::find(Auth::user()->id)->update(['faceIdPath'=>true]);
-    return response()->json(['succes'=>'success']);
+  public function setActive()
+  {
+    User::find(Auth::user()->id)->update(['faceIdPath' => true]);
+    return response()->json(['succes' => 'success']);
   }
-  public function sessionSetting(Request $request){
+  public function sessionSetting(Request $request)
+  {
     session([
-      'pickUpLocation' => $request->pickUpLocation, 'dropOffLocation' => $request->dropOffLocation]);
-      return response()->json(['result'=>'success']);
+      'pickUpLocation' => $request->pickUpLocation, 'dropOffLocation' => $request->dropOffLocation
+    ]);
+    return response()->json(['result' => 'success']);
   }
-  public function paymentSuccess(){
-    if(is_null(Auth::user()->faceIdPath)){
+  public function paymentSuccess()
+  {
+    if (is_null(Auth::user()->faceIdPath)) {
       return redirect()->route('user.activateAccount');
     }
     $vehicule = Vehicule::find(session('vehiculePlateNb'));
@@ -414,5 +424,14 @@ class UserController extends Controller
     $booking->bookingPrice = $price;
     $save = $booking->save();
     return view('users.paymentSuccess');
+  }
+  public function storeImage($image, $path, $nameWithExtension)
+  {
+    $expiresAt = new \DateTime('01/01/2100');
+    $uploadedfile = fopen($image, 'r');
+    app('firebase.storage')->getBucket()->upload($uploadedfile, ['name' => "$path$nameWithExtension"]);
+    // "Testing/other_image.png
+    $url = app('firebase.storage')->getBucket()->object("$path$nameWithExtension")->signedUrl($expiresAt);
+    return $url;
   }
 }

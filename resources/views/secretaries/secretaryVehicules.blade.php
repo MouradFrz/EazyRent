@@ -21,7 +21,7 @@
         <div class="car">
           <div class="car_media">
             <a href="{{ route('secretary.vehiculeDetails', $vehicule->plateNb) }}">
-              <img src="{{ asset('images/vehicules/imagePaths/' . $vehicule->imagePath) }}" alt="vehicules image">
+              <img src="{{ $vehicule->imagePath }}" alt="vehicules image">
             </a>
           </div>
           <div class="car_content">

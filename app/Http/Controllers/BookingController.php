@@ -8,9 +8,19 @@ use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 use Barryvdh\DomPDF\Facade\PDF;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BookingController extends Controller
 {
+  public function storeFile($image, $path, $nameWithExtension)
+  {
+    $expiresAt = new \DateTime('01/01/2100');
+    $uploadedfile = fopen($image, 'r');
+    app('firebase.storage')->getBucket()->upload($uploadedfile, ['name' => "$path$nameWithExtension"]);
+    // "Testing/other_image.png
+    $url = app('firebase.storage')->getBucket()->object("$path$nameWithExtension")->signedUrl($expiresAt);
+    return $url;
+  }
   public function accept($bookingID) {
     $booking = Booking::where('bookingID', $bookingID)->first();
     $booking->secretaryUsername = Auth::user()->username;
@@ -33,8 +43,9 @@ class BookingController extends Controller
 
     $array = json_decode(json_encode($contractData), true);
     $pdf = PDF::loadView('users.contract', $array[0]);
-    $pdf->save(public_path('contracts\contract_').$booking->bookingID.'.pdf');
- 
+    $pdf->save(public_path('../storage/app/public/').$booking->bookingID.'.pdf');
+    // Storage::
+    // Self::storeFile($pdf,"Contracts/",$booking->bookingID.'.pdf');
     $notif = new Notification();
     $notif->notifiedUsername = $booking->clientUsername;
     $notif->bookingID = $booking->bookingID;

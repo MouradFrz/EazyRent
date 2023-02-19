@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col d-flex flex-column">
             @if(!is_null(Auth::user()->profilePath))
-            <img src="{{ asset('images/secretary/profile/'.Auth::user()->username).'_profile.png' }}" alt="" style="width: 150px;border-radius:50%;" class="image-change mb-3">
+            <img src="{{ Auth::user()->profilePath }}" alt="" style="width: 150px;border-radius:50%;" class="image-change mb-3">
             <button class="custom-btn cus image-selector-open" style="width: 150px;">Change profile picture</button>
             @else
             <img src="{{ asset('images/download.png') }}" alt="" style="width: 150px;border-radius:50%;" class="image-change mb-3">

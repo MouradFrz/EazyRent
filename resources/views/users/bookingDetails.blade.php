@@ -158,7 +158,7 @@
 <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
 <script>
   let booking = {!! json_encode($booking, JSON_HEX_TAG) !!}
-var url = `/contracts/contract_${booking.bookingID}.pdf`;
+var url = `/storage/${booking.bookingID}.pdf`;
 
 var pdfjsLib = window['pdfjs-dist/build/pdf'];
 

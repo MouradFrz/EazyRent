@@ -55,7 +55,7 @@
       @auth
       <div class="auth dropdown">
         @if(!is_null(Auth::user()->profilePath))
-        <img src="{{ asset('images/users/profile/'.Auth::user()->username.'_profile.png') }}"
+        <img src="{{ Auth::user()->profilePath }}"
           alt="{{Auth::user()->username}}" id="user-icon">
         @else
         <img src="{{ asset('images/download.png') }}" alt="{{Auth::user()->username}}" id="user-icon">

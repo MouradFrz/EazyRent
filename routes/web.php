@@ -131,6 +131,8 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::get('/filterVehicules',[VehiculeController::class,'filterVehicules'])->name('filterVehicules');   
   });
   Route::middleware(['auth:web', 'PreventBackHistory'])->group(function () {
+    Route::view("/firebase-image",'users.firebaseUpload');
+    Route::post("/store-image",[UserController::class,'storeImage'])->name("storeImage");
     Route::view('/home', 'guestHome')->name('home');
     Route::post('/logout', [UserController::class, 'logout'])->name('logout');
     Route::post('/book', [VehiculeController::class, 'book'])->middleware('verified')->name('book');

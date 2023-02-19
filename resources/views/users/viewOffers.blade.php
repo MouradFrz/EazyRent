@@ -127,7 +127,7 @@
         @foreach ($vehicules as $vehicule)
         <div class="minimized-offer row">
           <div class="minimized-offer_media col-12 col-lg-4">
-            <img src="{{ asset('images/vehicules/imagePaths/' . $vehicule->imagePath) }}" alt="">
+            <img src="{{ $vehicule->imagePath }}" alt="">
           </div>
           <div class="minimized-offer_content col-lg-8">
             <div class="head d-flex justify-content-between">

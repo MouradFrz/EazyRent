@@ -87,7 +87,7 @@
     <div class="col-lg-7 pb-5 pe-lg-5">
       <div class="row">
         <div class="col-12 p-5">
-          <img src="{{asset('images/vehicules/imagePaths/'.$vehicule->imagePath  )}}" alt="" style="width: 100%">
+          <img src="{{$vehicule->imagePath  }}" alt="" style="width: 100%">
         </div>
         <div class="row m-0 bg-light">
           <div class="col-md-4 col-6 ps-30 pe-0 my-4">

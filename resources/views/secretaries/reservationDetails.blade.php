@@ -48,7 +48,7 @@
         <p class="value">{{$booking -> idCard}}</p>
         <p class="label">Identity card image:</p>
           <img id="IdCardImage" class="id-card-image zoom"
-            src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}"  data-magnify-src="{{ asset('images/users/idCardImages/'. $booking->idCardPath) }}">
+            src="{{ $booking->idCardPath }}"  data-magnify-src="{{ $booking->idCardPath }}">
 
       </div>
       <div class="col">

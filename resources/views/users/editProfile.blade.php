@@ -67,7 +67,7 @@
           <div class="d-flex flex-column align-items-center justify-content-center">
             <div class="profile-img">
               @if(!is_null(Auth::user()->profilePath))
-              <img src="{{ asset('images/users/profile/'.Auth::user()->username.'_profile.png') }}" alt=""
+              <img src="{{ Auth::user()->profilePath }}" alt=""
                 class="image-selector-open" id="profile-image">
               @else
               <img src="{{ asset('images/download.png') }}" alt="" class="image-selector-open" id="profile-image">

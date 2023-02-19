@@ -572,18 +572,24 @@ class OwnerController extends Controller
 
     return redirect()->route('owner.garageDetails', $request->garageID)->with('message', 'Garage manager changed successfully');
   }
+  public function storeImage($image, $path, $nameWithExtension)
+  {
+    $expiresAt = new \DateTime('01/01/2100');
+    $uploadedfile = fopen($image, 'r');
+    app('firebase.storage')->getBucket()->upload($uploadedfile, ['name' => "$path$nameWithExtension"]);
+    $url = app('firebase.storage')->getBucket()->object("$path$nameWithExtension")->signedUrl($expiresAt);
+    return $url;
+  }
   public function changeImage(Request $request)
   {
-      $folderPath = public_path('images/owners/profile');
-
       $image_parts = explode(";base64,", $request->image);
       $image_type_aux = explode("image/", $image_parts[0]);
       $image_type = $image_type_aux[1];
       $image_base64 = base64_decode($image_parts[1]);
-      $file = $folderPath . uniqid() . '.png';
+      $file =  uniqid() . '.' . $image_type;
 
-      file_put_contents('images/owners/profile/'.Auth::user()->username."_profile.png", $image_base64);
-      Owner::find(Auth::user()->id)->update(['profilePath'=>Auth::user()->username."_profile.png"]);
+      $url = Self::storeImage($request->image, "Images/owners/profile/", $file);
+      Owner::find(Auth::user()->id)->update(['profilePath'=>$url]);
       return response()->json(['success'=>'success']);
   }
 }

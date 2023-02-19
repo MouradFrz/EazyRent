@@ -85,7 +85,7 @@ $session = \Stripe\Checkout\Session::create([
             <div class="row">
                 <h1 class="section-header">{{ $vehicule->brand }} {{ $vehicule->model }}</h1>
                 <div class="offer_media col-12 col-md-6 col-lg-8">
-                    <img src="{{ asset('images/vehicules/imagePaths/' . $vehicule->imagePath) }}"
+                    <img src="{{ $vehicule->imagePath }}"
                         alt="{{ $vehicule->brand }} {{ $vehicule->model }}" loading="lazy">
                 </div>
                 <div class="offer_details col-12 col-md-6 col-lg-4">

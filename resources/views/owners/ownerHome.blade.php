@@ -95,7 +95,7 @@
           <div class="car card">
             <p class="text-center mb-2"><strong>{{ $car->brand }} {{ $car->model }}</strong></p>
             <div class="img">
-              <img src="{{ asset('images/vehicules/imagePaths/'.$car->imagePath) }}" id="car image" alt="">
+              <img src="{{ $car->imagePath }}" id="car image" alt="">
             </div>
             <div class="content">
               <p> <strong>Rating : </strong> {{ $car->rating }}</p>
