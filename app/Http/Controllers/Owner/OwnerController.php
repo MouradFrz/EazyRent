@@ -9,7 +9,7 @@ use App\Models\Owner;
 use App\Models\AgencyRequest;
 use App\Models\Booking;
 use App\Models\Branche;
-use App\Models\complaint;
+use App\Models\Complaint;
 use App\Models\Garage;
 use App\Models\Garagist;
 use App\Models\PickUpLocation;
