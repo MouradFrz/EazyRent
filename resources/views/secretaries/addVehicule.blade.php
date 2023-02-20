@@ -138,7 +138,7 @@
           <Select name="gearType" id="" class="inputs">
             <option value="">Choose a type of gear</option>
             <option value="Manual">Manual</option>
-            <option value="Mutomatic">Automatic</option>
+            <option value="Automatic">Automatic</option>
           </Select>
           <span class="text-danger" style="font-size:0.8rem">
             @error('gearType')
