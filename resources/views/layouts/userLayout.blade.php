@@ -112,7 +112,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
-                    <h2 class="footer_header">EAZYRENT</h2>
+                    <h2 class="footer_header">EazyRent</h2>
                     <p>
                         EazyRent is a platform that makes renting your next vehicle a simple task in an easy, fast and
                         secure way.
@@ -147,7 +147,7 @@
         <div class="footer-end">
             <div class="container">
                 <p>by <span>hacene barboucha, mourad yaou, oussama foura</span></p>
-                <p>All rights reserved Copyright &copy; 2022</p>
+                <p>All rights reserved Copyright &copy; 2023</p>
             </div>
         </div>
     </footer>

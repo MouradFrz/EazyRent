@@ -236,8 +236,18 @@ a {
   width: 100%;
   height: 6rem;
 }
+@media (max-width: 720px) {
+  .white-space {
+    height: 3rem;
+  }
+}
 .white-space-sm {
   height: 3rem;
+}
+@media (max-width: 720px) {
+  .white-space-sm {
+    height: 1.5rem;
+  }
 }
 
 .section-header {
@@ -245,6 +255,13 @@ a {
   text-align: center;
   font-size: 3.5rem;
   margin-bottom: 2.5rem;
+}
+@media (max-width: 992px) {
+  .section-header {
+    text-transform: capitalize;
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
 }
 
 .email-alert {

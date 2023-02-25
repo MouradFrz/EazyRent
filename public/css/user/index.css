@@ -18,6 +18,7 @@
   transition: all 300ms linear;
   position: relative;
   font-size: 1.1rem;
+  white-space: nowrap;
 }
 .navbar .nav-link.active {
   color: rgb(0, 122, 255) !important;
@@ -95,6 +96,9 @@
   justify-self: left;
   gap: 10px;
 }
+.navbar .auth a {
+  white-space: nowrap;
+}
 .navbar .auth > img {
   width: 2rem;
   height: 2rem;
@@ -127,6 +131,8 @@
   position: absolute;
   right: 0;
   top: 55%;
+  -o-object-fit: contain;
+     object-fit: contain;
   transform: translateY(-50%) scale(1.6);
   z-index: -2;
 }
@@ -269,10 +275,11 @@
 .testimonials .content {
   color: rgb(229, 229, 234);
   text-align: center;
+  max-width: 80%;
 }
 .testimonials blockquote {
   padding-inline: 1rem;
-  font-size: 1.2rem;
+  text-align: center;
 }
 .testimonials blockquote > i {
   font-size: 1.4rem;
@@ -288,8 +295,8 @@
 }
 .testimonials .carousel-control-next,
 .testimonials .carousel-control-prev {
-  color: rgb(0, 122, 255);
-  font-weight: 300;
+  color: #FFF;
+  font-weight: 500;
   font-size: 2.5rem;
 }
 .testimonials .carousel-item {
@@ -309,6 +316,11 @@
   font-size: 5rem;
   color: rgb(142, 142, 147);
 }
+@media (max-width: 992px) {
+  .our-partners i {
+    font-size: 3rem;
+  }
+}
 .our-partners .cta {
   text-align: right;
 }
@@ -318,6 +330,11 @@ footer {
   padding-top: 2rem;
   color: #fff;
   font-weight: 300;
+}
+@media (max-width: 992px) {
+  footer .footer_header {
+    text-align: center;
+  }
 }
 footer .col-12 {
   margin-bottom: 2rem;

@@ -19,6 +19,7 @@
     transition: all 300ms linear;
     position: relative;
     font-size: 1.1rem;
+    white-space: nowrap;
     &.active {
       color: $blue !important;
       border-bottom: 2px solid $blue;
@@ -99,6 +100,9 @@
     align-items: center;
     justify-self: left;
     gap: 10px;
+    a {
+      white-space: nowrap;
+    }
     > img {
       width: 2rem;
       height: 2rem;
@@ -130,6 +134,7 @@
       position: absolute;
       right: 0;
       top: 55%;
+      object-fit: contain;
       transform: translateY(-50%) scale(1.6);
       z-index: -2;
     }
@@ -271,10 +276,11 @@
   .content {
     color: $lightestGrey;
     text-align: center;
+    max-width: 80%;
   }
   blockquote {
     padding-inline: 1rem;
-    font-size: 1.2rem;
+    text-align: center;
     > i {
       font-size: 1.4rem;
       &:first-of-type {
@@ -288,10 +294,11 @@
   h6 {
     font-size: 1.6rem;
   }
+
   .carousel-control-next,
   .carousel-control-prev {
-    color: $blue;
-    font-weight: 300;
+    color: #FFF;
+    font-weight: 500;
     font-size: 2.5rem;
   }
   .carousel-item {
@@ -312,6 +319,9 @@
   i {
     font-size: 5rem;
     color: $grey;
+    @media (max-width:992px) {
+      font-size: 3rem;
+    }
   }
   .cta {
     text-align: right;
@@ -323,6 +333,11 @@ footer {
   padding-top: 2rem;
   color: #fff;
   font-weight: 300;
+  .footer_header {
+    @media (max-width:992px) {
+      text-align: center;
+    }
+  }
   .col-12 {
     margin-bottom: 2rem;
   }
