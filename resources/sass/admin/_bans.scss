@@ -1,0 +1,35 @@
+@use "../variables" as *;
+.fullname {
+  cursor: pointer;
+  display: inline;
+  position: relative;
+  &:hover {
+    text-decoration: underline;
+    font-weight: bold;
+  }
+}
+.trigger:hover > .dropmenu {
+  display: block;
+}
+.dropmenu {
+  display: none;
+  position: absolute;
+  right: 100%;
+  top: 0;
+  z-index: 100;
+  width: 300px;
+  white-space: wrap;
+  background-color: #eee !important;
+  box-shadow: $box-shadow;
+  border-radius: 5px;
+  .drop-align {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin: 10px;
+    button {
+      width: 150px;
+    }
+  }
+}

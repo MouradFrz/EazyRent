@@ -1,0 +1,28 @@
+@use '../variables' as v;
+.booking {
+  min-height: 60vh;
+  .content {
+    width: 450px;
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid v.$lightGrey;
+    border-radius: 2rem;
+    box-shadow: v.$box-shadow;
+  }
+  .response-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    &-requested {
+      color: v.$lightGrey;
+    }
+    &-success {
+      color: rgba($color: v.$green, $alpha: .8);
+    }
+    &-fail {
+      color: rgba($color: v.$red, $alpha: .8);
+    }
+  }
+}

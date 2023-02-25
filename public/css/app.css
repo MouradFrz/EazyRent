@@ -253,7 +253,6 @@ a {
   padding: 1rem 0;
   background-color: rgb(47, 47, 49);
   color: #FFF;
-  position: -webkit-sticky;
   position: sticky;
   top: 4rem;
   z-index: 5;

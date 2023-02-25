@@ -124,10 +124,8 @@
 
 .car {
   min-width: 300px;
-  max-width: -webkit-fit-content;
   max-width: -moz-fit-content;
   max-width: fit-content;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
 }

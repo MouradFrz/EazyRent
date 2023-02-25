@@ -1,0 +1,57 @@
+@use '../variables' as v;
+.no-bookings {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  &_media {
+    font-size: 4rem;
+    color: v.$darkGrey;
+  }
+  &_content {
+    text-align: center;
+    font-weight: 500;
+  }
+}
+
+.history {
+  padding-top: 2rem;
+  min-height: 80vh;
+  &_table {
+    text-align: center;
+    thead {
+      background-color: rgba($color: v.$indigo, $alpha: .8);
+      color: #FFF;
+      text-transform: uppercase;
+      text-decoration: underline;
+      cursor: default;
+    }
+  }
+  &_actions {
+    > a, button {
+      margin-inline: .5rem
+    }
+    .link-secondary:hover {
+      color: v.$grey;
+    }
+  }
+  .booking-state {
+    font-weight: 500;
+    &.REQUESTED,&.GOING{
+      color: v.$blue;
+    }
+    &.DECLINED,&.CANCELED{
+      color {
+        color: v.$red;
+      }
+    }
+    &.ACCEPTED,&.FINISHED {
+      color: v.$indigo;
+    }
+    &.SIGNED {
+      color: v.$yellow;
+    }
+  }
+}
+

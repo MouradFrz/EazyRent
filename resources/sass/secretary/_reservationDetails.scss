@@ -1,0 +1,39 @@
+@use "../variables" as v;
+.label {
+  font-weight: 600;
+  color: v.$grey;
+}
+.value {
+  color: #000;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  cursor: text;
+  &::after {
+    content: "";
+    display: flex;
+    height: 0.5px;
+    width: 100%;
+    flex: 1;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: v.$lightGrey;
+  }
+}
+// .image-zoom-container > img{
+//   width: 300px;
+//   height: 200px;
+//   object-fit: fill;
+//   object-position: center center;
+// }
+.id-card-image {
+  width: 300px;
+  height: 200px;
+  object-fit: fill;
+  object-position: center center;
+}
+.action {
+  margin-bottom: 4rem;
+}

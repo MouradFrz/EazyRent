@@ -35,15 +35,8 @@
   width: 0;
   z-index: 1;
   border-bottom: 2px solid rgb(0, 122, 255);
-  -webkit-animation: grow 300ms linear;
-          animation: grow 300ms linear;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-@-webkit-keyframes grow {
-  100% {
-    width: 100%;
-  }
+  animation: grow 300ms linear;
+  animation-fill-mode: forwards;
 }
 @keyframes grow {
   100% {
@@ -58,15 +51,13 @@
   }
 }
 .navbar .navbar-collapse.show .nav-link {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   font-weight: 500;
 }
 .navbar .navbar-collapse.show .nav-link:hover::after {
   border: 0;
-  -webkit-animation: none;
-          animation: none;
+  animation: none;
 }
 .navbar .dropdown-menu {
   right: 0;
@@ -167,7 +158,6 @@
   }
 }
 .hero_content .search-panel {
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin-bottom: 1rem;
