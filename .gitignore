@@ -3,13 +3,9 @@ public/hot/
 public/storage
 public/css/
 public/js/
-public/images/users/
-public/images/owners/
-public/images/garagiste/
+public/images/*
 storage/*.key
 vendor
-public/images/users/faceIdImages
-# /public/images/users/idCardImages
 .env
 .env.backup
 .phpunit.result.cache

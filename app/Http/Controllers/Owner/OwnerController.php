@@ -9,7 +9,7 @@ use App\Models\Owner;
 use App\Models\AgencyRequest;
 use App\Models\Booking;
 use App\Models\Branche;
-use App\Models\complaint;
+use App\Models\Complaint;
 use App\Models\Garage;
 use App\Models\Garagist;
 use App\Models\PickUpLocation;
@@ -436,7 +436,7 @@ class OwnerController extends Controller
     }
 
     $secretaries = DB::table('owners')->where('owners.username', Auth::user()->username)->join('branches', 'owners.agencyID', '=', 'branches.agencyID')
-      ->join('secretaries', 'branches.brancheID', '=', 'secretaries.brancheID')->latest()->paginate(25);
+      ->join('secretaries', 'branches.brancheID', '=', 'secretaries.brancheID')->orderBy('secretaries.created_at')->paginate(25);
 
     $garagists = DB::table('owners')->where('owners.username', Auth::user()->username)->join('branches', 'owners.agencyID', '=', 'branches.agencyID')
       ->join('garagemanagers', 'branches.brancheID', '=', 'garagemanagers.brancheID')->latest()->paginate(25);

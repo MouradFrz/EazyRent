@@ -196,7 +196,7 @@ class SecretaryController extends Controller
 
 
   public function showProfile(){
-    return view('secretaries.editProfile');
+    return view('secretaries.editprofile');
 }
 
 
